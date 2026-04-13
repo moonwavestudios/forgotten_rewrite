@@ -269,88 +269,6 @@ func _activate_ability(ability: String) -> void:
 				$"..".hitboxes, spawn_pos, hit_flag, 25, "survivor", Vector3(1.0,1.0,1.0), slash_hit, $".."
 			)
 			await get_tree().create_timer(0.05).timeout
-			
-	elif ability == "nyx_stab":
-		if $"..".crouching == false:
-			var hit_flag: Array = []
-				
-			var forward = -$"..".transform.basis.z
-			forward.y = 0
-			forward = forward.normalized()
-			var dash_speed := 12.0 
-			var dash_duration := 0.2
-			var elapsed := 0.0
-			
-			$"..".current_speed = 0
-				
-			await get_tree().create_timer(0.3).timeout
-				
-			$"../SFX".stream = nyx_stab
-			$"../SFX".play()
-			
-			while elapsed < dash_duration:
-				var delta = get_physics_process_delta_time()
-				elapsed += delta
-				$"..".velocity.x = forward.x * dash_speed
-				$"..".velocity.z = forward.z * dash_speed
-				$"..".move_and_slide()
-				await get_tree().physics_frame
-				
-			for i in range(9):
-				var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
-				spawn_pos.y -= 0.9
-				$"../..".add_hitbox(
-					$"..".hitboxes, spawn_pos, hit_flag, 25, "killer", Vector3(1.0,1.0,1.0), null, $".."
-				)
-				await get_tree().create_timer(0.05).timeout
-		else:
-			var hit_flag: Array = []
-				
-			var forward = -$"..".transform.basis.z
-			forward.y = 0
-			forward = forward.normalized()
-			var dash_speed := 12.0 
-			var dash_duration := 0.7
-			var elapsed := 0.0
-			
-			var hit_interval := 0.1  
-			var hit_timer := 0.0
-			
-			$"..".current_speed = 0
-				
-			await get_tree().create_timer(0.3).timeout
-				
-			$"../SFX".stream = nyx_stab
-			$"../SFX".play()
-			$"..".disable_effect("invisibility")
-			
-			while elapsed < dash_duration:
-				var delta = get_physics_process_delta_time()
-				elapsed += delta
-				hit_timer += delta
-				
-				$"..".velocity.x = forward.x * dash_speed
-				$"..".velocity.z = forward.z * dash_speed
-				$"..".move_and_slide()
-				
-				if hit_timer >= hit_interval:
-					hit_timer = 0.0
-					var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
-					spawn_pos.y -= 0.9
-					$"../..".add_hitbox(
-						$"..".hitboxes, spawn_pos, hit_flag, 25, "killer", Vector3(1.0,1.0,1.0), null, $".."
-					)
-				
-				await get_tree().physics_frame
-				
-				
-		$"..".current_speed = $"..".WALK_SPEED
-			
-	elif ability == "crouch":
-		$"..".crouching = not $"..".crouching
-		$"..".current_speed = $"..".WALK_SPEED / 2
-		$"..".apply_effect("invisibility", 2)
-		$"..".usingAbility = false 
 		
 	elif ability == "yixi_grab":
 		$"..".current_speed = 0
@@ -417,20 +335,6 @@ func _activate_ability(ability: String) -> void:
 		await get_tree().create_timer(2.5).timeout
 		$"..".current_speed = $"..".WALK_SPEED
 		$"..".usingAbility = false
-		
-	elif ability == "ritual":
-		var ritual_scene = load("res://scenes/other/ritual.tscn")  
-		var ritual_instance = ritual_scene.instantiate()
-		$"../..".add_child(ritual_instance)
-		ritual_instance.global_position = $"..".global_position 
-		ritual_instance.activate($"..")
-		player.ritual_node = ritual_instance
-		
-	elif ability == "mass_infection":
-		print("THIS IS MASS INFECTION")
-		
-	elif ability == "entanglement":
-		print("feel my entanglement")
 		
 	else:
 		print(ability)

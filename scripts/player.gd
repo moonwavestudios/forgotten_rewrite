@@ -24,8 +24,6 @@ var equipped_survivor = "nyx"
 var equipped_killer = "yixi"
 
 var crouching = false
-var oath = 0
-var max_oath = 3
 
 var stunned = false
 
@@ -135,7 +133,6 @@ func _physics_process(delta: float) -> void:
 		$player_ui/GameStuff/VBoxContainer/Label.text = "Weakness: " + str(weakness)
 		
 	$player_ui/GameStuff/Health.value = health
-	$player_ui/GameStuff/Oath.value = oath
 
 	if Input.is_action_just_pressed("Ability1") and not usingAbility and not _is_on_cooldown(equipped_ability1.get("name", "Ability1")):
 		var ability_type = equipped_ability1.get("type", "")
@@ -203,9 +200,6 @@ func _physics_process(delta: float) -> void:
 		usingAbility = true
 		await get_tree().create_timer(0.5).timeout
 		abilityTimer_timeout()
-		
-	if health <= 0:
-		die()
 	
 	if is_sprinting:
 		current_speed = SPRINT_SPEED
@@ -259,19 +253,6 @@ func _input(event: InputEvent) -> void:
 		camera.rotation.x = pitch
 		first_person_cam.rotation.x = pitch
 
-func die() -> void:
-	if oath >= max_oath and ritual_node != null and is_instance_valid(ritual_node):
-		var respawn_pos = ritual_node.global_position
-		var triggered = ritual_node.trigger_respawn()
-		if triggered:
-			health = 40
-			global_position = respawn_pos
-			oath = 0
-			ritual_node = null
-			return
-	# normal death logic here (spectate, eliminate, etc.)
-	print("player ded for real ;-;")
-
 func apply_effect(effect, level):
 	Effect_Component.activate_effect(effect, level)
 
@@ -297,7 +278,7 @@ func grant(amountXP : int, amountCoins : int, text : String):
 	notifications.queue_free()
 	
 func _interact_arcade(_collider) -> void:
-	print("gen")
+	print("arcade")
 
 func abilityTimer_timeout():
 	usingAbility = false

@@ -4,35 +4,60 @@
   "type": "survivor",
   "stats": {
 	"health": 80,
-	"stamina": 100,
-	"walk_speed": 5.0,
-	"sprint_speed": 9.0
+	"stamina": 105,
+	"walk_speed": 5.1,
+	"sprint_speed": 9.1
   },
   "abilities": [
 	{
 	  "id": "ability1",
-	  "name": "Stab",
+	  "name": "Thread Cut",
 	  "icon": "res://assets/textures/abilityTemplate.png",
-	  "cooldown": 30.0,
-	  "type": "nyx_stab",
-	  "damage": 10,
-	  "description": "Nyx lunges forward with a dagger, striking the killer for damage and sustaining herself. The outcome depends on positioning, rewarding precise backstabs with stronger effects."
+	  "cooldown": 24.0,
+	  "type": "mark_killer",
+	  "duration": 6.0,
+	  "grace_window": 2.0,
+	  "penalty": {
+		"slow": 0.25,
+		"ability_lock": 1.5
+	  },
+	  "description": "Nyx marks the killer. If they continue chasing the same target beyond a short grace period, they are slowed and briefly unable to use abilities."
 	},
 	{
 	  "id": "ability2",
-	  "name": "Crouch",
+	  "name": "Intercept",
 	  "icon": "res://assets/textures/abilityTemplate.png",
-	  "cooldown": 45.0,
-	  "type": "crouch",
-	  "description": "Nyx enters a stealth state by crouching with her dagger in hand, silencing her footsteps and preparing for an ambush."
+	  "cooldown": 22.0,
+	  "type": "body_block",
+	  "duration": 2.5,
+	  "damage_reduction": 0.4,
+	  "on_hit_effect": "stagger",
+	  "stagger_duration": 0.8,
+	  "description": "Nyx braces herself. While active, the next hit taken from the killer is reduced and staggers them briefly. Designed to interrupt key moments in a chase."
 	},
 	{
 	  "id": "ability3",
-	  "name": "Ritual",
+	  "name": "Tether Break",
 	  "icon": "res://assets/textures/abilityTemplate.png",
-	  "one_time_use": true,
-	  "type": "ritual",
-	  "description": "Nyx carves a Ritual into the ground, marking a respawn point that enables her second life through Oath."
+	  "cooldown": 30.0,
+	  "type": "anti_lock",
+	  "range": 10.0,
+	  "effect_duration": 3.0,
+	  "target": "killer",
+	  "effect": "forced_target_drop",
+	  "description": "Nyx disrupts the killer’s focus, forcing them to briefly lose lock on their current target and preventing immediate re-engagement."
+	},
+	{
+	  "id": "ability4",
+	  "name": "Oath Anchor",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 45.0,
+	  "type": "ally_link",
+	  "duration": 8.0,
+	  "redirect_ratio": 0.35,
+	  "perfect_release_window": 0.5,
+	  "perfect_release_effect": "negate_last_instance",
+	  "description": "Nyx binds herself to an ally, taking a portion of the damage they receive. Releasing the link with precise timing negates the most recent redirected damage."
 	}
   ]
 }
