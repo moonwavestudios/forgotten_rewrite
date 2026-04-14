@@ -337,13 +337,18 @@ func _activate_ability(ability: String) -> void:
 		$"..".usingAbility = false
 	
 	elif ability == "mark_killer":
-		print("used ability mark_killer")
 		var plrs = $"../..".get_players()
 		for plr in plrs:
 			if plr.is_Killer:
 				print(str(plr) + " is Killer")
 				_highlight_killer(plr)
-	
+				
+	elif ability == "block":
+		$"..".blocking = true
+		await get_tree().create_timer(2).timeout
+		$"..".blocking = false
+		$"..".usingAbility = false
+		
 	else:
 		print(ability)
 	

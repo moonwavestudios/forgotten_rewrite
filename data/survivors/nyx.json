@@ -29,7 +29,7 @@
 	  "name": "Intercept",
 	  "icon": "res://assets/textures/abilityTemplate.png",
 	  "cooldown": 22.0,
-	  "type": "body_block",
+	  "type": "block",
 	  "duration": 2.5,
 	  "damage_reduction": 0.4,
 	  "on_hit_effect": "stagger",
