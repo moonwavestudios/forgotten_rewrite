@@ -335,7 +335,13 @@ func _activate_ability(ability: String) -> void:
 		await get_tree().create_timer(2.5).timeout
 		$"..".current_speed = $"..".WALK_SPEED
 		$"..".usingAbility = false
-		
+	
+	elif ability == "mark_killer":
+		var plrs = $"../..".get_players()
+		for plr in plrs:
+			if plr.is_Killer:
+				print(str(plr) + " is Killer")
+	
 	else:
 		print(ability)
 	

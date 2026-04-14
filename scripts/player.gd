@@ -8,7 +8,7 @@ const MOUSE_SENSITIVITY = 0.003
 
 var ritual_node: Node3D = null
 var malice = 1
-var is_Killer = true
+var is_Killer = false
 
 var exp = 0
 

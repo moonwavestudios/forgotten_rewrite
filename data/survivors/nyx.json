@@ -2,6 +2,7 @@
   "id": "nyx",
   "display_name": "Nyx",
   "type": "survivor",
+  "model": "res://assets/characters/nyx.tscn",
   "stats": {
 	"health": 80,
 	"stamina": 105,
@@ -18,8 +19,8 @@
 	  "duration": 6.0,
 	  "grace_window": 2.0,
 	  "penalty": {
-		"slow": 0.25,
-		"ability_lock": 1.5
+		"slowness": 0.25,
+		"helpess": 1.5
 	  },
 	  "description": "Nyx marks the killer. If they continue chasing the same target beyond a short grace period, they are slowed and briefly unable to use abilities."
 	},
@@ -33,7 +34,7 @@
 	  "damage_reduction": 0.4,
 	  "on_hit_effect": "stagger",
 	  "stagger_duration": 0.8,
-	  "description": "Nyx braces herself. While active, the next hit taken from the killer is reduced and staggers them briefly. Designed to interrupt key moments in a chase."
+	  "description": "Nyx braces herself. While active, the next hit taken from the killer is reduced and staggers them briefly."
 	},
 	{
 	  "id": "ability3",
@@ -44,7 +45,6 @@
 	  "range": 10.0,
 	  "effect_duration": 3.0,
 	  "target": "killer",
-	  "effect": "forced_target_drop",
 	  "description": "Nyx disrupts the killer’s focus, forcing them to briefly lose lock on their current target and preventing immediate re-engagement."
 	},
 	{
