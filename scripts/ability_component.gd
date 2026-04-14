@@ -337,14 +337,55 @@ func _activate_ability(ability: String) -> void:
 		$"..".usingAbility = false
 	
 	elif ability == "mark_killer":
+		print("used ability mark_killer")
 		var plrs = $"../..".get_players()
 		for plr in plrs:
 			if plr.is_Killer:
 				print(str(plr) + " is Killer")
+				_highlight_killer(plr)
 	
 	else:
 		print(ability)
 	
+func _highlight_killer(killer_node: Node, duration: float = 3.0) -> void:
+	var highlight_mat := StandardMaterial3D.new()
+	highlight_mat.albedo_color = Color(1.0, 0.1, 0.1, 1.0)  
+	highlight_mat.emission_enabled = true
+	highlight_mat.emission = Color(1.0, 0.0, 0.0)
+	highlight_mat.emission_energy_multiplier = 2.0
+	highlight_mat.no_depth_test = true       
+	highlight_mat.render_priority = 1        
+ 
+	var meshes: Array[MeshInstance3D] = []
+	var original_materials: Array = []
+ 
+	for child in killer_node.find_children("*", "MeshInstance3D", true, false):
+		var mesh_inst := child as MeshInstance3D
+		meshes.append(mesh_inst)
+		
+		var surfs: Array = []
+		for s in range(mesh_inst.get_surface_override_material_count()):
+			surfs.append(mesh_inst.get_surface_override_material(s))
+		original_materials.append(surfs)
+		
+		for s in range(mesh_inst.get_surface_override_material_count()):
+			mesh_inst.set_surface_override_material(s, highlight_mat)
+		
+		if mesh_inst.get_surface_override_material_count() == 0:
+			mesh_inst.material_override = highlight_mat
+ 
+	await get_tree().create_timer(duration).timeout
+ 
+	for idx in range(meshes.size()):
+		if not is_instance_valid(meshes[idx]):
+			continue
+		var mesh_inst := meshes[idx]
+		var surfs: Array = original_materials[idx]
+		for s in range(surfs.size()):
+			mesh_inst.set_surface_override_material(s, surfs[s])
+		if mesh_inst.get_surface_override_material_count() == 0:
+			mesh_inst.material_override = null
+
 func _launch_mouse_projectile(target_pos: Vector3) -> void:
 	var start_pos = $"..".global_position
 	start_pos.y -= 0.9  

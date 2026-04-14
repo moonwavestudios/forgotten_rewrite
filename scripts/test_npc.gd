@@ -4,7 +4,8 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var current_speed = 5.0
 
-@export var isKiller = true
+@export var is_Killer = true
+var equipped_killer = "yixi"
 
 var health = 100
 var weakness = 0

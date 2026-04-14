@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://i5mm30dajmqt"]
 
 [ext_resource type="Script" uid="uid://m8hbdfqbk3h" path="res://scripts/test_npc.gd" id="1_upkiv"]
+[ext_resource type="PackedScene" uid="uid://bp0hs4qgh4lf" path="res://UI/player_ui.tscn" id="2_fohsx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vifff"]
 
@@ -16,3 +17,6 @@ shape = SubResource("CapsuleShape3D_vifff")
 mesh = SubResource("CapsuleMesh_vifff")
 
 [node name="SFX" type="AudioStreamPlayer" parent="." unique_id=239948437]
+
+[node name="player_ui" parent="." unique_id=1532252855 instance=ExtResource("2_fohsx")]
+visible = false
