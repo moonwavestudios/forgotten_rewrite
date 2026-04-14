@@ -208,7 +208,6 @@ func _physics_process(delta: float) -> void:
 		current_speed = SPRINT_SPEED
 		stamina = max(stamina - STAMINA_DRAIN * delta, 0.0)
 	else:
-		current_speed = WALK_SPEED
 		if exhausted:
 			stamina = min(stamina + STAMINA_RECOVER_EXHAUSTED * delta, MAX_STAMINA)
 			if stamina >= MAX_STAMINA * 0.25:

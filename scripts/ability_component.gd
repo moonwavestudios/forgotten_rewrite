@@ -345,7 +345,9 @@ func _activate_ability(ability: String) -> void:
 				
 	elif ability == "block":
 		$"..".blocking = true
+		$"..".current_speed = 0.25
 		await get_tree().create_timer(2).timeout
+		$"..".current_speed = $"..".WALK_SPEED
 		$"..".blocking = false
 		$"..".usingAbility = false
 		
