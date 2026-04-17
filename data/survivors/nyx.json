@@ -5,7 +5,7 @@
   "model": "res://assets/characters/nyx.tscn",
   "stats": {
 	"health": 80,
-	"stamina": 105,
+	"stamina": 100,
 	"walk_speed": 5.1,
 	"sprint_speed": 9.1
   },

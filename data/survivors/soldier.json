@@ -1,0 +1,41 @@
+{
+  "id": "soldier",
+  "display_name": "Soldier",
+  "type": "survivor",
+  "model": "res://assets/characters/nyx.tscn",
+  "stats": {
+	"health": 110,
+	"stamina": 100,
+	"walk_speed": 5.1,
+	"sprint_speed": 9.1
+  },
+  "abilities": [
+	{
+	  "id": "ability1",
+	  "name": "Block",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 24.0,
+	  "type": "block",
+	  "damage_reduction": 0.4,
+	  "description": "Soldier blocks the killers attack, granting them a punch"
+	},
+	{
+	  "id": "ability2",
+	  "name": "Charge",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 15.0,
+	  "type": "charge",
+	  "damage_reduction": 0.4,
+	  "description": "Soldier charges, if charge hits the killer, it grants resistance 5 for 1 second and pushes the killer."
+	},
+	{
+	  "id": "ability3",
+	  "name": "Punch",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 1.0,
+	  "type": "punch",
+	  "target": "killer",
+	  "description": "Soldier punches the killer, stunning them for 3 seconds."
+	},
+  ]
+}
