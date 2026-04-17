@@ -351,6 +351,37 @@ func _activate_ability(ability: String) -> void:
 		$"..".blocking = false
 		$"..".usingAbility = false
 		
+	elif ability == "punch":
+		if $"..".blocks >= 1:
+			var hit_flag: Array = []
+		
+			var forward = -$"..".transform.basis.z
+			forward.y = 0
+			forward = forward.normalized()
+			var dash_speed := 18.0
+			var dash_duration := 0.15
+			var elapsed := 0.0
+			
+			$"..".blocks = 0
+			
+			await get_tree().create_timer(0.3).timeout
+			
+			while elapsed < dash_duration:
+				var delta = get_physics_process_delta_time()
+				elapsed += delta
+				$"..".velocity.x = forward.x * dash_speed
+				$"..".velocity.z = forward.z * dash_speed
+				$"..".move_and_slide()
+				await get_tree().physics_frame
+			
+			for i in range(5):
+				var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
+				spawn_pos.y -= 0.9
+				$"../..".add_hitbox(
+					$"..".hitboxes, spawn_pos, hit_flag, 25, "killer", Vector3(1.0,1.0,1.0), slash_hit, $".."
+				)
+				await get_tree().create_timer(0.05).timeout
+		
 	else:
 		print(ability)
 	

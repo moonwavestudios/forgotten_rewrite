@@ -6,11 +6,11 @@ const WALK_SPEED = 5.0
 const SPRINT_SPEED = 9.0
 const MOUSE_SENSITIVITY = 0.003
 
-var ritual_node: Node3D = null
 var malice = 1
 var is_Killer = false
 
-var exp = 0
+var xp = 0
+var blocks = 0
 
 var current_speed = WALK_SPEED
 
@@ -269,7 +269,7 @@ func grant(amountXP : int, amountCoins : int, text : String):
 	var notificationsText = preload("res://scenes/other/notifications_text.tscn")
 	var notifications = notificationsText.instantiate()
 	
-	exp += amountXP
+	xp += amountXP
 	coins += amountCoins
 	
 	notifications.text = text + ": +" + str(amountXP) + " Coins +" + str(amountXP) + " EXP"
