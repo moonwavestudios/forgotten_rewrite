@@ -44,7 +44,7 @@ func _process(_delta: float) -> void:
 				"Intermission: " + str(snapped($Intermission.time_left, 1.0))
 				
 	if in_round and not lms_started:
-		if get_player_count() > 1:
+		if get_player_count() == 2:
 			for player in get_players():
 				if player.is_Killer:
 					lms_started = true
@@ -70,7 +70,7 @@ func start_round():
 			most_malicious_player = player
 		
 		player.get_node('player_ui').get_node('SpectatorStuff').visible = false
-		player.get_node('player_ui').get_node('GameStuff').visible = false
+		player.get_node('player_ui').get_node('GameStuff').visible = true
 	
 	if most_malicious_player != null:
 		print("Most malicious player is: ", most_malicious_player.name, 

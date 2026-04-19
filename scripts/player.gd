@@ -19,6 +19,8 @@ var current_speed = WALK_SPEED
 @onready var Ability_Component = $Ability_Component
 @onready var Effect_Component = $EffectComponent
 
+@onready var AbilitiesStuff = $player_ui/GameStuff/AbilitiesStuff 
+
 var usingAbility = false
 var equipped_survivor = "nyx"
 var equipped_killer = "yixi"

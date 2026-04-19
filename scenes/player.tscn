@@ -40,8 +40,6 @@ collide_with_areas = true
 
 [node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1274380537]
 
-[node name="Chase_Theme" type="AudioStreamPlayer" parent="." unique_id=423958925]
-
 [node name="FirstPersonCam" type="Camera3D" parent="." unique_id=54325718]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6779641, -0.24250025)
 
@@ -49,3 +47,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6779641, -0.24250025)
 
 [node name="EffectComponent" type="Node" parent="." unique_id=128819240]
 script = ExtResource("5_qlg0r")
+
+[node name="Chase_Theme" type="AudioStreamPlayer3D" parent="." unique_id=1140559057]

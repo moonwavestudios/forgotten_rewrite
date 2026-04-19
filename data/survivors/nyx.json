@@ -13,7 +13,7 @@
 	}
   ],
   "stats": {
-	"health": 80,
+	"health": 100,
 	"stamina": 100,
 	"walk_speed": 5.1,
 	"sprint_speed": 9.1
