@@ -296,7 +296,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _try_emote(emote_name: String) -> void:
-	# Killers get absolutely ZERO emotes, sowwy!! >:c
 	if is_Killer:
 		return
 
