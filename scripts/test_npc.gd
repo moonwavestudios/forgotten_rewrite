@@ -24,8 +24,6 @@ func _ready() -> void:
 	var char_id = equipped_killer if is_Killer else equipped_survivor
 	equipped_skin_id = save_data.get_equipped_skin(char_id)
 	apply_skin(equipped_skin_id)
-	if is_Killer:
-		$Chase_Theme.play()
 
 func apply_skin(skin_id: String) -> void:
 	var char_type = "killer" if is_Killer else "survivor"

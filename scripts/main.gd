@@ -58,7 +58,7 @@ func get_players():
 	return get_tree().get_nodes_in_group("players")
 
 func start_intermission() -> void:
-	$Intermission.start(30)
+	$Intermission.start(5)
 	
 func start_round():
 	var highest_malice = -INF
@@ -71,6 +71,9 @@ func start_round():
 		
 		player.get_node('player_ui').get_node('SpectatorStuff').visible = false
 		player.get_node('player_ui').get_node('GameStuff').visible = true
+		
+		if player.is_Killer:
+			start_chase(player.equipped_killer, player)
 	
 	if most_malicious_player != null:
 		print("Most malicious player is: ", most_malicious_player.name, 
@@ -79,6 +82,14 @@ func start_round():
 func assign_model(_player):
 	pass
 
+func start_chase(killer: String, player: Node) -> void:
+	var stream_path = get_chase_theme(killer)
+	if stream_path == "" or not ResourceLoader.exists(stream_path):
+		push_warning("No chase music found for killer: " + killer)
+		return
+	ResourceLoader.load_threaded_request(stream_path)
+	_await_chase_load(stream_path, player)
+
 func start_lms(killer):
 	var stream_path = get_lms(killer)
 	if stream_path == "" or not ResourceLoader.exists(stream_path):
@@ -86,6 +97,19 @@ func start_lms(killer):
 		return
 	ResourceLoader.load_threaded_request(stream_path)
 	_await_lms_load(stream_path)
+
+func _await_chase_load(stream_path: String, player: Node) -> void:
+	while true:
+		var status = ResourceLoader.load_threaded_get_status(stream_path)
+		if status == ResourceLoader.THREAD_LOAD_LOADED:
+			var stream = ResourceLoader.load_threaded_get(stream_path)
+			player.get_node('Chase_Theme').stream = stream 
+			player.get_node('Chase_Theme').play()
+			return
+		elif status == ResourceLoader.THREAD_LOAD_FAILED:
+			push_warning("Failed to load chase music: " + stream_path)
+			return
+		await get_tree().process_frame
 
 func _await_lms_load(stream_path: String):
 	while true:
@@ -109,6 +133,14 @@ func get_lms(killer: String):
 	
 	var killer_data = CharData.get_killer(killer)
 	return killer_data.get("music", {}).get("lms", "")
+
+func get_chase_theme(killer: String):
+	for player in get_players():
+		if player.is_Killer and player.equipped_killer == killer:
+			return player.active_music.get("chase", "")
+	
+	var killer_data = CharData.get_killer(killer)
+	return killer_data.get("music", {}).get("chase", "")
 
 func _on_intermission_timeout() -> void:
 	start_round()
