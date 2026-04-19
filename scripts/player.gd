@@ -6,6 +6,10 @@ const WALK_SPEED = 5.0
 const SPRINT_SPEED = 9.0
 const MOUSE_SENSITIVITY = 0.003
 
+var equipped_emotes: Array = []
+var is_emoting: bool = false
+var current_emote: String = ""
+
 var malice = 1
 var is_Killer = false
 
@@ -51,6 +55,8 @@ var MAX_STAMINA = 100.0
 const STAMINA_DRAIN = 25.0   
 const STAMINA_RECOVER = 15.0 
 const STAMINA_RECOVER_EXHAUSTED = 5 
+
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 var ability_uses := {}
 
@@ -239,6 +245,9 @@ func _physics_process(delta: float) -> void:
 		if collider is Area3D:
 			try_interact(collider)
 			
+	if not is_Killer and Input.is_action_just_pressed("Emote1") and not is_emoting and not usingAbility:
+		_try_emote("Wave")
+	
 	if Input.is_action_just_pressed("ChangeCam"):
 		cam = not cam
 		if cam:
@@ -271,6 +280,12 @@ func _physics_process(delta: float) -> void:
 		current_speed = WALK_SPEED
 
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	
+	if is_emoting:
+		if input_dir.length() > 0.1:
+			_stop_emote()
+		return
+		
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * current_speed
@@ -279,6 +294,41 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, WALK_SPEED)
 		velocity.z = move_toward(velocity.z, 0, WALK_SPEED)
 	move_and_slide()
+
+func _try_emote(emote_name: String) -> void:
+	# Killers get absolutely ZERO emotes, sowwy!! >:c
+	if is_Killer:
+		return
+
+	var emote_data = EmoteData.get_emote(emote_name)
+	if emote_data.is_empty():
+		return
+
+	if not EmoteData.is_unlocked(emote_name, equipped_emotes):
+		return  # don't own it, no emoting 4 u :(
+
+	_play_emote(emote_name, emote_data)
+
+func _play_emote(emote_name: String, emote_data: Dictionary) -> void:
+	is_emoting = true
+	current_emote = emote_name
+	usingAbility = true  # blocks abilities + movement input
+
+	var anim = emote_data.get("animation", "")
+	var duration = emote_data.get("duration", 2.0)
+
+	if anim != "" and anim_player.has_animation(anim):
+		anim_player.play(anim)
+
+	await get_tree().create_timer(duration).timeout
+	_stop_emote()
+
+func _stop_emote() -> void:
+	is_emoting = false
+	current_emote = ""
+	usingAbility = false
+	if anim_player.is_playing():
+		anim_player.stop()
 
 func try_interact(collider: Area3D):
 	if not is_multiplayer_authority():
