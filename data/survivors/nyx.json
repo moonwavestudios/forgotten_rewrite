@@ -3,6 +3,15 @@
   "display_name": "Nyx",
   "type": "survivor",
   "model": "res://assets/characters/nyx.tscn",
+  "skins": [
+	{
+	  "id": "default",
+	  "display_name": "Default",
+	  "price": 0,
+	  "model": "res://assets/models/nyx/nyx_default.tscn",
+	  "thumbnail": "res://assets/textures/skins/nyx_default.png",
+	}
+  ],
   "stats": {
 	"health": 80,
 	"stamina": 100,

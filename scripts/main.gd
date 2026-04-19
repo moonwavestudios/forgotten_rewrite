@@ -103,9 +103,12 @@ func _await_lms_load(stream_path: String):
 		await get_tree().process_frame
 
 func get_lms(killer: String):
+	for player in get_players():
+		if player.is_Killer and player.equipped_killer == killer:
+			return player.active_music.get("lms", "")
+	
 	var killer_data = CharData.get_killer(killer)
-	var music = killer_data.get("music", {})
-	return music.get("lms", "Default")
+	return killer_data.get("music", {}).get("lms", "")
 
 func _on_intermission_timeout() -> void:
 	start_round()

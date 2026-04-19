@@ -2,6 +2,23 @@
   "id": "envy",
   "display_name": "Envy",
   "type": "killer",
+  "skins": [
+	{
+	  "id": "default",
+	  "display_name": "Default",
+	  "price": 0,
+	  "model": "res://assets/models/envy/envy_default.tscn",
+	  "thumbnail": "res://assets/textures/skins/envy_default.png"
+	},
+	{
+	  "id": "virus",
+	  "display_name": "Virus",
+	  "price": 500,
+	  "limited": true,
+	  "model": "res://assets/models/envy/envy_shadow.tscn",
+	  "thumbnail": "res://assets/textures/skins/envy_shadow.png"
+	}
+  ],
   "stats": {
 	"health": 1000,
 	"stamina": 110,

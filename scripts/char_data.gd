@@ -20,22 +20,15 @@ func get_survivor(id: String) -> Dictionary:
 func get_killer(id: String) -> Dictionary:
 	return killers.get(id, {})
 
-func get_skin(id: String) -> Dictionary:
-	return skins.get(id, {})
+func get_skins(character_id: String, type: String) -> Array:
+	var data = get_killer(character_id) if type == "killer" else get_survivor(character_id)
+	return data.get("skins", [])
 
-func get_skins_for_killer(killer_id: String) -> Array:
-	var result: Array = []
-	for skin in skins.values():
-		if skin.get("killer", "") == killer_id:
-			result.append(skin)
-	return result
-
-func get_skins_for_survivor(survivor_id: String) -> Array:
-	var result: Array = []
-	for skin in skins.values():
-		if skin.get("survivor", "") == survivor_id:
-			result.append(skin)
-	return result
+func get_skin(character_id: String, type: String, skin_id: String) -> Dictionary:
+	for skin in get_skins(character_id, type):
+		if skin.get("id") == skin_id:
+			return skin
+	return {}
 
 func _load_all() -> void:
 	survivors = _load_directory(SURVIVORS_DIR)

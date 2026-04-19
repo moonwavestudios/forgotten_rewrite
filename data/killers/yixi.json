@@ -2,6 +2,27 @@
   "id": "yixi",
   "display_name": "YiXi",
   "type": "killer",
+  "skins": [
+	{
+	  "id": "default",
+	  "display_name": "Default",
+	  "price": 0,
+	  "model": "res://assets/models/yixi/yixi_default.tscn",
+	  "thumbnail": "res://assets/textures/skins/yixi_default.png",
+	  "music": {
+		"lms": "res://assets/music/lms_bunny.mp3",
+		"chase": ""
+	  },
+	},
+	{
+	  "id": "bunny",
+	  "display_name": "Bunny",
+	  "price": 500,
+	  "limited": false,
+	  "model": "res://assets/models/yixi/yixi_bunny.tscn",
+	  "thumbnail": "res://assets/textures/skins/yixi_bunny.png"
+	}
+  ],
   "stats": {
 	"health": 1000,
 	"stamina": 110,
