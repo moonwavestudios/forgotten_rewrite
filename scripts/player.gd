@@ -214,6 +214,9 @@ func _physics_process(delta: float) -> void:
 				exhausted = false
 		else:
 			stamina = min(stamina + STAMINA_RECOVER * delta, MAX_STAMINA)
+			
+	if not is_sprinting and current_speed == SPRINT_SPEED:
+		current_speed = WALK_SPEED
 
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
