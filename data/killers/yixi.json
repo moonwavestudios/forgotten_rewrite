@@ -62,7 +62,7 @@
 	  "icon": "res://assets/textures/abilityTemplate.png",
 	  "cooldown": 32.0,
 	  "type": "yixi_grab",
-	  "damage": 50,
+	  "damage": 50
 	}
   ]
 }

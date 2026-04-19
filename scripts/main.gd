@@ -72,9 +72,12 @@ func start_round():
 		player.get_node('player_ui').get_node('SpectatorStuff').visible = false
 		player.get_node('player_ui').get_node('GameStuff').visible = true
 		
-		if player.is_Killer:
-			start_chase(player.equipped_killer, player)
-	
+		most_malicious_player.is_Killer = true
+		
+		if most_malicious_player.is_Killer:
+			start_chase(most_malicious_player.equipped_killer, most_malicious_player)
+			
+		
 	if most_malicious_player != null:
 		print("Most malicious player is: ", most_malicious_player.name, 
 			  " with malice: ", highest_malice)
@@ -137,7 +140,9 @@ func get_lms(killer: String):
 func get_chase_theme(killer: String):
 	for player in get_players():
 		if player.is_Killer and player.equipped_killer == killer:
-			return player.active_music.get("chase", "")
+			var theme = player.active_music.get("chase", "")
+			if theme != "":  
+				return theme
 	
 	var killer_data = CharData.get_killer(killer)
 	return killer_data.get("music", {}).get("chase", "")

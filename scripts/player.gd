@@ -245,7 +245,7 @@ func _physics_process(delta: float) -> void:
 		if collider is Area3D:
 			try_interact(collider)
 			
-	if not is_Killer and Input.is_action_just_pressed("Emote1") and not is_emoting and not usingAbility:
+	if not is_Killer and Input.is_action_just_pressed("ui_accept") and not is_emoting and not usingAbility:
 		_try_emote("Wave")
 	
 	if Input.is_action_just_pressed("ChangeCam"):
@@ -304,7 +304,7 @@ func _try_emote(emote_name: String) -> void:
 		return
 
 	if not EmoteData.is_unlocked(emote_name, equipped_emotes):
-		return  # don't own it, no emoting 4 u :(
+		return
 
 	_play_emote(emote_name, emote_data)
 
