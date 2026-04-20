@@ -153,6 +153,32 @@ func apply_skin(skin_id: String) -> void:
 		"chase": skin_music.get("chase", base_music.get("chase", ""))
 	}
 
+func _refresh_ability_ui() -> void:
+	var abilities = [
+		equipped_ability1,
+		equipped_ability2,
+		equipped_ability3,
+		equipped_ability4,
+	]
+
+	var slots = []
+	for child in AbilitiesStuff.get_children():
+		if child.name.begins_with("Ability"):
+			slots.append(child)
+
+	for i in range(slots.size()):
+		var ability = abilities[i] if i < abilities.size() else {}
+		slots[i].visible = not ability.is_empty()
+
+		#if not ability.is_empty():
+		#	var tex_rect = slots[i].get_node_or_null("TextureRect")
+		#	if tex_rect and ability.has("icon"):
+		#		tex_rect.texture = load(ability.get("icon", ""))
+
+			#var keybind = slots[i].get_node_or_null("Keybind")
+			#if keybind and ability.has("keybind_label"):
+			#	keybind.text = ability.get("keybind_label", "")
+
 func _refresh_abilities() -> void:
 	if is_Killer:
 		equipped_attack = Ability_Component.get_killer_ability("primary", equipped_killer)
@@ -178,6 +204,8 @@ func _refresh_abilities() -> void:
 		for ab in [equipped_ability1, equipped_ability2, equipped_ability3, equipped_ability4]:
 			if ab.has("uses") and ab.has("name"):
 				ability_uses[ab.get("name")] = ab.get("uses")
+				
+	_refresh_ability_ui()
 			
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

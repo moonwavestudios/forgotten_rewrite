@@ -21,6 +21,7 @@ var nyx_stab = preload("res://assets/sfx/Dagger_Success.mp3")
 var _dash_active := false
 
 func _activate_ability(ability: String) -> void:
+	# ==================== SLASHES ==============================
 	if ability == "slash":
 		var hit_flag: Array = []
 		$"../SFX".stream = slash_sfx
@@ -46,6 +47,8 @@ func _activate_ability(ability: String) -> void:
 				$"..".hitboxes, spawn_pos, hit_flag, 25, "survivor", Vector3(1.0,1.0,1.0), envy_hit, $".."
 			)
 			await get_tree().create_timer(0.05).timeout
+			
+	# ==============================================================================
 			
 	# coin flip
 	elif ability == "luck_token":

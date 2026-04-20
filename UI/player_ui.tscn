@@ -57,6 +57,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Shop" type="Panel" parent="SpectatorStuff" unique_id=1797649470]
+visible = false
 layout_mode = 0
 offset_left = 295.0
 offset_top = 71.0
@@ -135,6 +136,89 @@ layout_mode = 2
 columns = 7
 
 [node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Shop/Emotes/ScrollContainer/GridContainer" unique_id=1941816734]
+layout_mode = 2
+texture = ExtResource("2_nplvd")
+
+[node name="Inventory" type="Panel" parent="SpectatorStuff" unique_id=2117630774]
+visible = false
+layout_mode = 0
+offset_left = 295.0
+offset_top = 71.0
+offset_right = 1049.0
+offset_bottom = 591.0
+
+[node name="Categories" type="VBoxContainer" parent="SpectatorStuff/Inventory" unique_id=1051340917]
+layout_mode = 0
+offset_left = -286.0
+offset_top = 3.0
+offset_right = -10.0
+offset_bottom = 521.0
+
+[node name="Button" type="Button" parent="SpectatorStuff/Inventory/Categories" unique_id=1840973618]
+layout_mode = 2
+text = "Killers"
+
+[node name="Button2" type="Button" parent="SpectatorStuff/Inventory/Categories" unique_id=1727648144]
+layout_mode = 2
+text = "Survivors"
+
+[node name="Button3" type="Button" parent="SpectatorStuff/Inventory/Categories" unique_id=411642811]
+layout_mode = 2
+text = "Emotes"
+
+[node name="Killers" type="Panel" parent="SpectatorStuff/Inventory" unique_id=360776258]
+layout_mode = 0
+offset_right = 753.0
+offset_bottom = 519.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Inventory/Killers" unique_id=168281821]
+layout_mode = 0
+offset_right = 928.0
+offset_bottom = 519.0
+
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Killers/ScrollContainer" unique_id=2101289507]
+layout_mode = 2
+columns = 7
+
+[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Inventory/Killers/ScrollContainer/GridContainer" unique_id=388107354]
+layout_mode = 2
+texture = ExtResource("2_nplvd")
+
+[node name="Survivors" type="Panel" parent="SpectatorStuff/Inventory" unique_id=1497578437]
+visible = false
+layout_mode = 0
+offset_right = 753.0
+offset_bottom = 519.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Inventory/Survivors" unique_id=175725716]
+layout_mode = 0
+offset_right = 928.0
+offset_bottom = 519.0
+
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Survivors/ScrollContainer" unique_id=1319130307]
+layout_mode = 2
+columns = 7
+
+[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Inventory/Survivors/ScrollContainer/GridContainer" unique_id=708121794]
+layout_mode = 2
+texture = ExtResource("2_nplvd")
+
+[node name="Emotes" type="Panel" parent="SpectatorStuff/Inventory" unique_id=477222678]
+visible = false
+layout_mode = 0
+offset_right = 753.0
+offset_bottom = 519.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Inventory/Emotes" unique_id=914904302]
+layout_mode = 0
+offset_right = 928.0
+offset_bottom = 519.0
+
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Emotes/ScrollContainer" unique_id=488331822]
+layout_mode = 2
+columns = 7
+
+[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Inventory/Emotes/ScrollContainer/GridContainer" unique_id=130966152]
 layout_mode = 2
 texture = ExtResource("2_nplvd")
 
