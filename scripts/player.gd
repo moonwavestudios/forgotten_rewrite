@@ -31,6 +31,8 @@ var equipped_killer = "yixi"
 var equipped_skin_id: String = "default"
 var _skin_instance: Node3D = null
 
+var in_round = false
+
 var crouching = false
 
 var stunned = false
@@ -222,6 +224,8 @@ func _physics_process(delta: float) -> void:
 		$player_ui/GameStuff/VBoxContainer/Label.text = "Weakness: " + str(weakness)
 		
 	$player_ui/GameStuff/Health.value = health
+	$player_ui/GameStuff/Health.max_value = maxhealth
+	$player_ui/GameStuff/Health/Label.text = str(health) + "/" + str(maxhealth)
 	$player_ui/GameStuff/Stamina.value = stamina
 	
 	if Input.is_action_just_pressed("Ability1") and not usingAbility and not _is_on_cooldown(equipped_ability1.get("name", "Ability1")):
@@ -284,14 +288,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			camera.current = true
 			
-	if Input.is_action_just_pressed("Shop"):
+	if Input.is_action_just_pressed("Shop") and not in_round:
 		$player_ui/SpectatorStuff/Shop.visible = not $player_ui/SpectatorStuff/Shop.visible
 		if $player_ui/SpectatorStuff/Shop.visible == false:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
-	if Input.is_action_just_pressed("Inventory"):
+	if Input.is_action_just_pressed("Inventory") and not in_round:
 		$player_ui/SpectatorStuff/Inventory.visible = not $player_ui/SpectatorStuff/Inventory.visible
 		if $player_ui/SpectatorStuff/Inventory.visible == false:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

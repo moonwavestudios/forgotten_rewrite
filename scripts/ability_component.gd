@@ -136,11 +136,13 @@ func _activate_ability(ability: String) -> void:
 				print(str(player.health))
 			else:
 				player.maxhealth = randi_range(min_health, max_health)
+		$"..".usingAbility = false
 	
 	# hat fix
 	elif ability == "reset" and player.tokens == 3:
 		gunDestroyed = false
 		player.weakness = 0
+		$"..".usingAbility = false
 		
 	# mouse attack
 	elif ability == "mouse_attack":

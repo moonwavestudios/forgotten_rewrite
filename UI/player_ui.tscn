@@ -265,6 +265,14 @@ offset_bottom = 561.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_nplvd")
 show_percentage = false
 
+[node name="Label" type="Label" parent="GameStuff/Health" unique_id=2012498375]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 2.0
+offset_right = 287.0
+offset_bottom = 25.0
+text = "100/100"
+
 [node name="AbilitiesStuff" type="HBoxContainer" parent="GameStuff" unique_id=381478597]
 layout_mode = 0
 offset_left = 839.0
