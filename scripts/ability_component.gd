@@ -293,7 +293,7 @@ func _activate_ability(ability: String) -> void:
 		instance.og_plr = $".."
 		
 		instance.body_entered.connect(func(body):
-			if grabbed_ref.is_empty() and "isKiller" in body and not body.isKiller:
+			if grabbed_ref.is_empty() and "is_Killer" in body and not body.is_Killer:
 				grabbed_ref.append(body)
 		)
 		
