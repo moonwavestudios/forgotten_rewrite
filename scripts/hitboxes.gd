@@ -17,12 +17,12 @@ func _on_body_entered(body: Node3D) -> void:
 				if not body.blocking:
 					body.health -= damage * body.weakness
 				else:
-					body.health -= damage
+					body.health += damage
 			else:
 				if not body.blocking:
 					body.health -= damage
 				else:
-					body.health -= damage
+					body.health += damage
 				
 			_turn_green()
 			if og_plr:
