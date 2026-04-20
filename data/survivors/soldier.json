@@ -2,6 +2,8 @@
   "id": "soldier",
   "display_name": "Soldier",
   "type": "survivor",
+  "price": 1250,
+  "class": "sentinel",
   "model": "res://assets/characters/nyx.tscn",
   "stats": {
 	"health": 110,

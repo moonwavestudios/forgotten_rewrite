@@ -6,7 +6,7 @@ var current_speed = 5.0
 
 var blocking = false
 
-var malice = 0
+@export var malice = 0
 
 var active_music = {}
 

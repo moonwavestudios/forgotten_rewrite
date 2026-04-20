@@ -101,6 +101,14 @@ func start_lms(killer):
 	ResourceLoader.load_threaded_request(stream_path)
 	_await_lms_load(stream_path)
 
+func start_intro():
+	pass
+	## this is gonna be used to start the intro
+	
+func start_outro():
+	pass
+	## this is gonna be used to start the outro
+
 func _await_chase_load(stream_path: String, player: Node) -> void:
 	while true:
 		var status = ResourceLoader.load_threaded_get_status(stream_path)

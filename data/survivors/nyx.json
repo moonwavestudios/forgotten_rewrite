@@ -2,6 +2,7 @@
   "id": "nyx",
   "display_name": "Nyx",
   "type": "survivor",
+  "price": 750,
   "model": "res://assets/characters/nyx.tscn",
   "skins": [
 	{
@@ -13,7 +14,7 @@
 	}
   ],
   "stats": {
-	"health": 100,
+	"health": 75,
 	"stamina": 100,
 	"walk_speed": 5.1,
 	"sprint_speed": 9.1
@@ -22,6 +23,7 @@
 	{
 	  "id": "ability1",
 	  "name": "Thread Cut",
+	  "class": "sentinel",
 	  "icon": "res://assets/textures/abilityTemplate.png",
 	  "cooldown": 24.0,
 	  "type": "mark_killer",

@@ -31,6 +31,7 @@ bus = &"Ambience"
 
 [node name="CharacterBody3D" parent="." unique_id=1834531523 groups=["players"] instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2436476, 1.2592936, 3.7121303)
+malice = -50
 is_Killer = false
 
 [node name="CharacterBody3D2" parent="." unique_id=1792773064 groups=["players"] instance=ExtResource("5_lquwl")]

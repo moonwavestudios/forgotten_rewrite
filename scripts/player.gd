@@ -10,8 +10,8 @@ var equipped_emotes: Array = []
 var is_emoting: bool = false
 var current_emote: String = ""
 
-var malice = 1
-var is_Killer = false
+var malice = -100
+var is_Killer = true
 
 var xp = 0
 var blocks = 0
@@ -26,7 +26,7 @@ var current_speed = WALK_SPEED
 @onready var AbilitiesStuff = $player_ui/GameStuff/AbilitiesStuff 
 
 var usingAbility = false
-var equipped_survivor = "nyx"
+var equipped_survivor = "swordman"
 var equipped_killer = "yixi"
 var equipped_skin_id: String = "default"
 var _skin_instance: Node3D = null

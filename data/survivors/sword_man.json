@@ -1,7 +1,9 @@
 {
   "id": "swordman",
-  "display_name": "Swordmam",
+  "display_name": "Swordman",
   "type": "survivor",
+  "class": "sentinel",
+  "price": 500,
   "stats": {
 	"health": 100,
 	"stamina": 100,
