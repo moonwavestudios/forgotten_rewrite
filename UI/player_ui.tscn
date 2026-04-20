@@ -59,7 +59,7 @@ vertical_alignment = 1
 [node name="Shop" type="Panel" parent="SpectatorStuff" unique_id=1797649470]
 visible = false
 layout_mode = 0
-offset_left = 121.0
+offset_left = 295.0
 offset_top = 71.0
 offset_right = 1049.0
 offset_bottom = 591.0
@@ -76,6 +76,25 @@ columns = 7
 [node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Shop/ScrollContainer/GridContainer" unique_id=352580213]
 layout_mode = 2
 texture = ExtResource("2_nplvd")
+
+[node name="Categories" type="VBoxContainer" parent="SpectatorStuff/Shop" unique_id=1989492249]
+layout_mode = 0
+offset_left = -286.0
+offset_top = 3.0
+offset_right = -10.0
+offset_bottom = 521.0
+
+[node name="Button" type="Button" parent="SpectatorStuff/Shop/Categories" unique_id=1738266805]
+layout_mode = 2
+text = "Killers"
+
+[node name="Button2" type="Button" parent="SpectatorStuff/Shop/Categories" unique_id=351487793]
+layout_mode = 2
+text = "Survivors"
+
+[node name="Button3" type="Button" parent="SpectatorStuff/Shop/Categories" unique_id=870160377]
+layout_mode = 2
+text = "Emotes"
 
 [node name="GameStuff" type="Control" parent="." unique_id=1666905990]
 anchors_preset = 0
