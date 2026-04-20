@@ -38,8 +38,8 @@
 	  "cooldown": 15.0,
 	  "type": "mass_infection",
 	  "damage": 45,
-      "effect": "poison",
-      "effect_level": 1
+	  "effect": "poison",
+	  "effect_level": 1
 	},
 	{
 	  "id": "ability2",

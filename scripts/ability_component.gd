@@ -121,6 +121,7 @@ func _activate_ability(ability: String) -> void:
 			print("not enough tokens or gun is broken")
 			
 		$"..".current_speed = $"..".WALK_SPEED
+		$"..".usingAbility = false
 			
 	#reroll
 	elif ability == "health_gamble":
