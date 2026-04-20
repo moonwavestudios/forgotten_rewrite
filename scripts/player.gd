@@ -170,6 +170,7 @@ func _refresh_ability_ui() -> void:
 		var ability = abilities[i] if i < abilities.size() else {}
 		slots[i].visible = not ability.is_empty()
 
+		## THIS IS FOR LATER WHEN EVERYTHING IS ADDED
 		#if not ability.is_empty():
 		#	var tex_rect = slots[i].get_node_or_null("TextureRect")
 		#	if tex_rect and ability.has("icon"):
