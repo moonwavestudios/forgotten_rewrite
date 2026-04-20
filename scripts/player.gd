@@ -283,6 +283,13 @@ func _physics_process(delta: float) -> void:
 			$FirstPersonCam.current = true
 		else:
 			camera.current = true
+			
+	if Input.is_action_just_pressed("Shop"):
+		$player_ui/SpectatorStuff/Shop.visible = not $player_ui/SpectatorStuff/Shop.visible
+		if $player_ui/SpectatorStuff/Shop.visible == false:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 	if Input.is_action_just_pressed("Attack") and not usingAbility and not _is_on_cooldown(equipped_attack.get("name", "Attack")) and is_Killer:
 		var ability_type = equipped_attack.get("type", "")
