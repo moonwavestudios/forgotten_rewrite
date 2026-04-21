@@ -1,0 +1,78 @@
+{
+  "id": "cadenza",
+  "display_name": "Cadenza",
+  "type": "survivor",
+  "class": "disruptor",
+  "price": 850,
+  "model": "res://assets/characters/cadenza.tscn",
+  "skins": [
+	{
+	  "id": "default",
+	  "display_name": "Default",
+	  "price": 0,
+	  "model": "res://assets/models/cadenza/cadenza_default.tscn",
+	  "thumbnail": "res://assets/textures/skins/cadenza_default.png"
+	}
+  ],
+  "stats": {
+	"health": 65,
+	"stamina": 110,
+	"walk_speed": 4.8,
+	"sprint_speed": 8.6
+  },
+  "abilities": [
+	{
+	  "id": "ability1",
+	  "name": "Resonance Zone",
+	  "class": "disruptor",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 26.0,
+	  "type": "aoe_debuff",
+	  "radius": 8.0,
+	  "duration": 5.0,
+	  "effect": "sense_disruption",
+	  "description": "Cadenza plays a dissonant chord, projecting a zone around her that scrambles the killer's audio cues — suppressing heartbeat indicators and masking nearby survivor sounds within range."
+	},
+	{
+	  "id": "ability2",
+	  "name": "Harmonic Pulse",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 20.0,
+	  "type": "knockback_burst",
+	  "radius": 5.0,
+	  "knockback_force": 3.5,
+	  "stagger_duration": 0.6,
+	  "description": "Cadenza strikes a violent bow strum, releasing a shockwave from her position. Killers caught in the burst are knocked back and briefly staggered."
+	},
+	{
+	  "id": "ability3",
+	  "name": "Lullaby Trace",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 35.0,
+	  "type": "ally_buff",
+	  "range": 14.0,
+	  "duration": 7.0,
+	  "effects": {
+		"stamina_regen_bonus": 0.3,
+		"noise_reduction": 0.5
+	  },
+	  "description": "Cadenza hums a soft melody to a chosen ally at range, temporarily boosting their stamina regeneration and muffling the sounds they produce while active."
+	},
+	{
+	  "id": "ability4",
+	  "name": "Final Movement",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 55.0,
+	  "type": "empowered_burst",
+	  "duration": 10.0,
+	  "radius": 12.0,
+	  "on_activate_effect": "mass_stagger",
+	  "stagger_duration": 1.2,
+	  "aura_effect": {
+		"ally_sprint_bonus": 0.15,
+		"killer_speed_penalty": 0.1
+	  },
+	  "description": "Cadenza performs her unfinished concerto in full, releasing a massive resonance burst that staggers nearby killers and fills the air with an empowering aura — briefly buffing ally speed and penalizing killer movement within range."
+	}
+  ]
+}

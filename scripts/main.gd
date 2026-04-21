@@ -64,6 +64,8 @@ func start_round():
 	var highest_malice = -INF
 	var most_malicious_player = null
 	
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 	for player in get_players():
 		if player.malice > highest_malice:
 			highest_malice = player.malice

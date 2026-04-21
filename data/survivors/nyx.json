@@ -2,6 +2,7 @@
   "id": "nyx",
   "display_name": "Nyx",
   "type": "survivor",
+  "class": "sentinel",
   "price": 750,
   "model": "res://assets/characters/nyx.tscn",
   "skins": [
