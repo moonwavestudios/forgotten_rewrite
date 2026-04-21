@@ -26,7 +26,7 @@ var current_speed = WALK_SPEED
 @onready var AbilitiesStuff = $player_ui/GameStuff/AbilitiesStuff 
 
 var usingAbility = false
-var equipped_survivor = "chance"
+var equipped_survivor = "nyx"
 var equipped_killer = "yixi"
 var equipped_skin_id: String = "default"
 var _skin_instance: Node3D = null
@@ -35,6 +35,7 @@ var in_round = false
 
 var crouching = false
 
+var stun_time = 4
 var stunned = false
 
 var active_music = {}

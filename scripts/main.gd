@@ -74,14 +74,11 @@ func start_round():
 		player.in_round = true
 		
 		most_malicious_player.is_Killer = true
-		
-		if most_malicious_player.is_Killer:
-			start_chase(most_malicious_player.equipped_killer, most_malicious_player)
 			
 		
 	if most_malicious_player != null:
-		print("Most malicious player is: ", most_malicious_player.name, 
-			  " with malice: ", highest_malice)
+		most_malicious_player.is_Killer = true
+		start_chase(most_malicious_player.equipped_killer, most_malicious_player)
 			
 func assign_model(_player):
 	pass

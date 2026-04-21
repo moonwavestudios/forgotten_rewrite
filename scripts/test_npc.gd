@@ -11,7 +11,7 @@ var in_round = false
 @export var malice = 0
 
 var active_music = {}
-
+ 
 @export var is_Killer = true
 var equipped_killer = "yixi"
 var equipped_survivor = "nyx"
@@ -20,6 +20,8 @@ var _skin_instance: Node3D = null
 
 var health = 100
 var weakness = 0
+
+var stun_time = 4
 var stunned = false
 
 func _ready() -> void:

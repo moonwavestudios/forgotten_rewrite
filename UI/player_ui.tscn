@@ -2,12 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://diu4olylqsotv" path="res://assets/fonts/Roboto/static/Roboto-Bold.ttf" id="1_c8xti"]
 [ext_resource type="Texture2D" uid="uid://d1qj5l8ttlohn" path="res://icon.svg" id="2_nplvd"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_nplvd"]
-font = ExtResource("1_c8xti")
-font_size = 35
-outline_size = 6
-outline_color = Color(0, 0, 0, 1)
+[ext_resource type="Script" uid="uid://bwpuq2fmqtemy" path="res://scripts/shop_ui.gd" id="3_kwigr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
 font = ExtResource("1_c8xti")
@@ -33,6 +28,12 @@ corner_radius_bottom_left = 8
 font = ExtResource("1_c8xti")
 font_size = 19
 
+[sub_resource type="LabelSettings" id="LabelSettings_nplvd"]
+font = ExtResource("1_c8xti")
+font_size = 35
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [node name="player_ui" type="Control" unique_id=1532252855]
 layout_mode = 3
 anchors_preset = 15
@@ -40,6 +41,145 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="GameStuff" type="Control" parent="." unique_id=1666905990]
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 650.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameStuff" unique_id=1645491689]
+layout_mode = 0
+offset_top = 93.0
+offset_right = 328.0
+offset_bottom = 582.0
+
+[node name="Label" type="Label" parent="GameStuff/VBoxContainer" unique_id=46518401]
+visible = false
+layout_mode = 2
+text = "Weakness: 1"
+label_settings = SubResource("LabelSettings_c8xti")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Notifications" type="VBoxContainer" parent="GameStuff" unique_id=326347885]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 1155.0
+offset_bottom = 650.0
+
+[node name="Stamina" type="ProgressBar" parent="GameStuff" unique_id=1203356740]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 568.0
+offset_right = 292.0
+offset_bottom = 595.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_c8xti")
+show_percentage = false
+
+[node name="Health" type="ProgressBar" parent="GameStuff" unique_id=24808790]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 534.0
+offset_right = 292.0
+offset_bottom = 561.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_nplvd")
+show_percentage = false
+
+[node name="Label" type="Label" parent="GameStuff/Health" unique_id=2012498375]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 2.0
+offset_right = 287.0
+offset_bottom = 25.0
+text = "100/100"
+
+[node name="AbilitiesStuff" type="HBoxContainer" parent="GameStuff" unique_id=381478597]
+layout_mode = 0
+offset_left = 839.0
+offset_top = 576.0
+offset_right = 1150.0
+offset_bottom = 648.0
+theme_override_constants/separation = 80
+
+[node name="Ability1" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1338604192]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability1" unique_id=960153042]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+texture = ExtResource("2_nplvd")
+expand_mode = 1
+
+[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability1" unique_id=1298321387]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 23.0
+text = "Q"
+label_settings = SubResource("LabelSettings_kwigr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ability2" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=562252851]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability2" unique_id=575287371]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+texture = ExtResource("2_nplvd")
+expand_mode = 1
+
+[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability2" unique_id=937900107]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 23.0
+text = "Q"
+label_settings = SubResource("LabelSettings_kwigr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ability3" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=160556357]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability3" unique_id=1714701380]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+texture = ExtResource("2_nplvd")
+expand_mode = 1
+
+[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability3" unique_id=669670067]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 23.0
+text = "Q"
+label_settings = SubResource("LabelSettings_kwigr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ability4" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1365539958]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability4" unique_id=387468637]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+texture = ExtResource("2_nplvd")
+expand_mode = 1
+
+[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability4" unique_id=169955280]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 23.0
+text = "Q"
+label_settings = SubResource("LabelSettings_kwigr")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SpectatorStuff" type="Control" parent="." unique_id=2023826759]
 anchors_preset = 0
@@ -57,12 +197,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Shop" type="Panel" parent="SpectatorStuff" unique_id=1797649470]
-visible = false
 layout_mode = 0
 offset_left = 295.0
 offset_top = 71.0
 offset_right = 1049.0
 offset_bottom = 591.0
+script = ExtResource("3_kwigr")
 
 [node name="Categories" type="VBoxContainer" parent="SpectatorStuff/Shop" unique_id=1989492249]
 layout_mode = 0
@@ -71,7 +211,7 @@ offset_top = 3.0
 offset_right = -10.0
 offset_bottom = 521.0
 
-[node name="Button" type="Button" parent="SpectatorStuff/Shop/Categories" unique_id=1738266805]
+[node name="KillersButton" type="Button" parent="SpectatorStuff/Shop/Categories" unique_id=1738266805]
 layout_mode = 2
 text = "Killers"
 
@@ -222,141 +362,4 @@ columns = 7
 layout_mode = 2
 texture = ExtResource("2_nplvd")
 
-[node name="GameStuff" type="Control" parent="." unique_id=1666905990]
-anchors_preset = 0
-offset_right = 1153.0
-offset_bottom = 650.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameStuff" unique_id=1645491689]
-layout_mode = 0
-offset_top = 93.0
-offset_right = 328.0
-offset_bottom = 582.0
-
-[node name="Label" type="Label" parent="GameStuff/VBoxContainer" unique_id=46518401]
-visible = false
-layout_mode = 2
-text = "Weakness: 1"
-label_settings = SubResource("LabelSettings_c8xti")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Notifications" type="VBoxContainer" parent="GameStuff" unique_id=326347885]
-layout_mode = 0
-offset_top = 1.0
-offset_right = 1155.0
-offset_bottom = 650.0
-
-[node name="Stamina" type="ProgressBar" parent="GameStuff" unique_id=1203356740]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 568.0
-offset_right = 292.0
-offset_bottom = 595.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_c8xti")
-show_percentage = false
-
-[node name="Health" type="ProgressBar" parent="GameStuff" unique_id=24808790]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 534.0
-offset_right = 292.0
-offset_bottom = 561.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_nplvd")
-show_percentage = false
-
-[node name="Label" type="Label" parent="GameStuff/Health" unique_id=2012498375]
-layout_mode = 0
-offset_left = 225.0
-offset_top = 2.0
-offset_right = 287.0
-offset_bottom = 25.0
-text = "100/100"
-
-[node name="AbilitiesStuff" type="HBoxContainer" parent="GameStuff" unique_id=381478597]
-layout_mode = 0
-offset_left = 839.0
-offset_top = 576.0
-offset_right = 1150.0
-offset_bottom = 648.0
-theme_override_constants/separation = 80
-
-[node name="Ability1" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1338604192]
-visible = false
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability1" unique_id=960153042]
-layout_mode = 0
-offset_right = 71.0
-offset_bottom = 71.0
-texture = ExtResource("2_nplvd")
-expand_mode = 1
-
-[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability1" unique_id=1298321387]
-layout_mode = 0
-offset_right = 70.0
-offset_bottom = 23.0
-text = "Q"
-label_settings = SubResource("LabelSettings_kwigr")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Ability2" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=562252851]
-visible = false
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability2" unique_id=575287371]
-layout_mode = 0
-offset_right = 71.0
-offset_bottom = 71.0
-texture = ExtResource("2_nplvd")
-expand_mode = 1
-
-[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability2" unique_id=937900107]
-layout_mode = 0
-offset_right = 70.0
-offset_bottom = 23.0
-text = "Q"
-label_settings = SubResource("LabelSettings_kwigr")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Ability3" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=160556357]
-visible = false
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability3" unique_id=1714701380]
-layout_mode = 0
-offset_right = 71.0
-offset_bottom = 71.0
-texture = ExtResource("2_nplvd")
-expand_mode = 1
-
-[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability3" unique_id=669670067]
-layout_mode = 0
-offset_right = 70.0
-offset_bottom = 23.0
-text = "Q"
-label_settings = SubResource("LabelSettings_kwigr")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Ability4" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1365539958]
-visible = false
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability4" unique_id=387468637]
-layout_mode = 0
-offset_right = 71.0
-offset_bottom = 71.0
-texture = ExtResource("2_nplvd")
-expand_mode = 1
-
-[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability4" unique_id=169955280]
-layout_mode = 0
-offset_right = 70.0
-offset_bottom = 23.0
-text = "Q"
-label_settings = SubResource("LabelSettings_kwigr")
-horizontal_alignment = 1
-vertical_alignment = 1
+[connection signal="pressed" from="SpectatorStuff/Shop/Categories/KillersButton" to="SpectatorStuff/Shop" method="_on_killers_button_pressed"]
