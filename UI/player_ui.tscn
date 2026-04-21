@@ -296,85 +296,96 @@ columns = 7
 [node name="Button" parent="SpectatorStuff/Shop/Items/Emotes/GridContainer" unique_id=1453771984 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
 
-[node name="Inventory" type="Panel" parent="SpectatorStuff" unique_id=2117630774]
+[node name="Inventory" type="Panel" parent="SpectatorStuff" unique_id=897379839]
 visible = false
 layout_mode = 0
-offset_left = 295.0
+offset_left = 224.0
 offset_top = 71.0
-offset_right = 1049.0
+offset_right = 980.0
 offset_bottom = 591.0
 
-[node name="Categories" type="VBoxContainer" parent="SpectatorStuff/Inventory" unique_id=1051340917]
+[node name="InfoPanel" type="Panel" parent="SpectatorStuff/Inventory" unique_id=2088242057]
+visible = false
 layout_mode = 0
-offset_left = -286.0
-offset_top = 3.0
-offset_right = -10.0
+offset_left = 758.0
+offset_top = 2.0
+offset_right = 927.0
+offset_bottom = 515.0
+
+[node name="CharName" type="Label" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=861461413]
+layout_mode = 0
+offset_right = 171.0
+offset_bottom = 34.0
+text = "CHARACTERNAME"
+label_settings = SubResource("LabelSettings_b8q8m")
+horizontal_alignment = 1
+
+[node name="Price" type="Label" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=580366352]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 171.0
+offset_bottom = 65.0
+text = "$0"
+label_settings = SubResource("LabelSettings_b8q8m")
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=362296075]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 480.0
+offset_right = 161.0
+offset_bottom = 508.0
+theme_override_fonts/font = ExtResource("1_c8xti")
+text = "BUY"
+
+[node name="SkinsButton" type="Button" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=927769982]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 443.0
+offset_right = 161.0
+offset_bottom = 474.0
+theme_override_fonts/font = ExtResource("1_c8xti")
+text = "SKINS"
+
+[node name="Items" type="TabContainer" parent="SpectatorStuff/Inventory" unique_id=1998997823]
+layout_mode = 0
+offset_right = 756.0
 offset_bottom = 521.0
+current_tab = 0
 
-[node name="Button" type="Button" parent="SpectatorStuff/Inventory/Categories" unique_id=1840973618]
+[node name="Killers" type="ScrollContainer" parent="SpectatorStuff/Inventory/Items" unique_id=28239344]
 layout_mode = 2
-text = "Killers"
+metadata/_tab_index = 0
 
-[node name="Button2" type="Button" parent="SpectatorStuff/Inventory/Categories" unique_id=1727648144]
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Items/Killers" unique_id=535240027]
 layout_mode = 2
-text = "Survivors"
+theme_override_constants/h_separation = 198
+theme_override_constants/v_separation = 242
+columns = 4
 
-[node name="Button3" type="Button" parent="SpectatorStuff/Inventory/Categories" unique_id=411642811]
+[node name="Button" parent="SpectatorStuff/Inventory/Items/Killers/GridContainer" unique_id=979255418 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
-text = "Emotes"
 
-[node name="Killers" type="Panel" parent="SpectatorStuff/Inventory" unique_id=360776258]
-layout_mode = 0
-offset_right = 753.0
-offset_bottom = 519.0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Inventory/Killers" unique_id=168281821]
-layout_mode = 0
-offset_right = 928.0
-offset_bottom = 519.0
-
-[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Killers/ScrollContainer" unique_id=2101289507]
-layout_mode = 2
-columns = 7
-
-[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Inventory/Killers/ScrollContainer/GridContainer" unique_id=388107354]
-layout_mode = 2
-texture = ExtResource("2_nplvd")
-
-[node name="Survivors" type="Panel" parent="SpectatorStuff/Inventory" unique_id=1497578437]
+[node name="Survivors" type="ScrollContainer" parent="SpectatorStuff/Inventory/Items" unique_id=917235208]
 visible = false
-layout_mode = 0
-offset_right = 753.0
-offset_bottom = 519.0
+layout_mode = 2
+metadata/_tab_index = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Inventory/Survivors" unique_id=175725716]
-layout_mode = 0
-offset_right = 928.0
-offset_bottom = 519.0
-
-[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Survivors/ScrollContainer" unique_id=1319130307]
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Items/Survivors" unique_id=1831446991]
 layout_mode = 2
 columns = 7
 
-[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Inventory/Survivors/ScrollContainer/GridContainer" unique_id=708121794]
+[node name="Button" parent="SpectatorStuff/Inventory/Items/Survivors/GridContainer" unique_id=1401158299 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
-texture = ExtResource("2_nplvd")
 
-[node name="Emotes" type="Panel" parent="SpectatorStuff/Inventory" unique_id=477222678]
+[node name="Emotes" type="ScrollContainer" parent="SpectatorStuff/Inventory/Items" unique_id=1343876540]
 visible = false
-layout_mode = 0
-offset_right = 753.0
-offset_bottom = 519.0
+layout_mode = 2
+metadata/_tab_index = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Inventory/Emotes" unique_id=914904302]
-layout_mode = 0
-offset_right = 928.0
-offset_bottom = 519.0
-
-[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Emotes/ScrollContainer" unique_id=488331822]
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Items/Emotes" unique_id=1050855166]
 layout_mode = 2
 columns = 7
 
-[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Inventory/Emotes/ScrollContainer/GridContainer" unique_id=130966152]
+[node name="Button" parent="SpectatorStuff/Inventory/Items/Emotes/GridContainer" unique_id=454997997 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
-texture = ExtResource("2_nplvd")
