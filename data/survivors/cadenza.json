@@ -4,7 +4,6 @@
   "type": "survivor",
   "class": "disruptor",
   "price": 850,
-  "model": "res://assets/characters/cadenza.tscn",
   "skins": [
 	{
 	  "id": "default",

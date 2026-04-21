@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://diu4olylqsotv" path="res://assets/fonts/Roboto/static/Roboto-Bold.ttf" id="1_c8xti"]
 [ext_resource type="Texture2D" uid="uid://d1qj5l8ttlohn" path="res://icon.svg" id="2_nplvd"]
 [ext_resource type="Script" uid="uid://bwpuq2fmqtemy" path="res://scripts/shop_ui.gd" id="3_kwigr"]
+[ext_resource type="PackedScene" uid="uid://dubh45kls01xa" path="res://UI/stuff/ShopButton.tscn" id="4_b8q8m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
 font = ExtResource("1_c8xti")
@@ -215,11 +216,11 @@ offset_bottom = 521.0
 layout_mode = 2
 text = "Killers"
 
-[node name="Button2" type="Button" parent="SpectatorStuff/Shop/Categories" unique_id=351487793]
+[node name="SurvivorsButton" type="Button" parent="SpectatorStuff/Shop/Categories" unique_id=351487793]
 layout_mode = 2
 text = "Survivors"
 
-[node name="Button3" type="Button" parent="SpectatorStuff/Shop/Categories" unique_id=870160377]
+[node name="EmotesButton" type="Button" parent="SpectatorStuff/Shop/Categories" unique_id=870160377]
 layout_mode = 2
 text = "Emotes"
 
@@ -235,11 +236,12 @@ offset_bottom = 519.0
 
 [node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/Killers/ScrollContainer" unique_id=507912189]
 layout_mode = 2
-columns = 7
+theme_override_constants/h_separation = 198
+theme_override_constants/v_separation = 242
+columns = 4
 
-[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Shop/Killers/ScrollContainer/GridContainer" unique_id=352580213]
+[node name="Button" parent="SpectatorStuff/Shop/Killers/ScrollContainer/GridContainer" unique_id=1116615968 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
-texture = ExtResource("2_nplvd")
 
 [node name="Survivors" type="Panel" parent="SpectatorStuff/Shop" unique_id=276471850]
 visible = false
@@ -363,3 +365,5 @@ layout_mode = 2
 texture = ExtResource("2_nplvd")
 
 [connection signal="pressed" from="SpectatorStuff/Shop/Categories/KillersButton" to="SpectatorStuff/Shop" method="_on_killers_button_pressed"]
+[connection signal="pressed" from="SpectatorStuff/Shop/Categories/SurvivorsButton" to="SpectatorStuff/Shop" method="_on_survivors_button_pressed"]
+[connection signal="pressed" from="SpectatorStuff/Shop/Categories/EmotesButton" to="SpectatorStuff/Shop" method="_on_emotes_button_pressed"]

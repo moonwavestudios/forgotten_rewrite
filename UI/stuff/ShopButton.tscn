@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dubh45kls01xa"]
+
+[ext_resource type="Texture2D" uid="uid://d1qj5l8ttlohn" path="res://icon.svg" id="1_b6vte"]
+[ext_resource type="FontFile" uid="uid://diu4olylqsotv" path="res://assets/fonts/Roboto/static/Roboto-Bold.ttf" id="2_sfw6g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b6vte"]
+font = ExtResource("2_sfw6g")
+font_size = 20
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ShopButton" type="Control" unique_id=232036350]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 205.0
+offset_bottom = 335.0
+
+[node name="Render" type="TextureRect" parent="." unique_id=1126155967]
+layout_mode = 0
+offset_right = 151.0
+offset_bottom = 234.0
+texture = ExtResource("1_b6vte")
+expand_mode = 1
+
+[node name="ItemName" type="Label" parent="." unique_id=1816414798]
+layout_mode = 0
+offset_right = 151.0
+offset_bottom = 36.0
+text = "Name"
+label_settings = SubResource("LabelSettings_b6vte")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Price" type="Label" parent="." unique_id=1406482651]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 198.0
+offset_right = 150.0
+offset_bottom = 234.0
+text = "$500"
+label_settings = SubResource("LabelSettings_b6vte")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=145969955]
+layout_mode = 0
+offset_right = 153.0
+offset_bottom = 233.0
+flat = true
