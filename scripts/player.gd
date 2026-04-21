@@ -229,6 +229,11 @@ func _physics_process(delta: float) -> void:
 	$player_ui/GameStuff/Health/Label.text = str(health) + "/" + str(maxhealth)
 	$player_ui/GameStuff/Stamina.value = stamina
 	
+	if health < 50:
+		$player_ui/GameStuff/Vignette.visible = true
+	else:
+		$player_ui/GameStuff/Vignette.visible = false
+	
 	if Input.is_action_just_pressed("Ability1") and not usingAbility and not _is_on_cooldown(equipped_ability1.get("name", "Ability1")):
 		var ability_type = equipped_ability1.get("type", "")
 		var ability_name = equipped_ability1.get("name", "Ability1")
