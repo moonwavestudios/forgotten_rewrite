@@ -2,7 +2,6 @@
 
 [ext_resource type="FontFile" uid="uid://diu4olylqsotv" path="res://assets/fonts/Roboto/static/Roboto-Bold.ttf" id="1_c8xti"]
 [ext_resource type="Texture2D" uid="uid://d1qj5l8ttlohn" path="res://icon.svg" id="2_nplvd"]
-[ext_resource type="Script" uid="uid://bwpuq2fmqtemy" path="res://scripts/shop_ui.gd" id="3_kwigr"]
 [ext_resource type="PackedScene" uid="uid://dubh45kls01xa" path="res://UI/stuff/ShopButton.tscn" id="4_b8q8m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
@@ -32,6 +31,12 @@ font_size = 19
 [sub_resource type="LabelSettings" id="LabelSettings_nplvd"]
 font = ExtResource("1_c8xti")
 font_size = 35
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b8q8m"]
+font = ExtResource("1_c8xti")
+font_size = 19
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
@@ -198,86 +203,113 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Shop" type="Panel" parent="SpectatorStuff" unique_id=1797649470]
+visible = false
 layout_mode = 0
-offset_left = 295.0
+offset_left = 224.0
 offset_top = 71.0
-offset_right = 1049.0
+offset_right = 980.0
 offset_bottom = 591.0
-script = ExtResource("3_kwigr")
 
-[node name="Categories" type="VBoxContainer" parent="SpectatorStuff/Shop" unique_id=1989492249]
+[node name="InfoPanel" type="Panel" parent="SpectatorStuff/Shop" unique_id=1581579896]
+visible = false
 layout_mode = 0
-offset_left = -286.0
-offset_top = 3.0
-offset_right = -10.0
+offset_left = 758.0
+offset_top = 2.0
+offset_right = 927.0
+offset_bottom = 515.0
+
+[node name="CharName" type="Label" parent="SpectatorStuff/Shop/InfoPanel" unique_id=1141681543]
+layout_mode = 0
+offset_right = 171.0
+offset_bottom = 34.0
+text = "CHARACTERNAME"
+label_settings = SubResource("LabelSettings_b8q8m")
+horizontal_alignment = 1
+
+[node name="Price" type="Label" parent="SpectatorStuff/Shop/InfoPanel" unique_id=2100009975]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 171.0
+offset_bottom = 65.0
+text = "$0"
+label_settings = SubResource("LabelSettings_b8q8m")
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="SpectatorStuff/Shop/InfoPanel" unique_id=1727878095]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 480.0
+offset_right = 161.0
+offset_bottom = 508.0
+theme_override_fonts/font = ExtResource("1_c8xti")
+text = "BUY"
+
+[node name="SkinsButton" type="Button" parent="SpectatorStuff/Shop/InfoPanel" unique_id=942647689]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 443.0
+offset_right = 161.0
+offset_bottom = 474.0
+theme_override_fonts/font = ExtResource("1_c8xti")
+text = "SKINS"
+
+[node name="TabContainer" type="TabContainer" parent="SpectatorStuff/Shop" unique_id=1263873152]
+layout_mode = 0
+offset_right = 756.0
 offset_bottom = 521.0
+current_tab = 0
 
-[node name="KillersButton" type="Button" parent="SpectatorStuff/Shop/Categories" unique_id=1738266805]
+[node name="Killers" type="Panel" parent="SpectatorStuff/Shop/TabContainer" unique_id=788647242]
 layout_mode = 2
-text = "Killers"
+metadata/_tab_index = 0
 
-[node name="SurvivorsButton" type="Button" parent="SpectatorStuff/Shop/Categories" unique_id=351487793]
-layout_mode = 2
-text = "Survivors"
-
-[node name="EmotesButton" type="Button" parent="SpectatorStuff/Shop/Categories" unique_id=870160377]
-layout_mode = 2
-text = "Emotes"
-
-[node name="Killers" type="Panel" parent="SpectatorStuff/Shop" unique_id=1984004004]
+[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Shop/TabContainer/Killers" unique_id=1579451129]
 layout_mode = 0
-offset_right = 753.0
+offset_right = 759.0
 offset_bottom = 519.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Shop/Killers" unique_id=1308762642]
-layout_mode = 0
-offset_right = 928.0
-offset_bottom = 519.0
-
-[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/Killers/ScrollContainer" unique_id=507912189]
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/TabContainer/Killers/ScrollContainer" unique_id=904272028]
 layout_mode = 2
 theme_override_constants/h_separation = 198
 theme_override_constants/v_separation = 242
 columns = 4
 
-[node name="Button" parent="SpectatorStuff/Shop/Killers/ScrollContainer/GridContainer" unique_id=1116615968 instance=ExtResource("4_b8q8m")]
+[node name="Button" parent="SpectatorStuff/Shop/TabContainer/Killers/ScrollContainer/GridContainer" unique_id=232036350 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
 
-[node name="Survivors" type="Panel" parent="SpectatorStuff/Shop" unique_id=276471850]
+[node name="Survivors" type="Panel" parent="SpectatorStuff/Shop/TabContainer" unique_id=109117832]
 visible = false
-layout_mode = 0
-offset_right = 753.0
-offset_bottom = 519.0
+layout_mode = 2
+metadata/_tab_index = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Shop/Survivors" unique_id=1204524621]
+[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Shop/TabContainer/Survivors" unique_id=507346619]
 layout_mode = 0
 offset_right = 928.0
 offset_bottom = 519.0
 
-[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/Survivors/ScrollContainer" unique_id=333529620]
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/TabContainer/Survivors/ScrollContainer" unique_id=790781601]
 layout_mode = 2
 columns = 7
 
-[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Shop/Survivors/ScrollContainer/GridContainer" unique_id=681898374]
+[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Shop/TabContainer/Survivors/ScrollContainer/GridContainer" unique_id=620703801]
 layout_mode = 2
 texture = ExtResource("2_nplvd")
 
-[node name="Emotes" type="Panel" parent="SpectatorStuff/Shop" unique_id=1520949446]
+[node name="Emotes" type="Panel" parent="SpectatorStuff/Shop/TabContainer" unique_id=115249217]
 visible = false
-layout_mode = 0
-offset_right = 753.0
-offset_bottom = 519.0
+layout_mode = 2
+metadata/_tab_index = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Shop/Emotes" unique_id=982056977]
+[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Shop/TabContainer/Emotes" unique_id=1392221923]
 layout_mode = 0
 offset_right = 928.0
 offset_bottom = 519.0
 
-[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/Emotes/ScrollContainer" unique_id=277448731]
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/TabContainer/Emotes/ScrollContainer" unique_id=1670426304]
 layout_mode = 2
 columns = 7
 
-[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Shop/Emotes/ScrollContainer/GridContainer" unique_id=1941816734]
+[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Shop/TabContainer/Emotes/ScrollContainer/GridContainer" unique_id=1842205625]
 layout_mode = 2
 texture = ExtResource("2_nplvd")
 
@@ -363,7 +395,3 @@ columns = 7
 [node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Inventory/Emotes/ScrollContainer/GridContainer" unique_id=130966152]
 layout_mode = 2
 texture = ExtResource("2_nplvd")
-
-[connection signal="pressed" from="SpectatorStuff/Shop/Categories/KillersButton" to="SpectatorStuff/Shop" method="_on_killers_button_pressed"]
-[connection signal="pressed" from="SpectatorStuff/Shop/Categories/SurvivorsButton" to="SpectatorStuff/Shop" method="_on_survivors_button_pressed"]
-[connection signal="pressed" from="SpectatorStuff/Shop/Categories/EmotesButton" to="SpectatorStuff/Shop" method="_on_emotes_button_pressed"]
