@@ -72,8 +72,6 @@ func start_round():
 		player.get_node('player_ui').get_node('SpectatorStuff').visible = false
 		player.get_node('player_ui').get_node('GameStuff').visible = true
 		player.in_round = true
-		
-		most_malicious_player.is_Killer = true
 			
 		
 	if most_malicious_player != null:
