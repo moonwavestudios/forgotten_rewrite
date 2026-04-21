@@ -253,65 +253,48 @@ offset_bottom = 474.0
 theme_override_fonts/font = ExtResource("1_c8xti")
 text = "SKINS"
 
-[node name="TabContainer" type="TabContainer" parent="SpectatorStuff/Shop" unique_id=1263873152]
+[node name="Items" type="TabContainer" parent="SpectatorStuff/Shop" unique_id=1263873152]
 layout_mode = 0
 offset_right = 756.0
 offset_bottom = 521.0
 current_tab = 0
 
-[node name="Killers" type="Panel" parent="SpectatorStuff/Shop/TabContainer" unique_id=788647242]
+[node name="Killers" type="ScrollContainer" parent="SpectatorStuff/Shop/Items" unique_id=1579451129]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Shop/TabContainer/Killers" unique_id=1579451129]
-layout_mode = 0
-offset_right = 759.0
-offset_bottom = 519.0
-
-[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/TabContainer/Killers/ScrollContainer" unique_id=904272028]
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/Items/Killers" unique_id=904272028]
 layout_mode = 2
 theme_override_constants/h_separation = 198
 theme_override_constants/v_separation = 242
 columns = 4
 
-[node name="Button" parent="SpectatorStuff/Shop/TabContainer/Killers/ScrollContainer/GridContainer" unique_id=232036350 instance=ExtResource("4_b8q8m")]
+[node name="Button" parent="SpectatorStuff/Shop/Items/Killers/GridContainer" unique_id=232036350 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
 
-[node name="Survivors" type="Panel" parent="SpectatorStuff/Shop/TabContainer" unique_id=109117832]
+[node name="Survivors" type="ScrollContainer" parent="SpectatorStuff/Shop/Items" unique_id=507346619]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Shop/TabContainer/Survivors" unique_id=507346619]
-layout_mode = 0
-offset_right = 928.0
-offset_bottom = 519.0
-
-[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/TabContainer/Survivors/ScrollContainer" unique_id=790781601]
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/Items/Survivors" unique_id=790781601]
 layout_mode = 2
 columns = 7
 
-[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Shop/TabContainer/Survivors/ScrollContainer/GridContainer" unique_id=620703801]
+[node name="Button" parent="SpectatorStuff/Shop/Items/Survivors/GridContainer" unique_id=515820347 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
-texture = ExtResource("2_nplvd")
 
-[node name="Emotes" type="Panel" parent="SpectatorStuff/Shop/TabContainer" unique_id=115249217]
+[node name="Emotes" type="ScrollContainer" parent="SpectatorStuff/Shop/Items" unique_id=1392221923]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Shop/TabContainer/Emotes" unique_id=1392221923]
-layout_mode = 0
-offset_right = 928.0
-offset_bottom = 519.0
-
-[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/TabContainer/Emotes/ScrollContainer" unique_id=1670426304]
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/Items/Emotes" unique_id=1670426304]
 layout_mode = 2
 columns = 7
 
-[node name="TextureRect" type="TextureRect" parent="SpectatorStuff/Shop/TabContainer/Emotes/ScrollContainer/GridContainer" unique_id=1842205625]
+[node name="Button" parent="SpectatorStuff/Shop/Items/Emotes/GridContainer" unique_id=1453771984 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
-texture = ExtResource("2_nplvd")
 
 [node name="Inventory" type="Panel" parent="SpectatorStuff" unique_id=2117630774]
 visible = false
