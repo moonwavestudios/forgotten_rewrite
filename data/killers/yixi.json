@@ -10,8 +10,9 @@
 	  "model": "res://assets/models/yixi/yixi_default.tscn",
 	  "thumbnail": "res://assets/textures/skins/yixi_default.png",
 	  "music": {
-		"lms": "res://assets/music/lms_bunny.mp3",
-		"chase": "res://assets/music/chase_teto.mp3"
+		"lms": "res://assets/music/VanityLMS.mp3",
+		"chase": "res://assets/music/chase_teto.mp3",
+		"lms_duration": 60.0
 	  },
 	},
 	{
@@ -20,7 +21,12 @@
 	  "price": 500,
 	  "limited": false,
 	  "model": "res://assets/models/yixi/yixi_bunny.tscn",
-	  "thumbnail": "res://assets/textures/skins/yixi_bunny.png"
+	  "thumbnail": "res://assets/textures/skins/yixi_bunny.png",
+	  "music": {
+		"lms": "res://assets/music/lms_bunny.mp3",
+		"chase": "res://assets/music/chase_bunny.mp3",
+		"lms_duration": 80.0
+	  },
 	}
   ],
   "stats": {

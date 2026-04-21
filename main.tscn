@@ -24,6 +24,10 @@ volume_db = 3.0
 wait_time = 30.0
 one_shot = true
 
+[node name="LMSTimer" type="Timer" parent="." unique_id=602904147]
+wait_time = 30.0
+one_shot = true
+
 [node name="Hitboxes" type="Node3D" parent="." unique_id=1343583836]
 
 [node name="Ambience" type="AudioStreamPlayer" parent="." unique_id=2110327834]
@@ -40,3 +44,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9373124, 1.2592936, 5.44561
 [node name="game" type="Node3D" parent="." unique_id=819722603]
 
 [connection signal="timeout" from="Intermission" to="." method="_on_intermission_timeout"]
+[connection signal="timeout" from="LMSTimer" to="." method="_on_intermission_timeout"]

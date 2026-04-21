@@ -91,13 +91,27 @@ func start_chase(killer: String, player: Node) -> void:
 	ResourceLoader.load_threaded_request(stream_path)
 	_await_chase_load(stream_path, player)
 
-func start_lms(killer):
+func get_lms_duration(killer: String) -> float:
+	var default_duration = 90.0 
+	
+	for player in get_players():
+		if player.is_Killer and player.equipped_killer == killer:
+			var duration = player.active_music.get("lms_duration", -1)
+			if duration > 0:
+				return duration
+	
+	var killer_data = CharData.get_killer(killer)
+	return killer_data.get("music", {}).get("lms_duration", default_duration)
+
+func start_lms(killer: String) -> void:
 	var stream_path = get_lms(killer)
 	if stream_path == "" or not ResourceLoader.exists(stream_path):
 		push_warning("No LMS music found for killer: " + killer)
 		return
+	
+	var duration = get_lms_duration(killer)
 	ResourceLoader.load_threaded_request(stream_path)
-	_await_lms_load(stream_path)
+	_await_lms_load(stream_path, duration)
 
 func start_intro():
 	pass
@@ -120,7 +134,7 @@ func _await_chase_load(stream_path: String, player: Node) -> void:
 			return
 		await get_tree().process_frame
 
-func _await_lms_load(stream_path: String):
+func _await_lms_load(stream_path: String, duration: float) -> void:
 	while true:
 		var status = ResourceLoader.load_threaded_get_status(stream_path)
 		if status == ResourceLoader.THREAD_LOAD_LOADED:
@@ -128,7 +142,10 @@ func _await_lms_load(stream_path: String):
 			$LMS.stream = stream
 			AudioServer.set_bus_volume_db(1, 0)
 			$LMS.play()
-			print("LMS playing: ", $LMS.playing)
+			print("LMS playing: ", $LMS.playing, " | Duration: ", duration)
+			
+			$LMSTimer.wait_time = duration
+			$LMSTimer.start()
 			return
 		elif status == ResourceLoader.THREAD_LOAD_FAILED:
 			push_warning("Failed to load LMS music: " + stream_path)
