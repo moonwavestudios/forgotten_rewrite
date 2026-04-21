@@ -39,6 +39,22 @@ shader_parameter/pulse_strength = 0.35
 shader_parameter/active = true
 shader_parameter/vignette_color = Color(0.55, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8q8m"]
+bg_color = Color(0, 0, 0, 0.3647059)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_ccqt3"]
+font = ExtResource("1_c8xti")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_xmsn8"]
+font = ExtResource("1_c8xti")
+font_size = 30
+font_color = Color(1, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_nplvd"]
 font = ExtResource("1_c8xti")
 font_size = 35
@@ -204,6 +220,43 @@ material = SubResource("ShaderMaterial_b8q8m")
 layout_mode = 0
 offset_right = 1149.0
 offset_bottom = 647.0
+
+[node name="LMS_Popup" type="Panel" parent="GameStuff" unique_id=456865044]
+visible = false
+layout_mode = 0
+offset_top = 189.0
+offset_right = 294.0
+offset_bottom = 388.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b8q8m")
+
+[node name="Label" type="Label" parent="GameStuff/LMS_Popup" unique_id=869796963]
+layout_mode = 0
+offset_right = 294.0
+offset_bottom = 33.0
+text = "Now playing:"
+label_settings = SubResource("LabelSettings_ccqt3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LMSName" type="Label" parent="GameStuff/LMS_Popup" unique_id=681585283]
+layout_mode = 0
+offset_top = 43.0
+offset_right = 294.0
+offset_bottom = 79.0
+text = "LMS Name"
+label_settings = SubResource("LabelSettings_xmsn8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AuthorName" type="Label" parent="GameStuff/LMS_Popup" unique_id=1863542892]
+layout_mode = 0
+offset_top = 84.0
+offset_right = 294.0
+offset_bottom = 120.0
+text = "By: Author"
+label_settings = SubResource("LabelSettings_xmsn8")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SpectatorStuff" type="Control" parent="." unique_id=2023826759]
 anchors_preset = 0

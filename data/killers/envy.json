@@ -8,7 +8,12 @@
 	  "display_name": "Default",
 	  "price": 0,
 	  "model": "res://assets/models/envy/envy_default.tscn",
-	  "thumbnail": "res://assets/textures/skins/envy_default.png"
+	  "thumbnail": "res://assets/textures/skins/envy_default.png",
+	  "music": {
+		"lms": "res://assets/music/VanityLMS.mp3",
+		"chase": "res://assets/music/chase_teto.mp3",
+		"lms_duration": 60.0
+	  },
 	},
 	{
 	  "id": "virus",
@@ -25,10 +30,6 @@
 	"walk_speed": 5.0,
 	"sprint_speed": 9.0,
 	"price": 2000
-  },
-  "music": {
-	"lms": "res://assets/music/vanity.mp3",
-	"chase": "res://assets/music/Chase.mp3"
   },
   "voicelines": {
 	"intro": [],

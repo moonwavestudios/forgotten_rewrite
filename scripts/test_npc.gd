@@ -37,6 +37,9 @@ func apply_skin(skin_id: String) -> void:
 	if skin_data.is_empty():
 		push_warning("Skin '%s' not found!" % skin_id)
 		return
+		
+	if health <= 0:
+		in_round = false
 
 	if is_instance_valid(_skin_instance):
 		_skin_instance.queue_free()
