@@ -12,8 +12,8 @@ outline_color = Color(0, 0, 0, 1)
 [node name="ShopButton" type="Control" unique_id=232036350]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 205.0
-offset_bottom = 335.0
+offset_right = 154.0
+offset_bottom = 233.0
 
 [node name="Render" type="TextureRect" parent="." unique_id=1126155967]
 layout_mode = 0

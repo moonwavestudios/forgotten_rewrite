@@ -48,7 +48,8 @@ func _process(_delta: float) -> void:
 			for player in get_players():
 				if player.is_Killer:
 					lms_started = true
-					start_lms(player.equipped_killer)
+					var survivor = get_surviving_player()
+					start_lms(player.equipped_killer, survivor)
 			
 
 func get_player_count() -> int:
@@ -91,25 +92,39 @@ func start_chase(killer: String, player: Node) -> void:
 	ResourceLoader.load_threaded_request(stream_path)
 	_await_chase_load(stream_path, player)
 
-func get_lms_duration(killer: String) -> float:
-	var default_duration = 90.0 
-	
+func get_lms_duration(killer: String, survivor: String = "") -> float:
+	var default_duration = 90.0
+	var music_data = {}
+
 	for player in get_players():
 		if player.is_Killer and player.equipped_killer == killer:
-			var duration = player.active_music.get("lms_duration", -1)
-			if duration > 0:
-				return duration
-	
-	var killer_data = CharData.get_killer(killer)
-	return killer_data.get("music", {}).get("lms_duration", default_duration)
+			music_data = player.active_music
+			break
 
-func start_lms(killer: String) -> void:
-	var stream_path = get_lms(killer)
+	if music_data.is_empty():
+		var killer_data = CharData.get_killer(killer)
+		music_data = killer_data.get("music", {})
+
+	if survivor != "":
+		for entry in music_data.get("lms_special", []):
+			if entry.get("survivor", "") == survivor:
+				return entry.get("lms_duration", music_data.get("lms_duration", default_duration))
+
+	return music_data.get("lms_duration", default_duration)
+
+func get_surviving_player() -> String:
+	for player in get_players():
+		if not player.is_Killer:
+			return player.equipped_survivor
+	return ""
+
+func start_lms(killer: String, survivor: String = "") -> void:
+	var stream_path = get_lms(killer, survivor)
 	if stream_path == "" or not ResourceLoader.exists(stream_path):
 		push_warning("No LMS music found for killer: " + killer)
 		return
-	
-	var duration = get_lms_duration(killer)
+
+	var duration = get_lms_duration(killer, survivor)
 	ResourceLoader.load_threaded_request(stream_path)
 	_await_lms_load(stream_path, duration)
 
@@ -152,13 +167,24 @@ func _await_lms_load(stream_path: String, duration: float) -> void:
 			return
 		await get_tree().process_frame
 
-func get_lms(killer: String):
+func get_lms(killer: String, survivor: String = "") -> String:
+	var music_data = {}
+
 	for player in get_players():
 		if player.is_Killer and player.equipped_killer == killer:
-			return player.active_music.get("lms", "")
-	
-	var killer_data = CharData.get_killer(killer)
-	return killer_data.get("music", {}).get("lms", "")
+			music_data = player.active_music
+			break
+
+	if music_data.is_empty():
+		var killer_data = CharData.get_killer(killer)
+		music_data = killer_data.get("music", {})
+
+	if survivor != "":
+		for entry in music_data.get("lms_special", []):
+			if entry.get("survivor", "") == survivor:
+				return entry.get("track", music_data.get("lms", ""))
+
+	return music_data.get("lms", "")
 
 func get_chase_theme(killer: String):
 	for player in get_players():

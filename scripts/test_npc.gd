@@ -63,8 +63,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Drain horizontal velocity based on current_speed uwu~
-	# When current_speed is 0 (grabbed!), it stops vewy quickly (≧◡≦)
 	velocity.x = move_toward(velocity.x, 0, (SPEED - current_speed + SPEED) * delta * 10.0)
 	velocity.z = move_toward(velocity.z, 0, (SPEED - current_speed + SPEED) * delta * 10.0)
 	
