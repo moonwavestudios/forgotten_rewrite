@@ -388,6 +388,47 @@ func _activate_ability(ability: String) -> void:
 				)
 				await get_tree().create_timer(0.05).timeout
 		
+	elif ability == "anti_lock":
+		var ability_data = get_ability_survivor("ability3", $"..".equipped_survivor)
+		var ability_range: float = ability_data.get("range", 10.0)
+		var effect_duration: float = ability_data.get("effect_duration", 3.0)
+		
+		var plrs = $"../..".get_players()
+		var nearest_killer = null
+		var nearest_dist = INF
+		
+		for plr in plrs:
+			if plr.is_Killer:
+				var dist = $"..".global_position.distance_to(plr.global_position)
+				if dist <= ability_range and dist < nearest_dist:
+					nearest_dist = dist
+					nearest_killer = plr
+		
+				if nearest_killer != null:
+					if "current_target" in nearest_killer:
+						nearest_killer.current_target = null
+					if "locked_target" in nearest_killer:
+						nearest_killer.locked_target = null
+					if "target" in nearest_killer:
+						nearest_killer.target = null
+						
+					_highlight_killer(nearest_killer, 1.0)
+					
+					if "current_speed" in nearest_killer and "WALK_SPEED" in nearest_killer:
+						var original_speed = nearest_killer.WALK_SPEED
+						nearest_killer.current_speed = nearest_killer.current_speed * 0.5
+						await get_tree().create_timer(effect_duration).timeout
+						if is_instance_valid(nearest_killer):
+							nearest_killer.current_speed = original_speed
+					else:
+						await get_tree().create_timer(effect_duration).timeout
+
+					print("anti_lock applied to: ", nearest_killer)
+				else:
+					print("no killer in range for anti_lock")
+
+				$"..".usingAbility = false
+		
 	else:
 		print(ability)
 	
