@@ -457,7 +457,6 @@ func _activate_ability(ability: String) -> void:
 		var last_redirected_damage := 0          
 		var total_time := duration
 		var in_perfect_window := false
-		var link_broken_early := false
 
 		var ally_prev_health: int = nearest_ally.health
 

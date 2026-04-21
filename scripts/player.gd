@@ -280,8 +280,9 @@ func _physics_process(delta: float) -> void:
 		Ability_Component._activate_ability(ability_type)
 		_start_cooldown(ability_name, cooldown_duration)
 		usingAbility = true
-		await get_tree().create_timer(0.5).timeout
-		abilityTimer_timeout()
+		if ability_type != "ally_link":
+			await get_tree().create_timer(0.5).timeout
+			abilityTimer_timeout()
 
 	if Input.is_action_just_pressed("interact") and not usingAbility:
 		var collider = raycast.get_collider()
