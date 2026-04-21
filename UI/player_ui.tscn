@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://diu4olylqsotv" path="res://assets/fonts/Roboto/static/Roboto-Bold.ttf" id="1_c8xti"]
 [ext_resource type="Texture2D" uid="uid://d1qj5l8ttlohn" path="res://icon.svg" id="2_nplvd"]
+[ext_resource type="Shader" uid="uid://bom6wnkkidnyb" path="res://assets/shaders/vignette.gdshader" id="3_b8q8m"]
 [ext_resource type="PackedScene" uid="uid://dubh45kls01xa" path="res://UI/stuff/ShopButton.tscn" id="4_b8q8m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
@@ -27,6 +28,16 @@ corner_radius_bottom_left = 8
 [sub_resource type="LabelSettings" id="LabelSettings_kwigr"]
 font = ExtResource("1_c8xti")
 font_size = 19
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b8q8m"]
+shader = ExtResource("3_b8q8m")
+shader_parameter/vignette_radius = 0.7390000351025
+shader_parameter/vignette_softness = 0.45
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/pulse_speed = 1.13200005377
+shader_parameter/pulse_strength = 0.35
+shader_parameter/active = true
+shader_parameter/vignette_color = Color(0.55, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nplvd"]
 font = ExtResource("1_c8xti")
@@ -186,6 +197,13 @@ text = "Q"
 label_settings = SubResource("LabelSettings_kwigr")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Vignette" type="ColorRect" parent="GameStuff" unique_id=2028778399]
+visible = false
+material = SubResource("ShaderMaterial_b8q8m")
+layout_mode = 0
+offset_right = 1149.0
+offset_bottom = 647.0
 
 [node name="SpectatorStuff" type="Control" parent="." unique_id=2023826759]
 anchors_preset = 0
