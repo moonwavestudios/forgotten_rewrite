@@ -428,6 +428,72 @@ func _activate_ability(ability: String) -> void:
 					print("no killer in range for anti_lock")
 
 				$"..".usingAbility = false
+	elif ability == "ally_link":
+		var ability_data = get_ability_survivor("ability4", $"..".equipped_survivor)
+		var duration: float = ability_data.get("duration", 8.0)
+		var redirect_ratio: float = ability_data.get("redirect_ratio", 0.35)
+		var perfect_window: float = ability_data.get("perfect_release_window", 0.5)
+		
+		var plrs = $"../..".get_players()
+		var nearest_ally = null
+		var nearest_dist = INF
+
+		for plr in plrs:
+			if plr == $".." or plr.is_Killer:
+				continue
+			var dist = $"..".global_position.distance_to(plr.global_position)
+			if dist < nearest_dist:
+				nearest_dist = dist
+				nearest_ally = plr
+
+		if nearest_ally == null:
+			print("no ally found for ally_link")
+			$"..".usingAbility = false
+			return
+
+		print("Oath Anchor linked to: ", nearest_ally)
+
+		var elapsed := 0.0
+		var last_redirected_damage := 0          
+		var total_time := duration
+		var in_perfect_window := false
+		var link_broken_early := false
+
+		var ally_prev_health: int = nearest_ally.health
+
+		while elapsed < total_time:
+			var delta = get_physics_process_delta_time()
+			elapsed += delta
+
+			if elapsed >= (total_time - perfect_window):
+				in_perfect_window = true
+
+			if is_instance_valid(nearest_ally) and nearest_ally.health < ally_prev_health:
+				var raw_hit = ally_prev_health - nearest_ally.health
+				var redirected = int(raw_hit * redirect_ratio)
+
+				nearest_ally.health = min(nearest_ally.health + redirected, nearest_ally.maxhealth)
+
+				var nyx_damage = redirected
+				if $"..".weakness > 0:
+					nyx_damage = int(redirected * $"..".weakness)
+				$"..".health -= nyx_damage
+
+				last_redirected_damage = redirected
+				print("Oath Anchor redirected %d damage from ally to Nyx" % redirected)
+
+			ally_prev_health = nearest_ally.health if is_instance_valid(nearest_ally) else ally_prev_health
+
+			if $"..".health <= 0 or not is_instance_valid(nearest_ally):
+				break
+
+			await get_tree().physics_frame
+
+		if in_perfect_window and last_redirected_damage > 0:
+			$"..".health = min($"..".health + last_redirected_damage, $"..".maxhealth)
+			print("Perfect release! Negated last redirected instance: +%d HP" % last_redirected_damage)
+
+		$"..".usingAbility = false
 		
 	else:
 		print(ability)

@@ -18,6 +18,10 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="LabelSettings" id="LabelSettings_8w2om"]
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nplvd"]
 bg_color = Color(1, 0, 0, 1)
 corner_radius_top_left = 8
@@ -109,6 +113,15 @@ offset_bottom = 595.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_c8xti")
 show_percentage = false
 
+[node name="Label" type="Label" parent="GameStuff/Stamina" unique_id=405440961]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 2.0
+offset_right = 287.0
+offset_bottom = 25.0
+text = "100/100"
+label_settings = SubResource("LabelSettings_8w2om")
+
 [node name="Health" type="ProgressBar" parent="GameStuff" unique_id=24808790]
 layout_mode = 0
 offset_left = 1.0
@@ -125,6 +138,7 @@ offset_top = 2.0
 offset_right = 287.0
 offset_bottom = 25.0
 text = "100/100"
+label_settings = SubResource("LabelSettings_8w2om")
 
 [node name="AbilitiesStuff" type="HBoxContainer" parent="GameStuff" unique_id=381478597]
 layout_mode = 0
