@@ -289,6 +289,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Shop" type="Panel" parent="SpectatorStuff" unique_id=1797649470]
+visible = false
 layout_mode = 0
 offset_left = 224.0
 offset_top = 71.0
