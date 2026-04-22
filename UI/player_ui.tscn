@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d1qj5l8ttlohn" path="res://icon.svg" id="2_nplvd"]
 [ext_resource type="Shader" uid="uid://bom6wnkkidnyb" path="res://assets/shaders/vignette.gdshader" id="3_b8q8m"]
 [ext_resource type="PackedScene" uid="uid://dubh45kls01xa" path="res://UI/stuff/ShopButton.tscn" id="4_b8q8m"]
+[ext_resource type="Script" uid="uid://cceui5vh4mesy" path="res://scripts/shop.gd" id="4_ccqt3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
 font = ExtResource("1_c8xti")
@@ -288,12 +289,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Shop" type="Panel" parent="SpectatorStuff" unique_id=1797649470]
-visible = false
 layout_mode = 0
 offset_left = 224.0
 offset_top = 71.0
 offset_right = 980.0
 offset_bottom = 591.0
+script = ExtResource("4_ccqt3")
 
 [node name="InfoPanel" type="Panel" parent="SpectatorStuff/Shop" unique_id=1581579896]
 visible = false

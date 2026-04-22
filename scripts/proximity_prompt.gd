@@ -14,7 +14,6 @@ signal prompt_deactivated(interactor: Node)
 signal player_entered(interactor: Node)
 signal player_exited(interactor: Node)
 
-#var _players_in_range: Array[Node] = []
 var _closest_player: Node = null
 var _hold_timer: float = 0.0
 var _cooldown_timer: float = 0.0
@@ -62,7 +61,6 @@ func _process(delta: float) -> void:
 	else:
 		if _is_holding:
 			_reset_hold()
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not enabled:
