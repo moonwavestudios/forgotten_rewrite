@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://duca3objkff2t" path="res://scenes/lobby.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dbdv1gh2o2r2g" path="res://scenes/player.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bf4m527oonhqy" path="res://scenes/other/generator.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://i5mm30dajmqt" path="res://scenes/test_npc.tscn" id="5_lquwl"]
 
 [node name="Main" type="Node" unique_id=814599977]
@@ -16,6 +17,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1848295, 0)
 
 [node name="generator" parent="." unique_id=1263804824 instance=ExtResource("3_h2yge")]
 transform = Transform3D(-2.8276256e-08, 0, 2.2219806, 0, 0.7596355, 0, -0.6468854, 0, -9.712586e-08, 0, 0.42656898, 5.3557405)
+
+[node name="ProximityPrompt" parent="generator" unique_id=25112644 instance=ExtResource("5_7mycd")]
 
 [node name="LMS" type="AudioStreamPlayer" parent="." unique_id=419310731]
 volume_db = 3.0

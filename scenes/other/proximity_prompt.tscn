@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bqs3r4f0unodw"]
+
+[ext_resource type="Script" uid="uid://dt5q68llm4j66" path="res://scripts/proximity_prompt.gd" id="1_5l7g3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2qmfn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5l7g3"]
+
+[node name="ProximityPrompt" type="Area3D" unique_id=25112644]
+script = ExtResource("1_5l7g3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=293999784]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_2qmfn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=861179538]
+mesh = SubResource("BoxMesh_5l7g3")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1829354049]
