@@ -27,6 +27,15 @@ func add_hitbox(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: V
 		instance.og_plr = source_player
 	
 	await get_tree().create_timer(0.5).timeout
+	
+	if source_player and source_player.is_Killer:
+		for player in get_players():
+			if not player.is_Killer and player.health <= 0:
+				
+				if hit_flag.is_empty():
+					hit_flag.append(true)
+					source_player.on_killed_survivor()
+	
 	instance.queue_free()
 	
 func _process(_delta: float) -> void:
@@ -61,6 +70,11 @@ func get_players():
 func start_intermission() -> void:
 	$Intermission.start(30)
 	
+func _on_idle_voiceline_timer_timeout() -> void:
+	for player in get_players():
+		if player.is_Killer and player.in_round:
+			player.get_node("Voiceline_Component").play_idle()
+
 func start_round():
 	var highest_malice = -INF
 	var most_malicious_player = null
@@ -79,6 +93,7 @@ func start_round():
 		
 	if most_malicious_player != null:
 		most_malicious_player.is_Killer = true
+		most_malicious_player.get_node("Voiceline_Component").play_intro()
 		start_chase(most_malicious_player.equipped_killer, most_malicious_player)
 			
 func assign_model(_player):

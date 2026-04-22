@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://qo6absgsr8yf" path="res://scenes/other/hitboxes.tscn" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://bp0hs4qgh4lf" path="res://UI/player_ui.tscn" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cgf664e14d6fb" path="res://scripts/effect_component.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://nw5d83eisaa1" path="res://scripts/voiceline_component.gd" id="6_tuyoq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
@@ -36,8 +37,6 @@ collision_mask = 2
 hit_from_inside = true
 collide_with_areas = true
 
-[node name="voicelines" type="AudioStreamPlayer" parent="." unique_id=2110022406]
-
 [node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1274380537]
 
 [node name="FirstPersonCam" type="Camera3D" parent="." unique_id=54325718]
@@ -53,3 +52,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1998817, 0)
 max_distance = 25.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=511871288]
+
+[node name="Voiceline_Component" type="Node" parent="." unique_id=405980896]
+script = ExtResource("6_tuyoq")
+
+[node name="voicelines" type="AudioStreamPlayer3D" parent="." unique_id=260149795]

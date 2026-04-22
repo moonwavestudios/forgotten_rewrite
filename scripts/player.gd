@@ -11,7 +11,7 @@ var is_emoting: bool = false
 var current_emote: String = ""
 
 var malice = -100
-var is_Killer = false
+var is_Killer = true
 
 var xp = 0
 var blocks = 0
@@ -22,12 +22,13 @@ var current_speed = WALK_SPEED
 @onready var first_person_cam: Camera3D = $FirstPersonCam
 @onready var Ability_Component = $Ability_Component
 @onready var Effect_Component = $EffectComponent
+@onready var Voiceline_Component = $Voiceline_Component
 
 @onready var AbilitiesStuff = $player_ui/GameStuff/AbilitiesStuff 
 
 var usingAbility = false
 var equipped_survivor = "nyx"
-var equipped_killer = "yixi"
+var equipped_killer = "envy"
 var equipped_skin_id: String = "default"
 var _skin_instance: Node3D = null
 
@@ -119,13 +120,15 @@ func apply_skin(skin_id: String) -> void:
 
 	var char_data = CharData.get_killer(char_id) if is_Killer else CharData.get_survivor(char_id)
 	var base_music = char_data.get("music", {})
+	var base_voicelines = char_data.get("voicelines", {})
 	
 	var skins: Array = char_data.get("skins", [])
 	if skins.is_empty():
 		active_music = {
-			"lms": base_music.get("lms", ""),
+			"lms":   base_music.get("lms", ""),
 			"chase": base_music.get("chase", "")
 		}
+		Voiceline_Component.apply_voicelines(base_voicelines) 
 		return
 
 	var skin_data = CharData.get_skin(char_id, char_type, skin_id)
@@ -155,6 +158,12 @@ func apply_skin(skin_id: String) -> void:
 		"lms": skin_music.get("lms", base_music.get("lms", "")),
 		"chase": skin_music.get("chase", base_music.get("chase", ""))
 	}
+	
+	var merged_voicelines: Dictionary = base_voicelines.duplicate()
+	var skin_voicelines = skin_data.get("voicelines", {})            
+	for key in skin_voicelines:                                       
+		merged_voicelines[key] = skin_voicelines[key]                
+	Voiceline_Component.apply_voicelines(merged_voicelines)  
 
 func _refresh_ability_ui() -> void:
 	var abilities = [
@@ -243,6 +252,7 @@ func _physics_process(delta: float) -> void:
 		var ability_name = equipped_ability1.get("name", "Ability1")
 		var cooldown_duration = equipped_ability1.get("cooldown", COOLDOWN_ABILITY1)
 		Ability_Component._activate_ability(ability_type)
+		Voiceline_Component.play_ability(ability_type)
 		_start_cooldown(ability_name, cooldown_duration)
 		usingAbility = true
 		await get_tree().create_timer(0.5).timeout
@@ -262,12 +272,16 @@ func _physics_process(delta: float) -> void:
 		_start_cooldown(ability_name, cooldown_duration)
 		usingAbility = true
 		Ability_Component._activate_ability(ability_type)
+		Voiceline_Component.play_ability(ability_type)
+		await get_tree().create_timer(0.5).timeout
+		abilityTimer_timeout()
 		
 	if Input.is_action_just_pressed("Ability3") and not usingAbility and not equipped_ability3.is_empty() and not _is_on_cooldown(equipped_ability1.get("name", "Ability3")):
 		var ability_type = equipped_ability3.get("type", "")
 		var ability_name = equipped_ability3.get("name", "Ability3")
 		var cooldown_duration = equipped_ability3.get("cooldown", COOLDOWN_ABILITY3)
 		Ability_Component._activate_ability(ability_type)
+		Voiceline_Component.play_ability(ability_type)
 		_start_cooldown(ability_name, cooldown_duration)
 		usingAbility = true
 		await get_tree().create_timer(0.5).timeout
@@ -278,6 +292,7 @@ func _physics_process(delta: float) -> void:
 		var ability_name = equipped_ability4.get("name", "Ability4")
 		var cooldown_duration = equipped_ability4.get("cooldown", COOLDOWN_ABILITY4)
 		Ability_Component._activate_ability(ability_type)
+		Voiceline_Component.play_ability(ability_type)
 		_start_cooldown(ability_name, cooldown_duration)
 		usingAbility = true
 		if ability_type != "ally_link":
@@ -352,6 +367,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, WALK_SPEED)
 		velocity.z = move_toward(velocity.z, 0, WALK_SPEED)
 	move_and_slide()
+
+func on_killed_survivor() -> void:
+	Voiceline_Component.play_kill()
 
 func _try_emote(emote_name: String) -> void:
 	if is_Killer:
