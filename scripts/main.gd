@@ -68,8 +68,8 @@ func get_players():
 	return get_tree().get_nodes_in_group("players")
 
 func start_intermission() -> void:
-	$Intermission.start(30)
-	
+	$Intermission.start(45)
+
 func _on_idle_voiceline_timer_timeout() -> void:
 	for player in get_players():
 		if player.is_Killer and player.in_round:

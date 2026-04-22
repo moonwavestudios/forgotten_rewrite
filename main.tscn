@@ -52,5 +52,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9373124, 1.2592936, 5.44561
 oversampling_override = 1.0
 access = 2
 
+[node name="IdleVoicelineTimer" type="Timer" parent="." unique_id=645679691]
+wait_time = 45.0
+autostart = true
+
 [connection signal="timeout" from="Intermission" to="." method="_on_intermission_timeout"]
 [connection signal="timeout" from="LMSTimer" to="." method="_on_intermission_timeout"]
+[connection signal="timeout" from="IdleVoicelineTimer" to="." method="_on_idle_voiceline_timer_timeout"]

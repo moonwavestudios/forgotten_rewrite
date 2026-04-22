@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://m8hbdfqbk3h" path="res://scripts/test_npc.gd" id="1_upkiv"]
 [ext_resource type="PackedScene" uid="uid://bp0hs4qgh4lf" path="res://UI/player_ui.tscn" id="2_fohsx"]
 [ext_resource type="AudioStream" uid="uid://bea8y7owko1ta" path="res://assets/music/chase_teto.mp3" id="3_a1j51"]
+[ext_resource type="Script" uid="uid://nw5d83eisaa1" path="res://scripts/voiceline_component.gd" id="4_5e1og"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vifff"]
 
@@ -27,3 +28,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1694962, 0)
 stream = ExtResource("3_a1j51")
 max_distance = 25.0
 bus = &"Ambience"
+
+[node name="Voiceline_Component" type="Node" parent="." unique_id=29535618]
+script = ExtResource("4_5e1og")
+
+[node name="voicelines" type="AudioStreamPlayer3D" parent="." unique_id=1089284537]
