@@ -304,6 +304,12 @@ offset_top = 2.0
 offset_right = 927.0
 offset_bottom = 515.0
 
+[node name="Render" type="TextureRect" parent="SpectatorStuff/Shop/InfoPanel" unique_id=1306120912]
+layout_mode = 0
+offset_right = 169.0
+offset_bottom = 169.0
+expand_mode = 1
+
 [node name="CharName" type="Label" parent="SpectatorStuff/Shop/InfoPanel" unique_id=1141681543]
 layout_mode = 0
 offset_right = 171.0
@@ -311,15 +317,18 @@ offset_bottom = 34.0
 text = "CHARACTERNAME"
 label_settings = SubResource("LabelSettings_b8q8m")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Price" type="Label" parent="SpectatorStuff/Shop/InfoPanel" unique_id=2100009975]
 layout_mode = 0
-offset_top = 31.0
-offset_right = 171.0
-offset_bottom = 65.0
+offset_left = -1.0
+offset_top = 132.0
+offset_right = 170.0
+offset_bottom = 166.0
 text = "$0"
 label_settings = SubResource("LabelSettings_b8q8m")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BuyButton" type="Button" parent="SpectatorStuff/Shop/InfoPanel" unique_id=1727878095]
 layout_mode = 0
