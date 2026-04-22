@@ -48,5 +48,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9373124, 1.2592936, 5.44561
 
 [node name="game" type="Node3D" parent="." unique_id=819722603]
 
+[node name="FileDialog" type="FileDialog" parent="." unique_id=1882386049]
+oversampling_override = 1.0
+access = 2
+
 [connection signal="timeout" from="Intermission" to="." method="_on_intermission_timeout"]
 [connection signal="timeout" from="LMSTimer" to="." method="_on_intermission_timeout"]
