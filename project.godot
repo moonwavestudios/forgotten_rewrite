@@ -35,6 +35,7 @@ window/stretch/mode="canvas_items"
 generator=""
 players=""
 arcade=""
+interactors=""
 
 [input]
 

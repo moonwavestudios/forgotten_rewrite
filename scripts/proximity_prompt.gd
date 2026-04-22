@@ -1,10 +1,11 @@
 extends Area3D
 
 @export var prompt_text: String = "Press [F] to interact"
-@export var action_key: String = "interact_prox"          
+@export var action_key: String = "interact"          
 @export var hold_duration: float = 1.0               # 0 = tap, >0 = hold to trigger
-@export var max_activations: int = 20               # -1 = infinite
+@export var max_activations: int = -1               # -1 = infinite
 @export var cooldown_time: float = 1.0               # seconds between activations
+@export var max_distance: float = 5.0
 @export var enabled: bool = true
 
 signal prompt_triggered(interactor: Node)
@@ -13,7 +14,7 @@ signal prompt_deactivated(interactor: Node)
 signal player_entered(interactor: Node)
 signal player_exited(interactor: Node)
 
-var _players_in_range: Array[Node] = []
+#var _players_in_range: Array[Node] = []
 var _closest_player: Node = null
 var _hold_timer: float = 0.0
 var _cooldown_timer: float = 0.0
@@ -23,15 +24,8 @@ var _ui_label: Label
 var _ui_container: Control
 
 func _ready() -> void:
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
-
 	if not InputMap.has_action(action_key):
-		var event := InputEventKey.new()
-		event.keycode = KEY_F
-		InputMap.add_action(action_key)
-		InputMap.action_add_event(action_key, event)
-		push_warning("ProximityPrompt: Created default '%s' action (E key). Add it to Project > Input Map for full control!" % action_key)
+		push_error("ProximityPrompt: Action '%s' not found in Input Map! Please add it via Project > Input Map." % action_key)
 
 	_build_ui()
 	_set_ui_visible(false)
@@ -42,14 +36,14 @@ func _process(delta: float) -> void:
 
 	if _cooldown_timer > 0.0:
 		_cooldown_timer -= delta
-
+		
 	_update_closest_player()
-
+	
 	if _closest_player == null:
 		_set_ui_visible(false)
 		_reset_hold()
 		return
-
+		
 	_set_ui_visible(true)
 	_update_ui_position()
 
@@ -76,7 +70,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if _closest_player == null:
 		return
 	if hold_duration > 0.0:
-		return  
+		return
+	if global_position.distance_to(_closest_player.global_position) > max_distance:
+		return
 
 	if event.is_action_pressed(action_key):
 		_try_activate(_closest_player)
@@ -93,47 +89,31 @@ func _try_activate(interactor: Node) -> void:
 	emit_signal("prompt_triggered", interactor)
 
 func _update_closest_player() -> void:
-	_players_in_range = _players_in_range.filter(func(p): return is_instance_valid(p))
-
-	if _players_in_range.is_empty():
-		_closest_player = null
-		return
+	var all_players := get_tree().get_nodes_in_group("interactors")
 
 	var best: Node = null
 	var best_dist: float = INF
-	for p in _players_in_range:
+	for p in all_players:
+		if not is_instance_valid(p):
+			continue
 		var d: float = global_position.distance_to(p.global_position)
-		if d < best_dist:
+		if d <= max_distance and d < best_dist:
 			best_dist = d
 			best = p
 
 	if best != _closest_player:
 		if _closest_player != null:
 			emit_signal("prompt_deactivated", _closest_player)
+			emit_signal("player_exited", _closest_player)
 		_closest_player = best
 		if _closest_player != null:
 			emit_signal("prompt_activated", _closest_player)
+			emit_signal("player_entered", _closest_player)
 
 func _reset_hold() -> void:
 	_hold_timer = 0.0
 	_is_holding = false
 	_update_progress_bar(0.0)
-
-func _on_body_entered(body: Node) -> void:
-	if not body.is_in_group("players"):
-		return
-	if body in _players_in_range:
-		return
-	_players_in_range.append(body)
-	emit_signal("player_entered", body)
-
-func _on_body_exited(body: Node) -> void:
-	if body in _players_in_range:
-		_players_in_range.erase(body)
-		emit_signal("player_exited", body)
-		if body == _closest_player:
-			_closest_player = null
-			_reset_hold()
 
 func set_enabled(value: bool) -> void:
 	enabled = value

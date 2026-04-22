@@ -13,7 +13,7 @@ script = ExtResource("1_1bvp3")
 
 [node name="Lobby" parent="." unique_id=941177251 instance=ExtResource("1_ig7tw")]
 
-[node name="player" parent="." unique_id=633314722 instance=ExtResource("2_0xm2m")]
+[node name="player" parent="." unique_id=633314722 groups=["interactors"] instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1848295, 0)
 
 [node name="generator" parent="." unique_id=1263804824 instance=ExtResource("3_h2yge")]
