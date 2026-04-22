@@ -2,8 +2,8 @@ extends CharacterBody3D
 
 @export var hitboxes: PackedScene
 
-const WALK_SPEED = 5.0
-const SPRINT_SPEED = 9.0
+var WALK_SPEED = 5.0
+var SPRINT_SPEED = 9.0
 const MOUSE_SENSITIVITY = 0.003
 
 var equipped_emotes: Array = []
@@ -11,7 +11,7 @@ var is_emoting: bool = false
 var current_emote: String = ""
 
 var malice = -100
-var is_Killer = true
+var is_Killer = false
 
 var xp = 0
 var blocks = 0
@@ -28,7 +28,7 @@ var current_speed = WALK_SPEED
 
 var usingAbility = false
 var equipped_survivor = "nyx"
-var equipped_killer = "envy"
+var equipped_killer = "yixi"
 var equipped_skin_id: String = "default"
 var _skin_instance: Node3D = null
 
@@ -99,6 +99,7 @@ var cooldowns := {
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	_refresh_abilities()
+	apply_character_stats()
 	var char_id = equipped_killer if is_Killer else equipped_survivor
 	equipped_skin_id = save_data.get_equipped_skin(char_id)
 	apply_skin(equipped_skin_id)
@@ -113,6 +114,18 @@ func _is_on_cooldown(action: String) -> bool:
 
 func _start_cooldown(action: String, duration: float) -> void:
 	cooldowns[action] = duration
+
+func apply_character_stats() -> void:
+	var char_id = equipped_killer if is_Killer else equipped_survivor
+	var char_data = CharData.get_killer(char_id) if is_Killer else CharData.get_survivor(char_id)
+
+	var stats: Dictionary = char_data.get("stats", {})
+
+	maxhealth = int(stats.get("health", 100))
+	health = int(maxhealth)
+
+	WALK_SPEED = stats.get("walk_speed", 5.1)
+	SPRINT_SPEED = stats.get("sprint_speed", 9.1)
 
 func apply_skin(skin_id: String) -> void:
 	var char_type = "killer" if is_Killer else "survivor"
