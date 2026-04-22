@@ -69,8 +69,8 @@ func _create_emote_item(emote_name: String, emote_data: Dictionary) -> Control:
 
 func _on_skins_button_pressed() -> void:
 	_populate_skins_panel(_selected_char_data.get("skins", []))
-	$SkinsPanel.visible = true
-	$Items.visible = false
+	$SkinsPanel.visible = not $SkinsPanel.visible
+	$Items.visible = not $Items.visible
 
 func _populate_skins_panel(skins: Array) -> void:
 	var grid = $SkinsPanel/ScrollContainer/GridContainer

@@ -399,6 +399,7 @@ layout_mode = 2
 [node name="SkinsPanel" type="Panel" parent="SpectatorStuff/Shop" unique_id=723321305]
 visible = false
 layout_mode = 0
+offset_top = 33.0
 offset_right = 756.0
 offset_bottom = 522.0
 
