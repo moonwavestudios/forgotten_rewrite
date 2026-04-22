@@ -34,7 +34,7 @@
 	"stamina": 110,
 	"walk_speed": 5.0,
 	"sprint_speed": 9.0,
-	"price": 1500
+	"price": 0
   },
   "voicelines": {
 	"intro": [],

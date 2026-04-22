@@ -517,4 +517,5 @@ columns = 7
 [node name="Button" parent="SpectatorStuff/Inventory/Items/Emotes/GridContainer" unique_id=454997997 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
 
+[connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/BuyButton" to="SpectatorStuff/Shop" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/SkinsButton" to="SpectatorStuff/Shop" method="_on_skins_button_pressed"]

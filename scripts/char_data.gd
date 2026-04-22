@@ -2,7 +2,6 @@ extends Node
 
 const SURVIVORS_DIR := "res://data/survivors/"
 const KILLERS_DIR   := "res://data/killers/"
-const SKINS_DIR     := "res://data/skins/"
 
 var survivors : Dictionary = {}   
 var killers   : Dictionary = {}   
@@ -33,10 +32,9 @@ func get_skin(character_id: String, type: String, skin_id: String) -> Dictionary
 func _load_all() -> void:
 	survivors = _load_directory(SURVIVORS_DIR)
 	killers   = _load_directory(KILLERS_DIR)
-	skins     = _load_directory(SKINS_DIR)
 
-	print("[GameData] Loaded %d survivor(s), %d killer(s), %d skin(s)." % [
-		survivors.size(), killers.size(), skins.size()
+	print("[GameData] Loaded %d survivor(s), %d killer(s)" % [
+		survivors.size(), killers.size()
 	])
 
 func _load_directory(dir_path: String) -> Dictionary:

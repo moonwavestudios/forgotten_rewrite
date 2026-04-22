@@ -35,6 +35,22 @@ func own_skin(character_id: String, skin_id: String) -> void:
 		data["owned_skins"][character_id].append(skin_id)
 	_save_all(data)
 
+func get_owned_characters() -> Array:
+	var data = _load_all()
+	return data.get("owned_characters", [])
+
+func own_character(character_id: String) -> void:
+	var data = _load_all()
+	if not data.has("owned_characters"):
+		data["owned_characters"] = []
+	if character_id not in data["owned_characters"]:
+		data["owned_characters"].append(character_id)
+	_save_all(data)
+
+func has_character(character_id: String) -> bool:
+	var data = _load_all()
+	return character_id in data.get("owned_characters", [])
+
 func has_skin(character_id: String, skin_id: String) -> bool:
 	if skin_id == "default":
 		return true  

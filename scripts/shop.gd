@@ -2,6 +2,7 @@ extends Panel
 
 var _selected_char_data: Dictionary = {}
 var _selected_skin_data: Dictionary = {}
+var _selected_type: String = ""
 
 func _ready() -> void:
 	if CharData.killers.is_empty() and CharData.survivors.is_empty():
@@ -57,6 +58,27 @@ func _create_char_item(char_data: Dictionary) -> Control:
 			item.get_node("Render").texture = load(thumb_path)
 	
 	return item
+	
+func _refresh_buy_button() -> void:
+	var buy_btn = $InfoPanel/BuyButton
+	if buy_btn == null:
+		return
+	
+	var already_owned = _is_selected_already_owned()
+	buy_btn.disabled = already_owned
+	buy_btn.text = "Owned" if already_owned else "Buy"
+
+func _is_selected_already_owned() -> bool:
+	match _selected_type:
+		"char":
+			var char_id = _selected_char_data.get("id", "")
+			return save_data.has_character(char_id)
+		"skin":
+			var char_id = _selected_char_data.get("id", "")
+			var skin_id = _selected_skin_data.get("id", "")
+			return save_data.has_skin(char_id, skin_id)
+		_:
+			return false
 
 func _create_emote_item(emote_name: String, emote_data: Dictionary) -> Control:
 	var item_scene = preload("res://UI/stuff/ShopButton.tscn")
@@ -66,6 +88,55 @@ func _create_emote_item(emote_name: String, emote_data: Dictionary) -> Control:
 	item.get_node("Price").text = "$ %d" % emote_data.get("Price", 0)
 	
 	return item
+
+func _try_buy_char(player) -> void:
+	var char_id = _selected_char_data.get("id", "")
+	var price = _selected_char_data.get("stats", {}).get("price", 0)
+	
+	if char_id == "":
+		return
+	if save_data.has_character(char_id):  # already owned
+		return
+	if player == null or player.coins < price:
+		# TODO: show a "not enough coins" notice
+		print("not enough coins")
+		return
+	
+	player.coins -= price
+	save_data.own_character(char_id)
+	_refresh_buy_button()
+
+func _try_buy_skin(player) -> void:
+	var char_id = _selected_char_data.get("id", "")
+	var skin_id = _selected_skin_data.get("id", "")
+	var price = _selected_skin_data.get("price", 0)
+	
+	if char_id == "" or skin_id == "":
+		return
+	if save_data.has_skin(char_id, skin_id):  # already owned
+		return
+	if player == null or player.coins < price:
+		print("not enough coins")
+		return
+	
+	player.coins -= price
+	save_data.own_skin(char_id, skin_id)
+	_refresh_buy_button()
+
+func _try_buy_emote(_player) -> void:
+	# TODO when emote ownership is in save_data
+	pass
+
+func _on_buy_button_pressed() -> void:
+	var player = get_tree().get_first_node_in_group("players")
+	
+	match _selected_type:
+		"char":
+			_try_buy_char(player)
+		"skin":
+			_try_buy_skin(player)
+		"emote":
+			_try_buy_emote(player)
 
 func _on_skins_button_pressed() -> void:
 	_populate_skins_panel(_selected_char_data.get("skins", []))
@@ -99,24 +170,34 @@ func _populate_skins_panel(skins: Array) -> void:
 
 func select_char_item(item) -> void:
 	_selected_char_data = item.get_meta("char_data", {})
+	_selected_skin_data = {}
+	_selected_type = "char"
 	
 	$InfoPanel.visible = true
 	$InfoPanel/CharName.text = item.get_node("ItemName").text
 	$InfoPanel/Price.text = item.get_node("Price").text
 	$InfoPanel/Render.texture = item.get_node("Render").texture
+	
+	_refresh_buy_button()
 
 func select_skin_item(item) -> void:
 	_selected_skin_data = item.get_meta("skin_data", {})
+	_selected_type = "skin"
 	
 	$InfoPanel/CharName.text = item.get_node("ItemName").text
 	$InfoPanel/Price.text = item.get_node("Price").text
 	$InfoPanel/Render.texture = item.get_node("Render").texture
+	
+	_refresh_buy_button()
 
 func select_emote_item(item) -> void:
+	_selected_type = "emote"
 	$InfoPanel.visible = true
 	$InfoPanel/CharName.text = item.get_node("ItemName").text
 	$InfoPanel/Price.text = item.get_node("Price").text
 	$InfoPanel/Render.texture = null
+	
+	_refresh_buy_button()
 
 func _clear_grid(grid: Node) -> void:
 	for child in grid.get_children():
