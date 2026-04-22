@@ -375,6 +375,8 @@ metadata/_tab_index = 1
 
 [node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/Items/Survivors" unique_id=790781601]
 layout_mode = 2
+theme_override_constants/h_separation = 198
+theme_override_constants/v_separation = 242
 columns = 7
 
 [node name="Button" parent="SpectatorStuff/Shop/Items/Survivors/GridContainer" unique_id=515820347 instance=ExtResource("4_b8q8m")]
@@ -387,9 +389,37 @@ metadata/_tab_index = 2
 
 [node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/Items/Emotes" unique_id=1670426304]
 layout_mode = 2
+theme_override_constants/h_separation = 198
+theme_override_constants/v_separation = 242
 columns = 7
 
 [node name="Button" parent="SpectatorStuff/Shop/Items/Emotes/GridContainer" unique_id=1453771984 instance=ExtResource("4_b8q8m")]
+layout_mode = 2
+
+[node name="SkinsPanel" type="Panel" parent="SpectatorStuff/Shop" unique_id=723321305]
+visible = false
+layout_mode = 0
+offset_right = 756.0
+offset_bottom = 522.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Shop/SkinsPanel" unique_id=849645152]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_tab_index = 0
+
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Shop/SkinsPanel/ScrollContainer" unique_id=2117865829]
+layout_mode = 2
+theme_override_constants/h_separation = 198
+theme_override_constants/v_separation = 242
+columns = 4
+
+[node name="Button" parent="SpectatorStuff/Shop/SkinsPanel/ScrollContainer/GridContainer" unique_id=1701089245 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
 
 [node name="Inventory" type="Panel" parent="SpectatorStuff" unique_id=897379839]
@@ -485,3 +515,5 @@ columns = 7
 
 [node name="Button" parent="SpectatorStuff/Inventory/Items/Emotes/GridContainer" unique_id=454997997 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
+
+[connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/SkinsButton" to="SpectatorStuff/Shop" method="_on_skins_button_pressed"]

@@ -1,5 +1,8 @@
 extends Panel
 
+var _selected_char_data: Dictionary = {}
+var _selected_skin_data: Dictionary = {}
+
 func _ready() -> void:
 	if CharData.killers.is_empty() and CharData.survivors.is_empty():
 		await CharData.data_loaded
@@ -45,6 +48,8 @@ func _create_char_item(char_data: Dictionary) -> Control:
 	item.get_node("ItemName").text = char_data.get("display_name", char_data.get("id", "???"))
 	item.get_node("Price").text = "$ %d" % char_data.get("stats", {}).get("price", 0)
 	
+	item.set_meta("char_data", char_data)
+	
 	var skins = char_data.get("skins", [])
 	if not skins.is_empty():
 		var thumb_path = skins[0].get("thumbnail", "")
@@ -60,13 +65,49 @@ func _create_emote_item(emote_name: String, emote_data: Dictionary) -> Control:
 	item.get_node("ItemName").text = emote_name
 	item.get_node("Price").text = "$ %d" % emote_data.get("Price", 0)
 	
-	if emote_data.get("Limited", false):
-		item.get_node("LimitedBadge").visible = true
-	
 	return item
 
+func _on_skins_button_pressed() -> void:
+	_populate_skins_panel(_selected_char_data.get("skins", []))
+	$SkinsPanel.visible = true
+	$Items.visible = false
+
+func _populate_skins_panel(skins: Array) -> void:
+	var grid = $SkinsPanel/ScrollContainer/GridContainer
+	_clear_grid(grid)
+	
+	for skin in skins:
+		if skin.get("id", "") == "default":
+			continue
+		
+		var item_scene = preload("res://UI/stuff/ShopButton.tscn")
+		var item = item_scene.instantiate()
+		
+		item.get_node("ItemName").text = skin.get("display_name", skin.get("id", "???"))
+		
+		var price = skin.get("price", 0)
+		item.get_node("Price").text = "FREE" if price == 0 else "$ %d" % price
+		
+		var thumb_path = skin.get("thumbnail", "")
+		if thumb_path != "" and ResourceLoader.exists(thumb_path):
+			item.get_node("Render").texture = load(thumb_path)
+			
+		item.set_meta("skin_data", skin)
+		item.get_node("Button").pressed.connect(select_skin_item.bind(item))
+		
+		grid.add_child(item)
+
 func select_char_item(item) -> void:
+	_selected_char_data = item.get_meta("char_data", {})
+	
 	$InfoPanel.visible = true
+	$InfoPanel/CharName.text = item.get_node("ItemName").text
+	$InfoPanel/Price.text = item.get_node("Price").text
+	$InfoPanel/Render.texture = item.get_node("Render").texture
+
+func select_skin_item(item) -> void:
+	_selected_skin_data = item.get_meta("skin_data", {})
+	
 	$InfoPanel/CharName.text = item.get_node("ItemName").text
 	$InfoPanel/Price.text = item.get_node("Price").text
 	$InfoPanel/Render.texture = item.get_node("Render").texture
