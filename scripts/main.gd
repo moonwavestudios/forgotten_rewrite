@@ -50,7 +50,7 @@ func _process(_delta: float) -> void:
 	if $Intermission.time_left > 0:
 		for player in get_players():
 			player.get_node("player_ui/SpectatorStuff/Label").text = \
-				"Intermission: " + str(snapped($Intermission.time_left, 1.0))
+				"Intermission: " + str(int($Intermission.time_left))
 				
 	if in_round and not lms_started:
 		if get_player_count() == 2:

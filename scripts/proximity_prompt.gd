@@ -94,6 +94,13 @@ func _update_closest_player() -> void:
 	for p in all_players:
 		if not is_instance_valid(p):
 			continue
+			
+		if p.has_method("is_Killer") and p.is_Killer:
+			continue
+			
+		if "is_Killer" in p and p.is_Killer:
+			continue
+
 		var d: float = global_position.distance_to(p.global_position)
 		if d <= max_distance and d < best_dist:
 			best_dist = d
