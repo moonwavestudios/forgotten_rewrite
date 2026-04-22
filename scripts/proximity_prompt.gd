@@ -1,9 +1,9 @@
 extends Area3D
 
-@export var prompt_text: String = "Press [E] to interact"
+@export var prompt_text: String = "Press [F] to interact"
 @export var action_key: String = "interact_prox"          
-@export var hold_duration: float = 0.0               # 0 = tap, >0 = hold to trigger
-@export var max_activations: int = -1                # -1 = infinite
+@export var hold_duration: float = 1.0               # 0 = tap, >0 = hold to trigger
+@export var max_activations: int = 20               # -1 = infinite
 @export var cooldown_time: float = 1.0               # seconds between activations
 @export var enabled: bool = true
 
@@ -28,14 +28,13 @@ func _ready() -> void:
 
 	if not InputMap.has_action(action_key):
 		var event := InputEventKey.new()
-		event.keycode = KEY_E
+		event.keycode = KEY_F
 		InputMap.add_action(action_key)
 		InputMap.action_add_event(action_key, event)
 		push_warning("ProximityPrompt: Created default '%s' action (E key). Add it to Project > Input Map for full control!" % action_key)
 
 	_build_ui()
 	_set_ui_visible(false)
-
 
 func _process(delta: float) -> void:
 	if not enabled:
@@ -92,8 +91,6 @@ func _try_activate(interactor: Node) -> void:
 	_cooldown_timer = cooldown_time
 
 	emit_signal("prompt_triggered", interactor)
-	print("ProximityPrompt '%s': triggered by %s" % [name, interactor.name])
-
 
 func _update_closest_player() -> void:
 	_players_in_range = _players_in_range.filter(func(p): return is_instance_valid(p))
@@ -117,7 +114,6 @@ func _update_closest_player() -> void:
 		if _closest_player != null:
 			emit_signal("prompt_activated", _closest_player)
 
-
 func _reset_hold() -> void:
 	_hold_timer = 0.0
 	_is_holding = false
@@ -130,7 +126,6 @@ func _on_body_entered(body: Node) -> void:
 		return
 	_players_in_range.append(body)
 	emit_signal("player_entered", body)
-
 
 func _on_body_exited(body: Node) -> void:
 	if body in _players_in_range:
@@ -145,7 +140,6 @@ func set_enabled(value: bool) -> void:
 	if not enabled:
 		_set_ui_visible(false)
 		_reset_hold()
-
 
 func set_prompt_text(text: String) -> void:
 	prompt_text = text
@@ -208,11 +202,9 @@ func _build_ui() -> void:
 
 	_ui_container.set_meta("panel", panel)
 
-
 func _set_ui_visible(value: bool) -> void:
 	if _ui_container:
 		_ui_container.visible = value
-
 
 func _update_ui_position() -> void:
 	var camera := get_viewport().get_camera_3d()
@@ -222,7 +214,6 @@ func _update_ui_position() -> void:
 	var screen_pos: Vector2 = camera.unproject_position(global_position)
 	var panel: PanelContainer = _ui_container.get_meta("panel")
 	panel.position = screen_pos - panel.size * 0.5
-
 
 func _update_progress_bar(value: float) -> void:
 	var panel: PanelContainer = _ui_container.get_meta("panel") if _ui_container and _ui_container.has_meta("panel") else null
