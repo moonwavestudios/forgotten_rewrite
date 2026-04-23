@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://bom6wnkkidnyb" path="res://assets/shaders/vignette.gdshader" id="3_b8q8m"]
 [ext_resource type="PackedScene" uid="uid://dubh45kls01xa" path="res://UI/stuff/ShopButton.tscn" id="4_b8q8m"]
 [ext_resource type="Script" uid="uid://cceui5vh4mesy" path="res://scripts/shop.gd" id="4_ccqt3"]
+[ext_resource type="Script" uid="uid://gdf6btqkngx2" path="res://scripts/inventory.gd" id="6_xmsn8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
 font = ExtResource("1_c8xti")
@@ -423,15 +424,16 @@ columns = 4
 [node name="Button" parent="SpectatorStuff/Shop/SkinsPanel/ScrollContainer/GridContainer" unique_id=1701089245 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
 
-[node name="Inventory" type="Panel" parent="SpectatorStuff" unique_id=897379839]
+[node name="Inventory" type="Panel" parent="SpectatorStuff" unique_id=751383379]
 visible = false
 layout_mode = 0
 offset_left = 224.0
 offset_top = 71.0
 offset_right = 980.0
 offset_bottom = 591.0
+script = ExtResource("6_xmsn8")
 
-[node name="InfoPanel" type="Panel" parent="SpectatorStuff/Inventory" unique_id=2088242057]
+[node name="InfoPanel" type="Panel" parent="SpectatorStuff/Inventory" unique_id=1124541050]
 visible = false
 layout_mode = 0
 offset_left = 758.0
@@ -439,33 +441,42 @@ offset_top = 2.0
 offset_right = 927.0
 offset_bottom = 515.0
 
-[node name="CharName" type="Label" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=861461413]
+[node name="Render" type="TextureRect" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=585485540]
+layout_mode = 0
+offset_right = 169.0
+offset_bottom = 169.0
+expand_mode = 1
+
+[node name="CharName" type="Label" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=903985610]
 layout_mode = 0
 offset_right = 171.0
 offset_bottom = 34.0
 text = "CHARACTERNAME"
 label_settings = SubResource("LabelSettings_b8q8m")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Price" type="Label" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=580366352]
+[node name="Price" type="Label" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=1074708710]
 layout_mode = 0
-offset_top = 31.0
-offset_right = 171.0
-offset_bottom = 65.0
+offset_left = -1.0
+offset_top = 132.0
+offset_right = 170.0
+offset_bottom = 166.0
 text = "$0"
 label_settings = SubResource("LabelSettings_b8q8m")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="BuyButton" type="Button" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=362296075]
+[node name="EquipButton" type="Button" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=1229385874]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 480.0
 offset_right = 161.0
 offset_bottom = 508.0
 theme_override_fonts/font = ExtResource("1_c8xti")
-text = "BUY"
+text = "EQUIP"
 
-[node name="SkinsButton" type="Button" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=927769982]
+[node name="SkinsButton" type="Button" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=722063742]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 443.0
@@ -474,48 +485,81 @@ offset_bottom = 474.0
 theme_override_fonts/font = ExtResource("1_c8xti")
 text = "SKINS"
 
-[node name="Items" type="TabContainer" parent="SpectatorStuff/Inventory" unique_id=1998997823]
+[node name="Items" type="TabContainer" parent="SpectatorStuff/Inventory" unique_id=1971857347]
 layout_mode = 0
 offset_right = 756.0
 offset_bottom = 521.0
 current_tab = 0
 
-[node name="Killers" type="ScrollContainer" parent="SpectatorStuff/Inventory/Items" unique_id=28239344]
+[node name="Killers" type="ScrollContainer" parent="SpectatorStuff/Inventory/Items" unique_id=273719582]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Items/Killers" unique_id=535240027]
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Items/Killers" unique_id=1748049425]
 layout_mode = 2
 theme_override_constants/h_separation = 198
 theme_override_constants/v_separation = 242
 columns = 4
 
-[node name="Button" parent="SpectatorStuff/Inventory/Items/Killers/GridContainer" unique_id=979255418 instance=ExtResource("4_b8q8m")]
+[node name="Button" parent="SpectatorStuff/Inventory/Items/Killers/GridContainer" unique_id=1256124875 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
 
-[node name="Survivors" type="ScrollContainer" parent="SpectatorStuff/Inventory/Items" unique_id=917235208]
+[node name="Survivors" type="ScrollContainer" parent="SpectatorStuff/Inventory/Items" unique_id=97974556]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Items/Survivors" unique_id=1831446991]
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Items/Survivors" unique_id=1123825463]
 layout_mode = 2
+theme_override_constants/h_separation = 198
+theme_override_constants/v_separation = 242
 columns = 7
 
-[node name="Button" parent="SpectatorStuff/Inventory/Items/Survivors/GridContainer" unique_id=1401158299 instance=ExtResource("4_b8q8m")]
+[node name="Button" parent="SpectatorStuff/Inventory/Items/Survivors/GridContainer" unique_id=2038957346 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
 
-[node name="Emotes" type="ScrollContainer" parent="SpectatorStuff/Inventory/Items" unique_id=1343876540]
+[node name="Emotes" type="ScrollContainer" parent="SpectatorStuff/Inventory/Items" unique_id=1331402893]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Items/Emotes" unique_id=1050855166]
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Items/Emotes" unique_id=1868559038]
 layout_mode = 2
+theme_override_constants/h_separation = 198
+theme_override_constants/v_separation = 242
 columns = 7
 
-[node name="Button" parent="SpectatorStuff/Inventory/Items/Emotes/GridContainer" unique_id=454997997 instance=ExtResource("4_b8q8m")]
+[node name="Button" parent="SpectatorStuff/Inventory/Items/Emotes/GridContainer" unique_id=717649239 instance=ExtResource("4_b8q8m")]
+layout_mode = 2
+
+[node name="SkinsPanel" type="Panel" parent="SpectatorStuff/Inventory" unique_id=2106509750]
+visible = false
+layout_mode = 0
+offset_top = 33.0
+offset_right = 756.0
+offset_bottom = 522.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Inventory/SkinsPanel" unique_id=1101401952]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_tab_index = 0
+
+[node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/SkinsPanel/ScrollContainer" unique_id=523048648]
+layout_mode = 2
+theme_override_constants/h_separation = 198
+theme_override_constants/v_separation = 242
+columns = 4
+
+[node name="Button" parent="SpectatorStuff/Inventory/SkinsPanel/ScrollContainer/GridContainer" unique_id=176355208 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
 
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/BuyButton" to="SpectatorStuff/Shop" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/SkinsButton" to="SpectatorStuff/Shop" method="_on_skins_button_pressed"]
+[connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/EquipButton" to="SpectatorStuff/Inventory" method="_on_equip_button_pressed"]
+[connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/SkinsButton" to="SpectatorStuff/Inventory" method="_on_skins_button_pressed"]
