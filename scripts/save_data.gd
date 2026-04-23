@@ -39,6 +39,35 @@ func get_owned_characters() -> Array:
 	var data = _load_all()
 	return data.get("owned_characters", [])
 
+func get_coins() -> int:
+	var data = _load_all()
+	return data.get("coins", 0)
+
+func set_coins(amount: int) -> void:
+	var data = _load_all()
+	data["coins"] = amount
+	_save_all(data)
+
+func get_malice() -> int:
+	var data = _load_all()
+	return data.get("malice", -100)
+
+func set_malice(amount: int) -> void:
+	var data = _load_all()
+	data["malice"] = amount
+	_save_all(data)
+
+func get_character_xp(character_id: String) -> int:
+	var data = _load_all()
+	return data.get("character_xp", {}).get(character_id, 0)
+
+func add_character_xp(character_id: String, amount: int) -> void:
+	var data = _load_all()
+	if not data.has("character_xp"):
+		data["character_xp"] = {}
+	data["character_xp"][character_id] = data["character_xp"].get(character_id, 0) + amount
+	_save_all(data)
+
 func own_character(character_id: String) -> void:
 	var data = _load_all()
 	if not data.has("owned_characters"):

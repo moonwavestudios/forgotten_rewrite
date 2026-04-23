@@ -103,6 +103,11 @@ func _ready() -> void:
 	var char_id = equipped_killer if is_Killer else equipped_survivor
 	equipped_skin_id = save_data.get_equipped_skin(char_id)
 	apply_skin(equipped_skin_id)
+	
+	coins = save_data.get_coins()
+	malice = save_data.get_malice()
+	var xp_char_id = equipped_killer if is_Killer else equipped_survivor
+	xp = save_data.get_character_xp(xp_char_id)
 
 func _process(delta: float) -> void:
 	for key in cooldowns:
@@ -458,19 +463,23 @@ func disable_effect(effect):
 func _interact_generator(_collider) -> void:
 	print("gen")
 	
-func grant(amountXP : int, amountCoins : int, text : String):
+func grant(amountXP: int, amountCoins: int, text: String) -> void:
 	var notificationsText = preload("res://scenes/other/notifications_text.tscn")
 	var notifications = notificationsText.instantiate()
-	
+
+	var char_id = equipped_killer if is_Killer else equipped_survivor
+
 	xp += amountXP
+	save_data.add_character_xp(char_id, amountXP)
+
+	# Save coins~ >w
 	coins += amountCoins
-	
-	notifications.text = text + ": +" + str(amountXP) + " Coins +" + str(amountXP) + " EXP"
-	
+	save_data.set_coins(coins)
+
+	notifications.text = text + ": +" + str(amountCoins) + " Coins +" + str(amountXP) + " EXP"
 	$player_ui/GameStuff/Notifications.add_child(notifications)
-	
+
 	await get_tree().create_timer(2).timeout
-	
 	notifications.queue_free()
 	
 func _interact_arcade(_collider) -> void:
