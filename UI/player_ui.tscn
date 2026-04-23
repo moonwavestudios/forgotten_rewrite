@@ -61,6 +61,23 @@ font = ExtResource("1_c8xti")
 font_size = 30
 font_color = Color(1, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmsn8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_qf5vc"]
+font = ExtResource("1_c8xti")
+font_size = 33
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_nplvd"]
 font = ExtResource("1_c8xti")
 font_size = 35
@@ -271,6 +288,32 @@ offset_right = 294.0
 offset_bottom = 120.0
 text = "By: Author"
 label_settings = SubResource("LabelSettings_xmsn8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GeneratorPuzzle" type="Panel" parent="GameStuff" unique_id=1567715414]
+visible = false
+layout_mode = 0
+offset_left = 64.0
+offset_top = 35.0
+offset_right = 1109.0
+offset_bottom = 614.0
+
+[node name="RoundTimer" type="Panel" parent="GameStuff" unique_id=217347492]
+layout_mode = 0
+offset_left = 442.0
+offset_right = 711.0
+offset_bottom = 68.0
+
+[node name="Label" type="Label" parent="GameStuff/RoundTimer" unique_id=795382096]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 10.0
+offset_right = 228.0
+offset_bottom = 58.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_xmsn8")
+text = "4:00"
+label_settings = SubResource("LabelSettings_qf5vc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
