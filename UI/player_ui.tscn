@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dubh45kls01xa" path="res://UI/stuff/ShopButton.tscn" id="4_b8q8m"]
 [ext_resource type="Script" uid="uid://cceui5vh4mesy" path="res://scripts/shop.gd" id="4_ccqt3"]
 [ext_resource type="Script" uid="uid://gdf6btqkngx2" path="res://scripts/inventory.gd" id="6_xmsn8"]
+[ext_resource type="PackedScene" uid="uid://bg2chmdsjyk0v" path="res://scenes/other/tetris.tscn" id="7_8w2om"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
 font = ExtResource("1_c8xti")
@@ -610,6 +611,9 @@ columns = 4
 
 [node name="Button" parent="SpectatorStuff/Inventory/SkinsPanel/ScrollContainer/GridContainer" unique_id=176355208 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
+
+[node name="tetris" parent="SpectatorStuff" unique_id=2082571 instance=ExtResource("7_8w2om")]
+visible = false
 
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/BuyButton" to="SpectatorStuff/Shop" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/SkinsButton" to="SpectatorStuff/Shop" method="_on_skins_button_pressed"]

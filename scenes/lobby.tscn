@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://duca3objkff2t"]
 
+[ext_resource type="Script" uid="uid://gi7wqxg7llov" path="res://scripts/arcade.gd" id="1_5gu6x"]
+[ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="1_o1atq"]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_so6iy"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -43,6 +46,7 @@ mesh = SubResource("BoxMesh_o1atq")
 
 [node name="Arcade" type="StaticBody3D" parent="." unique_id=1838670367]
 transform = Transform3D(3.233175, 0, 0, 0, 5.8788557, 0, 0, 0, 1, 0, 2.970337, -21.424582)
+script = ExtResource("1_5gu6x")
 
 [node name="Area3D" type="Area3D" parent="Arcade" unique_id=379343850 groups=["arcade"]]
 
@@ -54,3 +58,5 @@ shape = SubResource("BoxShape3D_o1atq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Arcade/CollisionShape3D" unique_id=1695265321]
 mesh = SubResource("BoxMesh_5gu6x")
+
+[node name="ProximityPrompt" parent="Arcade" unique_id=25112644 instance=ExtResource("1_o1atq")]
