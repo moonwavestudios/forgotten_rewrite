@@ -7,3 +7,4 @@ func _ready() -> void:
 
 func _on_interacted(interactor: Node) -> void:
 	interactor.get_node("player_ui/SpectatorStuff/tetris").visible = true
+	interactor.get_node("player_ui/SpectatorStuff/tetris/TetrisTheme").play()
