@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cjcu6fth5a1qd"]
+
+[ext_resource type="Texture2D" uid="uid://cchowdyqnrhla" path="res://assets/images/ko-fi.png" id="1_p8ccj"]
+
+[node name="Main_Menu" type="Control" unique_id=1564323524]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1049516530]
+layout_mode = 0
+offset_left = 902.0
+offset_top = 585.0
+offset_right = 1153.0
+offset_bottom = 649.0
+
+[node name="LinkButton" type="LinkButton" parent="Panel" unique_id=2053973459]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+uri = "https://ko-fi.com/moonwavestudios"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/LinkButton" unique_id=1764756230]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_p8ccj")
+expand_mode = 1
