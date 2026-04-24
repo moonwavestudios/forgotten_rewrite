@@ -61,6 +61,13 @@ font = ExtResource("1_c8xti")
 font_size = 30
 font_color = Color(1, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8w2om"]
+bg_color = Color(0, 0, 0, 0.29411766)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmsn8"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 3
@@ -291,19 +298,21 @@ label_settings = SubResource("LabelSettings_xmsn8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GeneratorPuzzle" type="Panel" parent="GameStuff" unique_id=1567715414]
+[node name="GeneratorPuzzle" type="Control" parent="GameStuff" unique_id=1736992980]
 visible = false
-layout_mode = 0
+anchors_preset = 0
 offset_left = 64.0
 offset_top = 35.0
 offset_right = 1109.0
 offset_bottom = 614.0
 
 [node name="RoundTimer" type="Panel" parent="GameStuff" unique_id=217347492]
+visible = false
 layout_mode = 0
 offset_left = 442.0
 offset_right = 711.0
 offset_bottom = 68.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8w2om")
 
 [node name="Label" type="Label" parent="GameStuff/RoundTimer" unique_id=795382096]
 layout_mode = 0
