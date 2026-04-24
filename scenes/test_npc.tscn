@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://i5mm30dajmqt"]
 
 [ext_resource type="Script" uid="uid://m8hbdfqbk3h" path="res://scripts/test_npc.gd" id="1_upkiv"]
+[ext_resource type="PackedScene" uid="uid://qo6absgsr8yf" path="res://scenes/other/hitboxes.tscn" id="2_01yqc"]
 [ext_resource type="PackedScene" uid="uid://bp0hs4qgh4lf" path="res://UI/player_ui.tscn" id="2_fohsx"]
 [ext_resource type="AudioStream" uid="uid://bea8y7owko1ta" path="res://assets/music/chase_teto.mp3" id="3_a1j51"]
 [ext_resource type="Script" uid="uid://nw5d83eisaa1" path="res://scripts/voiceline_component.gd" id="4_5e1og"]
@@ -11,6 +12,7 @@
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=1834531523]
 script = ExtResource("1_upkiv")
+hitboxes = ExtResource("2_01yqc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=317161898]
 shape = SubResource("CapsuleShape3D_vifff")

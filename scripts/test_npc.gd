@@ -8,9 +8,16 @@ var blocking = false
 
 var in_round = false
 
+var hit_flag: Array = []
+
+var hitbox_timer := 0.0
+const HITBOX_INTERVAL := 0.5
+
 @export var malice = 0
 
 var active_music = {}
+
+@export var hitboxes: PackedScene
  
 @export var is_Killer = true
 var equipped_killer = "yixi"
@@ -62,7 +69,30 @@ func apply_skin(skin_id: String) -> void:
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
+	if is_Killer:
+		hitbox_timer += delta
+		
+		if hitbox_timer >= HITBOX_INTERVAL:
+			hitbox_timer = 0.0
+			
+			hit_flag.clear()
+			
+			for i in range(5):
+				var spawn_pos = global_position + -transform.basis.z * 1.0
+				spawn_pos.y -= 0.9
+				
+				$"..".add_hitbox(
+					hitboxes,
+					spawn_pos,
+					hit_flag,
+					25,
+					"survivor",
+					Vector3(1.0, 1.0, 1.0),
+					null,
+					self
+				)
+	
 	velocity.x = move_toward(velocity.x, 0, (SPEED - current_speed + SPEED) * delta * 10.0)
 	velocity.z = move_toward(velocity.z, 0, (SPEED - current_speed + SPEED) * delta * 10.0)
 	
