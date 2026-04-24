@@ -28,6 +28,10 @@ func _on_body_entered(body: Node3D) -> void:
 			if og_plr:
 				og_plr.get_node("SFX").stream = hitsfx
 				og_plr.get_node("SFX").play()
+				if PlayerSettings.enabled_hitsound:
+					og_plr.get_node("Hitsound").stream = PlayerSettings.hitsound
+					og_plr.get_node("Hitsound").play()
+					
 	elif "is_Killer" in body and body.is_Killer and hit_killer:
 		if body.health > 0:
 			hit_flag.append(true) 

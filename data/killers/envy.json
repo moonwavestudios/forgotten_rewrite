@@ -40,7 +40,15 @@
 	  "limited": true,
 	  "model": "res://assets/models/envy/envy_shadow.tscn",
 	  "thumbnail": "res://assets/textures/skins/envy_shadow.png"
-	}
+	},
+	{
+	  "id": "blocky_envy",
+	  "display_name": "Blocky",
+	  "price": 250,
+	  "limited": false,
+	  "model": "res://assets/models/envy/envy_blocky.tscn",
+	  "thumbnail": "res://assets/textures/skins/envy_blocky.png"
+	},
   ],
   "stats": {
 	"health": 1000,
