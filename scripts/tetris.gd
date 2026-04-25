@@ -1,11 +1,11 @@
 extends Node2D
 
-var grid_x = 3
-var grid_y = 4
+var grid_x = 6.52
+var grid_y = 6.52
 const CELL_SIZE = 32
 const GRID_ORIGIN = Vector2(350, 67)
 const GRID_WIDTH = 16   
-const GRID_HEIGHT = 20 
+const GRID_HEIGHT = 18
 
 var fall_timer: float = 0.0
 const FALL_SPEED: float = 0.5
@@ -21,8 +21,8 @@ func _ready():
 	spawn_random_shape()
 
 func spawn_random_shape():
-	if current_shape_instance:
-		current_shape_instance.queue_free()
+	#if current_shape_instance:
+		#current_shape_instance.queue_free()
 	var chosen_scene = shapes[randi() % shapes.size()]
 	current_shape_instance = chosen_scene.instantiate()
 	add_child(current_shape_instance)
@@ -37,6 +37,13 @@ func update_shape_position():
 			GRID_ORIGIN.y + grid_y * CELL_SIZE
 		)
 
+func lock_shape():
+	for cell in get_shape_cells(grid_x, grid_y):
+		locked_cells[cell] = true
+	queue_redraw() 
+	current_shape_instance = null
+	spawn_random_shape()
+
 func get_shape_cells(ox: int, oy: int) -> Array:
 	return [
 		Vector2i(ox,     oy),
@@ -47,23 +54,13 @@ func get_shape_cells(ox: int, oy: int) -> Array:
 
 func can_move(new_x: int, new_y: int) -> bool:
 	for cell in get_shape_cells(new_x, new_y):
-		
 		if cell.x < 0 or cell.x >= GRID_WIDTH:
 			return false
-		
 		if cell.y >= GRID_HEIGHT:
 			return false
-		
 		if locked_cells.has(cell):
-			return false
+			return false 
 	return true
-
-func lock_shape():
-	
-	for cell in get_shape_cells(grid_x, grid_y):
-		locked_cells[cell] = true
-	# TODO: check for completed rows here nyaa~
-	spawn_random_shape()
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_left"):
