@@ -2,11 +2,12 @@ extends Node2D
 
 var grid_x = 3
 var grid_y = 4
-const CELL_SIZE = 30
-var fall_timer: float = 0.0
-const FALL_SPEED: float = 0.5 
+const CELL_SIZE = 32
 
-var active_shape_name = ""
+const GRID_ORIGIN = Vector2(350, 67)
+
+var fall_timer: float = 0.0
+const FALL_SPEED: float = 0.5
 var current_shape_instance = null
 
 var shapes = [
@@ -19,18 +20,16 @@ func _ready():
 func spawn_random_shape():
 	if current_shape_instance:
 		current_shape_instance.queue_free()
-
 	var chosen_scene = shapes[randi() % shapes.size()]
 	current_shape_instance = chosen_scene.instantiate()
 	add_child(current_shape_instance)
-
 	update_shape_position()
 
 func update_shape_position():
 	if current_shape_instance:
-		current_shape_instance.global_position = Vector2(
-			grid_x * CELL_SIZE,
-			grid_y * CELL_SIZE
+		current_shape_instance.position = Vector2(
+			GRID_ORIGIN.x + grid_x * CELL_SIZE,
+			GRID_ORIGIN.y + grid_y * CELL_SIZE
 		)
 
 func _process(delta):

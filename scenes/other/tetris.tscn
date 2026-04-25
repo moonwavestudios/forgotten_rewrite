@@ -22,6 +22,12 @@ font_size = 24
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_deo47"]
 bg_color = Color(0.099985994, 0.09998601, 0.099985965, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1ev3"]
+size = Vector2(1155, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_atdpv"]
+size = Vector2(286, 649)
+
 [node name="tetris" type="Node2D" unique_id=2082571]
 script = ExtResource("1_jbimy")
 
@@ -68,7 +74,7 @@ label_settings = SubResource("LabelSettings_b1ev3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel2" type="Panel" parent="." unique_id=588843695]
+[node name="Game_Panel" type="Panel" parent="." unique_id=588843695]
 offset_left = 286.0
 offset_right = 864.0
 offset_bottom = 648.0
@@ -77,3 +83,17 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_deo47")
 [node name="TetrisTheme" type="AudioStreamPlayer2D" parent="." unique_id=635564822]
 stream = ExtResource("3_b1ev3")
 bus = &"Tetris"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=552328776]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=244507816]
+position = Vector2(577.5, 660.5)
+shape = SubResource("RectangleShape2D_b1ev3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1068748958]
+position = Vector2(143, 324.5)
+shape = SubResource("RectangleShape2D_atdpv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1352321439]
+position = Vector2(1007, 323)
+shape = SubResource("RectangleShape2D_atdpv")
