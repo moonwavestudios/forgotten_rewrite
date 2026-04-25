@@ -76,15 +76,16 @@ func on_killed_survivor() -> void:
 	$Voiceline_Component.play_kill()
 
 func _update_chase_music() -> void:
-	var survivors = get_tree().get_nodes_in_group("survivors")
 	var survivor_nearby = false
 
-	for survivor in survivors:
-		if not is_instance_valid(survivor):
+	for player in get_tree().get_nodes_in_group("players"):
+		if not is_instance_valid(player):
 			continue
-		if survivor == self:
+		if player == self:
 			continue
-		var dist = global_position.distance_to(survivor.global_position)
+		if player.is_Killer:
+			continue
+		var dist = global_position.distance_to(player.global_position)
 		if dist <= CHASE_RANGE:
 			survivor_nearby = true
 			break
