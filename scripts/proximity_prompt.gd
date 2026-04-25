@@ -19,6 +19,7 @@ var _hold_timer: float = 0.0
 var _cooldown_timer: float = 0.0
 var _activation_count: int = 0
 var _is_holding: bool = false
+var _exhausted: bool = false
 var _ui_label: Label          
 var _ui_container: Control
 
@@ -39,6 +40,12 @@ func _process(delta: float) -> void:
 	_update_closest_player()
 	
 	if _closest_player == null:
+		_set_ui_visible(false)
+		_reset_hold()
+		return
+
+	if _exhausted or (max_activations >= 0 and _activation_count >= max_activations):
+		_exhausted = true
 		_set_ui_visible(false)
 		_reset_hold()
 		return
@@ -71,6 +78,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if global_position.distance_to(_closest_player.global_position) > max_distance:
 		return
+	
+	if _exhausted or (max_activations >= 0 and _activation_count >= max_activations):
+		return
 
 	if event.is_action_pressed(action_key):
 		_try_activate(_closest_player)
@@ -83,6 +93,10 @@ func _try_activate(interactor: Node) -> void:
 
 	_activation_count += 1
 	_cooldown_timer = cooldown_time
+
+	if max_activations >= 0 and _activation_count >= max_activations:
+		_exhausted = true
+		_set_ui_visible(false)
 
 	emit_signal("prompt_triggered", interactor)
 
@@ -131,9 +145,9 @@ func set_prompt_text(text: String) -> void:
 	if _ui_label:
 		_ui_label.text = prompt_text
 
-
 func reset_activations() -> void:
 	_activation_count = 0
+	_exhausted = false
 
 func _build_ui() -> void:
 	var canvas := CanvasLayer.new()
@@ -145,7 +159,6 @@ func _build_ui() -> void:
 	_ui_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	canvas.add_child(_ui_container)
 
-	# Background panel
 	var panel := PanelContainer.new()
 	panel.name = "Panel"
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE

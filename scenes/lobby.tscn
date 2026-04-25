@@ -60,3 +60,4 @@ shape = SubResource("BoxShape3D_o1atq")
 mesh = SubResource("BoxMesh_5gu6x")
 
 [node name="ProximityPrompt" parent="Arcade" unique_id=25112644 instance=ExtResource("1_o1atq")]
+max_activations = 1

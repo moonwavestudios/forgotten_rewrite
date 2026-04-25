@@ -21,7 +21,6 @@ transform = Transform3D(-2.8276256e-08, 0, 2.2219806, 0, 0.7596355, 0, -0.646885
 script = ExtResource("5_272bh")
 
 [node name="ProximityPrompt" parent="generator" unique_id=25112644 instance=ExtResource("5_7mycd")]
-max_activations = 1
 
 [node name="LMS" type="AudioStreamPlayer" parent="." unique_id=419310731]
 volume_db = 3.0

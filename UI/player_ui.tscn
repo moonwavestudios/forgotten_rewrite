@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://bom6wnkkidnyb" path="res://assets/shaders/vignette.gdshader" id="3_b8q8m"]
 [ext_resource type="PackedScene" uid="uid://dubh45kls01xa" path="res://UI/stuff/ShopButton.tscn" id="4_b8q8m"]
 [ext_resource type="Script" uid="uid://cceui5vh4mesy" path="res://scripts/shop.gd" id="4_ccqt3"]
+[ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="4_qf5vc"]
 [ext_resource type="Script" uid="uid://gdf6btqkngx2" path="res://scripts/inventory.gd" id="6_xmsn8"]
 [ext_resource type="PackedScene" uid="uid://bg2chmdsjyk0v" path="res://scenes/other/tetris.tscn" id="7_8w2om"]
 
@@ -87,7 +88,7 @@ outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nplvd"]
-font = ExtResource("1_c8xti")
+font = ExtResource("4_qf5vc")
 font_size = 35
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
