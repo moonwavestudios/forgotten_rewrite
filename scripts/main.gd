@@ -94,18 +94,9 @@ func start_round():
 	if most_malicious_player != null:
 		most_malicious_player.is_Killer = true
 		most_malicious_player.get_node("Voiceline_Component").play_intro()
-		#start_chase(most_malicious_player.equipped_killer, most_malicious_player)
 			
 func assign_model(_player):
 	pass
-
-#func start_chase(killer: String, player: Node) -> void:
-	#var stream_path = get_chase_theme(killer)
-	#if stream_path == "" or not ResourceLoader.exists(stream_path):
-		#push_warning("No chase music found for killer: " + killer)
-		#return
-	#ResourceLoader.load_threaded_request(stream_path)
-	#_await_chase_load(stream_path, player)
 
 func get_lms_duration(killer: String, survivor: String = "") -> float:
 	var default_duration = 90.0
@@ -150,18 +141,6 @@ func start_intro():
 func start_outro():
 	pass
 	## this is gonna be used to start the outro
-
-#func _await_chase_load(stream_path: String, player: Node) -> void:
-	#while true:
-		#var status = ResourceLoader.load_threaded_get_status(stream_path)
-		#if status == ResourceLoader.THREAD_LOAD_LOADED:
-			#var stream = ResourceLoader.load_threaded_get(stream_path)
-			#player.get_node('Chase_Theme').stream = stream
-			#return
-		#elif status == ResourceLoader.THREAD_LOAD_FAILED:
-			#push_warning("Failed to load chase music: " + stream_path)
-			#return
-		#await get_tree().process_frame
 
 func _await_lms_load(stream_path: String, duration: float) -> void:
 	while true:

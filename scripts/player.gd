@@ -123,6 +123,14 @@ func _process(delta: float) -> void:
 		if cooldowns[key] > 0.0:
 			cooldowns[key] = max(0.0, cooldowns[key] - delta)
 
+func play_hitsound():
+	if is_multiplayer_authority():
+		$Hitsound.play()
+		
+func play_killsound():
+	if is_multiplayer_authority():
+		$Killsound.play()
+
 func _is_on_cooldown(action: String) -> bool:
 	return cooldowns.get(action, 0.0) > 0.0
 
