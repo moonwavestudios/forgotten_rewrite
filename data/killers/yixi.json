@@ -29,6 +29,19 @@
 	  },
 	},
 	{
+	  "id": "fire",
+	  "display_name": "Fire",
+	  "price": 250,
+	  "limited": false,
+	  "model": "res://assets/models/yixi/yixi_playing_with_fire.tscn",
+	  "thumbnail": "res://assets/textures/skins/yixi_playing_with_fire.png",
+	  "music": {
+		"lms": "res://assets/music/lms_fire.mp3",
+		"chase": "res://assets/music/chase_bunny.mp3",
+		"lms_duration": 80.0
+	  },
+	},
+	{
 	  "id": "blocky",
 	  "display_name": "Blocky",
 	  "price": 250,
