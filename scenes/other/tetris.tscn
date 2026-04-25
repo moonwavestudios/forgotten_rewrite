@@ -1,22 +1,22 @@
 [gd_scene format=3 uid="uid://bg2chmdsjyk0v"]
 
-[ext_resource type="FontFile" uid="uid://diu4olylqsotv" path="res://assets/fonts/Roboto/static/Roboto-Bold.ttf" id="1_8li27"]
 [ext_resource type="Script" uid="uid://nk0sx8wqd7hv" path="res://scripts/tetris.gd" id="1_jbimy"]
+[ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="2_atdpv"]
 [ext_resource type="AudioStream" uid="uid://cn637qhjbqiwq" path="res://assets/music/tetris.mp3" id="3_b1ev3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjmmk"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_deo47"]
-font = ExtResource("1_8li27")
+font = ExtResource("2_atdpv")
 font_size = 35
 
 [sub_resource type="LabelSettings" id="LabelSettings_jbimy"]
-font = ExtResource("1_8li27")
+font = ExtResource("2_atdpv")
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_b1ev3"]
-font = ExtResource("1_8li27")
+font = ExtResource("2_atdpv")
 font_size = 24
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_deo47"]
@@ -41,6 +41,7 @@ offset_left = 866.0
 offset_top = 2.0
 offset_right = 1152.0
 offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("2_atdpv")
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_deo47")
 horizontal_alignment = 1
@@ -51,6 +52,7 @@ offset_left = 866.0
 offset_top = 121.0
 offset_right = 1152.0
 offset_bottom = 163.0
+theme_override_fonts/font = ExtResource("2_atdpv")
 text = "Next:"
 label_settings = SubResource("LabelSettings_deo47")
 horizontal_alignment = 1
@@ -60,6 +62,7 @@ vertical_alignment = 1
 offset_left = -2.0
 offset_right = 284.0
 offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("2_atdpv")
 text = "Keybinds:"
 label_settings = SubResource("LabelSettings_jbimy")
 horizontal_alignment = 1
@@ -69,6 +72,7 @@ vertical_alignment = 1
 offset_top = 44.0
 offset_right = 286.0
 offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("2_atdpv")
 text = "arrows, r, space"
 label_settings = SubResource("LabelSettings_b1ev3")
 horizontal_alignment = 1
