@@ -3,7 +3,6 @@
   "display_name": "Nyx",
   "type": "survivor",
   "class": "sentinel",
-  "price": 750,
   "skins": [
 	{
 	  "id": "default",
@@ -16,6 +15,7 @@
   "stats": {
 	"health": 75,
 	"stamina": 100,
+	"price": 750,
 	"walk_speed": 5.1,
 	"sprint_speed": 9.1
   },

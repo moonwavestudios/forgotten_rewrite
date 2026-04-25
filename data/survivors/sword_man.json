@@ -3,10 +3,19 @@
   "display_name": "Swordman",
   "type": "survivor",
   "class": "sentinel",
-  "price": 500,
+  "skins": [
+	{
+	  "id": "default",
+	  "display_name": "Default",
+	  "price": 0,
+	  "model": "res://assets/models/nyx/nyx_default.tscn",
+	  "thumbnail": "res://assets/textures/skins/nyx_default.png",
+	}
+  ],
   "stats": {
 	"health": 100,
 	"stamina": 100,
+	"price": 500,
 	"walk_speed": 5.0,
 	"sprint_speed": 9.0
   },
@@ -15,7 +24,7 @@
 	  "id": "ability1",
 	  "name": "Sword",
 	  "icon": "res://assets/textures/abilityTemplate.png",
-	  "cooldown": 0.0,
+	  "cooldown": 20.0,
 	  "type": "sword",
 	  "description": "Swordman slashes his sword stunning the killer"
 	},
@@ -23,7 +32,7 @@
 	  "id": "ability2",
 	  "name": "Chicken",
 	  "icon": "res://assets/textures/abilityTemplate.png",
-	  "cooldown": 0.0,
+	  "cooldown": 60.0,
 	  "type": "chicken",
 	  "heal": 50,
 	  "uses": 2,

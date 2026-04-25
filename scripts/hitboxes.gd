@@ -27,10 +27,9 @@ func _on_body_entered(body: Node3D) -> void:
 					og_plr.get_node("Hitsound").stream = PlayerSettings.hitsound
 					og_plr.get_node("Hitsound").play()
 
+	#killer stunning
 	elif "is_Killer" in body and body.is_Killer and hit_killer:
-		#if body.health > 0:
 		hit_flag.append(true)
-			#body.health -= damage
 		body.stunned = true
 		_turn_green()
 

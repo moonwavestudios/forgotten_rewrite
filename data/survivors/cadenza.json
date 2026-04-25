@@ -2,8 +2,7 @@
   "id": "cadenza",
   "display_name": "Cadenza",
   "type": "survivor",
-  "class": "disruptor",
-  "price": 850,
+  "class": "support",
   "skins": [
 	{
 	  "id": "default",
@@ -17,6 +16,7 @@
 	"health": 65,
 	"stamina": 110,
 	"walk_speed": 4.8,
+	"price": 850,
 	"sprint_speed": 8.6
   },
   "abilities": [

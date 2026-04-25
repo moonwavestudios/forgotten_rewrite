@@ -2,13 +2,13 @@
   "id": "soldier",
   "display_name": "Soldier",
   "type": "survivor",
-  "price": 1250,
   "class": "sentinel",
   "model": "res://assets/characters/nyx.tscn",
   "stats": {
 	"health": 110,
 	"stamina": 100,
 	"walk_speed": 5.1,
+	"price": 1250,
 	"sprint_speed": 9.1
   },
   "abilities": [

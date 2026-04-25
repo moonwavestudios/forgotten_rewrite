@@ -5,6 +5,7 @@
   "stats": {
 	"health": 80,
 	"stamina": 100,
+	"price": 750,
 	"walk_speed": 5.0,
 	"sprint_speed": 9.0
   },
