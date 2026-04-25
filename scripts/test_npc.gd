@@ -19,7 +19,7 @@ var active_music = {}
 
 @export var hitboxes: PackedScene
 
-const CHASE_RANGE = 40.0
+const CHASE_RANGE = 15.0
 const CHASE_SCAN_INTERVAL = 0.2
 
 var _in_chase: bool = false

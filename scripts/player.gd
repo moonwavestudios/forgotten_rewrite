@@ -6,7 +6,7 @@ var WALK_SPEED = 5.0
 var SPRINT_SPEED = 9.0
 const MOUSE_SENSITIVITY = 0.003
 
-const CHASE_RANGE = 20.0
+const CHASE_RANGE = 15.0
 const CHASE_SCAN_INTERVAL = 0.2
 
 var _in_chase: bool = false

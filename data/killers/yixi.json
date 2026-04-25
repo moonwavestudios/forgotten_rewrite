@@ -11,7 +11,7 @@
 	  "thumbnail": "res://assets/textures/skins/yixi_default.png",
 	  "music": {
 		"lms": "res://assets/music/VanityLMS.mp3",
-		"chase": "res://assets/music/chase_teto.mp3",
+		"chase": "res://assets/music/fire_chase.mp3",
 		"lms_duration": 60.0
 	  },
 	},
