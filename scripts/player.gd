@@ -6,11 +6,17 @@ var WALK_SPEED = 5.0
 var SPRINT_SPEED = 9.0
 const MOUSE_SENSITIVITY = 0.003
 
+const CHASE_RANGE = 20.0
+const CHASE_SCAN_INTERVAL = 0.2
+
+var _in_chase: bool = false
+var _chase_scan_timer: float = 0.0
+
 var equipped_emotes: Array = []
 var is_emoting: bool = false
 var current_emote: String = ""
 
-var malice = -100
+var malice: int = -100
 var is_Killer = false
 
 var xp = 0
@@ -247,13 +253,19 @@ func _physics_process(delta: float) -> void:
 	else:
 		is_sprinting = false
 		
+	if is_Killer:
+		_chase_scan_timer -= delta
+		if _chase_scan_timer <= 0.0:
+			_chase_scan_timer = CHASE_SCAN_INTERVAL
+			_update_chase_music()
+		
 	if weakness > 0:
 		$player_ui/GameStuff/VBoxContainer/Label.visible = true
 		$player_ui/GameStuff/VBoxContainer/Label.text = "Weakness: " + str(weakness)
 		
 	$player_ui/GameStuff/Health.value = health
 	$player_ui/GameStuff/Health.max_value = maxhealth
-	$player_ui/GameStuff/Health/Label.text = str(health) + "/" + str(maxhealth)
+	$player_ui/GameStuff/Health/Label.text = str(int(health)) + "/" + str(maxhealth)
 	$player_ui/GameStuff/Stamina.value = stamina
 	$player_ui/GameStuff/Stamina/Label.text = str(int(stamina)) + "/" + str(int(MAX_STAMINA))
 	
@@ -388,6 +400,35 @@ func _physics_process(delta: float) -> void:
 
 func on_killed_survivor() -> void:
 	Voiceline_Component.play_kill()
+
+func _update_chase_music() -> void:
+	var survivors = get_tree().get_nodes_in_group("survivors")
+	var survivor_nearby = false
+
+	for survivor in survivors:
+		if not is_instance_valid(survivor):
+			continue
+		if survivor == self:
+			continue
+		var dist = global_position.distance_to(survivor.global_position)
+		if dist <= CHASE_RANGE:
+			survivor_nearby = true
+			break
+
+	if survivor_nearby and not _in_chase:
+		_in_chase = true
+		_on_chase_state_changed(true)
+	elif not survivor_nearby and _in_chase:
+		_in_chase = false
+		_on_chase_state_changed(false)
+
+func _on_chase_state_changed(chasing: bool) -> void:
+	if chasing:
+		if not $Chase_Theme.playing:
+			$Chase_Theme.stream = load(active_music.get("chase", ""))
+			$Chase_Theme.play()
+	else:
+		$Chase_Theme.stop()
 
 func _try_emote(emote_name: String) -> void:
 	if is_Killer:

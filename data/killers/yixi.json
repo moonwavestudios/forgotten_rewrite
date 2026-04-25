@@ -37,8 +37,8 @@
 	  "thumbnail": "res://assets/textures/skins/yixi_playing_with_fire.png",
 	  "music": {
 		"lms": "res://assets/music/lms_fire.mp3",
-		"chase": "res://assets/music/chase_bunny.mp3",
-		"lms_duration": 80.0
+		"chase": "res://assets/music/fire_chase.mp3",
+		"lms_duration": 75.0
 	  },
 	},
 	{

@@ -18,6 +18,12 @@ const HITBOX_INTERVAL := 0.5
 var active_music = {}
 
 @export var hitboxes: PackedScene
+
+const CHASE_RANGE = 40.0
+const CHASE_SCAN_INTERVAL = 0.2
+
+var _in_chase: bool = false
+var _chase_scan_timer: float = 0.0
  
 @export var is_Killer = true
 var equipped_killer = "yixi"
@@ -66,9 +72,47 @@ func apply_skin(skin_id: String) -> void:
 		"chase": skin_music.get("chase", base_music.get("chase", ""))
 	}
 
+func on_killed_survivor() -> void:
+	$Voiceline_Component.play_kill()
+
+func _update_chase_music() -> void:
+	var survivors = get_tree().get_nodes_in_group("survivors")
+	var survivor_nearby = false
+
+	for survivor in survivors:
+		if not is_instance_valid(survivor):
+			continue
+		if survivor == self:
+			continue
+		var dist = global_position.distance_to(survivor.global_position)
+		if dist <= CHASE_RANGE:
+			survivor_nearby = true
+			break
+
+	if survivor_nearby and not _in_chase:
+		_in_chase = true
+		_on_chase_state_changed(true)
+	elif not survivor_nearby and _in_chase:
+		_in_chase = false
+		_on_chase_state_changed(false)
+
+func _on_chase_state_changed(chasing: bool) -> void:
+	if chasing:
+		if not $Chase_Theme.playing:
+			$Chase_Theme.stream = load(active_music.get("chase", ""))
+			$Chase_Theme.play()
+	else:
+		$Chase_Theme.stop()
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	
+	if is_Killer:
+		_chase_scan_timer -= delta
+		if _chase_scan_timer <= 0.0:
+			_chase_scan_timer = CHASE_SCAN_INTERVAL
+			_update_chase_music()
 	
 	if is_Killer:
 		hitbox_timer += delta
