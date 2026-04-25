@@ -6,6 +6,8 @@ extends Area3D
 @export var max_activations: int = -1               # -1 = infinite
 @export var cooldown_time: float = 1.0               # seconds between activations
 @export var max_distance: float = 5.0
+@export var prompt_font: Font
+@export var prompt_font_size: int = 18
 @export var enabled: bool = true
 
 signal prompt_triggered(interactor: Node)
@@ -183,7 +185,9 @@ func _build_ui() -> void:
 	_ui_label = Label.new()
 	_ui_label.text = prompt_text
 	_ui_label.add_theme_color_override("font_color", Color.WHITE)
-	_ui_label.add_theme_font_size_override("font_size", 18)
+	if prompt_font:
+		_ui_label.add_theme_font_override("font", prompt_font)
+	_ui_label.add_theme_font_size_override("font_size", prompt_font_size)
 	_ui_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_ui_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	vbox.add_child(_ui_label)
@@ -193,6 +197,8 @@ func _build_ui() -> void:
 	progress.min_value = 0.0
 	progress.max_value = 1.0
 	progress.value = 0.0
+	if prompt_font:
+		progress.add_theme_font_override("font", prompt_font)
 	progress.custom_minimum_size = Vector2(160, 6)
 	progress.visible = hold_duration > 0.0
 	progress.mouse_filter = Control.MOUSE_FILTER_IGNORE

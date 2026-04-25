@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bg2chmdsjyk0v" path="res://scenes/other/tetris.tscn" id="7_8w2om"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
-font = ExtResource("1_c8xti")
+font = ExtResource("4_qf5vc")
 font_size = 39
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
@@ -23,6 +23,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_8w2om"]
+font = ExtResource("4_qf5vc")
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
@@ -34,7 +35,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_kwigr"]
-font = ExtResource("1_c8xti")
+font = ExtResource("4_qf5vc")
 font_size = 19
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b8q8m"]
@@ -82,7 +83,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_qf5vc"]
-font = ExtResource("1_c8xti")
+font = ExtResource("4_qf5vc")
 font_size = 33
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
@@ -94,7 +95,7 @@ outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_b8q8m"]
-font = ExtResource("1_c8xti")
+font = ExtResource("4_qf5vc")
 font_size = 19
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
@@ -412,7 +413,7 @@ offset_left = 13.0
 offset_top = 480.0
 offset_right = 161.0
 offset_bottom = 508.0
-theme_override_fonts/font = ExtResource("1_c8xti")
+theme_override_fonts/font = ExtResource("4_qf5vc")
 text = "BUY"
 
 [node name="SkinsButton" type="Button" parent="SpectatorStuff/Shop/InfoPanel" unique_id=942647689]
@@ -421,13 +422,14 @@ offset_left = 13.0
 offset_top = 443.0
 offset_right = 161.0
 offset_bottom = 474.0
-theme_override_fonts/font = ExtResource("1_c8xti")
+theme_override_fonts/font = ExtResource("4_qf5vc")
 text = "SKINS"
 
 [node name="Items" type="TabContainer" parent="SpectatorStuff/Shop" unique_id=1263873152]
 layout_mode = 0
 offset_right = 756.0
 offset_bottom = 521.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
 current_tab = 0
 
 [node name="Killers" type="ScrollContainer" parent="SpectatorStuff/Shop/Items" unique_id=1579451129]
@@ -547,7 +549,7 @@ offset_left = 13.0
 offset_top = 480.0
 offset_right = 161.0
 offset_bottom = 508.0
-theme_override_fonts/font = ExtResource("1_c8xti")
+theme_override_fonts/font = ExtResource("4_qf5vc")
 text = "EQUIP"
 
 [node name="SkinsButton" type="Button" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=722063742]
@@ -556,13 +558,14 @@ offset_left = 13.0
 offset_top = 443.0
 offset_right = 161.0
 offset_bottom = 474.0
-theme_override_fonts/font = ExtResource("1_c8xti")
+theme_override_fonts/font = ExtResource("4_qf5vc")
 text = "SKINS"
 
 [node name="Items" type="TabContainer" parent="SpectatorStuff/Inventory" unique_id=1971857347]
 layout_mode = 0
 offset_right = 756.0
 offset_bottom = 521.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
 current_tab = 0
 
 [node name="Killers" type="ScrollContainer" parent="SpectatorStuff/Inventory/Items" unique_id=273719582]

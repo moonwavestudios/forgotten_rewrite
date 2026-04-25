@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2j4la2283rgo"]
 
-[ext_resource type="FontFile" uid="uid://diu4olylqsotv" path="res://assets/fonts/Roboto/static/Roboto-Bold.ttf" id="1_kckjy"]
+[ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="1_kckjy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
 font = ExtResource("1_kckjy")
