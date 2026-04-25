@@ -31,6 +31,8 @@ var equipped_survivor = "nyx"
 var equipped_skin_id: String = "default"
 var _skin_instance: Node3D = null
 
+@export var hitbox_attack = "killer"
+
 var health = 100
 var weakness = 0
 
@@ -115,28 +117,28 @@ func _physics_process(delta: float) -> void:
 			_chase_scan_timer = CHASE_SCAN_INTERVAL
 			_update_chase_music()
 	
-	if is_Killer:
-		hitbox_timer += delta
+	#if is_Killer:
+	hitbox_timer += delta
 		
-		if hitbox_timer >= HITBOX_INTERVAL:
-			hitbox_timer = 0.0
+	if hitbox_timer >= HITBOX_INTERVAL:
+		hitbox_timer = 0.0
 			
-			hit_flag.clear()
+		hit_flag.clear()
 			
-			for i in range(5):
-				var spawn_pos = global_position + -transform.basis.z * 1.0
-				spawn_pos.y -= 0.9
+		for i in range(5):
+			var spawn_pos = global_position + -transform.basis.z * 1.0
+			spawn_pos.y -= 0.9
 				
-				$"..".add_hitbox(
-					hitboxes,
-					spawn_pos,
-					hit_flag,
-					25,
-					"survivor",
-					Vector3(1.0, 1.0, 1.0),
-					null,
-					self
-				)
+			$"..".add_hitbox(
+				hitboxes,
+				spawn_pos,
+				hit_flag,
+				25,
+				hitbox_attack,
+				Vector3(1.0, 1.0, 1.0),
+				null,
+				self
+			)
 	
 	velocity.x = move_toward(velocity.x, 0, (SPEED - current_speed + SPEED) * delta * 10.0)
 	velocity.z = move_toward(velocity.z, 0, (SPEED - current_speed + SPEED) * delta * 10.0)

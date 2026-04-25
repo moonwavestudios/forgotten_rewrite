@@ -102,7 +102,7 @@ func _create_char_item(char_data: Dictionary) -> Control:
 	item.set_meta("char_data", char_data)
 	return item
 
-func _create_emote_item(emote_name: String, emote_data: Dictionary) -> Control:
+func _create_emote_item(emote_name: String, _emote_data: Dictionary) -> Control:
 	var item_scene = preload("res://UI/stuff/ShopButton.tscn")
 	var item = item_scene.instantiate()
 

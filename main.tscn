@@ -45,6 +45,7 @@ is_Killer = false
 
 [node name="CharacterBody3D2" parent="." unique_id=1792773064 groups=["players"] instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9373124, 1.2592936, 5.4456167)
+hitbox_attack = "survivor"
 
 [node name="game" type="Node3D" parent="." unique_id=819722603]
 

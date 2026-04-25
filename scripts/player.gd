@@ -269,7 +269,7 @@ func _physics_process(delta: float) -> void:
 	$player_ui/GameStuff/Stamina.value = stamina
 	$player_ui/GameStuff/Stamina/Label.text = str(int(stamina)) + "/" + str(int(MAX_STAMINA))
 	
-	if health < 50:
+	if health < maxhealth*0.5:
 		$player_ui/GameStuff/Vignette.visible = true
 	else:
 		$player_ui/GameStuff/Vignette.visible = false
@@ -396,6 +396,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, WALK_SPEED)
 		velocity.z = move_toward(velocity.z, 0, WALK_SPEED)
+		
 	move_and_slide()
 
 func on_killed_survivor() -> void:
