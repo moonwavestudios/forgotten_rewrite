@@ -180,7 +180,6 @@ offset_bottom = 648.0
 theme_override_constants/separation = 80
 
 [node name="Slash" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1338604192]
-visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Slash" unique_id=960153042]
@@ -275,6 +274,55 @@ layout_mode = 0
 offset_right = 70.0
 offset_bottom = 23.0
 text = "Q"
+label_settings = SubResource("LabelSettings_kwigr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Items" type="HBoxContainer" parent="GameStuff" unique_id=115874745]
+layout_mode = 0
+offset_left = 762.0
+offset_top = 493.0
+offset_right = 1154.0
+offset_bottom = 565.0
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="Item1" type="Control" parent="GameStuff/Items" unique_id=231426556]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameStuff/Items/Item1" unique_id=546888903]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+texture = ExtResource("2_nplvd")
+expand_mode = 1
+
+[node name="Keybind" type="Label" parent="GameStuff/Items/Item1" unique_id=1685938533]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 23.0
+text = "1"
+label_settings = SubResource("LabelSettings_kwigr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item2" type="Control" parent="GameStuff/Items" unique_id=1914316642]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameStuff/Items/Item2" unique_id=1652052751]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+texture = ExtResource("2_nplvd")
+expand_mode = 1
+
+[node name="Keybind" type="Label" parent="GameStuff/Items/Item2" unique_id=16832446]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 23.0
+text = "2"
 label_settings = SubResource("LabelSettings_kwigr")
 horizontal_alignment = 1
 vertical_alignment = 1
