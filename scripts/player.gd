@@ -194,10 +194,19 @@ func apply_skin(skin_id: String) -> void:
 
 func _refresh_ability_ui() -> void:
 	var abilities = [
+		equipped_attack,
 		equipped_ability1,
 		equipped_ability2,
 		equipped_ability3,
 		equipped_ability4,
+	]
+	
+	var action_names = [
+		"Attack",
+		"Ability1",
+		"Ability2",
+		"Ability3",
+		"Ability4",
 	]
 
 	var slots = []
@@ -210,14 +219,15 @@ func _refresh_ability_ui() -> void:
 		slots[i].visible = not ability.is_empty()
 
 		## THIS IS FOR LATER WHEN EVERYTHING IS ADDED
-		#if not ability.is_empty():
+		if not ability.is_empty():
 		#	var tex_rect = slots[i].get_node_or_null("TextureRect")
 		#	if tex_rect and ability.has("icon"):
 		#		tex_rect.texture = load(ability.get("icon", ""))
 
-			#var keybind = slots[i].get_node_or_null("Keybind")
-			#if keybind and ability.has("keybind_label"):
-			#	keybind.text = ability.get("keybind_label", "")
+			var keybind_node = slots[i].get_node_or_null("Keybind")
+			if keybind_node:
+				var action = action_names[i] if i < action_names.size() else ""
+				keybind_node.text = PlayerSettings.get_keybind_label(action)
 
 func _refresh_abilities() -> void:
 	if is_Killer:
@@ -311,7 +321,7 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(0.5).timeout
 		abilityTimer_timeout()
 		
-	if Input.is_action_just_pressed("Ability3") and not usingAbility and not equipped_ability3.is_empty() and not _is_on_cooldown(equipped_ability1.get("name", "Ability3")):
+	if Input.is_action_just_pressed("Ability3") and not usingAbility and not equipped_ability3.is_empty() and not _is_on_cooldown(equipped_ability3.get("name", "Ability3")):
 		var ability_type = equipped_ability3.get("type", "")
 		var ability_name = equipped_ability3.get("name", "Ability3")
 		var cooldown_duration = equipped_ability3.get("cooldown", COOLDOWN_ABILITY3)
@@ -322,7 +332,7 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(0.5).timeout
 		abilityTimer_timeout()
 		
-	if Input.is_action_just_pressed("Ability4") and not usingAbility and not equipped_ability4.is_empty() and not _is_on_cooldown(equipped_ability1.get("name", "Ability4")):
+	if Input.is_action_just_pressed("Ability4") and not usingAbility and not equipped_ability4.is_empty() and not _is_on_cooldown(equipped_ability4.get("name", "Ability4")):
 		var ability_type = equipped_ability4.get("type", "")
 		var ability_name = equipped_ability4.get("name", "Ability4")
 		var cooldown_duration = equipped_ability4.get("cooldown", COOLDOWN_ABILITY4)

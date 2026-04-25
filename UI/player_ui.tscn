@@ -169,24 +169,24 @@ label_settings = SubResource("LabelSettings_8w2om")
 
 [node name="AbilitiesStuff" type="HBoxContainer" parent="GameStuff" unique_id=381478597]
 layout_mode = 0
-offset_left = 839.0
+offset_left = 763.0
 offset_top = 576.0
-offset_right = 1150.0
+offset_right = 1159.0
 offset_bottom = 648.0
 theme_override_constants/separation = 80
 
-[node name="Ability1" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1338604192]
+[node name="Slash" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1338604192]
 visible = false
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability1" unique_id=960153042]
+[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Slash" unique_id=960153042]
 layout_mode = 0
 offset_right = 71.0
 offset_bottom = 71.0
 texture = ExtResource("2_nplvd")
 expand_mode = 1
 
-[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability1" unique_id=1298321387]
+[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Slash" unique_id=1298321387]
 layout_mode = 0
 offset_right = 70.0
 offset_bottom = 23.0
@@ -195,18 +195,18 @@ label_settings = SubResource("LabelSettings_kwigr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Ability2" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=562252851]
+[node name="Ability1" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=562252851]
 visible = false
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability2" unique_id=575287371]
+[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability1" unique_id=575287371]
 layout_mode = 0
 offset_right = 71.0
 offset_bottom = 71.0
 texture = ExtResource("2_nplvd")
 expand_mode = 1
 
-[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability2" unique_id=937900107]
+[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability1" unique_id=937900107]
 layout_mode = 0
 offset_right = 70.0
 offset_bottom = 23.0
@@ -215,18 +215,18 @@ label_settings = SubResource("LabelSettings_kwigr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Ability3" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=160556357]
+[node name="Ability2" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=160556357]
 visible = false
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability3" unique_id=1714701380]
+[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability2" unique_id=1714701380]
 layout_mode = 0
 offset_right = 71.0
 offset_bottom = 71.0
 texture = ExtResource("2_nplvd")
 expand_mode = 1
 
-[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability3" unique_id=669670067]
+[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability2" unique_id=669670067]
 layout_mode = 0
 offset_right = 70.0
 offset_bottom = 23.0
@@ -235,18 +235,38 @@ label_settings = SubResource("LabelSettings_kwigr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Ability4" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1365539958]
+[node name="Ability3" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1365539958]
 visible = false
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability4" unique_id=387468637]
+[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability3" unique_id=387468637]
 layout_mode = 0
 offset_right = 71.0
 offset_bottom = 71.0
 texture = ExtResource("2_nplvd")
 expand_mode = 1
 
-[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability4" unique_id=169955280]
+[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability3" unique_id=169955280]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 23.0
+text = "Q"
+label_settings = SubResource("LabelSettings_kwigr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ability4" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1176763428]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Ability4" unique_id=433103449]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+texture = ExtResource("2_nplvd")
+expand_mode = 1
+
+[node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability4" unique_id=1186536391]
 layout_mode = 0
 offset_right = 70.0
 offset_bottom = 23.0
