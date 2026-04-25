@@ -21,8 +21,6 @@ func _ready():
 	spawn_random_shape()
 
 func spawn_random_shape():
-	#if current_shape_instance:
-		#current_shape_instance.queue_free()
 	var chosen_scene = shapes[randi() % shapes.size()]
 	current_shape_instance = chosen_scene.instantiate()
 	add_child(current_shape_instance)

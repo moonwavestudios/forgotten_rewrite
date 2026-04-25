@@ -6,6 +6,9 @@ var WALK_SPEED = 5.0
 var SPRINT_SPEED = 9.0
 const MOUSE_SENSITIVITY = 0.003
 
+var stun_resistant: bool = false
+var stun_resistance_time: float = 0.0
+
 const CHASE_RANGE = 15.0
 const CHASE_SCAN_INTERVAL = 0.2
 
@@ -276,6 +279,8 @@ func _physics_process(delta: float) -> void:
 		
 	if health <= 0:
 		in_round = false
+		$player_ui/GameStuff.visible = false
+		$player_ui/SpectatorStuff.visible = true
 	
 	if Input.is_action_just_pressed("Ability1") and not usingAbility and not _is_on_cooldown(equipped_ability1.get("name", "Ability1")):
 		var ability_type = equipped_ability1.get("type", "")
@@ -387,6 +392,22 @@ func _physics_process(delta: float) -> void:
 	if is_emoting:
 		if input_dir.length() > 0.1:
 			_stop_emote()
+		return
+		
+	if stun_resistant:
+		stun_resistance_time = max(0.0, stun_resistance_time - delta)
+		if stun_resistance_time <= 0.0:
+			stun_resistant = false
+		
+	if stunned:
+		stun_time = max(0.0, stun_time - delta)
+		if stun_time <= 0.0:
+			stunned = false
+			stun_resistant = true      
+			stun_resistance_time = 3.0 
+		velocity.x = move_toward(velocity.x, 0, WALK_SPEED)
+		velocity.z = move_toward(velocity.z, 0, WALK_SPEED)
+		move_and_slide()
 		return
 		
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -515,7 +536,6 @@ func grant(amountXP: int, amountCoins: int, text: String) -> void:
 	xp += amountXP
 	save_data.add_character_xp(char_id, amountXP)
 
-	# Save coins~ >w
 	coins += amountCoins
 	save_data.set_coins(coins)
 
@@ -525,6 +545,16 @@ func grant(amountXP: int, amountCoins: int, text: String) -> void:
 	await get_tree().create_timer(2).timeout
 	notifications.queue_free()
 	
+func apply_stun(duration: float) -> void:
+	if stunned or stun_resistant:
+		return
+	stunned = true
+	stun_time = duration
+	if is_emoting:
+		_stop_emote()
+	usingAbility = false
+	is_sprinting = false
+
 func _interact_arcade(_collider) -> void:
 	print("arcade")
 

@@ -30,7 +30,7 @@ func _on_body_entered(body: Node3D) -> void:
 	#killer stunning
 	elif "is_Killer" in body and body.is_Killer and hit_killer:
 		hit_flag.append(true)
-		body.stunned = true
+		body.apply_stun(3)
 		_turn_green()
 
 func _turn_green() -> void:
