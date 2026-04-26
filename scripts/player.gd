@@ -35,6 +35,7 @@ var current_speed = WALK_SPEED
 @onready var Passive_Component = $PassiveComponent
 
 @onready var AbilitiesStuff = $player_ui/GameStuff/AbilitiesStuff 
+@onready var Items = $player_ui/GameStuff/Items 
 
 @onready var main = $".."
 
@@ -211,6 +212,22 @@ func apply_skin(skin_id: String) -> void:
 		merged_voicelines[key] = skin_voicelines[key]                
 	Voiceline_Component.apply_voicelines(merged_voicelines)  
 
+func refresh_item_ui() -> void:
+	var slots = []
+	for child in Items.get_children():
+		if child.name.begins_with("Item"):
+			slots.append(child)
+
+	for i in range(slots.size()):
+		var ability = has_items[i] if i < has_items.size() else {}
+		slots[i].visible = not ability.is_empty()
+
+		## THIS IS FOR LATER WHEN EVERYTHING IS ADDED
+		#if not ability.is_empty():
+		#	var tex_rect = slots[i].get_node_or_null("TextureRect")
+		#	if tex_rect and ability.has("icon"):
+		#		tex_rect.texture = load(ability.get("icon", ""))
+
 func _refresh_ability_ui() -> void:
 	var abilities = [
 		equipped_attack,
@@ -250,6 +267,7 @@ func _refresh_ability_ui() -> void:
 
 func add_item(item):
 	has_items.append(item)
+	refresh_item_ui()
 
 func _refresh_abilities() -> void:
 	if is_Killer:
@@ -391,14 +409,18 @@ func _physics_process(delta: float) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 	if Input.is_action_just_pressed("Attack") and not usingAbility and not _is_on_cooldown(equipped_attack.get("name", "Attack")) and is_Killer:
-		var ability_type = equipped_attack.get("type", "")
-		var ability_name = equipped_attack.get("name", "Attack")
-		var cooldown_duration = equipped_attack.get("cooldown", COOLDOWN_ATTACK)
-		Ability_Component._activate_ability(ability_type)
-		_start_cooldown(ability_name, cooldown_duration)
-		usingAbility = true
-		await get_tree().create_timer(0.5).timeout
-		abilityTimer_timeout()
+		if is_Killer:
+			var ability_type = equipped_attack.get("type", "")
+			var ability_name = equipped_attack.get("name", "Attack")
+			var cooldown_duration = equipped_attack.get("cooldown", COOLDOWN_ATTACK)
+			Ability_Component._activate_ability(ability_type)
+			_start_cooldown(ability_name, cooldown_duration)
+			usingAbility = true
+			await get_tree().create_timer(0.5).timeout
+			abilityTimer_timeout()
+		else:
+			# TODO: add using items
+			print("using item")
 	
 	if is_sprinting:
 		current_speed = SPRINT_SPEED
