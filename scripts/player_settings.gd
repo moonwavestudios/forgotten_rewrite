@@ -4,6 +4,7 @@ var hitsound = ""
 var enabled_hitsound = false
 var enabled_killsound = false
 var killsound = ""
+var show_hitboxes = false
 
 var keybinds: Dictionary = {
 	"Ability1": "Q",
