@@ -15,7 +15,7 @@
   "stats": {
 	"health": 75,
 	"stamina": 100,
-	"price": 750,
+	"price": 850,
 	"walk_speed": 5.1,
 	"sprint_speed": 9.1
   },
