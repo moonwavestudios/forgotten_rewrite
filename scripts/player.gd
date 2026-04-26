@@ -38,6 +38,7 @@ var current_speed = WALK_SPEED
 
 @onready var AbilitiesStuff = $player_ui/GameStuff/AbilitiesStuff 
 @onready var Items = $player_ui/GameStuff/Items 
+@onready var AdminButton = $player_ui/Both/Admin
 
 @onready var main = $".."
 
@@ -132,6 +133,8 @@ func _ready() -> void:
 
 	var xp_char_id = equipped_killer if is_Killer else equipped_survivor
 	xp = save_data.get_character_xp(xp_char_id)
+	
+	AdminButton.pressed.connect(_on_admin_button_pressed)
 
 func _process(delta: float) -> void:
 	for key in cooldowns:
@@ -585,6 +588,10 @@ func apply_effect(effect, level):
 func disable_effect(effect):
 	Effect_Component.deactivate_effect(effect)
 
+func give_coins(amount):
+	coins += amount
+	save_data.set_coins(coins)
+
 func grant(amountXP: int, amountCoins: int, text: String) -> void:
 	var notificationsText = preload("res://scenes/other/notifications_text.tscn")
 	var notifications = notificationsText.instantiate()
@@ -627,6 +634,9 @@ func apply_stun(duration: float) -> void:
 		_stop_emote()
 	usingAbility = false
 	is_sprinting = false
+
+func _on_admin_button_pressed() -> void:
+	$"player_ui/Both/Admin_Panel".visible = not $"player_ui/Both/Admin_Panel".visible
 
 func abilityTimer_timeout():
 	usingAbility = false
