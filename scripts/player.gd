@@ -396,12 +396,10 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("Item1") and has_items.size() > 0:
 		var item = has_items[0]
-		print(item)
 		selected_item = item
 
 	if Input.is_action_just_pressed("Item2") and has_items.size() > 1:
 		var item = has_items[1]
-		print(item)
 		selected_item = item
 	
 	if Input.is_action_just_pressed("unlock_mouse"):
@@ -421,17 +419,9 @@ func _physics_process(delta: float) -> void:
 			
 	if Input.is_action_just_pressed("Shop") and not in_round:
 		$player_ui/SpectatorStuff/Shop.visible = not $player_ui/SpectatorStuff/Shop.visible
-		if $player_ui/SpectatorStuff/Shop.visible == false:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
 	if Input.is_action_just_pressed("Inventory") and not in_round:
 		$player_ui/SpectatorStuff/Inventory.visible = not $player_ui/SpectatorStuff/Inventory.visible
-		if $player_ui/SpectatorStuff/Inventory.visible == false:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 	if Input.is_action_just_pressed("Attack") and not usingAbility and not _is_on_cooldown(equipped_attack.get("name", "Attack")):
 		if is_Killer:

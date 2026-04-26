@@ -513,7 +513,7 @@ metadata/_tab_index = 1
 layout_mode = 2
 theme_override_constants/h_separation = 198
 theme_override_constants/v_separation = 242
-columns = 7
+columns = 4
 
 [node name="Button" parent="SpectatorStuff/Shop/Items/Survivors/GridContainer" unique_id=515820347 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
@@ -629,6 +629,7 @@ current_tab = 0
 
 [node name="Killers" type="ScrollContainer" parent="SpectatorStuff/Inventory/Items" unique_id=273719582]
 layout_mode = 2
+horizontal_scroll_mode = 0
 metadata/_tab_index = 0
 
 [node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Items/Killers" unique_id=1748049425]
@@ -643,13 +644,14 @@ layout_mode = 2
 [node name="Survivors" type="ScrollContainer" parent="SpectatorStuff/Inventory/Items" unique_id=97974556]
 visible = false
 layout_mode = 2
+vertical_scroll_mode = 0
 metadata/_tab_index = 1
 
 [node name="GridContainer" type="GridContainer" parent="SpectatorStuff/Inventory/Items/Survivors" unique_id=1123825463]
 layout_mode = 2
 theme_override_constants/h_separation = 198
 theme_override_constants/v_separation = 242
-columns = 7
+columns = 4
 
 [node name="Button" parent="SpectatorStuff/Inventory/Items/Survivors/GridContainer" unique_id=2038957346 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
