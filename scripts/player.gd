@@ -397,10 +397,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Item1") and has_items.size() > 0:
 		var item = has_items[0]
 		print(item)
+		selected_item = item
 
 	if Input.is_action_just_pressed("Item2") and has_items.size() > 1:
 		var item = has_items[1]
 		print(item)
+		selected_item = item
 	
 	if Input.is_action_just_pressed("unlock_mouse"):
 		if mouse_unlocked:
@@ -431,7 +433,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
-	if Input.is_action_just_pressed("Attack") and not usingAbility and not _is_on_cooldown(equipped_attack.get("name", "Attack")) and is_Killer:
+	if Input.is_action_just_pressed("Attack") and not usingAbility and not _is_on_cooldown(equipped_attack.get("name", "Attack")):
 		if is_Killer:
 			var ability_type = equipped_attack.get("type", "")
 			var ability_name = equipped_attack.get("name", "Attack")
@@ -442,8 +444,11 @@ func _physics_process(delta: float) -> void:
 			await get_tree().create_timer(0.5).timeout
 			abilityTimer_timeout()
 		else:
-			# TODO: add using items
-			print("using item")
+			if selected_item == "medkit":
+				health = min(health + 80, maxhealth)
+				has_items.erase("medkit")
+				selected_item = ""
+				refresh_item_ui()
 	
 	if is_sprinting:
 		current_speed = SPRINT_SPEED
