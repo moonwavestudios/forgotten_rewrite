@@ -769,6 +769,14 @@ offset_right = 548.5
 offset_bottom = 43.0
 allow_greater = true
 
+[node name="Admin" type="Button" parent="Both" unique_id=1250297096]
+layout_mode = 0
+offset_right = 49.0
+offset_bottom = 47.0
+icon = ExtResource("2_nplvd")
+flat = true
+expand_icon = true
+
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/BuyButton" to="SpectatorStuff/Shop" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/SkinsButton" to="SpectatorStuff/Shop" method="_on_skins_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/EquipButton" to="SpectatorStuff/Inventory" method="_on_equip_button_pressed"]

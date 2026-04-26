@@ -6,6 +6,13 @@ var damage = 25
 var hitsfx = null
 var og_plr = null
 
+func _ready() -> void:
+	var mesh = $CollisionShape3D/MeshInstance3D
+	if mesh:
+		await get_tree().process_frame
+		var is_local = og_plr != null and og_plr.is_multiplayer_authority()
+		mesh.visible = is_local and PlayerSettings.show_hitboxes
+
 func _on_body_entered(body: Node3D) -> void:
 	if hit_flag.size() > 0:
 		return
