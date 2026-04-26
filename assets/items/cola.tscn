@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://pkbv0nafatbv"]
+
+[ext_resource type="Script" uid="uid://xrmyofljdw12" path="res://scripts/cola.gd" id="1_5rp3n"]
+[ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="1_iucxd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xplwh"]
+
+[node name="Cola" type="Node3D" unique_id=46343532]
+script = ExtResource("1_5rp3n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2011378250]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_xplwh")
+
+[node name="ProximityPrompt" parent="." unique_id=25112644 instance=ExtResource("1_iucxd")]
+hold_duration = 0.0
+max_activations = 1
