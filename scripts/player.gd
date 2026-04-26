@@ -449,6 +449,19 @@ func _physics_process(delta: float) -> void:
 				has_items.erase("medkit")
 				selected_item = ""
 				refresh_item_ui()
+			elif selected_item == "cola":
+				has_items.erase("cola")
+				selected_item = ""
+				refresh_item_ui()
+				var base_walk = WALK_SPEED
+				var base_sprint = SPRINT_SPEED
+				WALK_SPEED *= 2.0
+				SPRINT_SPEED *= 2.0
+				current_speed = WALK_SPEED
+				await get_tree().create_timer(5.0).timeout
+				WALK_SPEED = base_walk
+				SPRINT_SPEED = base_sprint
+				current_speed = WALK_SPEED
 	
 	if is_sprinting:
 		current_speed = SPRINT_SPEED
