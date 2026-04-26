@@ -180,6 +180,7 @@ offset_bottom = 648.0
 theme_override_constants/separation = 80
 
 [node name="Slash" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1338604192]
+visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="GameStuff/AbilitiesStuff/Slash" unique_id=960153042]

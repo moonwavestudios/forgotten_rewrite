@@ -32,6 +32,7 @@ var current_speed = WALK_SPEED
 @onready var Ability_Component = $Ability_Component
 @onready var Effect_Component = $EffectComponent
 @onready var Voiceline_Component = $Voiceline_Component
+@onready var Passive_Component = $PassiveComponent
 
 @onready var AbilitiesStuff = $player_ui/GameStuff/AbilitiesStuff 
 
@@ -563,7 +564,17 @@ func grant(amountXP: int, amountCoins: int, text: String) -> void:
 	await get_tree().create_timer(2).timeout
 	notifications.queue_free()
 	
+func take_damage(amount: int) -> void:
+	if health <= 0:
+		return
+	var final_dmg = Passive_Component.apply_damage_reduction(amount)
+	if weakness > 0:
+		final_dmg = int(final_dmg * weakness)
+	health -= final_dmg
+
 func apply_stun(duration: float) -> void:
+	if Passive_Component.has_passive("stun_immune"):
+		return
 	if stunned or stun_resistant:
 		return
 	stunned = true
