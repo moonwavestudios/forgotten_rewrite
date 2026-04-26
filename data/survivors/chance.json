@@ -2,6 +2,15 @@
   "id": "chance",
   "display_name": "Cassidy",
   "type": "survivor",
+  "skins": [
+	{
+	  "id": "default",
+	  "display_name": "Default",
+	  "price": 0,
+	  "model": "res://assets/models/cadenza/cadenza_default.tscn",
+	  "thumbnail": "res://assets/textures/skins/cadenza_default.png"
+	}
+  ],
   "stats": {
 	"health": 80,
 	"stamina": 100,

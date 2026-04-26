@@ -90,6 +90,17 @@ func get_equipped_skin(character_id: String) -> String:
 	var data = _load_all()
 	return data.get("equipped_skins", {}).get(character_id, "default")
 
+func get_equipped_character(type: String) -> String:
+	var data = _load_all()
+	return data.get("equipped_characters", {}).get(type, "")
+
+func set_equipped_character(type: String, character_id: String) -> void:
+	var data = _load_all()
+	if not data.has("equipped_characters"):
+		data["equipped_characters"] = {}
+	data["equipped_characters"][type] = character_id
+	_save_all(data)
+
 func set_equipped_skin(character_id: String, skin_id: String) -> void:
 	var data = _load_all()
 	if not data.has("equipped_skins"):
