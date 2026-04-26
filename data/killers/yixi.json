@@ -53,7 +53,20 @@
 		"chase": "",
 		"lms_duration": 80.0
 	  },
-	}
+	},
+	{
+	  "id": "vegan",
+	  "display_name": "Vegan",
+	  "price": 750,
+	  "limited": false,
+	  "model": "res://assets/models/yixi/yixi_vegan.tscn",
+	  "thumbnail": "res://assets/textures/skins/yixi_vegan.png",
+	  "music": {
+		"lms": "res://assets/music/VeganVanityLMS.mp3",
+		"chase": "",
+		"lms_duration": 80.0
+	  },
+	},
   ],
   "stats": {
 	"health": 1000,
@@ -61,12 +74,6 @@
 	"walk_speed": 5.0,
 	"sprint_speed": 9.0,
 	"price": 0
-  },
-  "voicelines": {
-	"intro": [],
-	"kill": [],
-	"victory": [],
-	"stun": []
   },
   "requirements": {
 	"survivor_type": null
