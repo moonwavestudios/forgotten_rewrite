@@ -13,6 +13,8 @@ var current_shape_instance = null
 
 var locked_cells: Dictionary = {}
 
+var next_piece = ""
+
 var shapes = [
 	preload("res://UI/stuff/tetris/square.tscn"),
 ]

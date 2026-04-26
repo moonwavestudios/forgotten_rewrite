@@ -36,6 +36,8 @@ var current_speed = WALK_SPEED
 
 @onready var AbilitiesStuff = $player_ui/GameStuff/AbilitiesStuff 
 
+@onready var main = $".."
+
 var usingAbility = false
 var equipped_survivor = "nyx"
 var equipped_killer = "yixi"
@@ -577,8 +579,13 @@ func apply_stun(duration: float) -> void:
 		return
 	if stunned or stun_resistant:
 		return
+
+	var actual_duration = duration
+	if is_instance_valid(main) and main.has_method("get_modified_stun_duration"):
+		actual_duration = main.get_modified_stun_duration(duration)
+
 	stunned = true
-	stun_time = duration
+	stun_time = actual_duration
 	if is_emoting:
 		_stop_emote()
 	usingAbility = false

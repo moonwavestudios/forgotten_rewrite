@@ -5,6 +5,25 @@ var intermission_started = false
 var in_round = true
 var lms_started = false
 
+var sentinel_nerf_active: bool = false
+
+func get_sentinel_count() -> int:
+	var count = 0
+	for player in get_players():
+		if not player.is_Killer and player.in_round:
+			var survivor_data = CharData.get_survivor(player.equipped_survivor)
+			if survivor_data.get("class", "") == "sentinel":
+				count += 1
+	return count
+
+func get_modified_stun_duration(base_duration: float) -> float:
+	var sentinels = get_sentinel_count()
+	if sentinels >= 3:
+		var reduction_stacks = sentinels - 2
+		var multiplier = pow(0.8, reduction_stacks)
+		return base_duration * multiplier
+	return base_duration
+
 func add_hitbox(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: Vector3, hitsfx, source_player = null) -> void:
 	var instance = hitbox.instantiate()
 	instance.hit_flag = hit_flag
