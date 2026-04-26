@@ -89,11 +89,6 @@ var blocking = false
 var weakness = 0
 var tokens = 0
 
-var interact_handlers := {
-	"generator": _interact_generator,
-	"arcade": _interact_arcade,
-}
-
 const COOLDOWN_ABILITY1 = 15.0
 const COOLDOWN_ABILITY2 = 5.0
 const COOLDOWN_ABILITY3 = 5.0
@@ -110,14 +105,25 @@ var cooldowns := {
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+	var saved_survivor = save_data.get_equipped_character("survivor")
+	var saved_killer   = save_data.get_equipped_character("killer")
+
+	if saved_survivor != "":
+		equipped_survivor = saved_survivor
+	if saved_killer != "":
+		equipped_killer = saved_killer
+
 	_refresh_abilities()
 	apply_character_stats()
+
 	var char_id = equipped_killer if is_Killer else equipped_survivor
 	equipped_skin_id = save_data.get_equipped_skin(char_id)
 	apply_skin(equipped_skin_id)
-	
-	coins = save_data.get_coins()
+
+	coins  = save_data.get_coins()
 	malice = save_data.get_malice()
+
 	var xp_char_id = equipped_killer if is_Killer else equipped_survivor
 	xp = save_data.get_character_xp(xp_char_id)
 
@@ -354,11 +360,6 @@ func _physics_process(delta: float) -> void:
 		if ability_type != "ally_link":
 			await get_tree().create_timer(0.5).timeout
 			abilityTimer_timeout()
-
-	if Input.is_action_just_pressed("interact") and not usingAbility:
-		var collider = raycast.get_collider()
-		if collider is Area3D:
-			try_interact(collider)
 			
 	if not is_Killer and Input.is_action_just_pressed("ui_accept") and not is_emoting and not usingAbility:
 		_try_emote("Wave")
@@ -508,14 +509,6 @@ func _stop_emote() -> void:
 	if anim_player.is_playing():
 		anim_player.stop()
 
-func try_interact(collider: Area3D):
-	if not is_multiplayer_authority():
-		return
-	for group in interact_handlers.keys():
-		if collider.is_in_group(group):
-			interact_handlers[group].call(collider)
-			return
-
 func _has_uses(ability_data: Dictionary) -> bool:
 	if not ability_data.has("uses"):
 		return true 
@@ -590,9 +583,6 @@ func apply_stun(duration: float) -> void:
 		_stop_emote()
 	usingAbility = false
 	is_sprinting = false
-
-func _interact_arcade(_collider) -> void:
-	print("arcade")
 
 func abilityTimer_timeout():
 	usingAbility = false
