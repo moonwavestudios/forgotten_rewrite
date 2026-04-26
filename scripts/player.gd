@@ -6,6 +6,8 @@ var WALK_SPEED = 5.0
 var SPRINT_SPEED = 9.0
 const MOUSE_SENSITIVITY = 0.003
 
+var mouse_unlocked = false
+
 var stun_resistant: bool = false
 var stun_resistance_time: float = 0.0
 
@@ -61,6 +63,7 @@ var equipped_ability3 = {}
 var equipped_ability4 = {}
 
 var has_items = [] # 2 item slots
+var selected_item = ""
 
 var coins = 0
 
@@ -387,6 +390,22 @@ func _physics_process(delta: float) -> void:
 			
 	if not is_Killer and Input.is_action_just_pressed("ui_accept") and not is_emoting and not usingAbility:
 		_try_emote("Wave")
+		
+	if Input.is_action_just_pressed("Item1") and has_items.size() > 0:
+		var item = has_items[0]
+		print(item)
+
+	if Input.is_action_just_pressed("Item2") and has_items.size() > 1:
+		var item = has_items[1]
+		print(item)
+	
+	if Input.is_action_just_pressed("unlock_mouse"):
+		if mouse_unlocked:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			mouse_unlocked = false
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+			mouse_unlocked = true
 	
 	if Input.is_action_just_pressed("ChangeCam"):
 		cam = not cam

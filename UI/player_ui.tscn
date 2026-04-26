@@ -102,6 +102,12 @@ font_size = 19
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_an3gc"]
+font = ExtResource("4_qf5vc")
+font_size = 24
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [node name="player_ui" type="Control" unique_id=1532252855]
 layout_mode = 3
 anchors_preset = 15
@@ -689,6 +695,79 @@ layout_mode = 2
 
 [node name="tetris" parent="SpectatorStuff" unique_id=2082571 instance=ExtResource("7_8w2om")]
 visible = false
+
+[node name="Both" type="Control" parent="." unique_id=1458680317]
+anchors_preset = 0
+offset_right = 1154.0
+offset_bottom = 645.0
+
+[node name="Admin_Panel" type="Panel" parent="Both" unique_id=476853796]
+visible = false
+layout_mode = 0
+offset_left = 198.0
+offset_top = 69.0
+offset_right = 974.0
+offset_bottom = 595.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Both/Admin_Panel" unique_id=1052075960]
+layout_mode = 0
+offset_right = 778.0
+offset_bottom = 528.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Both/Admin_Panel/ScrollContainer" unique_id=293632678]
+layout_mode = 2
+theme_override_constants/separation = 46
+
+[node name="Control" type="Control" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer" unique_id=642870151]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/Control" unique_id=360703493]
+layout_mode = 0
+offset_right = 778.0
+offset_bottom = 45.0
+text = "ADMIN PANEL"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GiveCoins" type="Control" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer" unique_id=699849315]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins" unique_id=592435982]
+layout_mode = 0
+offset_right = 177.0
+offset_bottom = 45.0
+text = "GIVE COINS:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins" unique_id=1030707976]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 4.0
+offset_right = 468.0
+offset_bottom = 49.0
+text = "AMOUNT:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins" unique_id=1368791875]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 11.0
+offset_right = 319.0
+offset_bottom = 42.0
+placeholder_text = "USERNAME"
+
+[node name="SpinBox" type="SpinBox" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins" unique_id=81748415]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 12.0
+offset_right = 548.5
+offset_bottom = 43.0
+allow_greater = true
 
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/BuyButton" to="SpectatorStuff/Shop" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/SkinsButton" to="SpectatorStuff/Shop" method="_on_skins_button_pressed"]
