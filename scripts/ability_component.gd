@@ -94,18 +94,19 @@ func _activate_ability(ability: String) -> void:
 				spawn_pos -= $"..".transform.basis.z * 4.0
 				spawn_pos.y -= 0.9
 				$"../..".add_hitbox(
-					$"..".hitboxes, spawn_pos, hit_flag, 25 * tokens_used, "killer", Vector3(0.5,0.25,5.558), $".."
+					$"..".hitboxes, spawn_pos, hit_flag, 25 * tokens_used, "killer", Vector3(0.5,0.25,5.558), null, $".."
 				)
 				$"../SFX".stream = shotSFX
 				$"../SFX".play()
 				await get_tree().create_timer(0.05).timeout
+				
 			elif random < explode_chance:
 				gunDestroyed = true
 				var hit_flag: Array = []
 				var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
 				spawn_pos.y -= 0.9
 				$"../..".add_hitbox(
-					$"..".hitboxes, spawn_pos, hit_flag, 15 * tokens_used, "killer", Vector3(1.0,1.0,1.0), $".."
+					$"..".hitboxes, spawn_pos, hit_flag, 15 * tokens_used, "killer", Vector3(1.0,1.0,1.0), null, $".."
 				)
 				if $"..".weakness < 1:
 					$"..".health -= 25 
@@ -115,6 +116,7 @@ func _activate_ability(ability: String) -> void:
 				$"../SFX".play()
 				await get_tree().create_timer(0.05).timeout
 			else:
+				$"..".grant(10, 20, "Nice try")
 				$"../SFX".stream = nothingSFX
 				$"../SFX".play()
 		else:

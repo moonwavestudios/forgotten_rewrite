@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://yrxjvjqwhqp3"]
+
+[ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="1_ssox3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ecrlw"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ecrlw"]
+material = SubResource("StandardMaterial3D_ecrlw")
+
+[node name="Medkit" type="Node3D" unique_id=1043280113]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=385275340]
+transform = Transform3D(0.76001143, 0, 0, 0, 0.24302459, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_ecrlw")
+
+[node name="ProximityPrompt" parent="." unique_id=25112644 instance=ExtResource("1_ssox3")]
+hold_duration = 0.0
+max_activations = 1

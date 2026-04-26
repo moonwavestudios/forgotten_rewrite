@@ -59,6 +59,8 @@ var equipped_ability2 = {}
 var equipped_ability3 = {}
 var equipped_ability4 = {}
 
+var has_items = [] # 2 item slots
+
 var coins = 0
 
 var pitch: float = 0.0
@@ -245,6 +247,9 @@ func _refresh_ability_ui() -> void:
 			if keybind_node:
 				var action = action_names[i] if i < action_names.size() else ""
 				keybind_node.text = PlayerSettings.get_keybind_label(action)
+
+func add_item(item):
+	has_items.append(item)
 
 func _refresh_abilities() -> void:
 	if is_Killer:
@@ -538,9 +543,6 @@ func apply_effect(effect, level):
 func disable_effect(effect):
 	Effect_Component.deactivate_effect(effect)
 
-func _interact_generator(_collider) -> void:
-	print("gen")
-	
 func grant(amountXP: int, amountCoins: int, text: String) -> void:
 	var notificationsText = preload("res://scenes/other/notifications_text.tscn")
 	var notifications = notificationsText.instantiate()

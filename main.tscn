@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://cgthlwbfyq6e4" path="res://scripts/generator.gd" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://i5mm30dajmqt" path="res://scenes/test_npc.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://yrxjvjqwhqp3" path="res://assets/items/medkit.tscn" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://bf0n2l0jmc1uw" path="res://scripts/medkit.gd" id="9_kek77"]
 
 [node name="Main" type="Node" unique_id=814599977]
 script = ExtResource("1_1bvp3")
@@ -56,6 +58,10 @@ access = 2
 [node name="IdleVoicelineTimer" type="Timer" parent="." unique_id=645679691]
 wait_time = 45.0
 autostart = true
+
+[node name="Medkit" parent="." unique_id=1043280113 instance=ExtResource("8_5vw27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13772988, -10.868275)
+script = ExtResource("9_kek77")
 
 [connection signal="timeout" from="Intermission" to="." method="_on_intermission_timeout"]
 [connection signal="timeout" from="LMSTimer" to="." method="_on_intermission_timeout"]

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bp0hs4qgh4lf" path="res://UI/player_ui.tscn" id="2_fohsx"]
 [ext_resource type="AudioStream" uid="uid://bea8y7owko1ta" path="res://assets/music/chase_teto.mp3" id="3_a1j51"]
 [ext_resource type="Script" uid="uid://nw5d83eisaa1" path="res://scripts/voiceline_component.gd" id="4_5e1og"]
+[ext_resource type="Script" uid="uid://b355vg2tv7qjp" path="res://scripts/passive_component.gd" id="6_byner"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vifff"]
 
@@ -35,3 +36,6 @@ bus = &"Ambience"
 script = ExtResource("4_5e1og")
 
 [node name="voicelines" type="AudioStreamPlayer3D" parent="." unique_id=1089284537]
+
+[node name="PassiveComponent" type="Node" parent="." unique_id=1713031641]
+script = ExtResource("6_byner")

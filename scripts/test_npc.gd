@@ -8,6 +8,11 @@ var blocking = false
 
 var in_round = false
 
+@onready var main = $".."
+
+var stun_resistant: bool = false
+var stun_resistance_time: float = 0.0
+
 var hit_flag: Array = []
 
 var hitbox_timer := 0.0
@@ -18,6 +23,8 @@ const HITBOX_INTERVAL := 0.5
 var active_music = {}
 
 @export var hitboxes: PackedScene
+
+@onready var Passive_Component = $PassiveComponent
 
 const CHASE_RANGE = 15.0
 const CHASE_SCAN_INTERVAL = 0.2
@@ -40,9 +47,23 @@ var stun_time = 4
 var stunned = false
 
 func _ready() -> void:
+	hit_flag = []
 	var char_id = equipped_killer if is_Killer else equipped_survivor
 	equipped_skin_id = save_data.get_equipped_skin(char_id)
 	apply_skin(equipped_skin_id)
+
+func apply_stun(duration: float) -> void:
+	if Passive_Component.has_passive("stun_immune"):
+		return
+	if stunned or stun_resistant:
+		return
+
+	var actual_duration = duration
+	if is_instance_valid(main) and main.has_method("get_modified_stun_duration"):
+		actual_duration = main.get_modified_stun_duration(duration)
+
+	stunned = true
+	stun_time = actual_duration
 
 func apply_skin(skin_id: String) -> void:
 	var char_type = "killer" if is_Killer else "survivor"
@@ -52,9 +73,6 @@ func apply_skin(skin_id: String) -> void:
 	if skin_data.is_empty():
 		push_warning("Skin '%s' not found!" % skin_id)
 		return
-		
-	if health <= 0:
-		in_round = false
 
 	if is_instance_valid(_skin_instance):
 		_skin_instance.queue_free()
@@ -116,6 +134,9 @@ func _physics_process(delta: float) -> void:
 		if _chase_scan_timer <= 0.0:
 			_chase_scan_timer = CHASE_SCAN_INTERVAL
 			_update_chase_music()
+	
+	if health <= 0:
+		in_round = false
 	
 	#if is_Killer:
 	hitbox_timer += delta
