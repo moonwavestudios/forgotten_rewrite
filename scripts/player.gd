@@ -266,8 +266,9 @@ func _refresh_ability_ui() -> void:
 				keybind_node.text = PlayerSettings.get_keybind_label(action)
 
 func add_item(item):
-	has_items.append(item)
-	refresh_item_ui()
+	if not has_items.has(item):
+		has_items.append(item)
+		refresh_item_ui()
 
 func _refresh_abilities() -> void:
 	if is_Killer:
