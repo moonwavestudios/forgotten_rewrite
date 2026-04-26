@@ -90,9 +90,8 @@ func _activate_ability(ability: String) -> void:
 			
 			if random < shoot_chance:
 				var hit_flag: Array = []
-				var spawn_pos = $"..".global_position + $"..".transform.basis.y * 1.0
+				var spawn_pos = $"..".global_position
 				spawn_pos -= $"..".transform.basis.z * 4.0
-				spawn_pos.y -= 0.9
 				$"../..".add_hitbox(
 					$"..".hitboxes, spawn_pos, hit_flag, 25 * tokens_used, "killer", Vector3(0.5,0.25,5.558), null, $".."
 				)
