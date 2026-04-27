@@ -339,7 +339,7 @@ func _physics_process(delta: float) -> void:
 		$player_ui/GameStuff.visible = false
 		$player_ui/SpectatorStuff.visible = true
 	
-	if Input.is_action_just_pressed("Ability1") and not usingAbility and not _is_on_cooldown(equipped_ability1.get("name", "Ability1")):
+	if Input.is_action_just_pressed("Ability1") and in_round and not usingAbility and not _is_on_cooldown(equipped_ability1.get("name", "Ability1")):
 		var ability_type = equipped_ability1.get("type", "")
 		var ability_name = equipped_ability1.get("name", "Ability1")
 		var cooldown_duration = equipped_ability1.get("cooldown", COOLDOWN_ABILITY1)
@@ -350,7 +350,7 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(0.5).timeout
 		abilityTimer_timeout()
 
-	if Input.is_action_just_pressed("Ability2") and not usingAbility and not _is_on_cooldown(equipped_ability2.get("name", "Ability2")):
+	if Input.is_action_just_pressed("Ability2") and in_round and not usingAbility and not _is_on_cooldown(equipped_ability2.get("name", "Ability2")):
 		if not _has_uses(equipped_ability2):
 			return
 			
@@ -368,7 +368,7 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(0.5).timeout
 		abilityTimer_timeout()
 		
-	if Input.is_action_just_pressed("Ability3") and not usingAbility and not equipped_ability3.is_empty() and not _is_on_cooldown(equipped_ability3.get("name", "Ability3")):
+	if Input.is_action_just_pressed("Ability3") and in_round and not usingAbility and not equipped_ability3.is_empty() and not _is_on_cooldown(equipped_ability3.get("name", "Ability3")):
 		var ability_type = equipped_ability3.get("type", "")
 		var ability_name = equipped_ability3.get("name", "Ability3")
 		var cooldown_duration = equipped_ability3.get("cooldown", COOLDOWN_ABILITY3)
@@ -379,7 +379,7 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(0.5).timeout
 		abilityTimer_timeout()
 		
-	if Input.is_action_just_pressed("Ability4") and not usingAbility and not equipped_ability4.is_empty() and not _is_on_cooldown(equipped_ability4.get("name", "Ability4")):
+	if Input.is_action_just_pressed("Ability4") and in_round and not usingAbility and not equipped_ability4.is_empty() and not _is_on_cooldown(equipped_ability4.get("name", "Ability4")):
 		var ability_type = equipped_ability4.get("type", "")
 		var ability_name = equipped_ability4.get("name", "Ability4")
 		var cooldown_duration = equipped_ability4.get("cooldown", COOLDOWN_ABILITY4)

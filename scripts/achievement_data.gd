@@ -29,7 +29,7 @@ signal achievement_unlocked(achievement: Achievement)
 signal achievements_loaded(count: int)
 
 
-const ACHIEVEMENTS_PATH := "res://achievements.json"
+const ACHIEVEMENTS_PATH := "res://data/achievements/achievements.json"
 const SAVE_PATH         := "user://achievements_save.json"
 
 var _achievements: Dictionary = {}
