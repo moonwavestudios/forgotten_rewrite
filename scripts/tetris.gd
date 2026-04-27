@@ -88,8 +88,8 @@ func lock_shape():
 func get_shape_cells(ox: int, oy: int) -> Array:
 	return get_shape_cells_for(ox, oy, current_shape_key, current_rotation)
 
-func get_shape_cells_for(ox: int, oy: int, shape_key: String, rotation: int) -> Array:
-	var offsets = shape_definitions[shape_key][rotation]
+func get_shape_cells_for(ox: int, oy: int, shape_key: String, rotationd: int) -> Array:
+	var offsets = shape_definitions[shape_key][rotationd]
 	var cells = []
 	for offset in offsets:
 		cells.append(Vector2i(ox + offset.x, oy + offset.y))
@@ -98,8 +98,8 @@ func get_shape_cells_for(ox: int, oy: int, shape_key: String, rotation: int) -> 
 func can_move(new_x: int, new_y: int) -> bool:
 	return can_move_with_rotation(new_x, new_y, current_rotation)
 
-func can_move_with_rotation(new_x: int, new_y: int, rotation: int) -> bool:
-	for cell in get_shape_cells_for(new_x, new_y, current_shape_key, rotation):
+func can_move_with_rotation(new_x: int, new_y: int, rotationd: int) -> bool:
+	for cell in get_shape_cells_for(new_x, new_y, current_shape_key, rotationd):
 		if cell.x < 0 or cell.x >= GRID_WIDTH:
 			return false
 		if cell.y >= GRID_HEIGHT:
