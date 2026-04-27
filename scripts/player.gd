@@ -121,9 +121,6 @@ func _ready() -> void:
 	if saved_killer != "":
 		equipped_killer = saved_killer
 
-	_refresh_abilities()
-	apply_character_stats()
-
 	var char_id = equipped_killer if is_Killer else equipped_survivor
 	equipped_skin_id = save_data.get_equipped_skin(char_id)
 	apply_skin(equipped_skin_id)

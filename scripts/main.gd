@@ -109,6 +109,8 @@ func start_round():
 		player.get_node('player_ui').get_node('SpectatorStuff').visible = false
 		player.get_node('player_ui').get_node('GameStuff').visible = true
 		player.in_round = true
+		player.apply_character_stats()
+		player._refresh_abilities()
 		
 	if most_malicious_player != null:
 		most_malicious_player.is_Killer = true
