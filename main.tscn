@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://yrxjvjqwhqp3" path="res://assets/items/medkit.tscn" id="8_5vw27"]
 [ext_resource type="Script" uid="uid://bf0n2l0jmc1uw" path="res://scripts/medkit.gd" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://pkbv0nafatbv" path="res://assets/items/cola.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://cmfedteam6p8t" path="res://scenes/cutscenes.tscn" id="11_efxa6"]
 
 [node name="Main" type="Node" unique_id=814599977]
 script = ExtResource("1_1bvp3")
@@ -66,6 +67,8 @@ script = ExtResource("9_kek77")
 
 [node name="Cola" parent="." unique_id=46343532 instance=ExtResource("10_4c57u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.894238, 0.48427892, -11.0173)
+
+[node name="Cutscenes" parent="." unique_id=1809281127 instance=ExtResource("11_efxa6")]
 
 [connection signal="timeout" from="Intermission" to="." method="_on_intermission_timeout"]
 [connection signal="timeout" from="LMSTimer" to="." method="_on_intermission_timeout"]
