@@ -1,23 +1,23 @@
 {
   "achievement_system": {
-    "achievements": [
-      {
-        "id": "gen_001",
-        "title": "Forgotten",
-        "description": "Welcome to hell.",
-        "category": "general",
-        "difficulty": "bronze",
-        "hidden": false,
-        "conditions": {
-          "type": "join",
-          "count": 1
-        },
-        "reward": {
-          "currency": 100,
-          "cosmetic": null,
-          "unlock": null
-        }
-      }
-    ]
+	"achievements": [
+	  {
+		"id": "gen_001",
+		"title": "Forgotten",
+		"description": "Welcome to hell.",
+		"category": "general",
+		"difficulty": "bronze",
+		"hidden": false,
+		"conditions": {
+		  "type": "join",
+		  "count": 1
+		},
+		"reward": {
+		  "currency": 100,
+		  "cosmetic": null,
+		  "unlock": null
+		}
+	  }
+	]
   }
 }
