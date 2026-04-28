@@ -131,6 +131,9 @@ func _on_chase_state_changed(chasing: bool) -> void:
 func apply_character_stats():
 	print("stuff")
 
+func grant(_amountXP: int, _amountCoins: int, _text: String) -> void:
+	pass
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c1ago2t8uk6en"]
+
+[ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="1_pxow0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_byocv"]
+font = ExtResource("1_pxow0")
+font_size = 24
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PlayerName" type="Label" unique_id=1583636777]
+text = "PlayerName"
+label_settings = SubResource("LabelSettings_byocv")
+vertical_alignment = 1
+
+[node name="Malice" type="Label" parent="." unique_id=1666085575]
+layout_mode = 0
+offset_left = 149.0
+offset_right = 311.0
+offset_bottom = 29.0
+text = "0"
+label_settings = SubResource("LabelSettings_byocv")
+horizontal_alignment = 1
+vertical_alignment = 1

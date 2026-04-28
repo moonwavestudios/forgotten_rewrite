@@ -102,6 +102,12 @@ font_size = 19
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_byocv"]
+font = ExtResource("4_qf5vc")
+font_size = 24
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_an3gc"]
 font = ExtResource("4_qf5vc")
 font_size = 24
@@ -697,6 +703,39 @@ columns = 4
 [node name="Button" parent="SpectatorStuff/Inventory/SkinsPanel/ScrollContainer/GridContainer" unique_id=176355208 instance=ExtResource("4_b8q8m")]
 layout_mode = 2
 
+[node name="PlayerList" type="Panel" parent="SpectatorStuff" unique_id=1937104238]
+layout_mode = 0
+offset_left = 838.0
+offset_right = 1151.0
+offset_bottom = 650.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/PlayerList" unique_id=1043805374]
+layout_mode = 0
+offset_right = 313.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SpectatorStuff/PlayerList/ScrollContainer" unique_id=663433975]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="HBoxContainer" parent="SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer" unique_id=1479427453]
+layout_mode = 2
+theme_override_constants/separation = 99
+
+[node name="Title" type="Label" parent="SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer/Title" unique_id=58890258]
+layout_mode = 2
+text = "Players:"
+label_settings = SubResource("LabelSettings_byocv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Malice" type="Label" parent="SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer/Title" unique_id=1393231187]
+layout_mode = 2
+text = "Malice:"
+label_settings = SubResource("LabelSettings_byocv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Both" type="Control" parent="." unique_id=1458680317]
 anchors_preset = 0
 
@@ -768,6 +807,37 @@ offset_right = 548.5
 offset_bottom = 43.0
 allow_greater = true
 
+[node name="MakeKiller" type="Control" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer" unique_id=928664562]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller" unique_id=503038678]
+layout_mode = 0
+offset_right = 177.0
+offset_bottom = 45.0
+text = "MAKE KILLER:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller" unique_id=1219434544]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 10.0
+offset_right = 331.0
+offset_bottom = 41.0
+placeholder_text = "USERNAME"
+
+[node name="GiveKiller" type="Button" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller" unique_id=934843038]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 5.0
+offset_right = 531.0
+offset_bottom = 42.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 23
+text = "CONFIRM"
+
 [node name="Admin" type="Button" parent="Both" unique_id=1250297096]
 layout_mode = 0
 offset_right = 49.0
@@ -781,3 +851,4 @@ expand_icon = true
 [connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/EquipButton" to="SpectatorStuff/Inventory" method="_on_equip_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/SkinsButton" to="SpectatorStuff/Inventory" method="_on_skins_button_pressed"]
 [connection signal="value_changed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="pressed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller/GiveKiller" to="." method="_on_give_killer_pressed"]
