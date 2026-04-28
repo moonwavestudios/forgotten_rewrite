@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="2_atdpv"]
 [ext_resource type="Texture2D" uid="uid://d1qj5l8ttlohn" path="res://icon.svg" id="3_atdpv"]
 [ext_resource type="AudioStream" uid="uid://cn637qhjbqiwq" path="res://assets/music/tetris.mp3" id="3_b1ev3"]
+[ext_resource type="Script" uid="uid://b7f0il57xfnmq" path="res://scripts/snake_char.gd" id="3_llim8"]
 
 [sub_resource type="GDScript" id="GDScript_jbimy"]
 script/source = "extends Node2D
@@ -227,6 +228,7 @@ shape = SubResource("RectangleShape2D_atdpv")
 
 [node name="snake_char" type="CharacterBody2D" parent="." unique_id=1222585763]
 position = Vector2(502, 218)
+script = ExtResource("3_llim8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="snake_char" unique_id=1876851097]
 position = Vector2(0, -1)
