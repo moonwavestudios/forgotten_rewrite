@@ -22,10 +22,13 @@ size = Vector2(31, 656.5)
 size = Vector2(31, 652.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llim8"]
-size = Vector2(128, 126)
+size = Vector2(64, 64)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b1ev3"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
+[sub_resource type="Gradient" id="Gradient_6pb2h"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bw8hj"]
+gradient = SubResource("Gradient_6pb2h")
 
 [node name="snake" type="CanvasLayer" unique_id=1873713186]
 script = ExtResource("1_cyo3q")
@@ -75,8 +78,7 @@ position = Vector2(576, 324)
 script = ExtResource("3_bw8hj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="snake_char" unique_id=1876851097]
-position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_llim8")
 
 [node name="Sprite2D" type="Sprite2D" parent="snake_char" unique_id=759255065]
-texture = SubResource("CompressedTexture2D_b1ev3")
+texture = SubResource("GradientTexture2D_bw8hj")
