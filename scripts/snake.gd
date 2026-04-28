@@ -6,7 +6,12 @@ var food = preload("res://scenes/food.tscn")
 @export var screen_height: float = 648.0
 @export var food_size: float = 20.0 
 
+var score = 0
+
 var current_food: Node = null
+
+func _process(_delta: float) -> void:
+	$Label.text = "Score: " + str(score)
 
 func spawn_food(snake_positions: Array = []) -> void:
 	if current_food:

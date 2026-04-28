@@ -58,4 +58,5 @@ func _on_death() -> void:
 	set_physics_process(false)
 	
 func _on_food_eaten() -> void:
+	$"..".score += 100
 	get_parent().spawn_food()
