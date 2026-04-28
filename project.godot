@@ -161,6 +161,10 @@ RotateTetris={
 ]
 }
 
+[physics]
+
+2d/default_gravity=0.0
+
 [rendering]
 
 rendering_device/driver.windows="d3d12"

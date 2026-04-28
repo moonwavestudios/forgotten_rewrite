@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://nw5d83eisaa1" path="res://scripts/voiceline_component.gd" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://d1qj5l8ttlohn" path="res://icon.svg" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://b355vg2tv7qjp" path="res://scripts/passive_component.gd" id="8_smehm"]
+[ext_resource type="PackedScene" uid="uid://bg2chmdsjyk0v" path="res://scenes/other/snake.tscn" id="9_ur7pv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
@@ -72,3 +73,6 @@ visible = false
 transparency = 0.35
 billboard = 1
 texture = ExtResource("7_fjrip")
+
+[node name="snake" parent="." unique_id=1873713186 instance=ExtResource("9_ur7pv")]
+visible = false

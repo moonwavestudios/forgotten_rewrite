@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://bg2chmdsjyk0v"]
+
+[ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="1_i3hkp"]
+[ext_resource type="AudioStream" uid="uid://cn637qhjbqiwq" path="res://assets/music/tetris.mp3" id="2_cyo3q"]
+[ext_resource type="Script" uid="uid://b7f0il57xfnmq" path="res://scripts/snake_char.gd" id="3_bw8hj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjmmk"]
+bg_color = Color(2.45166e-07, 0.18313137, 1.6845763e-07, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_deo47"]
+font = ExtResource("1_i3hkp")
+font_size = 35
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1ev3"]
+size = Vector2(1189, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbimy"]
+size = Vector2(31, 656.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_atdpv"]
+size = Vector2(31, 652.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llim8"]
+size = Vector2(128, 126)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b1ev3"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
+
+[node name="snake" type="CanvasLayer" unique_id=1873713186]
+
+[node name="Panel" type="Panel" parent="." unique_id=798834045]
+offset_right = 1152.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pjmmk")
+
+[node name="Label" type="Label" parent="." unique_id=355711166]
+offset_left = 866.0
+offset_top = 2.0
+offset_right = 1152.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("1_i3hkp")
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_deo47")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TetrisTheme" type="AudioStreamPlayer2D" parent="." unique_id=635564822]
+stream = ExtResource("2_cyo3q")
+bus = &"Tetris"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=552328776]
+visible = false
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=244507816]
+position = Vector2(560.5, 660.5)
+shape = SubResource("RectangleShape2D_b1ev3")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1506097868]
+position = Vector2(561, -12)
+shape = SubResource("RectangleShape2D_b1ev3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1068748958]
+position = Vector2(-16, 326.25)
+shape = SubResource("RectangleShape2D_jbimy")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1352321439]
+position = Vector2(1136, 324.25)
+shape = SubResource("RectangleShape2D_atdpv")
+
+[node name="snake_char" type="CharacterBody2D" parent="." unique_id=1222585763]
+position = Vector2(576, 324)
+script = ExtResource("3_bw8hj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="snake_char" unique_id=1876851097]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_llim8")
+
+[node name="Sprite2D" type="Sprite2D" parent="snake_char" unique_id=759255065]
+texture = SubResource("CompressedTexture2D_b1ev3")
