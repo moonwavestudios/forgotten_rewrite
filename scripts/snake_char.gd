@@ -13,6 +13,8 @@ signal wall_hit
 var current_direction: Vector2 = Vector2.RIGHT
 
 func _ready() -> void:
+	get_parent().spawn_food()
+	
 	if $"..".visible:
 		velocity = current_direction * SPEED
 
@@ -54,3 +56,6 @@ func _handle_wall_collision() -> void:
 func _on_death() -> void:
 	velocity = Vector2.ZERO
 	set_physics_process(false)
+	
+func _on_food_eaten() -> void:
+	get_parent().spawn_food()

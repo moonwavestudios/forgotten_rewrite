@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bg2chmdsjyk0v"]
 
+[ext_resource type="Script" uid="uid://cmfcg86jf61ta" path="res://scripts/snake.gd" id="1_cyo3q"]
 [ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="1_i3hkp"]
 [ext_resource type="AudioStream" uid="uid://cn637qhjbqiwq" path="res://assets/music/tetris.mp3" id="2_cyo3q"]
 [ext_resource type="Script" uid="uid://b7f0il57xfnmq" path="res://scripts/snake_char.gd" id="3_bw8hj"]
@@ -27,6 +28,7 @@ size = Vector2(128, 126)
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
 
 [node name="snake" type="CanvasLayer" unique_id=1873713186]
+script = ExtResource("1_cyo3q")
 
 [node name="Panel" type="Panel" parent="." unique_id=798834045]
 offset_right = 1152.0
