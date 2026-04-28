@@ -2,6 +2,8 @@ extends CanvasLayer
 
 var food = preload("res://scenes/food.tscn")
 
+signal game_ended(final_score: int)
+
 @export var screen_width: float = 1152.0
 @export var screen_height: float = 648.0
 @export var food_size: float = 20.0 
@@ -46,3 +48,16 @@ func _is_clear(candidate: Vector2, snake_positions: Array) -> bool:
 		if candidate.distance_to(seg_pos) < food_size * 2:
 			return false
 	return true
+	
+func end_game() -> void:
+	if current_food:
+		current_food.queue_free()
+		current_food = null
+	emit_signal("game_ended", score)
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") and visible:
+		$TetrisTheme.stop()
+		end_game()
+		$".".hide()
+		$"..".current_speed = $"..".WALK_SPEED

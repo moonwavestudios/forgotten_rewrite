@@ -12,15 +12,6 @@ bg_color = Color(2.45166e-07, 0.18313137, 1.6845763e-07, 1)
 font = ExtResource("1_i3hkp")
 font_size = 35
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1ev3"]
-size = Vector2(1189, 25)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbimy"]
-size = Vector2(31, 656.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_atdpv"]
-size = Vector2(31, 652.5)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llim8"]
 size = Vector2(64, 64)
 
@@ -52,26 +43,6 @@ vertical_alignment = 1
 [node name="TetrisTheme" type="AudioStreamPlayer2D" parent="." unique_id=635564822]
 stream = ExtResource("2_cyo3q")
 bus = &"Tetris"
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=552328776]
-visible = false
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=244507816]
-position = Vector2(560.5, 660.5)
-shape = SubResource("RectangleShape2D_b1ev3")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1506097868]
-position = Vector2(561, -12)
-shape = SubResource("RectangleShape2D_b1ev3")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1068748958]
-position = Vector2(-16, 326.25)
-shape = SubResource("RectangleShape2D_jbimy")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1352321439]
-position = Vector2(1136, 324.25)
-shape = SubResource("RectangleShape2D_atdpv")
 
 [node name="snake_char" type="CharacterBody2D" parent="." unique_id=1222585763]
 position = Vector2(576, 324)

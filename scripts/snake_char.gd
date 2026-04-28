@@ -78,10 +78,7 @@ func grow() -> void:
 		seg.global_position = global_position
 	tail_segments.append(seg)
 
-# --- Self-collision ---
-
 func _check_self_collision() -> bool:
-	# Ignore the first few segments (they're right behind the head)
 	var grace_segments = 4
 	for i in range(grace_segments, tail_segments.size()):
 		if global_position.distance_to(tail_segments[i].global_position) < collision_radius:
@@ -89,15 +86,11 @@ func _check_self_collision() -> bool:
 			return true
 	return false
 
-# --- All positions for food spawning ---
-
 func get_all_positions() -> Array:
 	var positions: Array = [global_position]
 	for seg in tail_segments:
 		positions.append(seg.global_position)
 	return positions
-
-# --- Wall & death ---
 
 func _handle_wall_collision() -> void:
 	var pos = global_position
@@ -121,6 +114,7 @@ func _on_death() -> void:
 		seg.queue_free()
 	tail_segments.clear()
 	position_history.clear()
+	get_parent().end_game()
 
 func _on_food_eaten() -> void:
 	$"..".score += 100

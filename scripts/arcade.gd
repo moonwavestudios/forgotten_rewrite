@@ -8,3 +8,8 @@ func _on_interacted(interactor: Node) -> void:
 	snake.show()
 	interactor.get_node("snake/TetrisTheme").play()
 	interactor.current_speed = 0
+	snake.visibility_changed.connect(_on_visibility_changed.bind(snake), CONNECT_ONE_SHOT)
+
+func _on_visibility_changed(snake: Node) -> void:
+	if not snake.visible:
+		$ProximityPrompt.reset_activations()
