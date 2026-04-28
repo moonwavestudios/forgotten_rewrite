@@ -8,10 +8,6 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjmmk"]
 bg_color = Color(2.45166e-07, 0.18313137, 1.6845763e-07, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_deo47"]
-font = ExtResource("1_i3hkp")
-font_size = 35
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llim8"]
 size = Vector2(64, 64)
 
@@ -21,6 +17,10 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bw8hj"]
 gradient = SubResource("Gradient_6pb2h")
 
+[sub_resource type="LabelSettings" id="LabelSettings_deo47"]
+font = ExtResource("1_i3hkp")
+font_size = 35
+
 [node name="snake" type="CanvasLayer" unique_id=1873713186]
 script = ExtResource("1_cyo3q")
 
@@ -28,17 +28,6 @@ script = ExtResource("1_cyo3q")
 offset_right = 1152.0
 offset_bottom = 650.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_pjmmk")
-
-[node name="Label" type="Label" parent="." unique_id=355711166]
-offset_left = 866.0
-offset_top = 2.0
-offset_right = 1152.0
-offset_bottom = 44.0
-theme_override_fonts/font = ExtResource("1_i3hkp")
-text = "Score: 0"
-label_settings = SubResource("LabelSettings_deo47")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="TetrisTheme" type="AudioStreamPlayer2D" parent="." unique_id=635564822]
 stream = ExtResource("2_cyo3q")
@@ -53,3 +42,25 @@ shape = SubResource("RectangleShape2D_llim8")
 
 [node name="Sprite2D" type="Sprite2D" parent="snake_char" unique_id=759255065]
 texture = SubResource("GradientTexture2D_bw8hj")
+
+[node name="Label" type="Label" parent="." unique_id=355711166]
+offset_left = 866.0
+offset_top = 2.0
+offset_right = 1152.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("1_i3hkp")
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_deo47")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=709703472]
+offset_left = 8.0
+offset_top = 1.0
+offset_right = 317.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("1_i3hkp")
+text = "Press ESC to leave"
+label_settings = SubResource("LabelSettings_deo47")
+horizontal_alignment = 1
+vertical_alignment = 1
