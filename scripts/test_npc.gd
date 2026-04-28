@@ -125,6 +125,9 @@ func _on_chase_state_changed(chasing: bool) -> void:
 	else:
 		$Chase_Theme.stop()
 
+func apply_character_stats():
+	print("stuff")
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta

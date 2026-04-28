@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://cmfedteam6p8t"]
 
 [node name="Cutscenes" type="Node3D" unique_id=1809281127]
+
+[node name="IntroCam" type="Camera3D" parent="." unique_id=449750366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8961277, 0)

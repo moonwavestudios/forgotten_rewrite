@@ -152,7 +152,7 @@ func _is_on_cooldown(action: String) -> bool:
 func _start_cooldown(action: String, duration: float) -> void:
 	cooldowns[action] = duration
 
-func apply_character_stats() -> void:
+func apply_character_stats():
 	var char_id = equipped_killer if is_Killer else equipped_survivor
 	var char_data = CharData.get_killer(char_id) if is_Killer else CharData.get_survivor(char_id)
 
