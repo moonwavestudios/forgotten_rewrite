@@ -524,8 +524,12 @@ func _update_chase_music() -> void:
 
 func _on_chase_state_changed(chasing: bool) -> void:
 	if chasing:
+		var chase_path = active_music.get("chase", "")
+		if chase_path == "":
+			push_warning("No chase music path set for this killer.")
+			return
 		if not $Chase_Theme.playing:
-			$Chase_Theme.stream = load(active_music.get("chase", ""))
+			$Chase_Theme.stream = load(chase_path)
 			$Chase_Theme.play()
 	else:
 		$Chase_Theme.stop()
