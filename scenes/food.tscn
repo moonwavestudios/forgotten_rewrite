@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cmsdta37ccwag"]
 
+[ext_resource type="Script" uid="uid://dc2jgjher7iry" path="res://scripts/food.gd" id="1_xven1"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_2glmo"]
 radius = 25.0
 
@@ -7,6 +9,7 @@ radius = 25.0
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
 
 [node name="Area2D" type="Area2D" unique_id=1175042671]
+script = ExtResource("1_xven1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1015093989]
 shape = SubResource("CircleShape2D_2glmo")
@@ -15,3 +18,5 @@ shape = SubResource("CircleShape2D_2glmo")
 position = Vector2(0, -3.8146973e-06)
 scale = Vector2(0.4140625, 0.375)
 texture = SubResource("CompressedTexture2D_2glmo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

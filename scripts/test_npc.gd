@@ -117,6 +117,9 @@ func _update_chase_music() -> void:
 		_in_chase = false
 		_on_chase_state_changed(false)
 
+func _refresh_abilities() -> void:
+	pass
+
 func _on_chase_state_changed(chasing: bool) -> void:
 	if chasing:
 		if not $Chase_Theme.playing:
