@@ -144,6 +144,7 @@ grow_vertical = 2
 script = ExtResource("1_an3gc")
 
 [node name="GameStuff" type="Control" parent="." unique_id=1666905990]
+visible = false
 anchors_preset = 0
 offset_right = 1153.0
 offset_bottom = 650.0
