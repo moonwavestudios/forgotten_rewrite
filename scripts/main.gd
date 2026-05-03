@@ -116,8 +116,9 @@ func start_round():
 		player.in_round = true
 		player.apply_character_stats()
 		player._refresh_abilities()
-		player.get_node("snake").hide()
-		player.get_node("snake").end_game()
+		if player.has_node("snake"):
+			player.get_node("snake").hide()
+			player.get_node("snake").end_game()
 		player.current_speed = player.WALK_SPEED
 		
 	for plr_num in get_player_count():

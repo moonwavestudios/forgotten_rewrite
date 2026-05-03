@@ -419,14 +419,6 @@ func _physics_process(delta: float) -> void:
 		var item = has_items[1]
 		selected_item = item
 	
-	if Input.is_action_just_pressed("unlock_mouse"):
-		if mouse_unlocked:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			mouse_unlocked = false
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-			mouse_unlocked = true
-	
 	if Input.is_action_just_pressed("ChangeCam"):
 		cam = not cam
 		if cam:
@@ -610,6 +602,14 @@ func _input(event: InputEvent) -> void:
 		pitch = clamp(pitch, deg_to_rad(-80), deg_to_rad(80))
 		camera.rotation.x = pitch
 		first_person_cam.rotation.x = pitch
+		
+	if event.is_action_pressed("unlock_mouse"):
+		if mouse_unlocked:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			mouse_unlocked = false
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+			mouse_unlocked = true
 
 func apply_effect(effect, level):
 	Effect_Component.activate_effect(effect, level)

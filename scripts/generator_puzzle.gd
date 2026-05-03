@@ -4,7 +4,7 @@ signal progress_changed(new_value: float)
 signal minigame_completed
 signal minigame_failed
 
-@onready var player = $"../../.."
+@onready var player = $"../../../.."
 
 const APPROACH_DURATION  := 1.2
 const SPAWN_INTERVAL_MIN := 0.7
@@ -29,7 +29,7 @@ var _spawn_timer : float = 0.0
 var _next_spawn  : float = 0.0
 var _running     : bool  = false
 
-@onready var _bar : ProgressBar = $ProgressBar
+@onready var _bar : ProgressBar = $"../ProgressBar"
 
 func _ready() -> void:
 	_bar.min_value = 0.0
@@ -165,19 +165,19 @@ func _set_progress(v: float) -> void:
 		_clear_all()
 		queue_redraw()
 		emit_signal("minigame_completed")
-		visible = false
+		$"..".visible = false
 
 func _draw() -> void:
 	var now := Time.get_ticks_msec() / 1000.0
 	for c in _circles:
 		var elapsed : float  = now - c["t"]
 		var t       : float  = clampf(elapsed / APPROACH_DURATION, 0.0, 1.0)
-		var alpha   : float  = clampf(elapsed / 0.12, 0.0, 1.0)
+		#var alpha   : float  = clampf(elapsed / 0.12, 0.0, 1.0)
 		var pos     : Vector2 = c["pos"]
 
 		var ring_r := lerpf(circle_radius * 2.8, circle_radius, t)
 		var col    := ring_color
-		col.a      *= alpha
+		#col.a      *= alpha
 		draw_arc(pos, ring_r, 0.0, TAU, 64, col, 2.5, true)
 
 func _remove_circle(c: Dictionary) -> void:

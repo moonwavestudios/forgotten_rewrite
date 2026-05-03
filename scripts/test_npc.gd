@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 const SPEED = 5.0
+var WALK_SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var current_speed = 5.0
 
@@ -131,7 +132,7 @@ func _on_chase_state_changed(chasing: bool) -> void:
 func apply_character_stats():
 	print("stuff")
 
-func grant(amountXP: int, amountCoins: int, maliceAmount: int, text: String) -> void:
+func grant(_amountXP: int, _amountCoins: int, _maliceAmount: int, _text: String) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:

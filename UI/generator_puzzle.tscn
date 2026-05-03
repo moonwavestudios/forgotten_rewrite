@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dkqu2g6flgb52"]
 
 [ext_resource type="Script" uid="uid://bg0sua2iqvdyo" path="res://scripts/generator_puzzle.gd" id="1_8b6nt"]
+[ext_resource type="Texture2D" uid="uid://cp7cwl8ok36gw" path="res://assets/images/note.png" id="2_a7ijp"]
 
 [node name="GeneratorPuzzle" type="Control" unique_id=907800241]
 layout_mode = 3
@@ -9,7 +10,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_8b6nt")
 
 [node name="Panel" type="Panel" parent="." unique_id=2072415685]
 layout_mode = 0
@@ -27,3 +27,6 @@ offset_bottom = 641.0
 anchors_preset = 0
 offset_right = 1154.0
 offset_bottom = 614.0
+script = ExtResource("1_8b6nt")
+circle_texture = ExtResource("2_a7ijp")
+ring_color = Color(1, 1, 1, 1)
