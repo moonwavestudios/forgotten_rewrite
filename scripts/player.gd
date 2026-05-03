@@ -26,7 +26,7 @@ var is_emoting: bool = false
 var current_emote: String = ""
 
 var malice: int = -100
-var is_Killer = false
+@export var is_Killer = false
 
 var xp = 0
 var blocks = 0

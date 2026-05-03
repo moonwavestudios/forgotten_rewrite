@@ -179,7 +179,7 @@ func _await_lms_load(stream_path: String, duration: float) -> void:
 		if status == ResourceLoader.THREAD_LOAD_LOADED:
 			var stream = ResourceLoader.load_threaded_get(stream_path)
 			$LMS.stream = stream
-			AudioServer.set_bus_volume_db(1, 0)
+			AudioServer.set_bus_volume_db(1, -100)
 			$LMS.play()
 			print("LMS playing: ", $LMS.playing, " | Duration: ", duration)
 			

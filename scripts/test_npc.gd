@@ -131,7 +131,7 @@ func _on_chase_state_changed(chasing: bool) -> void:
 func apply_character_stats():
 	print("stuff")
 
-func grant(_amountXP: int, _amountCoins: int, _text: String) -> void:
+func grant(amountXP: int, amountCoins: int, maliceAmount: int, text: String) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
