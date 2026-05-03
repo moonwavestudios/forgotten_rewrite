@@ -2,17 +2,19 @@ extends Control
 
 var player_label = preload("res://UI/stuff/player_list_players.tscn")
 
+var selected_player = ""
+
+@onready var player_profile = $SpectatorStuff/PlayerProfile
+
 func _process(_delta: float) -> void:
 	for plr in $"../..".get_players():
 		if $SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer.get_children().size() -1 < $"../..".get_player_count():
 			var scene = player_label.instantiate()
 			$SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer.add_child(scene)
 			scene.text = plr.name
+			scene.name = plr.name
 			scene.get_node("Malice").text = str(plr.malice)
-			
-	for player_lists in $SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer.get_children():
-		if player_lists.name != "Title":
-			player_lists.get_node("Button").pressed.connect(player_lists_button_pressed)
+			scene.get_node("Button").pressed.connect(player_lists_button_pressed.bind(plr.name))
 
 func _on_spin_box_value_changed(value: float) -> void:
 	for plr in $"../..".get_players():
@@ -27,5 +29,16 @@ func _on_give_killer_pressed() -> void:
 			plr._refresh_abilities()
 			plr.is_Killer = true
 
-func player_lists_button_pressed():
-	$SpectatorStuff/PlayerProfile.visible = not $SpectatorStuff/PlayerProfile.visible
+func player_lists_button_pressed(player_name: String):
+	for plr in $"../..".get_players():
+		if plr.name == player_name:
+			if selected_player == player_name:
+				player_profile.visible = not player_profile.visible
+				selected_player = ""
+			else:
+				player_profile.visible = true
+				selected_player = player_name
+			player_profile.get_node("Label").text = plr.name + "'s Profile"
+			# player_profile.get_node("Malice").text = str(plr.malice)
+			# player_profile.get_node("Coins").text = str(plr.coins)
+	
