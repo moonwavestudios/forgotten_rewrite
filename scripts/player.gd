@@ -21,6 +21,8 @@ const CHASE_SCAN_INTERVAL = 0.2
 var _in_chase: bool = false
 var _chase_scan_timer: float = 0.0
 
+var move_cam = true
+
 var equipped_emotes: Array = []
 var is_emoting: bool = false
 var current_emote: String = ""
@@ -596,7 +598,7 @@ func _consume_use(ability_data: Dictionary) -> void:
 func _input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():
 		return
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and move_cam:
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 		pitch -= event.relative.y * MOUSE_SENSITIVITY
 		pitch = clamp(pitch, deg_to_rad(-80), deg_to_rad(80))

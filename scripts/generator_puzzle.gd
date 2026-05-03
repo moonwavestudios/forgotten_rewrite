@@ -166,18 +166,20 @@ func _set_progress(v: float) -> void:
 		queue_redraw()
 		emit_signal("minigame_completed")
 		$"..".visible = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		player.move_cam = true
 
 func _draw() -> void:
 	var now := Time.get_ticks_msec() / 1000.0
 	for c in _circles:
 		var elapsed : float  = now - c["t"]
 		var t       : float  = clampf(elapsed / APPROACH_DURATION, 0.0, 1.0)
-		#var alpha   : float  = clampf(elapsed / 0.12, 0.0, 1.0)
+		
 		var pos     : Vector2 = c["pos"]
 
 		var ring_r := lerpf(circle_radius * 2.8, circle_radius, t)
 		var col    := ring_color
-		#col.a      *= alpha
+		
 		draw_arc(pos, ring_r, 0.0, TAU, 64, col, 2.5, true)
 
 func _remove_circle(c: Dictionary) -> void:
