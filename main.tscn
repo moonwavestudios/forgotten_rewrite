@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cgthlwbfyq6e4" path="res://scripts/generator.gd" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://i5mm30dajmqt" path="res://scenes/test_npc.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://yrxjvjqwhqp3" path="res://assets/items/medkit.tscn" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://054dosa3vsef" path="res://assets/maps/map_1.tscn" id="8_dg77c"]
 [ext_resource type="Script" uid="uid://bf0n2l0jmc1uw" path="res://scripts/medkit.gd" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://pkbv0nafatbv" path="res://assets/items/cola.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cmfedteam6p8t" path="res://scenes/cutscenes.tscn" id="11_efxa6"]
@@ -56,6 +57,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9373124, 1.2592936, 5.44561
 hitbox_attack = "survivor"
 
 [node name="game" type="Node3D" parent="." unique_id=819722603]
+
+[node name="Map1" parent="game" unique_id=81144003 instance=ExtResource("8_dg77c")]
 
 [node name="FileDialog" type="FileDialog" parent="." unique_id=1882386049]
 oversampling_override = 1.0

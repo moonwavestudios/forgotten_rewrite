@@ -1,10 +1,38 @@
 extends Control
-
 var player_label = preload("res://UI/stuff/player_list_players.tscn")
-
 var selected_player = ""
-
 @onready var player_profile = $SpectatorStuff/PlayerProfile
+@onready var player_list = $SpectatorStuff/PlayerList
+
+var is_list_visible = true
+var tween: Tween
+
+func _ready() -> void:
+	player_list.visible = true
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("PlayerList"):
+		toggle_player_list()
+
+func toggle_player_list() -> void:
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+
+	var hidden_x = player_list.position.x + player_list.size.x
+	var visible_x = 838.0
+
+	if is_list_visible:
+		tween.tween_property(player_list, "position:x", hidden_x, 0.3)
+		tween.tween_callback(func(): player_list.visible = false)
+	else:
+		player_list.position.x = hidden_x
+		player_list.visible = true
+		tween.tween_property(player_list, "position:x", visible_x, 0.3)
+
+	is_list_visible = not is_list_visible
 
 func _process(_delta: float) -> void:
 	var human_players = $"../..".get_players().filter(func(p): return not p.is_in_group("AI"))
@@ -21,7 +49,7 @@ func _on_spin_box_value_changed(value: float) -> void:
 	for plr in $"../..".get_players():
 		if plr.name == $Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins/LineEdit.text:
 			plr.give_coins(value)
-	
+
 func _on_give_killer_pressed() -> void:
 	for plr in $"../..".get_players():
 		if plr.name == $Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller/LineEdit.text:
