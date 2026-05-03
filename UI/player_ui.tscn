@@ -9,7 +9,6 @@
 [ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="4_qf5vc"]
 [ext_resource type="PackedScene" uid="uid://dkqu2g6flgb52" path="res://UI/generator_puzzle.tscn" id="6_an3gc"]
 [ext_resource type="Script" uid="uid://gdf6btqkngx2" path="res://scripts/inventory.gd" id="6_xmsn8"]
-[ext_resource type="Texture2D" uid="uid://cp7cwl8ok36gw" path="res://assets/images/note.png" id="7_byocv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
 font = ExtResource("4_qf5vc")
@@ -144,6 +143,7 @@ grow_vertical = 2
 script = ExtResource("1_an3gc")
 
 [node name="GameStuff" type="Control" parent="." unique_id=1666905990]
+visible = false
 anchors_preset = 0
 offset_right = 1153.0
 offset_bottom = 650.0
@@ -428,7 +428,6 @@ vertical_alignment = 1
 [node name="GeneratorPuzzle" parent="GameStuff" unique_id=907800241 instance=ExtResource("6_an3gc")]
 visible = false
 layout_mode = 1
-circle_texture = ExtResource("7_byocv")
 
 [node name="SpectatorStuff" type="Control" parent="." unique_id=2023826759]
 anchors_preset = 0

@@ -35,15 +35,27 @@ func toggle_player_list() -> void:
 	is_list_visible = not is_list_visible
 
 func _process(_delta: float) -> void:
-	var human_players = $"../..".get_players().filter(func(p): return not p.is_in_group("AI"))
+	var human_players = $"../..".get_players().filter(
+		func(p): return not p.is_in_group("AI")
+	)
+
+	var container = $SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer
+
 	for plr in human_players:
-		if $SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer.get_children().size() -1 < human_players.size():
-			var scene = player_label.instantiate()
-			$SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer.add_child(scene)
-			scene.text = plr.name
-			scene.name = plr.name
-			scene.get_node("Malice").text = str(plr.malice)
-			scene.get_node("Button").pressed.connect(player_lists_button_pressed.bind(plr.name))
+		var entry
+
+		if container.has_node(NodePath(plr.name)):
+			entry = container.get_node(NodePath(plr.name))
+		else:
+			entry = player_label.instantiate()
+			entry.name = plr.name
+			entry.text = plr.name
+			container.add_child(entry)
+			entry.get_node("Button").pressed.connect(
+				player_lists_button_pressed.bind(plr.name)
+			)
+
+		entry.get_node("Malice").text = str(plr.malice)
 
 func _on_spin_box_value_changed(value: float) -> void:
 	for plr in $"../..".get_players():
