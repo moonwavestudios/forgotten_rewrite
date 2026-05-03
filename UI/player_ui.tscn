@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dubh45kls01xa" path="res://UI/stuff/ShopButton.tscn" id="4_b8q8m"]
 [ext_resource type="Script" uid="uid://cceui5vh4mesy" path="res://scripts/shop.gd" id="4_ccqt3"]
 [ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="4_qf5vc"]
+[ext_resource type="PackedScene" uid="uid://dkqu2g6flgb52" path="res://UI/generator_puzzle.tscn" id="6_an3gc"]
 [ext_resource type="Script" uid="uid://gdf6btqkngx2" path="res://scripts/inventory.gd" id="6_xmsn8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
@@ -142,7 +143,6 @@ grow_vertical = 2
 script = ExtResource("1_an3gc")
 
 [node name="GameStuff" type="Control" parent="." unique_id=1666905990]
-visible = false
 anchors_preset = 0
 offset_right = 1153.0
 offset_bottom = 650.0
@@ -404,14 +404,6 @@ label_settings = SubResource("LabelSettings_xmsn8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GeneratorPuzzle" type="Control" parent="GameStuff" unique_id=1736992980]
-visible = false
-anchors_preset = 0
-offset_left = 64.0
-offset_top = 35.0
-offset_right = 1109.0
-offset_bottom = 614.0
-
 [node name="RoundTimer" type="Panel" parent="GameStuff" unique_id=217347492]
 visible = false
 layout_mode = 0
@@ -431,6 +423,9 @@ text = "4:00"
 label_settings = SubResource("LabelSettings_qf5vc")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="GeneratorPuzzle" parent="GameStuff" unique_id=907800241 instance=ExtResource("6_an3gc")]
+layout_mode = 1
 
 [node name="SpectatorStuff" type="Control" parent="." unique_id=2023826759]
 anchors_preset = 0

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dkqu2g6flgb52"]
+
+[ext_resource type="Script" uid="uid://bg0sua2iqvdyo" path="res://scripts/generator_puzzle.gd" id="1_8b6nt"]
+
+[node name="GeneratorPuzzle" type="Control" unique_id=907800241]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8b6nt")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=411731862]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 614.0
+offset_right = 878.0
+offset_bottom = 641.0
+
+[node name="HitCircleLayer" type="Control" parent="." unique_id=1852869398]
+anchors_preset = 0
+offset_right = 1154.0
+offset_bottom = 614.0
