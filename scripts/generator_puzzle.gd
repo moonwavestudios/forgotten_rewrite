@@ -49,6 +49,9 @@ func stop() -> void:
 	_running = false
 	_clear_all()
 	queue_redraw()
+	$"..".visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	player.move_cam = true
 
 func _process(delta: float) -> void:
 	if not _running:
@@ -165,9 +168,7 @@ func _set_progress(v: float) -> void:
 		_clear_all()
 		queue_redraw()
 		emit_signal("minigame_completed")
-		$"..".visible = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		player.move_cam = true
+		stop()
 
 func _draw() -> void:
 	var now := Time.get_ticks_msec() / 1000.0

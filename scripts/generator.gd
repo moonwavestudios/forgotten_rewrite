@@ -8,3 +8,4 @@ func _on_interacted(interactor: Node) -> void:
 	interactor.get_node("player_ui/GameStuff/GeneratorPuzzle/HitCircleLayer").start()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	interactor.move_cam = false
+	interactor.current_speed = 0
