@@ -621,7 +621,7 @@ func give_coins(amount):
 	coins += amount
 	save_data.set_coins(coins)
 
-func grant(amountXP: int, amountCoins: int, text: String) -> void:
+func grant(amountXP: int, amountCoins: int, maliceAmount: int, text: String) -> void:
 	var notificationsText = preload("res://scenes/other/notifications_text.tscn")
 	var notifications = notificationsText.instantiate()
 
@@ -632,6 +632,9 @@ func grant(amountXP: int, amountCoins: int, text: String) -> void:
 
 	coins += amountCoins
 	save_data.set_coins(coins)
+	
+	malice += maliceAmount
+	save_data.set_malice(malice)
 
 	notifications.text = text + ": +" + str(amountCoins) + " Coins +" + str(amountXP) + " EXP"
 	$player_ui/GameStuff/Notifications.add_child(notifications)

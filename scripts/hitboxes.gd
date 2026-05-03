@@ -25,7 +25,7 @@ func _on_body_entered(body: Node3D) -> void:
 				actual_damage = damage * body.weakness
 			if body.blocking:
 				actual_damage = actual_damage * 0.5  
-				body.grant(15, 25, "Successful block")
+				body.grant(15, 25, 1, "Successful block")
 				body.current_speed = body.WALK_SPEED
 				body.blocking = false
 				body.usingAbility = false
@@ -49,7 +49,7 @@ func _on_body_entered(body: Node3D) -> void:
 		hit_flag.append(true)
 		body.apply_stun(3)
 		if og_plr:
-			og_plr.grant(45, 35, "Stunned the killer")
+			og_plr.grant(45, 35, 5, "Stunned the killer")
 
 		_turn_green()
 

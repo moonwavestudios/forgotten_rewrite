@@ -115,7 +115,7 @@ func _activate_ability(ability: String) -> void:
 				$"../SFX".play()
 				await get_tree().create_timer(0.05).timeout
 			else:
-				$"..".grant(10, 20, "Nice try")
+				$"..".grant(10, 20, 1, "Nice try")
 				$"../SFX".stream = nothingSFX
 				$"../SFX".play()
 		else:
@@ -317,7 +317,7 @@ func _activate_ability(ability: String) -> void:
 				var original_speed = grabbed_player.current_speed
 				grabbed_player.current_speed = 0
 				
-				$"..".grant(25, 35, "Hit the grab")
+				$"..".grant(25, 35, 0, "Hit the grab")
 				
 				for i in range(6):
 					if not is_instance_valid(grabbed_player) or grabbed_player.health <= 0:

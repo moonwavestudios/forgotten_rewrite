@@ -4,6 +4,8 @@ signal progress_changed(new_value: float)
 signal minigame_completed
 signal minigame_failed
 
+@onready var player = $"../../.."
+
 const APPROACH_DURATION  := 1.2
 const SPAWN_INTERVAL_MIN := 0.7
 const SPAWN_INTERVAL_MAX := 1.4
@@ -65,7 +67,6 @@ func _process(delta: float) -> void:
 		var elapsed : float = now - c["t"]
 		var alpha   : float = clampf(elapsed / 0.12, 0.0, 1.0)
 
-		# Fade sprite in
 		if c["sprite"] != null:
 			var col := circle_modulate
 			col.a   *= alpha
@@ -160,9 +161,11 @@ func _set_progress(v: float) -> void:
 	emit_signal("progress_changed", _progress)
 	if _progress >= 1.0:
 		_running = false
+		player.grant(15, 25, 3, "Completed a generator")
 		_clear_all()
 		queue_redraw()
 		emit_signal("minigame_completed")
+		visible = false
 
 func _draw() -> void:
 	var now := Time.get_ticks_msec() / 1000.0
@@ -181,7 +184,6 @@ func _remove_circle(c: Dictionary) -> void:
 	if c["sprite"] != null and is_instance_valid(c["sprite"]):
 		c["sprite"].queue_free()
 	_circles.erase(c)
-
 
 func _clear_all() -> void:
 	for c in _circles:
