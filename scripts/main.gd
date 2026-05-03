@@ -87,6 +87,9 @@ func get_player_count() -> int:
 	
 func get_players():
 	return get_tree().get_nodes_in_group("players")
+	
+func get_npcs():
+	return get_tree().get_nodes_in_group("AI")
 
 func start_intermission() -> void:
 	$Intermission.start(30)

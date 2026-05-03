@@ -7,8 +7,9 @@ var selected_player = ""
 @onready var player_profile = $SpectatorStuff/PlayerProfile
 
 func _process(_delta: float) -> void:
-	for plr in $"../..".get_players():
-		if $SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer.get_children().size() -1 < $"../..".get_player_count():
+	var human_players = $"../..".get_players().filter(func(p): return not p.is_in_group("AI"))
+	for plr in human_players:
+		if $SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer.get_children().size() -1 < human_players.size():
 			var scene = player_label.instantiate()
 			$SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer.add_child(scene)
 			scene.text = plr.name
@@ -39,6 +40,11 @@ func player_lists_button_pressed(player_name: String):
 				player_profile.visible = true
 				selected_player = player_name
 			player_profile.get_node("Label").text = plr.name + "'s Profile"
-			# player_profile.get_node("Malice").text = str(plr.malice)
-			# player_profile.get_node("Coins").text = str(plr.coins)
-	
+			_update_profile_playtime(plr)
+
+func _update_profile_playtime(plr) -> void:
+	var pt_total = int(plr.playtime_seconds)
+	var pt_h = pt_total / 3600
+	var pt_m = (pt_total % 3600) / 60
+	var pt_s = pt_total % 60
+	player_profile.get_node("Label2").text = "%02d:%02d:%02d" % [pt_h, pt_m, pt_s]

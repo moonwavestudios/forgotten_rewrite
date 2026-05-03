@@ -86,6 +86,17 @@ func has_skin(character_id: String, skin_id: String) -> bool:
 	var owned = get_owned_skins()
 	return owned.get(character_id, []).has(skin_id)
 
+func get_playtime(character_id: String) -> float:
+	var data = _load_all()
+	return data.get("character_playtime", {}).get(character_id, 0.0)
+
+func add_playtime(character_id: String, seconds: float) -> void:
+	var data = _load_all()
+	if not data.has("character_playtime"):
+		data["character_playtime"] = {}
+	data["character_playtime"][character_id] = data["character_playtime"].get(character_id, 0.0) + seconds
+	_save_all(data)
+
 func get_equipped_skin(character_id: String) -> String:
 	var data = _load_all()
 	return data.get("equipped_skins", {}).get(character_id, "default")

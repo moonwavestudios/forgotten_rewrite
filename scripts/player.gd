@@ -8,6 +8,10 @@ const MOUSE_SENSITIVITY = 0.003
 
 var mouse_unlocked = false
 
+var playtime_seconds: float = 0.0
+var _playtime_save_timer: float = 0.0
+const PLAYTIME_SAVE_INTERVAL: float = 60.0
+
 var stun_resistant: bool = false
 var stun_resistance_time: float = 0.0
 
@@ -131,12 +135,28 @@ func _ready() -> void:
 	var xp_char_id = equipped_killer if is_Killer else equipped_survivor
 	xp = save_data.get_character_xp(xp_char_id)
 	
+	var pt_char_id = equipped_killer if is_Killer else equipped_survivor
+	playtime_seconds = save_data.get_playtime(pt_char_id)
+	
 	AdminButton.pressed.connect(_on_admin_button_pressed)
 
 func _process(delta: float) -> void:
 	for key in cooldowns:
 		if cooldowns[key] > 0.0:
 			cooldowns[key] = max(0.0, cooldowns[key] - delta)
+			
+	playtime_seconds += delta
+	_playtime_save_timer += delta
+	if _playtime_save_timer >= PLAYTIME_SAVE_INTERVAL:
+		_playtime_save_timer = 0.0
+		var pt_char_id = equipped_killer if is_Killer else equipped_survivor
+		save_data.add_playtime(pt_char_id, PLAYTIME_SAVE_INTERVAL) 
+		
+func _save_playtime() -> void:
+	var unflushed = fmod(playtime_seconds, PLAYTIME_SAVE_INTERVAL)
+	if unflushed > 0.0:
+		var pt_char_id = equipped_killer if is_Killer else equipped_survivor
+		save_data.add_playtime(pt_char_id, unflushed)
 
 func play_hitsound():
 	if is_multiplayer_authority():
@@ -646,6 +666,10 @@ func apply_stun(duration: float) -> void:
 
 func _on_admin_button_pressed() -> void:
 	$"player_ui/Both/Admin_Panel".visible = not $"player_ui/Both/Admin_Panel".visible
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_EXIT_TREE:
+		_save_playtime()
 
 func abilityTimer_timeout():
 	usingAbility = false

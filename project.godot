@@ -39,6 +39,7 @@ generator=""
 players=""
 arcade=""
 interactors=""
+AI=""
 
 [input]
 
