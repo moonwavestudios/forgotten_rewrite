@@ -9,6 +9,10 @@ func _process(_delta: float) -> void:
 			$SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer.add_child(scene)
 			scene.text = plr.name
 			scene.get_node("Malice").text = str(plr.malice)
+			
+	for player_lists in $SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer.get_children():
+		if player_lists.name != "Title":
+			player_lists.get_node("Button").pressed.connect(player_lists_button_pressed)
 
 func _on_spin_box_value_changed(value: float) -> void:
 	for plr in $"../..".get_players():
@@ -22,3 +26,6 @@ func _on_give_killer_pressed() -> void:
 			plr.apply_skin(plr.equipped_skin_id)
 			plr._refresh_abilities()
 			plr.is_Killer = true
+
+func player_lists_button_pressed():
+	$SpectatorStuff/PlayerProfile.visible = not $SpectatorStuff/PlayerProfile.visible

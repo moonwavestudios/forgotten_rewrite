@@ -33,6 +33,10 @@ volume_db = 3.0
 wait_time = 30.0
 one_shot = true
 
+[node name="RoundTimer" type="Timer" parent="." unique_id=1918142398]
+wait_time = 258.0
+one_shot = true
+
 [node name="LMSTimer" type="Timer" parent="." unique_id=602904147]
 wait_time = 30.0
 one_shot = true
@@ -71,5 +75,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.894238, 0.48427892, -11.017
 [node name="Cutscenes" parent="." unique_id=1809281127 instance=ExtResource("11_efxa6")]
 
 [connection signal="timeout" from="Intermission" to="." method="_on_intermission_timeout"]
+[connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
 [connection signal="timeout" from="LMSTimer" to="." method="_on_intermission_timeout"]
 [connection signal="timeout" from="IdleVoicelineTimer" to="." method="_on_idle_voiceline_timer_timeout"]

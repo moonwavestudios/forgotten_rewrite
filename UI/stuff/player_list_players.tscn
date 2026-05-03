@@ -22,3 +22,9 @@ text = "0"
 label_settings = SubResource("LabelSettings_byocv")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=257964084]
+layout_mode = 0
+offset_right = 282.0
+offset_bottom = 34.0
+flat = true

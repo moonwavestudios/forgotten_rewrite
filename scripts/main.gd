@@ -7,6 +7,8 @@ var lms_started = false
 
 var sentinel_nerf_active: bool = false
 
+var round_time = 258
+
 func get_sentinel_count() -> int:
 	var count = 0
 	for player in get_players():
@@ -115,6 +117,10 @@ func start_round():
 		player.get_node("snake").end_game()
 		player.current_speed = player.WALK_SPEED
 		
+	for plr_num in get_player_count():
+		if plr_num == 1:
+			start_outro()
+		
 	if most_malicious_player != null:
 		most_malicious_player.is_Killer = true
 		most_malicious_player.get_node("Voiceline_Component").play_intro()
@@ -159,12 +165,10 @@ func start_lms(killer: String, survivor: String = "") -> void:
 	_await_lms_load(stream_path, duration)
 
 func start_intro():
-	pass
-	## this is gonna be used to start the intro
+	$Cutscenes/IntroCam.current = true
 	
 func start_outro():
-	pass
-	## this is gonna be used to start the outro
+	$Cutscenes/IntroCam.current = true
 
 func _await_lms_load(stream_path: String, duration: float) -> void:
 	while true:
@@ -215,3 +219,7 @@ func get_chase_theme(killer: String):
 
 func _on_intermission_timeout() -> void:
 	start_round()
+	start_intro()
+
+func _on_round_timer_timeout() -> void:
+	print("round ended")

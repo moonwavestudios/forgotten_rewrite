@@ -931,6 +931,56 @@ offset_right = 548.5
 offset_bottom = 43.0
 allow_greater = true
 
+[node name="GiveMalice" type="Control" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer" unique_id=898542358]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveMalice" unique_id=1054532024]
+layout_mode = 0
+offset_right = 177.0
+offset_bottom = 45.0
+text = "GIVE MALICE:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveMalice" unique_id=2075597915]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 2.0
+offset_right = 484.0
+offset_bottom = 47.0
+text = "AMOUNT:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveMalice" unique_id=1214929624]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 9.0
+offset_right = 335.0
+offset_bottom = 40.0
+placeholder_text = "USERNAME"
+
+[node name="SpinBox" type="SpinBox" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveMalice" unique_id=658839692]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 10.0
+offset_right = 564.5
+offset_bottom = 41.0
+allow_greater = true
+
+[node name="GiveMalice" type="Button" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveMalice" unique_id=1164358332]
+layout_mode = 0
+offset_left = 572.0
+offset_top = 7.0
+offset_right = 684.0
+offset_bottom = 44.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 23
+text = "GIVE"
+
 [node name="MakeKiller" type="Control" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer" unique_id=928664562]
 layout_mode = 2
 
@@ -969,6 +1019,17 @@ offset_bottom = 47.0
 icon = ExtResource("2_nplvd")
 flat = true
 expand_icon = true
+
+[node name="Other" type="Control" parent="." unique_id=1023339228]
+visible = false
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 652.0
+
+[node name="Panel" type="Panel" parent="Other" unique_id=1868512066]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 649.0
 
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/BuyButton" to="SpectatorStuff/Shop" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/SkinsButton" to="SpectatorStuff/Shop" method="_on_skins_button_pressed"]
