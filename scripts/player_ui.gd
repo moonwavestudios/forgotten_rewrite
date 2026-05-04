@@ -11,6 +11,9 @@ func _ready() -> void:
 	PlayerSettings._load()
 	player_list.visible = true
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox.button_pressed = PlayerSettings.show_hitboxes
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound/EnableKillsound.button_pressed = PlayerSettings.enabled_killsound
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable.button_pressed = PlayerSettings.enabled_hitsound
+	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("PlayerList"):
@@ -97,4 +100,13 @@ func _on_settings_pressed() -> void:
 func _on_enable_hitbox_toggled(toggled_on: bool) -> void:
 	PlayerSettings.show_hitboxes = toggled_on
 	PlayerSettings.save()
-	print(str(PlayerSettings.show_hitboxes))
+
+
+func _on_enable_killsound_toggled(toggled_on: bool) -> void:
+	PlayerSettings.enabled_killsound = toggled_on
+	PlayerSettings.save()
+
+
+func _on_hitsounds_enable_toggled(toggled_on: bool) -> void:
+	PlayerSettings.enabled_hitsound = toggled_on
+	PlayerSettings.save()

@@ -871,7 +871,6 @@ icon = ExtResource("10_byocv")
 expand_icon = true
 
 [node name="Settings_Panel" type="Panel" parent="SpectatorStuff" unique_id=1835794585]
-visible = false
 layout_mode = 0
 offset_left = 176.0
 offset_top = 56.0
@@ -1085,7 +1084,7 @@ label_settings = SubResource("LabelSettings_an3gc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds" unique_id=1350533470]
+[node name="HitsoundsEnable" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds" unique_id=1350533470]
 layout_mode = 0
 offset_left = 236.0
 offset_top = 14.0
@@ -1116,7 +1115,7 @@ label_settings = SubResource("LabelSettings_an3gc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound" unique_id=211089262]
+[node name="EnableKillsound" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound" unique_id=211089262]
 layout_mode = 0
 offset_left = 247.0
 offset_top = 14.0
@@ -1357,6 +1356,8 @@ offset_bottom = 649.0
 [connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/EquipButton" to="SpectatorStuff/Inventory" method="_on_equip_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/SkinsButton" to="SpectatorStuff/Inventory" method="_on_skins_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Settings" to="." method="_on_settings_pressed"]
+[connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable" to="." method="_on_hitsounds_enable_toggled"]
+[connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound/EnableKillsound" to="." method="_on_enable_killsound_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox" to="." method="_on_enable_hitbox_toggled"]
 [connection signal="value_changed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins/SpinBox" to="." method="_on_spin_box_value_changed"]
 [connection signal="pressed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller/GiveKiller" to="." method="_on_give_killer_pressed"]
