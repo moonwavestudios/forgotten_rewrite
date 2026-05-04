@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dkqu2g6flgb52" path="res://UI/generator_puzzle.tscn" id="6_an3gc"]
 [ext_resource type="Script" uid="uid://gdf6btqkngx2" path="res://scripts/inventory.gd" id="6_xmsn8"]
 [ext_resource type="Texture2D" uid="uid://cihdyi4bqqose" path="res://assets/images/gear.png" id="10_byocv"]
+[ext_resource type="Texture2D" uid="uid://d2nhyrcgolqcw" path="res://assets/images/shoppingCart.png" id="11_fwocb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
 font = ExtResource("4_qf5vc")
@@ -870,7 +871,26 @@ offset_bottom = 493.0
 icon = ExtResource("10_byocv")
 expand_icon = true
 
+[node name="ShopButton" type="Button" parent="SpectatorStuff" unique_id=1225437735]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 388.0
+offset_right = 51.0
+offset_bottom = 438.0
+icon = ExtResource("11_fwocb")
+expand_icon = true
+
+[node name="InventoryButton" type="Button" parent="SpectatorStuff" unique_id=2001662795]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 333.0
+offset_right = 51.0
+offset_bottom = 383.0
+icon = ExtResource("11_fwocb")
+expand_icon = true
+
 [node name="Settings_Panel" type="Panel" parent="SpectatorStuff" unique_id=1835794585]
+visible = false
 layout_mode = 0
 offset_left = 176.0
 offset_top = 56.0
