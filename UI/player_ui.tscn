@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="4_qf5vc"]
 [ext_resource type="PackedScene" uid="uid://dkqu2g6flgb52" path="res://UI/generator_puzzle.tscn" id="6_an3gc"]
 [ext_resource type="Script" uid="uid://gdf6btqkngx2" path="res://scripts/inventory.gd" id="6_xmsn8"]
+[ext_resource type="Texture2D" uid="uid://cihdyi4bqqose" path="res://assets/images/gear.png" id="10_byocv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
 font = ExtResource("4_qf5vc")
@@ -1016,6 +1017,72 @@ offset_bottom = 47.0
 icon = ExtResource("2_nplvd")
 flat = true
 expand_icon = true
+
+[node name="Settings" type="Button" parent="Both" unique_id=74166167]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 1.0
+offset_right = 108.0
+offset_bottom = 48.0
+icon = ExtResource("10_byocv")
+expand_icon = true
+
+[node name="Settings_Panel" type="Panel" parent="Both" unique_id=1423746514]
+visible = false
+layout_mode = 0
+offset_left = 176.0
+offset_top = 56.0
+offset_right = 973.0
+offset_bottom = 614.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Both/Settings_Panel" unique_id=56186154]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 552.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Both/Settings_Panel/ScrollContainer" unique_id=580980509]
+layout_mode = 2
+theme_override_constants/separation = 46
+
+[node name="Control" type="Control" parent="Both/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1486398316]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Both/Settings_Panel/ScrollContainer/VBoxContainer/Control" unique_id=1666166917]
+layout_mode = 0
+offset_right = 778.0
+offset_bottom = 45.0
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GiveMalice" type="Control" parent="Both/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1674115884]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Both/Settings_Panel/ScrollContainer/VBoxContainer/GiveMalice" unique_id=800327247]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 45.0
+text = "MUSIC VOLUME:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Both/Settings_Panel/ScrollContainer/VBoxContainer/GiveMalice" unique_id=1953029090]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 16.0
+offset_right = 574.0
+offset_bottom = 32.0
+value = 50.0
+
+[node name="LineEdit" type="LineEdit" parent="Both/Settings_Panel/ScrollContainer/VBoxContainer/GiveMalice" unique_id=1118360108]
+layout_mode = 0
+offset_left = 586.0
+offset_top = 8.0
+offset_right = 654.5
+offset_bottom = 39.0
+text = "50"
 
 [node name="Other" type="Control" parent="." unique_id=1023339228]
 visible = false

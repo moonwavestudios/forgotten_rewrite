@@ -29,6 +29,7 @@ script = ExtResource("5_272bh")
 
 [node name="LMS" type="AudioStreamPlayer" parent="." unique_id=419310731]
 volume_db = 3.0
+bus = &"LMS"
 
 [node name="Intermission" type="Timer" parent="." unique_id=1830027606]
 wait_time = 30.0
