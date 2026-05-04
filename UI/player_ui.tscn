@@ -1010,6 +1010,14 @@ label_settings = SubResource("LabelSettings_an3gc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SlashKeybind" type="Button" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash" unique_id=1731309090]
+layout_mode = 0
+offset_left = 207.0
+offset_top = 11.0
+offset_right = 363.0
+offset_bottom = 42.0
+text = "Left Mouse"
+
 [node name="Ability1" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1615076205]
 layout_mode = 2
 
@@ -1021,6 +1029,14 @@ text = "FIRST ABILITY KEYBIND:"
 label_settings = SubResource("LabelSettings_an3gc")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Ability1Keybind" type="Button" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1" unique_id=1941387870]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 10.0
+offset_right = 458.0
+offset_bottom = 41.0
+text = "Q"
 
 [node name="Ability2" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=81523177]
 layout_mode = 2
@@ -1034,6 +1050,14 @@ label_settings = SubResource("LabelSettings_an3gc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Button" type="Button" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability2" unique_id=1915660024]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 10.0
+offset_right = 482.0
+offset_bottom = 41.0
+text = "E"
+
 [node name="Ability3" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1920662969]
 layout_mode = 2
 
@@ -1046,6 +1070,14 @@ label_settings = SubResource("LabelSettings_an3gc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Button" type="Button" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability3" unique_id=767687412]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 11.0
+offset_right = 460.0
+offset_bottom = 42.0
+text = "R"
+
 [node name="Ability4" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1546590633]
 layout_mode = 2
 
@@ -1057,6 +1089,14 @@ text = "FOURTH ABILITY KEYBIND:"
 label_settings = SubResource("LabelSettings_an3gc")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability4" unique_id=1144839296]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 10.0
+offset_right = 480.0
+offset_bottom = 41.0
+text = "T"
 
 [node name="Control3" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=278224982]
 layout_mode = 2
@@ -1356,6 +1396,8 @@ offset_bottom = 649.0
 [connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/EquipButton" to="SpectatorStuff/Inventory" method="_on_equip_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/SkinsButton" to="SpectatorStuff/Inventory" method="_on_skins_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind" to="." method="_on_slash_keybind_pressed"]
+[connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind" to="." method="_on_ability_1_keybind_pressed"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable" to="." method="_on_hitsounds_enable_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound/EnableKillsound" to="." method="_on_enable_killsound_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox" to="." method="_on_enable_hitbox_toggled"]

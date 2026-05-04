@@ -4,20 +4,61 @@ var selected_player = ""
 @onready var player_profile = $SpectatorStuff/PlayerProfile
 @onready var player_list = $SpectatorStuff/PlayerList
 
+var listening_action: String = ""
+var listening_button: Button = null
+
 var is_list_visible = true
+
+var listening_just_started: bool = false
 var tween: Tween
 
 func _ready() -> void:
 	PlayerSettings._load()
+	set_process_unhandled_input(false)
 	player_list.visible = true
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox.button_pressed = PlayerSettings.show_hitboxes
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound/EnableKillsound.button_pressed = PlayerSettings.enabled_killsound
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable.button_pressed = PlayerSettings.enabled_hitsound
 	
-
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind.text = PlayerSettings.get_keybind_label("Attack")
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind.text = PlayerSettings.get_keybind_label("Ability1")
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("PlayerList"):
 		toggle_player_list()
+	
+	if listening_action == "":
+		return
+	
+	var label: String = ""
+	
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ESCAPE:
+			label = PlayerSettings.get_keybind_label(listening_action)
+		else:
+			label = OS.get_keycode_string(event.keycode)
+			PlayerSettings.set_keybind(listening_action, label)
+	elif event is InputEventMouseButton and event.pressed:
+		
+		if not listening_just_started:
+			match event.button_index:
+				MOUSE_BUTTON_LEFT:       label = "LMB"
+				MOUSE_BUTTON_RIGHT:      label = "RMB"
+				MOUSE_BUTTON_MIDDLE:     label = "MMB"
+				MOUSE_BUTTON_WHEEL_UP:   label = "WheelUp"
+				MOUSE_BUTTON_WHEEL_DOWN: label = "WheelDown"
+				_: label = "Mouse%d" % event.button_index
+			PlayerSettings.set_keybind(listening_action, label)
+		else:
+			listening_just_started = false
+			return
+	else:
+		return
+	
+	listening_button.text = label
+	listening_action = ""
+	listening_button = null
+	get_viewport().set_input_as_handled()
 
 func toggle_player_list() -> void:
 	if tween:
@@ -110,3 +151,46 @@ func _on_enable_killsound_toggled(toggled_on: bool) -> void:
 func _on_hitsounds_enable_toggled(toggled_on: bool) -> void:
 	PlayerSettings.enabled_hitsound = toggled_on
 	PlayerSettings.save()
+
+func start_listening(action: String, btn: Button) -> void:
+	if listening_button != null:
+		listening_button.text = PlayerSettings.get_keybind_label(listening_action)
+	listening_action = action
+	listening_button = btn
+	listening_just_started = true
+	btn.text = "..."
+
+func _unhandled_input(event: InputEvent) -> void:
+	if listening_action == "":
+		return
+	
+	var label: String = ""
+	
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ESCAPE:
+			label = PlayerSettings.get_keybind_label(listening_action)
+		else:
+			label = OS.get_keycode_string(event.keycode)
+			PlayerSettings.set_keybind(listening_action, label)
+	elif event is InputEventMouseButton and event.pressed:
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:   label = "LMB"
+			MOUSE_BUTTON_RIGHT:  label = "RMB"
+			MOUSE_BUTTON_MIDDLE: label = "MMB"
+			MOUSE_BUTTON_WHEEL_UP:   label = "WheelUp"
+			MOUSE_BUTTON_WHEEL_DOWN: label = "WheelDown"
+			_: label = "Mouse%d" % event.button_index
+		PlayerSettings.set_keybind(listening_action, label)
+	else:
+		return
+	
+	listening_button.text = label
+	listening_action = ""
+	listening_button = null
+	get_viewport().set_input_as_handled()
+
+func _on_slash_keybind_pressed() -> void:
+	start_listening("Attack", $SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind)
+
+func _on_ability_1_keybind_pressed() -> void:
+	start_listening("Ability1", $SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind)
