@@ -1184,6 +1184,14 @@ label_settings = SubResource("LabelSettings_an3gc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HitsoundSelect" type="Button" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds2" unique_id=434466976]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 8.0
+offset_right = 254.0
+offset_bottom = 39.0
+text = "Choose"
+
 [node name="Killsound" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=29345360]
 layout_mode = 2
 
@@ -1214,6 +1222,14 @@ text = "KILLSOUND:"
 label_settings = SubResource("LabelSettings_an3gc")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="KillsoundSelect" type="Button" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound2" unique_id=873371814]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 8.0
+offset_right = 254.0
+offset_bottom = 39.0
+text = "Choose"
 
 [node name="Control4" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1131431709]
 layout_mode = 2
@@ -1452,6 +1468,7 @@ vertical_alignment = 1
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind" to="." method="_on_slash_keybind_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind" to="." method="_on_ability_1_keybind_pressed"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable" to="." method="_on_hitsounds_enable_toggled"]
+[connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds2/HitsoundSelect" to="." method="_on_hitsound_select_pressed"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound/EnableKillsound" to="." method="_on_enable_killsound_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox" to="." method="_on_enable_hitbox_toggled"]
 [connection signal="value_changed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins/SpinBox" to="." method="_on_spin_box_value_changed"]

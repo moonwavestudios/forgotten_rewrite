@@ -63,7 +63,11 @@ hitbox_attack = "survivor"
 
 [node name="FileDialog" type="FileDialog" parent="." unique_id=1882386049]
 oversampling_override = 1.0
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
 access = 2
+filters = PackedStringArray("*.wav", "*.ogg", "*.mp3")
 
 [node name="IdleVoicelineTimer" type="Timer" parent="." unique_id=645679691]
 wait_time = 45.0

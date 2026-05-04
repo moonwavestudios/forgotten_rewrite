@@ -4,6 +4,9 @@ var selected_player = ""
 @onready var player_profile = $SpectatorStuff/PlayerProfile
 @onready var player_list = $SpectatorStuff/PlayerList
 
+@onready var audio_player = $"../Hitsound"
+@onready var file_dialog = $"../../FileDialog"
+
 var listening_action: String = ""
 var listening_button: Button = null
 
@@ -13,6 +16,8 @@ var listening_just_started: bool = false
 var tween: Tween
 
 func _ready() -> void:
+	file_dialog.filters = ["*.wav,*.ogg,*.mp3 ; Audio Files"]
+	file_dialog.file_selected.connect(_on_file_selected)
 	PlayerSettings._load()
 	set_process_unhandled_input(false)
 	player_list.visible = true
@@ -189,6 +194,31 @@ func _unhandled_input(event: InputEvent) -> void:
 	listening_button = null
 	get_viewport().set_input_as_handled()
 
+func _on_file_selected(path: String):
+	audio_player = get_node_or_null("../Hitsound")
+	if audio_player == null:
+		print("Hitsound node not found!")
+		return
+	var stream: AudioStream
+
+	if path.ends_with(".wav"):
+		var file = FileAccess.open(path, FileAccess.READ)
+		var bytes = file.get_buffer(file.get_length())
+		stream = AudioStreamWAV.new()
+		stream.data = bytes
+	elif path.ends_with(".ogg"):
+		stream = AudioStreamOggVorbis.load_from_file(path)
+	elif path.ends_with(".mp3"):
+		var file = FileAccess.open(path, FileAccess.READ)
+		var bytes = file.get_buffer(file.get_length())
+		stream = AudioStreamMP3.new()
+		stream.data = bytes
+
+	if stream:
+		audio_player.stream = stream
+	else:
+		print("Failed to load audio from: ", path)
+
 func _on_slash_keybind_pressed() -> void:
 	start_listening("Attack", $SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind)
 
@@ -200,3 +230,6 @@ func _on_shop_button_pressed() -> void:
 
 func _on_inventory_button_pressed() -> void:
 	$SpectatorStuff/Inventory.visible = not $SpectatorStuff/Inventory.visible
+
+func _on_hitsound_select_pressed() -> void:
+	file_dialog.popup_centered(Vector2(800, 600))
