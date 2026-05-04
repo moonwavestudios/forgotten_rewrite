@@ -40,3 +40,11 @@ bus = &"Voicelines"
 
 [node name="PassiveComponent" type="Node" parent="." unique_id=1713031641]
 script = ExtResource("6_byner")
+
+[node name="Hitsound" type="AudioStreamPlayer3D" parent="." unique_id=341480685]
+volume_db = -80.0
+bus = &"SFX"
+
+[node name="Killsound" type="AudioStreamPlayer3D" parent="." unique_id=610082459]
+volume_db = -80.0
+bus = &"SFX"

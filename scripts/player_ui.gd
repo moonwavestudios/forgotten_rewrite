@@ -25,8 +25,33 @@ func _ready() -> void:
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound/EnableKillsound.button_pressed = PlayerSettings.enabled_killsound
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable.button_pressed = PlayerSettings.enabled_hitsound
 	
+	_restore_hitsound()
+	
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind.text = PlayerSettings.get_keybind_label("Attack")
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind.text = PlayerSettings.get_keybind_label("Ability1")
+	
+func _restore_hitsound() -> void:
+	var path = PlayerSettings.hitsound
+	if path == "":
+		return
+	audio_player = get_node_or_null("../Hitsound")
+	if audio_player == null:
+		return
+	var stream: AudioStream
+	if path.ends_with(".wav"):
+		var file = FileAccess.open(path, FileAccess.READ)
+		if file == null: return
+		stream = AudioStreamWAV.new()
+		stream.data = file.get_buffer(file.get_length())
+	elif path.ends_with(".ogg"):
+		stream = AudioStreamOggVorbis.load_from_file(path)
+	elif path.ends_with(".mp3"):
+		var file = FileAccess.open(path, FileAccess.READ)
+		if file == null: return
+		stream = AudioStreamMP3.new()
+		stream.data = file.get_buffer(file.get_length())
+	if stream:
+		audio_player.stream = stream
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("PlayerList"):
@@ -216,6 +241,7 @@ func _on_file_selected(path: String):
 
 	if stream:
 		audio_player.stream = stream
+		PlayerSettings.set_hitsound(path)
 	else:
 		print("Failed to load audio from: ", path)
 
