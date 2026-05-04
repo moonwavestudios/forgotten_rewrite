@@ -92,6 +92,5 @@ func _update_profile_playtime(plr) -> void:
 func _on_settings_pressed() -> void:
 	$SpectatorStuff/Settings_Panel.visible = not $SpectatorStuff/Settings_Panel.visible
 
-
 func _on_enable_hitbox_toggled(toggled_on: bool) -> void:
 	PlayerSettings.show_hitboxes = toggled_on

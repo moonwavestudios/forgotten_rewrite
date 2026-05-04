@@ -57,6 +57,15 @@ func set_malice(amount: int) -> void:
 	data["malice"] = amount
 	_save_all(data)
 
+func get_settings() -> Dictionary:
+	var data = _load_all()
+	return data.get("player_settings", {})
+
+func set_settings(settings: Dictionary) -> void:
+	var data = _load_all()
+	data["player_settings"] = settings
+	_save_all(data)
+
 func get_character_xp(character_id: String) -> int:
 	var data = _load_all()
 	return data.get("character_xp", {}).get(character_id, 0)
