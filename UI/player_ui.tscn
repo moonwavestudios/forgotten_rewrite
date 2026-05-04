@@ -128,6 +128,9 @@ font_size = 34
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byocv"]
+bg_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_an3gc"]
 font = ExtResource("4_qf5vc")
 font_size = 24
@@ -858,6 +861,326 @@ label_settings = SubResource("LabelSettings_ixg0m")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Settings" type="Button" parent="SpectatorStuff" unique_id=1809892806]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 443.0
+offset_right = 51.0
+offset_bottom = 493.0
+icon = ExtResource("10_byocv")
+expand_icon = true
+
+[node name="Settings_Panel" type="Panel" parent="SpectatorStuff" unique_id=1835794585]
+visible = false
+layout_mode = 0
+offset_left = 176.0
+offset_top = 56.0
+offset_right = 973.0
+offset_bottom = 614.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/Settings_Panel" unique_id=1897805674]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 552.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SpectatorStuff/Settings_Panel/ScrollContainer" unique_id=80835039]
+layout_mode = 2
+theme_override_constants/separation = 46
+
+[node name="Control" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1284645079]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Control" unique_id=913138118]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 780.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_byocv")
+text = "VOLUME SETTINGS"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolume" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1080508597]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume" unique_id=1682598027]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 45.0
+text = "MUSIC VOLUME:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume" unique_id=1657953201]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 16.0
+offset_right = 574.0
+offset_bottom = 32.0
+value = 50.0
+
+[node name="LineEdit" type="LineEdit" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume" unique_id=1293359685]
+layout_mode = 0
+offset_left = 586.0
+offset_top = 8.0
+offset_right = 654.5
+offset_bottom = 39.0
+text = "50"
+
+[node name="SFXVolume" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=9034956]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/SFXVolume" unique_id=1689929867]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 45.0
+text = "SFX VOLUME:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/SFXVolume" unique_id=706310729]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 16.0
+offset_right = 574.0
+offset_bottom = 32.0
+value = 50.0
+
+[node name="LineEdit" type="LineEdit" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/SFXVolume" unique_id=1367404211]
+layout_mode = 0
+offset_left = 586.0
+offset_top = 8.0
+offset_right = 654.5
+offset_bottom = 39.0
+text = "50"
+
+[node name="VoicelinesVolume" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=105283142]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VoicelinesVolume" unique_id=456486657]
+layout_mode = 0
+offset_right = 258.0
+offset_bottom = 45.0
+text = "VOICELINES VOLUME:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VoicelinesVolume" unique_id=465059719]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 16.0
+offset_right = 624.0
+offset_bottom = 32.0
+value = 50.0
+
+[node name="LineEdit" type="LineEdit" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VoicelinesVolume" unique_id=265346516]
+layout_mode = 0
+offset_left = 636.0
+offset_top = 8.0
+offset_right = 704.5
+offset_bottom = 39.0
+text = "50"
+
+[node name="Control2" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=680504437]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Control2" unique_id=2035749091]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 780.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_byocv")
+text = "KEYBINDS"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slash" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1254757194]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash" unique_id=1474551471]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 45.0
+text = "SLASH KEYBIND:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ability1" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1615076205]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1" unique_id=1480343449]
+layout_mode = 0
+offset_right = 296.0
+offset_bottom = 45.0
+text = "FIRST ABILITY KEYBIND:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ability2" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=81523177]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability2" unique_id=2129725537]
+layout_mode = 0
+offset_right = 322.0
+offset_bottom = 45.0
+text = "SECOND ABILITY KEYBIND:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ability3" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1920662969]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability3" unique_id=2018443517]
+layout_mode = 0
+offset_right = 301.0
+offset_bottom = 45.0
+text = "THIRD ABILITY KEYBIND:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ability4" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1546590633]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability4" unique_id=115147407]
+layout_mode = 0
+offset_right = 324.0
+offset_bottom = 45.0
+text = "FOURTH ABILITY KEYBIND:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=278224982]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Control3" unique_id=957912115]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 780.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_byocv")
+text = "CUSTOMIZATION"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hitsounds" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=403865263]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds" unique_id=880520568]
+layout_mode = 0
+offset_right = 243.0
+offset_bottom = 45.0
+text = "ENABLE HITSOUND:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds" unique_id=1350533470]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 14.0
+offset_right = 260.0
+offset_bottom = 38.0
+
+[node name="Hitsounds2" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1964576010]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds2" unique_id=768478537]
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 45.0
+text = "HITSOUND:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Killsound" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=29345360]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound" unique_id=942330085]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 45.0
+text = "ENABLE KILLSOUND:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound" unique_id=211089262]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 14.0
+offset_right = 271.0
+offset_bottom = 38.0
+
+[node name="Killsound2" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=426160156]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound2" unique_id=1434132209]
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 45.0
+text = "KILLSOUND:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control4" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1131431709]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Control4" unique_id=1334275688]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 780.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_byocv")
+text = "DEBUG"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hitboxes" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=156191302]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes" unique_id=1282484800]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 45.0
+text = "ENABLE HITBOXES:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enable_Hitbox" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes" unique_id=164556340]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 14.0
+offset_right = 271.0
+offset_bottom = 38.0
+
+[node name="Additional_thingy" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=380828567]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Additional_thingy" unique_id=466335381]
+visible = false
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 45.0
+text = "ENABLE HITBOXES:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Both" type="Control" parent="." unique_id=1458680317]
 anchors_preset = 0
 
@@ -1018,72 +1341,6 @@ icon = ExtResource("2_nplvd")
 flat = true
 expand_icon = true
 
-[node name="Settings" type="Button" parent="Both" unique_id=74166167]
-layout_mode = 0
-offset_left = 59.0
-offset_top = 1.0
-offset_right = 108.0
-offset_bottom = 48.0
-icon = ExtResource("10_byocv")
-expand_icon = true
-
-[node name="Settings_Panel" type="Panel" parent="Both" unique_id=1423746514]
-visible = false
-layout_mode = 0
-offset_left = 176.0
-offset_top = 56.0
-offset_right = 973.0
-offset_bottom = 614.0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Both/Settings_Panel" unique_id=56186154]
-layout_mode = 0
-offset_right = 800.0
-offset_bottom = 552.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Both/Settings_Panel/ScrollContainer" unique_id=580980509]
-layout_mode = 2
-theme_override_constants/separation = 46
-
-[node name="Control" type="Control" parent="Both/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1486398316]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Both/Settings_Panel/ScrollContainer/VBoxContainer/Control" unique_id=1666166917]
-layout_mode = 0
-offset_right = 778.0
-offset_bottom = 45.0
-text = "SETTINGS"
-label_settings = SubResource("LabelSettings_an3gc")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="GiveMalice" type="Control" parent="Both/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1674115884]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Both/Settings_Panel/ScrollContainer/VBoxContainer/GiveMalice" unique_id=800327247]
-layout_mode = 0
-offset_right = 209.0
-offset_bottom = 45.0
-text = "MUSIC VOLUME:"
-label_settings = SubResource("LabelSettings_an3gc")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HSlider" type="HSlider" parent="Both/Settings_Panel/ScrollContainer/VBoxContainer/GiveMalice" unique_id=1953029090]
-layout_mode = 0
-offset_left = 208.0
-offset_top = 16.0
-offset_right = 574.0
-offset_bottom = 32.0
-value = 50.0
-
-[node name="LineEdit" type="LineEdit" parent="Both/Settings_Panel/ScrollContainer/VBoxContainer/GiveMalice" unique_id=1118360108]
-layout_mode = 0
-offset_left = 586.0
-offset_top = 8.0
-offset_right = 654.5
-offset_bottom = 39.0
-text = "50"
-
 [node name="Other" type="Control" parent="." unique_id=1023339228]
 visible = false
 anchors_preset = 0
@@ -1099,5 +1356,7 @@ offset_bottom = 649.0
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/SkinsButton" to="SpectatorStuff/Shop" method="_on_skins_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/EquipButton" to="SpectatorStuff/Inventory" method="_on_equip_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/SkinsButton" to="SpectatorStuff/Inventory" method="_on_skins_button_pressed"]
+[connection signal="pressed" from="SpectatorStuff/Settings" to="." method="_on_settings_pressed"]
+[connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox" to="." method="_on_enable_hitbox_toggled"]
 [connection signal="value_changed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins/SpinBox" to="." method="_on_spin_box_value_changed"]
 [connection signal="pressed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller/GiveKiller" to="." method="_on_give_killer_pressed"]

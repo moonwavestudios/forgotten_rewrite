@@ -88,3 +88,10 @@ func _update_profile_playtime(plr) -> void:
 	var pt_m = (pt_total % 3600) / 60
 	var pt_s = pt_total % 60
 	player_profile.get_node("Label2").text = "%02d:%02d:%02d" % [pt_h, pt_m, pt_s]
+
+func _on_settings_pressed() -> void:
+	$SpectatorStuff/Settings_Panel.visible = not $SpectatorStuff/Settings_Panel.visible
+
+
+func _on_enable_hitbox_toggled(toggled_on: bool) -> void:
+	PlayerSettings.show_hitboxes = toggled_on
