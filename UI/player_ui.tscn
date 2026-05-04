@@ -129,12 +129,24 @@ font_size = 34
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fwocb"]
+load_path = "res://.godot/imported/gear.png-6cff9be5d63fe7d43aa63ba604ebc840.ctex"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byocv"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_an3gc"]
 font = ExtResource("4_qf5vc")
 font_size = 24
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fwocb"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s8lkg"]
+font = ExtResource("4_qf5vc")
+font_size = 47
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
@@ -864,28 +876,37 @@ vertical_alignment = 1
 
 [node name="Settings" type="Button" parent="SpectatorStuff" unique_id=1809892806]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 443.0
-offset_right = 51.0
-offset_bottom = 493.0
+offset_left = -1.0
+offset_top = 315.0
+offset_right = 49.0
+offset_bottom = 365.0
 icon = ExtResource("10_byocv")
+expand_icon = true
+
+[node name="Credits" type="Button" parent="SpectatorStuff" unique_id=2076527426]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 371.0
+offset_right = 49.0
+offset_bottom = 421.0
+icon = SubResource("CompressedTexture2D_fwocb")
 expand_icon = true
 
 [node name="ShopButton" type="Button" parent="SpectatorStuff" unique_id=1225437735]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 388.0
-offset_right = 51.0
-offset_bottom = 438.0
+offset_left = -1.0
+offset_top = 260.0
+offset_right = 49.0
+offset_bottom = 310.0
 icon = ExtResource("11_fwocb")
 expand_icon = true
 
 [node name="InventoryButton" type="Button" parent="SpectatorStuff" unique_id=2001662795]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 333.0
-offset_right = 51.0
-offset_bottom = 383.0
+offset_left = -1.0
+offset_top = 205.0
+offset_right = 49.0
+offset_bottom = 255.0
 icon = ExtResource("11_fwocb")
 expand_icon = true
 
@@ -1410,6 +1431,16 @@ offset_bottom = 652.0
 layout_mode = 0
 offset_right = 1151.0
 offset_bottom = 649.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fwocb")
+
+[node name="Label" type="Label" parent="Other/Panel" unique_id=398422952]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 42.0
+text = "Forgotten"
+label_settings = SubResource("LabelSettings_s8lkg")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/BuyButton" to="SpectatorStuff/Shop" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/SkinsButton" to="SpectatorStuff/Shop" method="_on_skins_button_pressed"]
