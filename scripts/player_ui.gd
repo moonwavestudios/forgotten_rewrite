@@ -194,3 +194,9 @@ func _on_slash_keybind_pressed() -> void:
 
 func _on_ability_1_keybind_pressed() -> void:
 	start_listening("Ability1", $SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind)
+
+func _on_shop_button_pressed() -> void:
+	$SpectatorStuff/Shop.visible = not $SpectatorStuff/Shop.visible
+
+func _on_inventory_button_pressed() -> void:
+	$SpectatorStuff/Inventory.visible = not $SpectatorStuff/Inventory.visible

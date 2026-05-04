@@ -1416,6 +1416,8 @@ offset_bottom = 649.0
 [connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/EquipButton" to="SpectatorStuff/Inventory" method="_on_equip_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/SkinsButton" to="SpectatorStuff/Inventory" method="_on_skins_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="SpectatorStuff/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="SpectatorStuff/InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind" to="." method="_on_slash_keybind_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind" to="." method="_on_ability_1_keybind_pressed"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable" to="." method="_on_hitsounds_enable_toggled"]
