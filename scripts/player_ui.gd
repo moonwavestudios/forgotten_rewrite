@@ -5,6 +5,7 @@ var selected_player = ""
 @onready var player_list = $SpectatorStuff/PlayerList
 
 @onready var audio_player = $"../Hitsound"
+@onready var killsound_player = $"../Killsound"
 @onready var file_dialog = $"../../FileDialog"
 
 var listening_action: String = ""
@@ -14,6 +15,8 @@ var is_list_visible = true
 
 var listening_just_started: bool = false
 var tween: Tween
+
+var file_dialog_mode: String = ""
 
 func _ready() -> void:
 	file_dialog.filters = ["*.wav,*.ogg,*.mp3 ; Audio Files"]
@@ -26,6 +29,7 @@ func _ready() -> void:
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable.button_pressed = PlayerSettings.enabled_hitsound
 	
 	_restore_hitsound()
+	_restore_killsound()
 	
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind.text = PlayerSettings.get_keybind_label("Attack")
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind.text = PlayerSettings.get_keybind_label("Ability1")
@@ -37,23 +41,42 @@ func _restore_hitsound() -> void:
 	audio_player = get_node_or_null("../Hitsound")
 	if audio_player == null:
 		return
-	var stream: AudioStream
-	if path.ends_with(".wav"):
-		var file = FileAccess.open(path, FileAccess.READ)
-		if file == null: return
-		stream = AudioStreamWAV.new()
-		stream.data = file.get_buffer(file.get_length())
-	elif path.ends_with(".ogg"):
-		stream = AudioStreamOggVorbis.load_from_file(path)
-	elif path.ends_with(".mp3"):
-		var file = FileAccess.open(path, FileAccess.READ)
-		if file == null: return
-		stream = AudioStreamMP3.new()
-		stream.data = file.get_buffer(file.get_length())
+	var stream = _load_audio_stream(path)
 	if stream:
 		audio_player.stream = stream
 		PlayerSettings.hitsound_stream = stream
-	
+
+func _restore_killsound() -> void:
+	var path = PlayerSettings.killsound
+	if path == "":
+		return
+	killsound_player = get_node_or_null("../Killsound")
+	if killsound_player == null:
+		return
+	var stream = _load_audio_stream(path)
+	if stream:
+		killsound_player.stream = stream
+		PlayerSettings.killsound_stream = stream
+
+func _load_audio_stream(path: String) -> AudioStream:
+	if path.ends_with(".wav"):
+		var file = FileAccess.open(path, FileAccess.READ)
+		if file == null:
+			return null
+		var stream = AudioStreamWAV.new()
+		stream.data = file.get_buffer(file.get_length())
+		return stream
+	elif path.ends_with(".ogg"):
+		return AudioStreamOggVorbis.load_from_file(path)
+	elif path.ends_with(".mp3"):
+		var file = FileAccess.open(path, FileAccess.READ)
+		if file == null:
+			return null
+		var stream = AudioStreamMP3.new()
+		stream.data = file.get_buffer(file.get_length())
+		return stream
+	return null
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("PlayerList"):
 		toggle_player_list()
@@ -220,32 +243,31 @@ func _unhandled_input(event: InputEvent) -> void:
 	listening_button = null
 	get_viewport().set_input_as_handled()
 
-func _on_file_selected(path: String):
-	audio_player = get_node_or_null("../Hitsound")
-	if audio_player == null:
-		print("Hitsound node not found!")
+func _on_file_selected(path: String) -> void:
+	var stream = _load_audio_stream(path)
+	if not stream:
+		print("Failed to load audio from: ", path)
 		return
-	var stream: AudioStream
 
-	if path.ends_with(".wav"):
-		var file = FileAccess.open(path, FileAccess.READ)
-		var bytes = file.get_buffer(file.get_length())
-		stream = AudioStreamWAV.new()
-		stream.data = bytes
-	elif path.ends_with(".ogg"):
-		stream = AudioStreamOggVorbis.load_from_file(path)
-	elif path.ends_with(".mp3"):
-		var file = FileAccess.open(path, FileAccess.READ)
-		var bytes = file.get_buffer(file.get_length())
-		stream = AudioStreamMP3.new()
-		stream.data = bytes
-
-	if stream:
+	if file_dialog_mode == "hitsound":
+		audio_player = get_node_or_null("../Hitsound")
+		if audio_player == null:
+			print("Hitsound node not found!")
+			return
 		audio_player.stream = stream
 		PlayerSettings.hitsound_stream = stream
 		PlayerSettings.set_hitsound(path)
-	else:
-		print("Failed to load audio from: ", path)
+
+	elif file_dialog_mode == "killsound":
+		killsound_player = get_node_or_null("../Killsound")
+		if killsound_player == null:
+			print("Killsound node not found!")
+			return
+		killsound_player.stream = stream
+		PlayerSettings.killsound_stream = stream
+		PlayerSettings.set_killsound(path)
+
+	file_dialog_mode = ""
 
 func _on_slash_keybind_pressed() -> void:
 	start_listening("Attack", $SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind)
@@ -260,4 +282,9 @@ func _on_inventory_button_pressed() -> void:
 	$SpectatorStuff/Inventory.visible = not $SpectatorStuff/Inventory.visible
 
 func _on_hitsound_select_pressed() -> void:
+	file_dialog_mode = "hitsound"
+	file_dialog.popup_centered(Vector2(800, 600))
+
+func _on_killsound_select_pressed() -> void:
+	file_dialog_mode = "killsound"
 	file_dialog.popup_centered(Vector2(800, 600))
