@@ -514,7 +514,8 @@ func _activate_ability(ability: String) -> void:
 		var projectile = preload("res://assets/models/slash.tscn").instantiate()
 		main.add_child(projectile)
 		projectile.global_position = start_pos
-		projectile.global_rotation = $"..".global_rotation
+		projectile.look_at(start_pos + forward, Vector3.UP)
+		projectile.rotate_object_local(Vector3.UP, deg_to_rad(-90))
 
 		var speed := 22.0
 		var max_distance := 30.0
