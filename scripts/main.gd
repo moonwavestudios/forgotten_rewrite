@@ -130,9 +130,6 @@ func start_round():
 	if most_malicious_player != null:
 		most_malicious_player.is_Killer = true
 		most_malicious_player.get_node("Voiceline_Component").play_intro()
-			
-func assign_model(_player):
-	pass
 
 func get_lms_duration(killer: String, survivor: String = "") -> float:
 	var default_duration = 90.0

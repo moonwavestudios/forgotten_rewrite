@@ -17,7 +17,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if hit_flag.size() > 0:
 		return
 
-	if "is_Killer" in body and not body.is_Killer and not hit_killer:
+	if "is_Killer" in body and not body.is_Killer and not hit_killer and body.in_round:
 		if body.health > 0:
 			hit_flag.append(true)
 			var actual_damage = damage
@@ -45,7 +45,7 @@ func _on_body_entered(body: Node3D) -> void:
 						og_plr.play_killsound()
 
 	#killer stunning
-	elif "is_Killer" in body and body.is_Killer and hit_killer:
+	elif "is_Killer" in body and body.is_Killer and hit_killer and body.in_round:
 		hit_flag.append(true)
 		body.apply_stun(3)
 		if og_plr:

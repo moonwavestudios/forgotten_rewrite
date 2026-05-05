@@ -129,7 +129,8 @@ func _ready() -> void:
 
 	var char_id = equipped_killer if is_Killer else equipped_survivor
 	equipped_skin_id = save_data.get_equipped_skin(char_id)
-	apply_skin(equipped_skin_id)
+	if in_round:
+		apply_skin(equipped_skin_id)
 
 	coins  = save_data.get_coins()
 	malice = save_data.get_malice()
@@ -141,6 +142,21 @@ func _ready() -> void:
 	playtime_seconds = save_data.get_playtime(pt_char_id)
 	
 	AdminButton.pressed.connect(_on_admin_button_pressed)
+	
+	if main and main.has_node("RoundTimer"):
+		main.get_node('RoundTimer').timeout.connect(_on_round_ended)
+	if main and main.has_node("Intermission"):
+		main.get_node('Intermission').timeout.connect(_on_round_started)
+
+func _on_round_started() -> void:
+	in_round = true
+	apply_skin(equipped_skin_id)
+	apply_character_stats()
+	_refresh_abilities()
+
+func _on_round_ended() -> void:
+	in_round = false
+	clear_skin()
 
 func _process(delta: float) -> void:
 	for key in cooldowns:
@@ -186,6 +202,12 @@ func apply_character_stats():
 	WALK_SPEED = stats.get("walk_speed", 5.1)
 	SPRINT_SPEED = stats.get("sprint_speed", 9.1)
 
+func clear_skin() -> void:
+	if is_instance_valid(_skin_instance):
+		_skin_instance.queue_free()
+		_skin_instance = null
+	$CollisionShape3D/MeshInstance3D.visible = true
+
 func apply_skin(skin_id: String) -> void:
 	var char_type = "killer" if is_Killer else "survivor"
 	var char_id = equipped_killer if is_Killer else equipped_survivor
@@ -222,6 +244,7 @@ func apply_skin(skin_id: String) -> void:
 		if skin_scene:
 			_skin_instance = skin_scene.instantiate()
 			add_child(_skin_instance)
+			$CollisionShape3D/MeshInstance3D.visible = false
 	
 	equipped_skin_id = skin_id
 

@@ -121,6 +121,12 @@ func _update_chase_music() -> void:
 func _refresh_abilities() -> void:
 	pass
 
+func play_hitsound():
+	pass
+		
+func play_killsound():
+	pass
+
 func _on_chase_state_changed(chasing: bool) -> void:
 	if chasing:
 		if not $Chase_Theme.playing:
