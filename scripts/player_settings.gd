@@ -6,6 +6,9 @@ var enabled_killsound = false
 var killsound = ""
 var show_hitboxes: bool = false
 
+var hitsound_stream: AudioStream = null
+var killsound_stream: AudioStream = null
+
 var keybinds: Dictionary = {
 	"Ability1": "Q",
 	"Ability2": "E",

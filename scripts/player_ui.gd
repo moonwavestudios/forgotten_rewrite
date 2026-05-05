@@ -52,6 +52,7 @@ func _restore_hitsound() -> void:
 		stream.data = file.get_buffer(file.get_length())
 	if stream:
 		audio_player.stream = stream
+		PlayerSettings.hitsound_stream = stream
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("PlayerList"):
@@ -241,6 +242,7 @@ func _on_file_selected(path: String):
 
 	if stream:
 		audio_player.stream = stream
+		PlayerSettings.hitsound_stream = stream
 		PlayerSettings.set_hitsound(path)
 	else:
 		print("Failed to load audio from: ", path)
