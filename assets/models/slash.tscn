@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dnwnfx6kturuj"]
+
+[ext_resource type="ArrayMesh" uid="uid://rwt4fuk2chi2" path="res://assets/models/slash.obj" id="1_ajc0q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajc0q"]
+shading_mode = 0
+albedo_color = Color(0, 0.38431373, 0, 1)
+
+[node name="slash" type="Node3D" unique_id=252481022]
+
+[node name="Slash" type="MeshInstance3D" parent="." unique_id=879482231]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.3530487, 0, 0)
+mesh = ExtResource("1_ajc0q")
+surface_material_override/0 = SubResource("StandardMaterial3D_ajc0q")

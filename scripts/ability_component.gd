@@ -4,6 +4,8 @@ extends Node
 
 @onready var player = $".."
 
+@onready var main = $"../.."
+
 var coin_flip_sfx = preload("res://assets/sfx/coin_flip.mp3")
 var shotSFX = preload("res://assets/sfx/shot.mp3")
 var nothingSFX = preload("res://assets/sfx/do_nothing.mp3")
@@ -509,20 +511,10 @@ func _activate_ability(ability: String) -> void:
 
 		var start_pos = $"..".global_position + forward * 1.2
 
-		# --- Spawn visible projectile until it's properly added ---
-		var projectile = MeshInstance3D.new()
-		var mesh = CylinderMesh.new()
-		mesh.top_radius = 0.08
-		mesh.bottom_radius = 0.08
-		mesh.height = 0.6
-		projectile.mesh = mesh
-		var mat = StandardMaterial3D.new()
-		mat.albedo_color = Color(0.6, 0.6, 0.7)
-		projectile.material_override = mat
-		get_tree().current_scene.add_child(projectile)
+		var projectile = preload("res://assets/models/slash.tscn").instantiate()
+		main.add_child(projectile)
 		projectile.global_position = start_pos
 		projectile.global_rotation = $"..".global_rotation
-		projectile.rotate_object_local(Vector3.RIGHT, deg_to_rad(90))
 
 		var speed := 22.0
 		var max_distance := 30.0

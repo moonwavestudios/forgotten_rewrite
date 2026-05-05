@@ -5,7 +5,7 @@ var intermission_started = false
 var in_round = true
 var lms_started = false
 
-var intermission_time = 30
+@export var intermission_time = 30
 
 var sentinel_nerf_active: bool = false
 
