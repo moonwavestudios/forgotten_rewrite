@@ -39,6 +39,34 @@ func save() -> void:
 func get_keybind_label(action: String) -> String:
 	return keybinds.get(action, "?")
 
+static func load_audio_from_path(path: String) -> AudioStream:
+	if path == "" or not FileAccess.file_exists(path):
+		return null
+	
+	var file = FileAccess.open(path, FileAccess.READ)
+	if not file:
+		return null
+	
+	var buffer = file.get_buffer(file.get_length())
+	file.close()
+	
+	var ext = path.get_extension().to_lower()
+	match ext:
+		"mp3":
+			var stream = AudioStreamMP3.new()
+			stream.data = buffer
+			return stream
+		"wav":
+			var stream = AudioStreamWAV.new()
+			stream.data = buffer
+			return stream
+		"ogg":
+			var stream = AudioStreamOggVorbis.load_from_buffer(buffer)
+			return stream
+		_:
+			push_warning("Unsupported audio format: " + ext)
+			return null
+
 func set_keybind(action: String, label: String) -> void:
 	keybinds[action] = label
 	save()

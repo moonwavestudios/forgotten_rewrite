@@ -92,7 +92,7 @@ func get_npcs():
 	return get_tree().get_nodes_in_group("AI")
 
 func start_intermission() -> void:
-	$Intermission.start(30)
+	$Intermission.start(5)
 
 func _on_idle_voiceline_timer_timeout() -> void:
 	for player in get_players():
@@ -169,10 +169,12 @@ func start_lms(killer: String, survivor: String = "") -> void:
 	_await_lms_load(stream_path, duration)
 
 func start_intro():
-	$Cutscenes/IntroCam.current = true
+	#$Cutscenes/IntroCam.current = true
+	pass
 	
 func start_outro():
-	$Cutscenes/IntroCam.current = true
+	#$Cutscenes/IntroCam.current = true
+	pass
 
 func _await_lms_load(stream_path: String, duration: float) -> void:
 	while true:

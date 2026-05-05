@@ -21,6 +21,7 @@ material = SubResource("StandardMaterial3D_qlg0r")
 [node name="player" type="CharacterBody3D" unique_id=633314722 groups=["players"]]
 script = ExtResource("1_3vyb7")
 hitboxes = ExtResource("2_qhqgy")
+is_Killer = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=99104246]
 shape = SubResource("CapsuleShape3D_u8vuu")
