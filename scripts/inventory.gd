@@ -118,6 +118,13 @@ func _on_char_selected(item) -> void:
 				_selected_skin_data = s
 				_selected_type = "skin"
 				break
+				
+	if _selected_skin_data.is_empty():
+		for s in skins:
+			if s.get("id", "") == "default":
+				_selected_skin_data = s
+				_selected_type = "skin"
+				break
 
 	$InfoPanel.visible        = true
 	$InfoPanel/CharName.text  = item.get_node("ItemName").text

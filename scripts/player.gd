@@ -50,7 +50,7 @@ var current_speed = WALK_SPEED
 
 var usingAbility = false
 var equipped_survivor = "nyx"
-var equipped_killer = "yixi"
+var equipped_killer = "the_creation"
 var equipped_skin_id: String = "default"
 var _skin_instance: Node3D = null
 

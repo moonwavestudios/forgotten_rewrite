@@ -429,6 +429,7 @@ func _activate_ability(ability: String) -> void:
 					print("no killer in range for anti_lock")
 
 				$"..".usingAbility = false
+				
 	elif ability == "ally_link":
 		var ability_data = get_ability_survivor("ability4", $"..".equipped_survivor)
 		var duration: float = ability_data.get("duration", 8.0)
@@ -492,6 +493,108 @@ func _activate_ability(ability: String) -> void:
 		if in_perfect_window and last_redirected_damage > 0:
 			$"..".health = min($"..".health + last_redirected_damage, $"..".maxhealth)
 			print("Perfect release! Negated last redirected instance: +%d HP" % last_redirected_damage)
+
+		$"..".usingAbility = false
+		
+	elif ability == "bonespike":
+		var ability_data = get_killer_ability("ability1", $"..".equipped_killer)
+		var spike_damage: int = ability_data.get("damage", 40)
+		var effect_duration: float = ability_data.get("effect_duration", 2.0)
+
+		await get_tree().create_timer(0.2).timeout
+
+		var forward = -$"..".transform.basis.z
+		forward.y = 0
+		forward = forward.normalized()
+
+		var start_pos = $"..".global_position + forward * 1.2
+
+		# --- Spawn visible projectile until it's properly added ---
+		var projectile = MeshInstance3D.new()
+		var mesh = CylinderMesh.new()
+		mesh.top_radius = 0.08
+		mesh.bottom_radius = 0.08
+		mesh.height = 0.6
+		projectile.mesh = mesh
+		var mat = StandardMaterial3D.new()
+		mat.albedo_color = Color(0.6, 0.6, 0.7)
+		projectile.material_override = mat
+		get_tree().current_scene.add_child(projectile)
+		projectile.global_position = start_pos
+		projectile.global_rotation = $"..".global_rotation
+		projectile.rotate_object_local(Vector3.RIGHT, deg_to_rad(90))
+
+		var speed := 22.0
+		var max_distance := 30.0
+		var projectile_pos = start_pos
+		var travelled := 0.0
+		var hit_flag: Array = []
+		var already_hit := false
+
+		while travelled < max_distance:
+			var step = speed * get_physics_process_delta_time()
+			var next_pos = projectile_pos + forward * step
+
+			var space = $"..".get_world_3d().direct_space_state
+			var query = PhysicsRayQueryParameters3D.create(projectile_pos, next_pos)
+			query.exclude = [$"..".get_rid()]
+			var result = space.intersect_ray(query)
+
+			if result and travelled > 0.5:
+				var body = result.collider
+				if not already_hit and "is_Killer" in body and not body.is_Killer and body.health > 0:
+					already_hit = true
+					var actual_damage = spike_damage
+					if body.weakness > 0:
+						actual_damage = spike_damage * body.weakness
+					body.health -= actual_damage
+
+					var original_speed = body.current_speed
+					body.current_speed = 0
+
+					$"../..".add_hitbox(
+						$"..".hitboxes,
+						result.position,
+						hit_flag,
+						0,
+						"survivor",
+						Vector3(1.0, 1.0, 1.0),
+						slash_hit,
+						$".."
+					)
+
+					if is_instance_valid(projectile):
+						projectile.queue_free()
+
+					await get_tree().create_timer(effect_duration).timeout
+					if is_instance_valid(body):
+						body.current_speed = original_speed
+				else:
+					if is_instance_valid(projectile):
+						projectile.queue_free()
+				break
+
+			if not already_hit:
+				$"../..".add_hitbox(
+					$"..".hitboxes,
+					projectile_pos,
+					hit_flag,
+					spike_damage,
+					"survivor",
+					Vector3(0.6, 0.6, 0.6),
+					slash_hit,
+					$".."
+				)
+
+			projectile_pos = next_pos
+			if is_instance_valid(projectile):
+				projectile.global_position = projectile_pos
+
+			travelled += step
+			await get_tree().physics_frame
+
+		if is_instance_valid(projectile):
+			projectile.queue_free()
 
 		$"..".usingAbility = false
 		

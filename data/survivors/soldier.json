@@ -3,7 +3,15 @@
   "display_name": "Soldier",
   "type": "survivor",
   "class": "sentinel",
-  "model": "res://assets/characters/nyx.tscn",
+  "skins": [
+	{
+	  "id": "default",
+	  "display_name": "Default",
+	  "price": 0,
+	  "model": "res://assets/models/cassidy/cassidy_default.tscn",
+	  "thumbnail": "res://assets/textures/skins/cassidy_default.png"
+	}
+  ],
   "stats": {
 	"health": 110,
 	"stamina": 100,
