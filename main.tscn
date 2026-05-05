@@ -20,6 +20,7 @@ script = ExtResource("1_1bvp3")
 
 [node name="player" parent="." unique_id=633314722 groups=["interactors"] instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1848295, 0)
+is_Killer = false
 
 [node name="generator" parent="." unique_id=1263804824 instance=ExtResource("3_h2yge")]
 transform = Transform3D(-2.8276256e-08, 0, 2.2219806, 0, 0.7596355, 0, -0.6468854, 0, -9.712586e-08, 0, 0.42656898, 5.3557405)

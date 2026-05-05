@@ -25,29 +25,56 @@
   "abilities": [
 	{
 	  "id": "primary",
-	  "name": "Slash",
+	  "name": "Iron Cleave",
 	  "icon": "res://assets/textures/abilityTemplate.png",
 	  "cooldown": 2.0,
 	  "type": "slash",
-	  "damage": 20
+	  "damage": 20,
+	  "effect": "defense_crack",
+	  "effect_duration": 8.0
 	},
 	{
 	  "id": "ability1",
-	  "name": "Mass Infection",
+	  "name": "Bonespike",
 	  "icon": "res://assets/textures/abilityTemplate.png",
 	  "cooldown": 15.0,
-	  "type": "mass_infection",
-	  "damage": 45,
-	  "effect": "poison",
-	  "effect_level": 1
+	  "type": "projectile",
+	  "damage": 40,
+	  "effect": "root",
+	  "effect_duration": 2.0
 	},
 	{
 	  "id": "ability2",
-	  "name": "Entanglement",
+	  "name": "Cursed Chain",
 	  "icon": "res://assets/textures/abilityTemplate.png",
 	  "cooldown": 32.0,
-	  "type": "entanglement",
-	  "damage": 10
+	  "type": "projectile",
+	  "damage": 10,
+	  "effect": "slow",
+	  "effect_level": 1,
+	  "effect_duration": 4.0,
+	  "damage_per_second": 10
+	},
+	{
+	  "id": "ability3",
+	  "name": "Hollow Sight",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 45.0,
+	  "type": "aoe_pulse",
+	  "damage": 0,
+	  "effect": "reveal_all",
+	  "effect_duration": 5.0,
+	  "self_reveal": true,
+	  "self_reveal_duration": 3.0
+	},
+	{
+	  "id": "ability4",
+	  "name": "Iron Harvest",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 15.0,
+	  "type": "on_kill",
+	  "damage": 0,
+	  "effect": "summon_minion"
 	}
   ]
 }
