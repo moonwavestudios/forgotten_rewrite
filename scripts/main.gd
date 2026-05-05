@@ -5,6 +5,8 @@ var intermission_started = false
 var in_round = true
 var lms_started = false
 
+var intermission_time = 30
+
 var sentinel_nerf_active: bool = false
 
 var round_time = 258
@@ -92,7 +94,7 @@ func get_npcs():
 	return get_tree().get_nodes_in_group("AI")
 
 func start_intermission() -> void:
-	$Intermission.start(5)
+	$Intermission.start(intermission_time)
 
 func _on_idle_voiceline_timer_timeout() -> void:
 	for player in get_players():

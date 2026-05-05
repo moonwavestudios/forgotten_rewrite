@@ -36,14 +36,12 @@ func _on_body_entered(body: Node3D) -> void:
 				og_plr.get_node("SFX").stream = hitsfx
 				og_plr.get_node("SFX").play()
 				if PlayerSettings.enabled_hitsound:
-					#var stream = PlayerSettings.load_audio_from_path(PlayerSettings.hitsound)
-					#if stream:
 					og_plr.get_node("Hitsound").stream = PlayerSettings.hitsound_stream
 					og_plr.play_hitsound()
 					
 				if PlayerSettings.enabled_killsound:
 					if body.health <= 0:
-						og_plr.get_node("Killsound").stream = PlayerSettings.killsound
+						og_plr.get_node("Killsound").stream = PlayerSettings.killsound_stream
 						og_plr.play_killsound()
 
 	#killer stunning
