@@ -20,7 +20,6 @@ func _load_all_json() -> void:
 		file_name = dir.get_next()
 
 	dir.list_dir_end()
-	print("LMSData: Loaded %d course(s) -> %s" % [courses.size(), courses.keys()])
 
 func _load_json_file(path: String) -> void:
 	var file := FileAccess.open(path, FileAccess.READ)

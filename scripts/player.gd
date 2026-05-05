@@ -350,7 +350,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
-	if Input.is_action_pressed("Sprint") and not exhausted and not sprint_needs_reset:
+	if Input.is_action_pressed("Sprint") and (not exhausted or not ServerSettings.use_stamina) and not sprint_needs_reset:
 		is_sprinting = true
 	else:
 		is_sprinting = false
@@ -368,8 +368,11 @@ func _physics_process(delta: float) -> void:
 	$player_ui/GameStuff/Health.value = health
 	$player_ui/GameStuff/Health.max_value = maxhealth
 	$player_ui/GameStuff/Health/Label.text = str(int(health)) + "/" + str(maxhealth)
-	$player_ui/GameStuff/Stamina.value = stamina
-	$player_ui/GameStuff/Stamina/Label.text = str(int(stamina)) + "/" + str(int(MAX_STAMINA))
+	var use_stamina = ServerSettings.use_stamina
+	$player_ui/GameStuff/Stamina.visible = use_stamina
+	if use_stamina:
+		$player_ui/GameStuff/Stamina.value = stamina
+		$player_ui/GameStuff/Stamina/Label.text = str(int(stamina)) + "/" + str(int(MAX_STAMINA))
 	
 	if health < maxhealth*0.5:
 		$player_ui/GameStuff/Vignette.visible = true
@@ -489,18 +492,24 @@ func _physics_process(delta: float) -> void:
 	
 	if is_sprinting:
 		current_speed = SPRINT_SPEED
-		stamina = max(stamina - STAMINA_DRAIN * delta, 0.0)
+		if ServerSettings.use_stamina:
+			stamina = max(stamina - STAMINA_DRAIN * delta, 0.0)
 	else:
-		if exhausted:
-			stamina = min(stamina + STAMINA_RECOVER_EXHAUSTED * delta, MAX_STAMINA)
-			if stamina >= MAX_STAMINA * 0.25:
-				exhausted = false
-		else:
-			stamina = min(stamina + STAMINA_RECOVER * delta, MAX_STAMINA)
+		if ServerSettings.use_stamina:
+			if exhausted:
+				stamina = min(stamina + STAMINA_RECOVER_EXHAUSTED * delta, MAX_STAMINA)
+				if stamina >= MAX_STAMINA * 0.25:
+					exhausted = false
+			else:
+				stamina = min(stamina + STAMINA_RECOVER * delta, MAX_STAMINA)
 			
 	if not is_sprinting and current_speed == SPRINT_SPEED:
 		current_speed = WALK_SPEED
-
+	
+	if ServerSettings.use_stamina and stamina <= 0.0:
+		exhausted = true
+		sprint_needs_reset = true
+	
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	
 	if is_emoting:
