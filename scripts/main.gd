@@ -5,6 +5,8 @@ var intermission_started = false
 var in_round = false
 var lms_started = false
 
+var exit = preload("res://scenes/exit.tscn")
+
 @export var intermission_time = 30
 
 var sentinel_nerf_active: bool = false
@@ -115,6 +117,14 @@ func start_round():
 	var most_malicious_player = null
 	
 	in_round = true
+	
+	for maps in $game.get_children():
+		if maps.name.contains("Map"):
+			for exitSpawns in maps.get_children():
+				if exitSpawns.name.contains("ExitSpawn"):
+					var ExitScene = exit.instantiate()
+					$game/Map1.add_child(ExitScene)
+					ExitScene.global_position = exitSpawns.global_position
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	

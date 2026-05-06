@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://jdjkl66xe7qx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_38eme"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_38eme"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.45882353)
+
+[sub_resource type="BoxMesh" id="BoxMesh_38eme"]
+material = SubResource("StandardMaterial3D_38eme")
+
+[node name="exit" type="Node3D" unique_id=2095143414]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1985085130 groups=["exit"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1098772332]
+transform = Transform3D(3.1611927, 0, 0, 0, 5.130183, 0, 0, 0, 0.34529597, 0, 0, 0)
+shape = SubResource("BoxShape3D_38eme")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D/CollisionShape3D" unique_id=761486109]
+mesh = SubResource("BoxMesh_38eme")

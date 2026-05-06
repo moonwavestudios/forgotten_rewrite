@@ -41,6 +41,7 @@ players=""
 arcade=""
 interactors=""
 AI=""
+exit=""
 
 [input]
 
