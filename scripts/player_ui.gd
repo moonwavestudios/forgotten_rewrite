@@ -4,6 +4,8 @@ var selected_player = ""
 @onready var player_profile = $SpectatorStuff/PlayerProfile
 @onready var player_list = $SpectatorStuff/PlayerList
 
+@onready var player = $".."
+
 @onready var audio_player = $"../Hitsound"
 @onready var killsound_player = $"../Killsound"
 @onready var file_dialog = $"../../FileDialog"
@@ -43,7 +45,6 @@ func _ready() -> void:
 	
 	AchievementData.achievement_unlocked.connect(_on_achievement_unlocked)
 	
-
 func _on_achievement_unlocked(achievement) -> void:
 	if _active_notifications.size() >= 3:
 		return

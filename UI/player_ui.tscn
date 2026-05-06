@@ -118,6 +118,17 @@ font_size = 19
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_k3km2"]
+font = ExtResource("4_qf5vc")
+font_size = 9
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdrb0"]
+font = ExtResource("4_qf5vc")
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_byocv"]
 font = ExtResource("4_qf5vc")
 font_size = 24
@@ -684,6 +695,36 @@ offset_right = 161.0
 offset_bottom = 474.0
 theme_override_fonts/font = ExtResource("4_qf5vc")
 text = "SKINS"
+
+[node name="LevelBar" type="ProgressBar" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=642089967]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 409.0
+offset_right = 167.0
+offset_bottom = 424.0
+show_percentage = false
+
+[node name="XPLabel" type="Label" parent="SpectatorStuff/Inventory/InfoPanel/LevelBar" unique_id=580804789]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 164.0
+offset_bottom = 13.0
+text = "0/100"
+label_settings = SubResource("LabelSettings_k3km2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="SpectatorStuff/Inventory/InfoPanel" unique_id=717166794]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 383.0
+offset_right = 120.0
+offset_bottom = 406.0
+text = "Level: 1"
+label_settings = SubResource("LabelSettings_hdrb0")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Items" type="TabContainer" parent="SpectatorStuff/Inventory" unique_id=1971857347]
 layout_mode = 0

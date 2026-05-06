@@ -74,6 +74,21 @@ func _populate_skins_panel(char_data: Dictionary) -> void:
 		item.get_node("Button").pressed.connect(_on_skin_selected.bind(item))
 		grid.add_child(item)
 
+func _get_level_label(char_id: String) -> String:
+	var total_xp := save_data.get_character_xp(char_id)
+	var info     := LevelSystem.get_level_info(total_xp)
+	var level_str := "Lv " + str(info["level"])
+	if info["is_max"]:
+		return level_str + " · MAX"
+	return level_str
+ 
+func _get_xp_label(char_id: String) -> String:
+	var total_xp := save_data.get_character_xp(char_id)
+	var info     := LevelSystem.get_level_info(total_xp)
+	if info["is_max"]:
+		return "Max level reached"
+	return str(info["xp_in_level"]) + " / " + str(info["xp_to_next"]) + " XP"
+
 func _create_char_item(char_data: Dictionary) -> Control:
 	var item_scene = preload("res://UI/stuff/ShopButton.tscn")
 	var item = item_scene.instantiate()
@@ -129,6 +144,13 @@ func _on_char_selected(item) -> void:
 	$InfoPanel.visible        = true
 	$InfoPanel/CharName.text  = item.get_node("ItemName").text
 	$InfoPanel/Price.text     = item.get_node("Price").text
+	
+	var xp_label = $InfoPanel/LevelBar.get_node_or_null("XPLabel")
+	if xp_label != null:
+		xp_label.text = _get_xp_label(char_id)
+		
+	$InfoPanel/LevelLabel.text = _get_level_label(char_id)
+	
 	$InfoPanel/Render.texture = item.get_node("Render").texture
 
 	_refresh_equip_button()
