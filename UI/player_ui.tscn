@@ -93,6 +93,18 @@ font_size = 33
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="GDScript" id="GDScript_fwocb"]
+script/source = "extends CenterContainer
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	$CenterStamina.visible = PlayerSettings.center_stamina if ServerSettings.use_stamina else false
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_8hdo2"]
+font = ExtResource("4_qf5vc")
+font_color = Color(0, 1, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_nplvd"]
 font = ExtResource("4_qf5vc")
 font_size = 35
@@ -439,6 +451,20 @@ offset_bottom = 58.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_xmsn8")
 text = "4:00"
 label_settings = SubResource("LabelSettings_qf5vc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="GameStuff" unique_id=545039570]
+visible = false
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 650.0
+script = SubResource("GDScript_fwocb")
+
+[node name="CenterStamina" type="Label" parent="GameStuff/CenterContainer" unique_id=1620020024]
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_8hdo2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1239,6 +1265,39 @@ offset_right = 254.0
 offset_bottom = 39.0
 text = "Choose"
 
+[node name="Control5" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1852381928]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Control5" unique_id=1427196538]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 780.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_byocv")
+text = "ACCESSIBILITY"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stamina" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=197365469]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Stamina" unique_id=830814021]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 45.0
+text = "CENTER STAMINA:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Center_Stam" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Stamina" unique_id=2000392834]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 14.0
+offset_right = 271.0
+offset_bottom = 38.0
+
 [node name="Control4" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1131431709]
 layout_mode = 2
 
@@ -1479,6 +1538,7 @@ vertical_alignment = 1
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds2/HitsoundSelect" to="." method="_on_hitsound_select_pressed"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound/EnableKillsound" to="." method="_on_enable_killsound_toggled"]
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound2/KillsoundSelect" to="." method="_on_killsound_select_pressed"]
+[connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Stamina/Center_Stam" to="." method="_on_center_stam_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox" to="." method="_on_enable_hitbox_toggled"]
 [connection signal="value_changed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins/SpinBox" to="." method="_on_spin_box_value_changed"]
 [connection signal="pressed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller/GiveKiller" to="." method="_on_give_killer_pressed"]

@@ -6,6 +6,8 @@ var enabled_killsound = false
 var killsound = ""
 var show_hitboxes: bool = false
 
+var center_stamina: bool = false
+
 var hitsound_stream: AudioStream = null
 var killsound_stream: AudioStream = null
 
@@ -25,6 +27,7 @@ func _load() -> void:
 	killsound         = s.get("killsound",          killsound)
 	enabled_hitsound  = s.get("enabled_hitsound",  enabled_hitsound)
 	enabled_killsound = s.get("enabled_killsound", enabled_killsound)
+	center_stamina = s.get("center_stamina", center_stamina)
 	show_hitboxes     = s.get("show_hitboxes",      show_hitboxes)
 	if s.has("keybinds"):
 		keybinds.merge(s["keybinds"], true)
@@ -36,6 +39,7 @@ func save() -> void:
 		"enabled_hitsound":  enabled_hitsound,
 		"enabled_killsound": enabled_killsound,
 		"show_hitboxes":     show_hitboxes,
+		"center_stamina":     center_stamina,
 		"keybinds":          keybinds,
 	})
 

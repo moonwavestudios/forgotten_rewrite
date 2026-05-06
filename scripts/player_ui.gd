@@ -27,6 +27,7 @@ func _ready() -> void:
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox.button_pressed = PlayerSettings.show_hitboxes
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound/EnableKillsound.button_pressed = PlayerSettings.enabled_killsound
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable.button_pressed = PlayerSettings.enabled_hitsound
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Stamina/Center_Stam.button_pressed = PlayerSettings.center_stamina
 	
 	_restore_hitsound()
 	_restore_killsound()
@@ -196,11 +197,9 @@ func _on_enable_hitbox_toggled(toggled_on: bool) -> void:
 	PlayerSettings.show_hitboxes = toggled_on
 	PlayerSettings.save()
 
-
 func _on_enable_killsound_toggled(toggled_on: bool) -> void:
 	PlayerSettings.enabled_killsound = toggled_on
 	PlayerSettings.save()
-
 
 func _on_hitsounds_enable_toggled(toggled_on: bool) -> void:
 	PlayerSettings.enabled_hitsound = toggled_on
@@ -288,3 +287,8 @@ func _on_hitsound_select_pressed() -> void:
 func _on_killsound_select_pressed() -> void:
 	file_dialog_mode = "killsound"
 	file_dialog.popup_centered(Vector2(800, 600))
+
+
+func _on_center_stam_toggled(toggled_on: bool) -> void:
+	PlayerSettings.center_stamina = toggled_on
+	PlayerSettings.save()

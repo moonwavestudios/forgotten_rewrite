@@ -373,6 +373,7 @@ func _physics_process(delta: float) -> void:
 	if use_stamina:
 		$player_ui/GameStuff/Stamina.value = stamina
 		$player_ui/GameStuff/Stamina/Label.text = str(int(stamina)) + "/" + str(int(MAX_STAMINA))
+		$player_ui/GameStuff/CenterContainer/CenterStamina.text = str(int(stamina))
 	
 	if health < maxhealth*0.5:
 		$player_ui/GameStuff/Vignette.visible = true
