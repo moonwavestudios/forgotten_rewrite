@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://w52awpsxmyuf"]
+
+[ext_resource type="Texture2D" uid="uid://d1qj5l8ttlohn" path="res://icon.svg" id="1_th5bs"]
+[ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="2_wkxb5"]
+
+[sub_resource type="GDScript" id="GDScript_rvkn8"]
+script/source = "extends Panel
+
+@onready var title_label: Label = $TitleLabel
+@onready var name_label:  Label = $NameLabel
+
+const SLIDE_DURATION  := 0.4
+const DISPLAY_TIME    := 3.0
+
+func show_achievement(achievement) -> void:
+	name_label.text = achievement.title
+	title_label.text = \"Achievement Unlocked!\"
+
+	var screen_w := get_viewport().get_visible_rect().size.x
+	position.x = screen_w
+
+	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	tween.tween_property(self, \"position:x\", screen_w - size.x - 16, SLIDE_DURATION)
+	tween.tween_interval(DISPLAY_TIME)
+	tween.tween_property(self, \"position:x\", screen_w, SLIDE_DURATION)
+	tween.tween_callback(queue_free)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_k3km2"]
+font = ExtResource("2_wkxb5")
+font_size = 29
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdrb0"]
+font = ExtResource("2_wkxb5")
+font_size = 19
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="AchievementNotification" type="Panel" unique_id=1832462171]
+offset_left = 752.0
+offset_right = 1152.0
+offset_bottom = 229.0
+script = SubResource("GDScript_rvkn8")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=496628701]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 150.0
+offset_bottom = 198.0
+texture = ExtResource("1_th5bs")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="." unique_id=2001984371]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 48.0
+text = "ACHIEVEMENT UNLOCKED"
+label_settings = SubResource("LabelSettings_k3km2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="." unique_id=70269542]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 58.0
+offset_right = 400.0
+offset_bottom = 111.0
+text = "Name"
+label_settings = SubResource("LabelSettings_hdrb0")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

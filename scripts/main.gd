@@ -11,6 +11,9 @@ var sentinel_nerf_active: bool = false
 
 var round_time = 258
 
+func _ready() -> void:
+	AchievementData.unlock("gen_001")
+
 func get_sentinel_count() -> int:
 	var count = 0
 	for player in get_players():

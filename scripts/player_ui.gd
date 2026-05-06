@@ -8,6 +8,10 @@ var selected_player = ""
 @onready var killsound_player = $"../Killsound"
 @onready var file_dialog = $"../../FileDialog"
 
+const NOTIFICATION_SCENE := preload("res://UI/achievement_notification.tscn")
+const STACK_SPACING = 8
+const NOTIFICATION_HEIGHT = 80
+
 var listening_action: String = ""
 var listening_button: Button = null
 
@@ -17,6 +21,8 @@ var listening_just_started: bool = false
 var tween: Tween
 
 var file_dialog_mode: String = ""
+
+var _active_notifications: Array = []
 
 func _ready() -> void:
 	file_dialog.filters = ["*.wav,*.ogg,*.mp3 ; Audio Files"]
@@ -35,6 +41,26 @@ func _ready() -> void:
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind.text = PlayerSettings.get_keybind_label("Attack")
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind.text = PlayerSettings.get_keybind_label("Ability1")
 	
+	AchievementData.achievement_unlocked.connect(_on_achievement_unlocked)
+	
+
+func _on_achievement_unlocked(achievement) -> void:
+	if _active_notifications.size() >= 3:
+		return
+
+	var notif = NOTIFICATION_SCENE.instantiate()
+	add_child(notif)
+
+	var slot := _active_notifications.size()
+	notif.position.y = 16 + slot * (NOTIFICATION_HEIGHT + STACK_SPACING)
+
+	_active_notifications.append(notif)
+	notif.show_achievement(achievement)
+
+	get_tree().create_timer(0.4 + 3.0 + 0.4 + 0.1).timeout.connect(func():
+		_active_notifications.erase(notif)
+	)
+
 func _restore_hitsound() -> void:
 	var path = PlayerSettings.hitsound
 	if path == "":
