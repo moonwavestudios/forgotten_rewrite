@@ -55,6 +55,9 @@ func _ready() -> void:
 	equipped_skin_id = save_data.get_equipped_skin(char_id)
 	apply_skin(equipped_skin_id)
 
+func _refresh_ability_ui():
+	pass
+
 func apply_stun(duration: float) -> void:
 	if Passive_Component.has_passive("stun_immune"):
 		return

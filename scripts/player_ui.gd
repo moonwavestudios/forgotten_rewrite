@@ -315,7 +315,6 @@ func _on_killsound_select_pressed() -> void:
 	file_dialog_mode = "killsound"
 	file_dialog.popup_centered(Vector2(800, 600))
 
-
 func _on_center_stam_toggled(toggled_on: bool) -> void:
 	PlayerSettings.center_stamina = toggled_on
 	PlayerSettings.save()

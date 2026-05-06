@@ -140,6 +140,7 @@ func start_round():
 		player.in_round = true
 		player.apply_character_stats()
 		player._refresh_abilities()
+		player._refresh_ability_ui()
 		if player.has_node("snake"):
 			player.get_node("snake").hide()
 			player.get_node("snake").end_game()

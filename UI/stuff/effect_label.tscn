@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://chub1av2l7xd3"]
+
+[ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="1_wpu7r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c8xti"]
+font = ExtResource("1_wpu7r")
+font_size = 39
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="EffectLabel" type="Label" unique_id=1767283366]
+text = "Weakness: 1"
+label_settings = SubResource("LabelSettings_c8xti")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -277,21 +277,26 @@ func refresh_item_ui() -> void:
 		#		tex_rect.texture = load(ability.get("icon", ""))
 
 func _refresh_ability_ui() -> void:
-	var abilities = [
-		equipped_attack,
-		equipped_ability1,
-		equipped_ability2,
-		equipped_ability3,
-		equipped_ability4,
-	]
-	
-	var action_names = [
-		"Attack",
-		"Ability1",
-		"Ability2",
-		"Ability3",
-		"Ability4",
-	]
+	var abilities: Array
+	var action_names: Array
+
+	if is_Killer:
+		abilities = [
+			equipped_attack,
+			equipped_ability1,
+			equipped_ability2,
+			equipped_ability3,
+			equipped_ability4,
+		]
+		action_names = ["Attack", "Ability1", "Ability2", "Ability3", "Ability4"]
+	else:
+		abilities = [
+			equipped_ability1,
+			equipped_ability2,
+			equipped_ability3,
+			equipped_ability4,
+		]
+		action_names = ["Ability1", "Ability2", "Ability3", "Ability4"]
 
 	var slots = []
 	for child in AbilitiesStuff.get_children():
@@ -302,12 +307,7 @@ func _refresh_ability_ui() -> void:
 		var ability = abilities[i] if i < abilities.size() else {}
 		slots[i].visible = not ability.is_empty()
 
-		## THIS IS FOR LATER WHEN EVERYTHING IS ADDED
 		if not ability.is_empty():
-		#	var tex_rect = slots[i].get_node_or_null("TextureRect")
-		#	if tex_rect and ability.has("icon"):
-		#		tex_rect.texture = load(ability.get("icon", ""))
-
 			var keybind_node = slots[i].get_node_or_null("Keybind")
 			if keybind_node:
 				var action = action_names[i] if i < action_names.size() else ""
@@ -362,8 +362,7 @@ func _physics_process(delta: float) -> void:
 			_update_chase_music()
 		
 	if weakness > 0:
-		$player_ui/GameStuff/VBoxContainer/Label.visible = true
-		$player_ui/GameStuff/VBoxContainer/Label.text = "Weakness: " + str(weakness)
+		Effect_Component.activate_effect("weakness", weakness, 20)
 		
 	$player_ui/GameStuff/Health.value = health
 	$player_ui/GameStuff/Health.max_value = maxhealth
