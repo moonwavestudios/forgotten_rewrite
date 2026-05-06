@@ -583,9 +583,9 @@ func _activate_ability(ability: String) -> void:
 
 		$"..".usingAbility = false
 	
-	elif ability == "bonespike":
-		var ability_data = get_killer_ability("ability1", $"..".equipped_killer)
-		var spike_damage: int = ability_data.get("damage", 40)
+	elif ability == "entanglement":
+		var ability_data = get_killer_ability("ability2", $"..".equipped_killer)
+		var spike_damage: int = ability_data.get("damage", 15)
 		var effect_duration: float = ability_data.get("effect_duration", 2.0)
 
 		await get_tree().create_timer(0.2).timeout
@@ -606,42 +606,65 @@ func _activate_ability(ability: String) -> void:
 		var max_distance := 30.0
 		var projectile_pos = start_pos
 		var travelled := 0.0
-		var hit_radius := 1.2  # tune this to feel right
+		var hit_flag: Array = []
+		var already_hit := false
 
 		while travelled < max_distance:
 			var step = speed * get_physics_process_delta_time()
-			projectile_pos += forward * step
-			travelled += step
+			var next_pos = projectile_pos + forward * step
 
+			var space = $"..".get_world_3d().direct_space_state
+			var query = PhysicsRayQueryParameters3D.create(projectile_pos, next_pos)
+			query.exclude = [$"..".get_rid()]
+			var result = space.intersect_ray(query)
+
+			if result and travelled > 0.5:
+				var body = result.collider
+				if not already_hit and "is_Killer" in body and not body.is_Killer and body.health > 0:
+					already_hit = true
+					var actual_damage = spike_damage
+					if body.weakness > 0:
+						actual_damage = spike_damage * body.weakness
+					body.health -= actual_damage
+
+					var effect_comp = body.get_node_or_null("EffectComponent")
+					if effect_comp:
+						effect_comp.activate_effect("drain", 1, effect_duration)
+					else:
+						var original_speed = body.current_speed
+						body.current_speed = 0
+						if is_instance_valid(body):
+							body.current_speed = original_speed
+
+					$"../..".add_hitbox(
+						$"..".hitboxes,
+						result.position,
+						hit_flag,
+						0,
+						"survivor",
+						Vector3(1.0, 1.0, 1.0),
+						slash_hit,
+						$".."
+					)
+					
+					player.grant(15, 15, 0,"Hit Survivor with Cursed Chain")
+
+				if is_instance_valid(projectile):
+					projectile.queue_free()
+				break
+
+			projectile_pos = next_pos
 			if is_instance_valid(projectile):
 				projectile.global_position = projectile_pos
 
-			# Check all players for proximity hit
-			var plrs = main.get_players()
-			for plr in plrs:
-				if "is_Killer" in plr and not plr.is_Killer and plr.health > 0:
-					var dist = projectile_pos.distance_to(plr.global_position)
-					if dist <= hit_radius:
-						var actual_damage = spike_damage
-						if plr.weakness > 0:
-							actual_damage = spike_damage * plr.weakness
-						plr.health -= actual_damage
-
-						var effect_comp = plr.get_node_or_null("EffectComponent")
-						if effect_comp:
-							effect_comp.activate_effect("root", 1, effect_duration)
-
-						player.grant(25, 15, 0, "Hit Survivor with Bonespike")
-
-						if is_instance_valid(projectile):
-							projectile.queue_free()
-						$"..".usingAbility = false
-						return
-
+			travelled += step
+			var travel_flag: Array = []
+			main.add_hitbox(
+				player.hitboxes, projectile_pos, travel_flag, spike_damage, "survivor",
+				Vector3(1, 0.3, 0.3), slash_hit, player
+			)
+			
 			await get_tree().physics_frame
-
-		if is_instance_valid(projectile):
-			projectile.queue_free()
 
 		$"..".usingAbility = false
 		

@@ -7,6 +7,8 @@ var burn_timer: Timer = null
 var slow_timer: Timer = null
 var root_timer: Timer = null
 var invisibility_timer: Timer = null
+var drain_timer: Timer = null
+var drain_tick_timer: Timer = null
 var _original_speed: float = 0.0
 
 func activate_effect(effect: String, level: int, duration: float = 1.0) -> void:
@@ -36,6 +38,26 @@ func activate_effect(effect: String, level: int, duration: float = 1.0) -> void:
 		burn_timer.autostart = true
 		burn_timer.timeout.connect(func(): player.health -= level)
 		add_child(burn_timer)
+		
+	elif effect == "drain":
+		deactivate_effect("drain")
+		
+		_original_speed = player.current_speed
+		player.current_speed = player.current_speed * 0.7
+		
+		drain_tick_timer = Timer.new()
+		drain_tick_timer.wait_time = 1.0
+		drain_tick_timer.one_shot = false
+		drain_tick_timer.autostart = true
+		drain_tick_timer.timeout.connect(func(): player.health -= 10)
+		add_child(drain_tick_timer)
+		
+		drain_timer = Timer.new()
+		drain_timer.wait_time = 4.0
+		drain_timer.one_shot = true
+		drain_timer.autostart = true
+		drain_timer.timeout.connect(func(): deactivate_effect("drain"))
+		add_child(drain_timer)
 		
 	elif effect == "slow":
 		deactivate_effect("slow")
@@ -84,6 +106,19 @@ func deactivate_effect(effect: String) -> void:
 			burn_timer.stop()
 			burn_timer.queue_free()
 			burn_timer = null
+			
+	elif effect == "drain":
+		if drain_tick_timer != null:
+			drain_tick_timer.stop()
+			drain_tick_timer.queue_free()
+			drain_tick_timer = null
+		if drain_timer != null:
+			drain_timer.stop()
+			drain_timer.queue_free()
+			drain_timer = null
+		if _original_speed > 0.0:
+			player.current_speed = _original_speed
+			_original_speed = 0.0
 			
 	elif effect == "slow":
 		if slow_timer != null:
