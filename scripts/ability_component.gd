@@ -578,6 +578,8 @@ func _activate_ability(ability: String) -> void:
 					slash_hit,
 					$".."
 				)
+				
+				player.grant(25, 15, "Hit Survivor with Bonespike")
 
 			projectile_pos = next_pos
 			if is_instance_valid(projectile):

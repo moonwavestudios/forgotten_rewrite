@@ -66,7 +66,7 @@ func _populate_skins_panel(char_data: Dictionary) -> void:
 		var item_scene = preload("res://UI/stuff/ShopButton.tscn")
 		var item = item_scene.instantiate()
 		item.get_node("ItemName").text = skin.get("display_name", skin.get("id", "???"))
-		item.get_node("Price").text    = "✓ Equipped" if skin_id == equipped_skin else "Equip"
+		item.get_node("Price").text    = "Equipped" if skin_id == equipped_skin else "Equip"
 		var thumb_path = skin.get("thumbnail", "")
 		if thumb_path != "" and ResourceLoader.exists(thumb_path):
 			item.get_node("Render").texture = load(thumb_path)
