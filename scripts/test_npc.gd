@@ -146,6 +146,14 @@ func apply_character_stats():
 func grant(_amountXP: int, _amountCoins: int, _maliceAmount: int, _text: String) -> void:
 	pass
 
+func take_damage(amount: int) -> void:
+	if health <= 0:
+		return
+	var final_dmg = Passive_Component.apply_damage_reduction(amount)
+	if weakness > 0:
+		final_dmg = int(final_dmg * (1.0 + weakness * 0.25))
+	health -= final_dmg
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
