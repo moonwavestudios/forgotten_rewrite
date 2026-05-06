@@ -58,10 +58,9 @@
 	  "cooldown": 32.0,
 	  "type": "entanglement",
 	  "damage": 10,
-	  "effect": "slow",
+	  "effect": "drain",
 	  "effect_level": 1,
-	  "effect_duration": 4.0,
-	  "damage_per_second": 10
+	  "effect_duration": 4.0
 	},
 	{
 	  "id": "ability3",
