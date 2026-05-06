@@ -2,12 +2,15 @@ extends Node
 
 var intermission_started = false
 
-var in_round = true
+var in_round = false
 var lms_started = false
 
 @export var intermission_time = 30
 
 var sentinel_nerf_active: bool = false
+
+var tasks_to_complete = 5
+var tasks_completed = 0
 
 var round_time = 258
 
@@ -78,6 +81,9 @@ func _process(_delta: float) -> void:
 			player.get_node("player_ui/SpectatorStuff/Label").text = \
 				"Intermission: " + str(int($Intermission.time_left))
 				
+	if tasks_completed == tasks_to_complete and in_round and ServerSettings.exits:
+		print("exit open")
+	
 	if in_round and not lms_started:
 		if get_player_count() == 2:
 			for player in get_players():
@@ -107,6 +113,8 @@ func _on_idle_voiceline_timer_timeout() -> void:
 func start_round():
 	var highest_malice = -INF
 	var most_malicious_player = null
+	
+	in_round = true
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
