@@ -537,10 +537,7 @@ func _activate_ability(ability: String) -> void:
 				var body = result.collider
 				if not already_hit and "is_Killer" in body and not body.is_Killer and body.health > 0:
 					already_hit = true
-					var actual_damage = spike_damage
-					if body.weakness > 0:
-						actual_damage = spike_damage * body.weakness
-					body.health -= actual_damage
+					body.take_damage(spike_damage)
 
 					var effect_comp = body.get_node_or_null("EffectComponent")
 					if effect_comp:
@@ -622,10 +619,7 @@ func _activate_ability(ability: String) -> void:
 				var body = result.collider
 				if not already_hit and "is_Killer" in body and not body.is_Killer and body.health > 0:
 					already_hit = true
-					var actual_damage = spike_damage
-					if body.weakness > 0:
-						actual_damage = spike_damage * body.weakness
-					body.health -= actual_damage
+					body.take_damage(spike_damage)
 
 					var effect_comp = body.get_node_or_null("EffectComponent")
 					if effect_comp:

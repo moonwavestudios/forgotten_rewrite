@@ -681,7 +681,7 @@ func take_damage(amount: int) -> void:
 		return
 	var final_dmg = Passive_Component.apply_damage_reduction(amount)
 	if weakness > 0:
-		final_dmg = int(final_dmg * weakness)
+		final_dmg = int(final_dmg * (1.0 + weakness * 0.25))
 	health -= final_dmg
 
 func apply_stun(duration: float) -> void:
