@@ -5,6 +5,7 @@ extends Node
 
 var burn_timer: Timer = null
 var slow_timer: Timer = null
+var root_timer: Timer = null
 var invisibility_timer: Timer = null
 var _original_speed: float = 0.0
 
@@ -47,9 +48,20 @@ func activate_effect(effect: String, level: int, duration: float = 1.0) -> void:
 		slow_timer.autostart = true
 		slow_timer.timeout.connect(func(): deactivate_effect("slow"))
 		add_child(slow_timer)
+		
+	elif effect == "root":
+		deactivate_effect("slow")
+		_original_speed = player.current_speed
+		player.current_speed = 0
+		root_timer = Timer.new()
+		root_timer.wait_time = duration
+		root_timer.one_shot = true
+		root_timer.autostart = true
+		root_timer.timeout.connect(func(): deactivate_effect("slow"))
+		add_child(root_timer)
+		
 	else:
 		print(effect)
-
 
 func deactivate_effect(effect: String) -> void:
 	if effect == "invisibility":
@@ -78,6 +90,15 @@ func deactivate_effect(effect: String) -> void:
 			slow_timer.stop()
 			slow_timer.queue_free()
 			slow_timer = null
+		if _original_speed > 0.0:
+			player.current_speed = _original_speed
+			_original_speed = 0.0
+			
+	elif effect == "root":
+		if root_timer != null:
+			root_timer.stop()
+			root_timer.queue_free()
+			root_timer = null
 		if _original_speed > 0.0:
 			player.current_speed = _original_speed
 			_original_speed = 0.0
