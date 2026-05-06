@@ -593,6 +593,13 @@ func _activate_ability(ability: String) -> void:
 
 		$"..".usingAbility = false
 		
+	elif ability == "reveal":
+		var plrs = $"../..".get_players()
+		for plr in plrs:
+			if not plr.is_Killer:
+				_highlight_killer(plr, 5.0)
+		$"..".usingAbility = false
+		
 	else:
 		print(ability)
 	

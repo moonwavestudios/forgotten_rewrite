@@ -69,14 +69,6 @@
 	  "icon": "res://assets/textures/abilityTemplate.png",
 	  "cooldown": 45.0,
 	  "type": "reveal",
-	},
-	{
-	  "id": "ability4",
-	  "name": "Iron Harvest",
-	  "icon": "res://assets/textures/abilityTemplate.png",
-	  "cooldown": 15.0,
-	  "type": "spawn_minions",
-	  "damage": 0,
 	}
   ]
 }
