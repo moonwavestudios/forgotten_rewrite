@@ -1,6 +1,6 @@
 {
   "id": "swordman",
-  "display_name": "Swordman",
+  "display_name": "John",
   "type": "survivor",
   "class": "sentinel",
   "skins": [
@@ -10,6 +10,11 @@
 	  "price": 0,
 	  "model": "res://assets/models/nyx/nyx_default.tscn",
 	  "thumbnail": "res://assets/textures/skins/nyx_default.png",
+	  "sfx": {
+		"ability1": "",
+		"ability2": "",
+		"footsteps": "",
+	  },
 	}
   ],
   "stats": {

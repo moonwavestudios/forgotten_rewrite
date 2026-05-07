@@ -14,6 +14,12 @@
 		"chase": "res://assets/music/chase_teto.mp3",
 		"lms_duration": 60.0
 	  },
+	"sfx": {
+		"primary": "res://assets/sfx/Noli_stab.mp3",
+		"ability1": "",
+		"ability2": "",
+		"footsteps": "",
+	  },
 	 "voicelines": {
 		"intro": [],
 		"idle": [
@@ -39,7 +45,29 @@
 	  "price": 500,
 	  "limited": true,
 	  "model": "res://assets/models/envy/envy_shadow.tscn",
-	  "thumbnail": "res://assets/textures/skins/envy_shadow.png"
+	  "thumbnail": "res://assets/textures/skins/envy_shadow.png",
+	  "voicelines": {
+		"intro": [],
+		"idle": [
+			"",
+		],
+		"void_dash": [
+			"",
+		],
+		"kill": [
+			"",
+		],
+		"victory": [],
+		"stun": [
+			""
+		]
+	 },
+	  "sfx": {
+		"primary": "res://assets/sfx/Noli_stab.mp3",
+		"ability1": "",
+		"ability2": "",
+		"footsteps": "",
+	  },
 	},
 	{
 	  "id": "blocky_envy",
@@ -47,7 +75,31 @@
 	  "price": 250,
 	  "limited": false,
 	  "model": "res://assets/models/envy/envy_blocky.tscn",
-	  "thumbnail": "res://assets/textures/skins/envy_blocky.png"
+	  "thumbnail": "res://assets/textures/skins/envy_blocky.png",
+	  "voicelines": {
+		"intro": [],
+		"idle": [
+			"res://assets/sfx/voicelines/envy/voiceline.mp3",
+			"res://assets/sfx/voicelines/envy/voiceline2.mp3",
+		],
+		"void_dash": [
+			"res://assets/sfx/voicelines/envy/voiceline_rush.mp3",
+		],
+		"kill": [
+			"res://assets/sfx/voicelines/envy/voiceline_kill.mp3",
+			"res://assets/sfx/voicelines/envy/voiceline_kill2.mp3",
+		],
+		"victory": [],
+		"stun": [
+			"res://assets/sfx/voicelines/envy/voiceline_stunned.mp3"
+		]
+	 },
+	  "sfx": {
+		"primary": "res://assets/sfx/Noli_stab.mp3",
+		"ability1": "",
+		"ability2": "",
+		"footsteps": "",
+	  },
 	},
   ],
   "stats": {

@@ -10,6 +10,13 @@
 	  "price": 0,
 	  "model": "res://assets/models/nyx/nyx_default.tscn",
 	  "thumbnail": "res://assets/textures/skins/nyx_default.png",
+	  "sfx": {
+		"ability1": "",
+		"ability2": "",
+		"ability3": "",
+		"ability4": "",
+		"footsteps": "",
+	  },
 	}
   ],
   "stats": {

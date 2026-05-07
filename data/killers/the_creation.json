@@ -21,6 +21,13 @@
 		"chase": "res://assets/music/fire_chase.mp3",
 		"lms_duration": 60.0
 	  },
+	  "sfx": {
+		"primary": "res://assets/sfx/Slash_swing.ogg",
+		"ability1": "",
+		"ability2": "",
+		"ability3": "",
+		"footsteps": "",
+	  },
 	},
 ],
   "voicelines": {
