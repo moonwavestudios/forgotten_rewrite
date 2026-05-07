@@ -374,7 +374,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		is_sprinting = false
 		
-	if is_Killer:
+	if is_Killer or true:
 		_chase_scan_timer -= delta
 		if _chase_scan_timer <= 0.0:
 			_chase_scan_timer = CHASE_SCAN_INTERVAL
@@ -566,27 +566,39 @@ func on_killed_survivor() -> void:
 	Voiceline_Component.play_kill()
 
 func _update_chase_music() -> void:
-	var closest_dist = INF
+	var target_dist = INF
 
-	for player in get_tree().get_nodes_in_group("players"):
-		if not is_instance_valid(player):
-			continue
-		if player == self:
-			continue
-		if player.is_Killer:
-			continue
-		var dist = global_position.distance_to(player.global_position)
-		if dist < closest_dist:
-			closest_dist = dist
+	if is_Killer:
+		
+		for player in get_tree().get_nodes_in_group("players"):
+			if not is_instance_valid(player):
+				continue
+			if player == self:
+				continue
+			if player.is_Killer:
+				continue
+			var dist = global_position.distance_to(player.global_position)
+			if dist < target_dist:
+				target_dist = dist
+	else:
+
+		for player in get_tree().get_nodes_in_group("players"):
+			if not is_instance_valid(player):
+				continue
+			if not player.is_Killer:
+				continue
+			var dist = global_position.distance_to(player.global_position)
+			if dist < target_dist:
+				target_dist = dist
 
 	var new_intensity = 0
-	if closest_dist <= CHASE_CLOSEST:
+	if target_dist <= CHASE_CLOSEST:
 		new_intensity = 4
-	elif closest_dist <= CHASE_CLOSE:
+	elif target_dist <= CHASE_CLOSE:
 		new_intensity = 3
-	elif closest_dist <= CHASE_MEDIUM:
+	elif target_dist <= CHASE_MEDIUM:
 		new_intensity = 2
-	elif closest_dist <= CHASE_FAR:
+	elif target_dist <= CHASE_FAR:
 		new_intensity = 1
 
 	if new_intensity != current_intensity:
@@ -595,32 +607,38 @@ func _update_chase_music() -> void:
 
 func _on_chase_state_changed(intensity: int) -> void:
 	var chase_data = active_music.get("chase", "")
+	
+	if not is_Killer:
+		for player in get_tree().get_nodes_in_group("players"):
+			if is_instance_valid(player) and player.is_Killer:
+				chase_data = player.active_music.get("chase", "")
+				break
+	
 	if intensity > 0:
-
 		if chase_data is Array and chase_data.size() >= 4:
 			for i in range(4):
 				var path = ""
 				var should_play = false
-				if intensity == 1 and i == 0:  # Furthest: Layer 1
-					path = chase_data[0]
-					should_play = true
-				elif intensity == 2 and i == 1:  # Medium: Layer 2
-					path = chase_data[1]
-					should_play = true
-				elif intensity == 3 and i == 2:  # Close: Layer 3
-					path = chase_data[2]
-					should_play = true
-				elif intensity == 4 and i == 3:  # Closest: Chase Theme
+				if intensity == 4 and i == 3:  # Closest: Chase Theme
 					path = chase_data[3]
 					should_play = true
+				elif not is_Killer and intensity == 1 and i == 0:  # Furthest: Layer 1
+					path = chase_data[0]
+					should_play = true
+				elif not is_Killer and intensity == 2 and i == 1:  # Medium: Layer 2
+					path = chase_data[1]
+					should_play = true
+				elif not is_Killer and intensity == 3 and i == 2:  # Close: Layer 3
+					path = chase_data[2]
+					should_play = true
 
-				if i < 3:  # Layers 1-3 use chase_layer_players
+				if i < 3:
 					if should_play and not chase_layer_players[i].playing and path != "" and ResourceLoader.exists(path):
 						chase_layer_players[i].stream = load(path)
 						chase_layer_players[i].play()
 					elif not should_play and chase_layer_players[i].playing:
 						chase_layer_players[i].stop()
-				else:  # i == 3: Chase Theme uses $Chase_Theme
+				else:
 					if should_play and not $Chase_Theme.playing and path != "" and ResourceLoader.exists(path):
 						$Chase_Theme.stream = load(path)
 						$Chase_Theme.play()
