@@ -51,12 +51,13 @@ one_shot = true
 bus = &"Ambience"
 
 [node name="CharacterBody3D" parent="." unique_id=1834531523 groups=["AI", "players"] instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2436476, 1.2592936, 3.7121303)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2436476, 1.2592936, -22.785397)
 malice = -50
 is_Killer = false
 
 [node name="CharacterBody3D2" parent="." unique_id=1792773064 groups=["AI", "players"] instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9373124, 1.2592936, 5.4456167)
+equipped_killer = "the_creation"
 hitbox_attack = "survivor"
 
 [node name="game" type="Node3D" parent="." unique_id=819722603]

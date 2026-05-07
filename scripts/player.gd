@@ -15,10 +15,13 @@ const PLAYTIME_SAVE_INTERVAL: float = 60.0
 var stun_resistant: bool = false
 var stun_resistance_time: float = 0.0
 
-const CHASE_RANGE = 15.0
+const CHASE_FAR = 20.0
+const CHASE_MEDIUM = 15.0
+const CHASE_CLOSE = 10.0
+const CHASE_CLOSEST = 5.0
 const CHASE_SCAN_INTERVAL = 0.2
 
-var _in_chase: bool = false
+var current_intensity: int = 0
 var _chase_scan_timer: float = 0.0
 
 var move_cam = true
@@ -102,6 +105,8 @@ var blocking = false
 var weakness = 0
 var tokens = 0
 
+var chase_layer_players: Array = []
+
 const COOLDOWN_ABILITY1 = 15.0
 const COOLDOWN_ABILITY2 = 5.0
 const COOLDOWN_ABILITY3 = 5.0
@@ -118,6 +123,12 @@ var cooldowns := {
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+	chase_layer_players = []
+	for i in range(3):
+		var player = AudioStreamPlayer.new()
+		add_child(player)
+		chase_layer_players.append(player)
 
 	var saved_survivor = save_data.get_equipped_character("survivor")
 	var saved_killer   = save_data.get_equipped_character("killer")
@@ -249,9 +260,17 @@ func apply_skin(skin_id: String) -> void:
 	equipped_skin_id = skin_id
 
 	var skin_music = skin_data.get("music", {})
+	var base_chase = base_music.get("chase", "")
+	var skin_chase = skin_music.get("chase", base_chase)
+	var chase_layers = skin_music.get("chase_layers", [])
+	var chase_value
+	if chase_layers is Array and chase_layers.size() >= 3:
+		chase_value = [chase_layers[0], chase_layers[1], chase_layers[2], skin_chase]
+	else:
+		chase_value = skin_chase
 	active_music = {
 		"lms": skin_music.get("lms", base_music.get("lms", "")),
-		"chase": skin_music.get("chase", base_music.get("chase", ""))
+		"chase": chase_value
 	}
 	
 	var merged_voicelines: Dictionary = base_voicelines.duplicate()
@@ -547,7 +566,7 @@ func on_killed_survivor() -> void:
 	Voiceline_Component.play_kill()
 
 func _update_chase_music() -> void:
-	var survivor_nearby = false
+	var closest_dist = INF
 
 	for player in get_tree().get_nodes_in_group("players"):
 		if not is_instance_valid(player):
@@ -557,28 +576,66 @@ func _update_chase_music() -> void:
 		if player.is_Killer:
 			continue
 		var dist = global_position.distance_to(player.global_position)
-		if dist <= CHASE_RANGE:
-			survivor_nearby = true
-			break
+		if dist < closest_dist:
+			closest_dist = dist
 
-	if survivor_nearby and not _in_chase:
-		_in_chase = true
-		_on_chase_state_changed(true)
-	elif not survivor_nearby and _in_chase:
-		_in_chase = false
-		_on_chase_state_changed(false)
+	var new_intensity = 0
+	if closest_dist <= CHASE_CLOSEST:
+		new_intensity = 4
+	elif closest_dist <= CHASE_CLOSE:
+		new_intensity = 3
+	elif closest_dist <= CHASE_MEDIUM:
+		new_intensity = 2
+	elif closest_dist <= CHASE_FAR:
+		new_intensity = 1
 
-func _on_chase_state_changed(chasing: bool) -> void:
-	if chasing:
-		var chase_path = active_music.get("chase", "")
-		if chase_path == "":
-			push_warning("No chase music path set for this killer.")
-			return
-		if not $Chase_Theme.playing:
-			$Chase_Theme.stream = load(chase_path)
-			$Chase_Theme.play()
+	if new_intensity != current_intensity:
+		current_intensity = new_intensity
+		_on_chase_state_changed(new_intensity)
+
+func _on_chase_state_changed(intensity: int) -> void:
+	var chase_data = active_music.get("chase", "")
+	if intensity > 0:
+
+		if chase_data is Array and chase_data.size() >= 4:
+			for i in range(4):
+				var path = ""
+				var should_play = false
+				if intensity == 1 and i == 0:  # Furthest: Layer 1
+					path = chase_data[0]
+					should_play = true
+				elif intensity == 2 and i == 1:  # Medium: Layer 2
+					path = chase_data[1]
+					should_play = true
+				elif intensity == 3 and i == 2:  # Close: Layer 3
+					path = chase_data[2]
+					should_play = true
+				elif intensity == 4 and i == 3:  # Closest: Chase Theme
+					path = chase_data[3]
+					should_play = true
+
+				if i < 3:  # Layers 1-3 use chase_layer_players
+					if should_play and not chase_layer_players[i].playing and path != "" and ResourceLoader.exists(path):
+						chase_layer_players[i].stream = load(path)
+						chase_layer_players[i].play()
+					elif not should_play and chase_layer_players[i].playing:
+						chase_layer_players[i].stop()
+				else:  # i == 3: Chase Theme uses $Chase_Theme
+					if should_play and not $Chase_Theme.playing and path != "" and ResourceLoader.exists(path):
+						$Chase_Theme.stream = load(path)
+						$Chase_Theme.play()
+					elif not should_play and $Chase_Theme.playing:
+						$Chase_Theme.stop()
+		else:
+			# Fallback for single theme
+			if not $Chase_Theme.playing and chase_data != "" and ResourceLoader.exists(chase_data):
+				$Chase_Theme.stream = load(chase_data)
+				$Chase_Theme.play()
 	else:
+		# Stop all
 		$Chase_Theme.stop()
+		for player in chase_layer_players:
+			player.stop()
 
 func _try_emote(emote_name: String) -> void:
 	if is_Killer:
