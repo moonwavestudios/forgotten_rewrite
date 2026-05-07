@@ -6,47 +6,71 @@ extends Node
 
 @onready var main = $"../.."
 
-var coin_flip_sfx = preload("res://assets/sfx/coin_flip.mp3")
-var shotSFX = preload("res://assets/sfx/shot.mp3")
-var nothingSFX = preload("res://assets/sfx/do_nothing.mp3")
-var explodeSFX = preload("res://assets/sfx/test.ogg")
 var gunDestroyed = false
 
-var slash_sfx = preload("res://assets/sfx/Slash_swing.ogg")
-var envy_sfx = preload("res://assets/sfx/Noli_stab.mp3")
-
-var slash_hit = preload("res://assets/sfx/Yixi_Hit.mp3")
-var envy_hit = preload("res://assets/sfx/envy_hit.ogg")
-
-var nyx_stab = preload("res://assets/sfx/Dagger_Success.mp3")
-
 var _dash_active := false
+
+func get_skin_ability_sfx(ability_slot: String) -> AudioStream:
+	if ability_slot == "" or not player:
+		return null
+	
+	var char_type = "killer" if player.is_Killer else "survivor"
+	var char_id = player.equipped_killer if player.is_Killer else player.equipped_survivor
+	var skin_id = player.equipped_skin_id
+	var skin_data = CharData.get_skin(char_id, char_type, skin_id)
+	var sfx_data = skin_data.get("sfx", {})
+	var sfx_entry = sfx_data.get(ability_slot, "")
+	
+	if sfx_entry is Array:
+		var candidates: Array = []
+		for path in sfx_entry:
+			if path != "" and ResourceLoader.exists(path):
+				var stream = load(path)
+				if stream:
+					candidates.append(stream)
+		if candidates.size() > 0:
+			return candidates[randi() % candidates.size()]
+		return null
+	
+	if typeof(sfx_entry) == TYPE_STRING and sfx_entry != "" and ResourceLoader.exists(sfx_entry):
+		return load(sfx_entry)
+	
+	return null
+
+func get_skin_ability_sfx_array(ability_slot: String) -> Array:
+	if ability_slot == "" or not player:
+		return []
+	
+	var char_type = "killer" if player.is_Killer else "survivor"
+	var char_id = player.equipped_killer if player.is_Killer else player.equipped_survivor
+	var skin_id = player.equipped_skin_id
+	var skin_data = CharData.get_skin(char_id, char_type, skin_id)
+	var sfx_data = skin_data.get("sfx", {})
+	var sfx_entry = sfx_data.get(ability_slot, "")
+	
+	if sfx_entry is Array:
+		var streams: Array = []
+		for path in sfx_entry:
+			if path != "" and ResourceLoader.exists(path):
+				var stream = load(path)
+				if stream:
+					streams.append(stream)
+		return streams
+	
+	return []
 
 func _activate_ability(ability: String) -> void:
 	# ==================== SLASHES ==============================
 	if ability == "slash":
 		var hit_flag: Array = []
-		$"../SFX".stream = slash_sfx
+		$"../SFX".stream = get_skin_ability_sfx("primary")
 		$"../SFX".play()
 		await get_tree().create_timer(0.3).timeout
 		for i in range(5):
 			var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
 			spawn_pos.y -= 0.9
 			$"../..".add_hitbox(
-				$"..".hitboxes, spawn_pos, hit_flag, 25, "survivor", Vector3(1.0,1.0,1.0), slash_hit, $".."
-			)
-			await get_tree().create_timer(0.05).timeout
-			
-	elif ability == "envy_slash":
-		var hit_flag: Array = []
-		$"../SFX".stream = envy_sfx
-		$"../SFX".play()
-		await get_tree().create_timer(0.3).timeout
-		for i in range(5):
-			var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
-			spawn_pos.y -= 0.9
-			$"../..".add_hitbox(
-				$"..".hitboxes, spawn_pos, hit_flag, 25, "survivor", Vector3(1.0,1.0,1.0), envy_hit, $".."
+				$"..".hitboxes, spawn_pos, hit_flag, 25, "survivor", Vector3(1.0,1.0,1.0), get_skin_ability_sfx("slash_hit"), $".."
 			)
 			await get_tree().create_timer(0.05).timeout
 			
@@ -57,7 +81,7 @@ func _activate_ability(ability: String) -> void:
 		await get_tree().create_timer(0.5).timeout
 		
 		var sfx_player = $"../SFX"
-		sfx_player.stream = coin_flip_sfx
+		sfx_player.stream = get_skin_ability_sfx("ability1")
 		sfx_player.play()
 		var random = randf()
 		if random < 0.75 and $"..".tokens < 3:
@@ -74,6 +98,8 @@ func _activate_ability(ability: String) -> void:
 			var random = randf()
 			var shoot_chance: float
 			var explode_chance: float
+
+			var sfx_array = get_skin_ability_sfx_array("ability2")
 			
 			$"..".current_speed = 0
 			
@@ -97,7 +123,7 @@ func _activate_ability(ability: String) -> void:
 				$"../..".add_hitbox(
 					$"..".hitboxes, spawn_pos, hit_flag, 25 * tokens_used, "killer", Vector3(0.5,0.25,5.558), null, $".."
 				)
-				$"../SFX".stream = shotSFX
+				$"../SFX".stream = sfx_array[1]
 				$"../SFX".play()
 				await get_tree().create_timer(0.05).timeout
 				
@@ -113,12 +139,12 @@ func _activate_ability(ability: String) -> void:
 					$"..".health -= 25 
 				else:
 					$"..".health -= 25 * $"..".weakness
-				$"../SFX".stream = explodeSFX
+				$"../SFX".stream = sfx_array[2]
 				$"../SFX".play()
 				await get_tree().create_timer(0.05).timeout
 			else:
 				$"..".grant(10, 20, 1, "Nice try")
-				$"../SFX".stream = nothingSFX
+				$"../SFX".stream = sfx_array[0]
 				$"../SFX".play()
 		else:
 			print("not enough tokens or gun is broken")
@@ -258,7 +284,7 @@ func _activate_ability(ability: String) -> void:
 		var dash_duration := 0.15
 		var elapsed := 0.0
 		
-		$"../SFX".stream = slash_sfx
+		$"../SFX".stream = get_skin_ability_sfx("ability1")
 		$"../SFX".play()
 		
 		await get_tree().create_timer(0.3).timeout
@@ -275,7 +301,7 @@ func _activate_ability(ability: String) -> void:
 			var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
 			spawn_pos.y -= 0.9
 			$"../..".add_hitbox(
-				$"..".hitboxes, spawn_pos, hit_flag, 25, "survivor", Vector3(1.0,1.0,1.0), slash_hit, $".."
+				$"..".hitboxes, spawn_pos, hit_flag, 25, "survivor", Vector3(1.0,1.0,1.0), get_skin_ability_sfx("slash_hit"), $".."
 			)
 			await get_tree().create_timer(0.05).timeout
 		
@@ -294,7 +320,7 @@ func _activate_ability(ability: String) -> void:
 		instance.hit_flag = hit_flag
 		instance.hit_killer = false
 		instance.damage = 10
-		instance.hitsfx = slash_hit
+		instance.hitsfx = get_skin_ability_sfx("slash_hit")
 		instance.scale = Vector3(2.0, 1.0, 2.0)
 		instance.og_plr = $".."
 		
@@ -329,7 +355,7 @@ func _activate_ability(ability: String) -> void:
 					tick_pos.y -= 0.9
 					$"../..".add_hitbox(
 						$"..".hitboxes, tick_pos, tick_flag, 5, "survivor",
-						Vector3(1.0, 1.0, 1.0), slash_hit, $".."
+						Vector3(1.0, 1.0, 1.0), get_skin_ability_sfx("slash_hit"), $".."
 					)
 					await get_tree().create_timer(0.3).timeout
 				
@@ -387,7 +413,7 @@ func _activate_ability(ability: String) -> void:
 				var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
 				spawn_pos.y -= 0.9
 				$"../..".add_hitbox(
-					$"..".hitboxes, spawn_pos, hit_flag, 25, "killer", Vector3(1.0,1.0,1.0), slash_hit, $".."
+					$"..".hitboxes, spawn_pos, hit_flag, 25, "killer", Vector3(1.0,1.0,1.0), get_skin_ability_sfx("punch_hit"), $".."
 				)
 				await get_tree().create_timer(0.05).timeout
 		
@@ -555,7 +581,7 @@ func _activate_ability(ability: String) -> void:
 						0,
 						"survivor",
 						Vector3(1.0, 1.0, 1.0),
-						slash_hit,
+						null,
 						$".."
 					)
 					
@@ -573,7 +599,7 @@ func _activate_ability(ability: String) -> void:
 			var travel_flag: Array = []
 			main.add_hitbox(
 				player.hitboxes, projectile_pos, travel_flag, spike_damage, "survivor",
-				Vector3(2, 0.6, 0.6), slash_hit, player
+				Vector3(2, 0.6, 0.6), null, player
 			)
 			
 			await get_tree().physics_frame
@@ -637,7 +663,7 @@ func _activate_ability(ability: String) -> void:
 						0,
 						"survivor",
 						Vector3(1.0, 1.0, 1.0),
-						slash_hit,
+						null,
 						$".."
 					)
 					
@@ -655,7 +681,7 @@ func _activate_ability(ability: String) -> void:
 			var travel_flag: Array = []
 			main.add_hitbox(
 				player.hitboxes, projectile_pos, travel_flag, spike_damage, "survivor",
-				Vector3(1, 0.3, 0.3), slash_hit, player
+				Vector3(1, 0.3, 0.3), null, player
 			)
 			
 			await get_tree().physics_frame

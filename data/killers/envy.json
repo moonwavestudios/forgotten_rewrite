@@ -19,19 +19,20 @@
 		"ability1": "",
 		"ability2": "",
 		"footsteps": "",
+		"slash_hit": "res://assets/sfx/envy_hit.ogg"
 	  },
 	 "voicelines": {
 		"intro": [],
 		"idle": [
 			"res://assets/sfx/voicelines/envy/voiceline.mp3",
-			"res://assets/sfx/voicelines/envy/voiceline2.mp3",
+			"res://assets/sfx/voicelines/envy/voiceline2.mp3"
 		],
 		"void_dash": [
-			"res://assets/sfx/voicelines/envy/voiceline_rush.mp3",
+			"res://assets/sfx/voicelines/envy/voiceline_rush.mp3"
 		],
 		"kill": [
 			"res://assets/sfx/voicelines/envy/voiceline_kill.mp3",
-			"res://assets/sfx/voicelines/envy/voiceline_kill2.mp3",
+			"res://assets/sfx/voicelines/envy/voiceline_kill2.mp3"
 		],
 		"victory": [],
 		"stun": [
@@ -49,13 +50,13 @@
 	  "voicelines": {
 		"intro": [],
 		"idle": [
-			"",
+			""
 		],
 		"void_dash": [
-			"",
+			""
 		],
 		"kill": [
-			"",
+			""
 		],
 		"victory": [],
 		"stun": [
@@ -66,8 +67,8 @@
 		"primary": "res://assets/sfx/Noli_stab.mp3",
 		"ability1": "",
 		"ability2": "",
-		"footsteps": "",
-	  },
+		"footsteps": ""
+	  }
 	},
 	{
 	  "id": "blocky_envy",
@@ -80,14 +81,14 @@
 		"intro": [],
 		"idle": [
 			"res://assets/sfx/voicelines/envy/voiceline.mp3",
-			"res://assets/sfx/voicelines/envy/voiceline2.mp3",
+			"res://assets/sfx/voicelines/envy/voiceline2.mp3"
 		],
 		"void_dash": [
-			"res://assets/sfx/voicelines/envy/voiceline_rush.mp3",
+			"res://assets/sfx/voicelines/envy/voiceline_rush.mp3"
 		],
 		"kill": [
 			"res://assets/sfx/voicelines/envy/voiceline_kill.mp3",
-			"res://assets/sfx/voicelines/envy/voiceline_kill2.mp3",
+			"res://assets/sfx/voicelines/envy/voiceline_kill2.mp3"
 		],
 		"victory": [],
 		"stun": [
@@ -98,9 +99,9 @@
 		"primary": "res://assets/sfx/Noli_stab.mp3",
 		"ability1": "",
 		"ability2": "",
-		"footsteps": "",
-	  },
-	},
+		"footsteps": ""
+	  }
+	}
   ],
   "stats": {
 	"health": 1000,
@@ -118,7 +119,7 @@
 	  "name": "Stab",
 	  "icon": "res://assets/textures/abilityTemplate.png",
 	  "cooldown": 2.0,
-	  "type": "envy_slash",
+	  "type": "slash",
 	  "damage": 20
 	},
 	{

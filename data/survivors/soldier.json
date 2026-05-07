@@ -15,7 +15,8 @@
 		"ability2": "",
 		"ability3": "",
 		"footsteps": "",
-	  },
+		"punch_hit": "res://assets/sfx/envy_hit.ogg"
+	  }
 	}
   ],
   "stats": {
