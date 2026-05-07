@@ -39,7 +39,8 @@
 		"ability1": "res://assets/sfx/Slash_swing.ogg",
 		"ability2": "",
 		"footsteps": "",
-	  },
+		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
+	  }
 	},
 	{
 	  "id": "fire",
@@ -58,7 +59,8 @@
 		"ability1": "res://assets/sfx/Slash_swing.ogg",
 		"ability2": "",
 		"footsteps": "",
-	  },
+		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
+	  }
 	},
 	{
 	  "id": "blocky",
@@ -77,7 +79,8 @@
 		"ability1": "res://assets/sfx/Slash_swing.ogg",
 		"ability2": "",
 		"footsteps": "",
-	  },
+		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
+	  }
 	},
 	{
 	  "id": "vegan",
@@ -96,8 +99,9 @@
 		"ability1": "res://assets/sfx/Slash_swing.ogg",
 		"ability2": "",
 		"footsteps": "",
-	  },
-	},
+		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
+	  }
+	}
   ],
   "stats": {
 	"health": 1000,

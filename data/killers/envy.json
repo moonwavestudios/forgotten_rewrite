@@ -38,7 +38,7 @@
 		"stun": [
 			"res://assets/sfx/voicelines/envy/voiceline_stunned.mp3"
 		]
-	 },
+	 }
 	},
 	{
 	  "id": "virus",
@@ -67,7 +67,8 @@
 		"primary": "res://assets/sfx/Noli_stab.mp3",
 		"ability1": "",
 		"ability2": "",
-		"footsteps": ""
+		"footsteps": "",
+		"slash_hit": "res://assets/sfx/envy_hit.ogg"
 	  }
 	},
 	{
@@ -99,7 +100,8 @@
 		"primary": "res://assets/sfx/Noli_stab.mp3",
 		"ability1": "",
 		"ability2": "",
-		"footsteps": ""
+		"footsteps": "",
+		"slash_hit": "res://assets/sfx/envy_hit.ogg"
 	  }
 	}
   ],

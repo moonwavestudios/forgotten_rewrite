@@ -53,6 +53,6 @@
 	  "type": "punch",
 	  "target": "killer",
 	  "description": "Soldier punches the killer, stunning them for 3 seconds."
-	},
+	}
   ]
 }
