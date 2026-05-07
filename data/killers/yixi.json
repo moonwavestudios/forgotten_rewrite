@@ -32,6 +32,11 @@
 	  "music": {
 		"lms": "res://assets/music/lms_bunny.mp3",
 		"chase": "res://assets/music/chase_bunny.mp3",
+		"chase_layers": [
+		  "res://assets/music/l1.mp3",
+		  "res://assets/music/l2.mp3",
+		  "res://assets/music/l3.mp3"
+		],
 		"lms_duration": 80.0
 	  },
 	  "sfx": {
