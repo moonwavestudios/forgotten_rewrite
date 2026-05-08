@@ -805,9 +805,9 @@ func _spawn_explosion(pos: Vector3) -> void:
 		$".."
 	)
 
-func has_ability(ability_slot: String, survivor: String) -> bool:
-	var survivor_data = CharData.get_survivor(survivor)
-	var abilities: Array = survivor_data.get("abilities", [])
+func has_ability(ability_slot: String, char_id: String) -> bool:
+	var char_data = CharData.get_killer(char_id) if player.is_Killer else CharData.get_survivor(char_id)
+	var abilities: Array = char_data.get("abilities", [])
 	for ab in abilities:
 		if ab.get("id") == ability_slot:
 			return true
