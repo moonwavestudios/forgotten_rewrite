@@ -378,6 +378,32 @@ func _activate_ability(ability: String) -> void:
 				print(str(plr) + " is Killer")
 				_highlight_killer(plr)
 				
+	elif ability == "beartrap":
+		var ability_data = get_killer_ability("ability3", $"..".equipped_killer)
+		var trap_damage: int = ability_data.get("damage", 15)
+		var trap_limit: int = ability_data.get("limit", 3)
+
+		var active_traps = get_tree().get_nodes_in_group("beartraps").filter(
+			func(t): return is_instance_valid(t) and t.owner_player == $".."
+		)
+		if active_traps.size() >= trap_limit:
+			print("Beartrap limit reached (%d/%d)" % [active_traps.size(), trap_limit])
+			$"..".usingAbility = false
+			return
+
+		var trap_scene = preload("res://scenes/other/bear_trap.tscn")
+		var trap = trap_scene.instantiate()
+		trap.owner_player = $".."
+		trap.damage = trap_damage
+		trap.hitboxes_scene = $"..".hitboxes
+		main.add_child(trap)
+
+		var place_pos = $"..".global_position
+		place_pos.y -= 0.9
+		trap.global_position = place_pos
+
+		$"..".usingAbility = false
+				
 	elif ability == "block":
 		$"..".blocking = true
 		$"..".current_speed = 0.25

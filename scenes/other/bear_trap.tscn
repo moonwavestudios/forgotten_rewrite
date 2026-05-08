@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cuf6o073xuvjg"]
+
+[sub_resource type="GDScript" id="GDScript_1qqd5"]
+script/source = "extends Area3D
+
+var owner_player
+var damage := 15
+var hitboxes_scene
+
+var triggered := false
+
+func _ready():
+	add_to_group(\"beartraps\")
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body):
+	if triggered:
+		return
+
+	if body == owner_player:
+		return
+
+	if not (\"is_Killer\" in body):
+		return
+
+	if body.is_Killer:
+		return
+
+	triggered = true
+
+	print(\"Beartrap triggered!\")
+
+	body.take_damage(damage)
+
+	if \"current_speed\" in body:
+		var old_speed = body.current_speed
+		body.current_speed = 0
+
+		await get_tree().create_timer(2.0).timeout
+
+		if is_instance_valid(body):
+			body.current_speed = old_speed
+
+	queue_free()
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1qqd5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1qqd5"]
+
+[node name="BearTrap" type="Area3D" unique_id=627160976]
+script = SubResource("GDScript_1qqd5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=734679278]
+shape = SubResource("BoxShape3D_1qqd5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1986448064]
+mesh = SubResource("BoxMesh_1qqd5")
+
+[node name="Timer" type="Timer" parent="." unique_id=1072832662]

@@ -142,6 +142,15 @@
 	  "cooldown": 32.0,
 	  "type": "yixi_grab",
 	  "damage": 50
+	},
+	{
+	  "id": "ability3",
+	  "name": "Beartrap",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 20.0,
+	  "type": "beartrap",
+	  "damage": 15,
+	  "limit": 3
 	}
   ]
 }

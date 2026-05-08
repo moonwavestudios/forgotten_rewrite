@@ -319,7 +319,7 @@ func _refresh_ability_ui() -> void:
 
 	var slots = []
 	for child in AbilitiesStuff.get_children():
-		if child.name.begins_with("Ability"):
+		if child.name.begins_with("Ability") or child.name.begins_with("Attack"):
 			slots.append(child)
 
 	for i in range(slots.size()):
