@@ -260,7 +260,7 @@ func take_damage(amount: int) -> void:
 	health -= final_dmg
 
 func _physics_process(delta: float) -> void:
-	hitbox_attack = "killer" if is_Killer else "survivor"
+	hitbox_attack = "killer" if not is_Killer else "survivor"
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
