@@ -38,7 +38,17 @@
 		"stun": [
 			"res://assets/sfx/voicelines/envy/voiceline_stunned.mp3"
 		]
-	 }
+	 },
+	  "animations": {
+		"idle": "idle",
+		"walk": "walk",
+		"sprint": "sprint",
+		"attack_primary": "stab",
+		"attack_ability1": "void_grasp",
+		"attack_ability2": "void_dash",
+		"stun": "stunned",
+		"death": "death"
+	  }
 	},
 	{
 	  "id": "virus",
@@ -69,6 +79,16 @@
 		"ability2": "",
 		"footsteps": "",
 		"slash_hit": "res://assets/sfx/envy_hit.ogg"
+	  },
+	  "animations": {
+		"idle": "idle_virus",
+		"walk": "walk_virus",
+		"sprint": "sprint_virus",
+		"attack_primary": "stab_virus",
+		"attack_ability1": "void_grasp_virus",
+		"attack_ability2": "void_dash_virus",
+		"stun": "stunned",
+		"death": "death"
 	  }
 	},
 	{

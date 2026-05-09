@@ -20,6 +20,17 @@
 		"ability2": "",
 		"footsteps": "",
 		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
+	  },
+	  "animations": {
+		"idle": "idle",
+		"walk": "walk",
+		"sprint": "sprint",
+		"attack_primary": "slash",
+		"attack_ability1": "behead",
+		"attack_ability2": "grab",
+		"attack_ability3": "beartrap",
+		"stun": "stunned",
+		"death": "death"
 	  }
 	},
 	{
@@ -45,6 +56,17 @@
 		"ability2": "",
 		"footsteps": "res://assets/sfx/universfield-heavy-walking-footsteps-352771.mp3",
 		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
+	  },
+	  "animations": {
+		"idle": "idle_bunny",
+		"walk": "walk_bunny",
+		"sprint": "sprint_bunny",
+		"attack_primary": "slash_bunny",
+		"attack_ability1": "behead_bunny",
+		"attack_ability2": "grab_bunny",
+		"attack_ability3": "beartrap_bunny",
+		"stun": "stunned",
+		"death": "death"
 	  }
 	},
 	{
@@ -65,6 +87,17 @@
 		"ability2": "",
 		"footsteps": "",
 		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
+	  },
+	  "animations": {
+		"idle": "idle_fire",
+		"walk": "walk_fire",
+		"sprint": "sprint_fire",
+		"attack_primary": "slash_fire",
+		"attack_ability1": "behead_fire",
+		"attack_ability2": "grab_fire",
+		"attack_ability3": "beartrap_fire",
+		"stun": "stunned",
+		"death": "death"
 	  }
 	},
 	{
@@ -74,6 +107,17 @@
 	  "limited": false,
 	  "model": "res://assets/models/yixi/yixi_blocky.tscn",
 	  "thumbnail": "res://assets/textures/skins/yixi_blocky.png",
+	  "animations": {
+		"idle": "idle_blocky",
+		"walk": "walk_blocky",
+		"sprint": "sprint_blocky",
+		"attack_primary": "slash_blocky",
+		"attack_ability1": "behead_blocky",
+		"attack_ability2": "grab_blocky",
+		"attack_ability3": "beartrap_blocky",
+		"stun": "stunned",
+		"death": "death"
+	  },
 	  "music": {
 		"lms": "",
 		"chase": "",
@@ -94,6 +138,17 @@
 	  "limited": false,
 	  "model": "res://assets/models/yixi/yixi_vegan.tscn",
 	  "thumbnail": "res://assets/textures/skins/yixi_vegan.png",
+	  "animations": {
+		"idle": "idle_vegan",
+		"walk": "walk_vegan",
+		"sprint": "sprint_vegan",
+		"attack_primary": "slash_vegan",
+		"attack_ability1": "behead_vegan",
+		"attack_ability2": "grab_vegan",
+		"attack_ability3": "beartrap_vegan",
+		"stun": "stunned",
+		"death": "death"
+	  },
 	  "music": {
 		"lms": "res://assets/music/VeganVanityLMS.mp3",
 		"chase": "",

@@ -29,6 +29,23 @@ func get_skin(character_id: String, type: String, skin_id: String) -> Dictionary
 			return skin
 	return {}
 
+func get_skin_animations(character_id: String, type: String, skin_id: String) -> Dictionary:
+	var skin = get_skin(character_id, type, skin_id)
+	return skin.get("animations", {})
+
+func get_animation(character_id: String, type: String, skin_id: String, action: String) -> String:
+	var animations = get_skin_animations(character_id, type, skin_id)
+	return animations.get(action, "")
+
+func has_skin_animations(character_id: String, type: String, skin_id: String) -> bool:
+	return not get_skin_animations(character_id, type, skin_id).is_empty()
+
+func get_animation_safe(character_id: String, type: String, skin_id: String, action: String, fallback: String = "") -> String:
+	var anim = get_animation(character_id, type, skin_id, action)
+	if anim.is_empty():
+		return fallback if not fallback.is_empty() else action
+	return anim
+
 func _load_all() -> void:
 	survivors = _load_directory(SURVIVORS_DIR)
 	killers   = _load_directory(KILLERS_DIR)

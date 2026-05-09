@@ -33,6 +33,17 @@
 		"ability3": "",
 		"footsteps": "",
 		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
+	  },
+	  "animations": {
+		"idle": "idle",
+		"walk": "walk",
+		"sprint": "sprint",
+		"attack_primary": "slash",
+		"attack_ability1": "spikes",
+		"attack_ability2": "footprint",
+		"attack_ability3": "reveal",
+		"stun": "stunned",
+		"death": "death"
 	  }
 	}
 ],
