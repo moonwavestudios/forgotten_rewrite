@@ -66,6 +66,8 @@ func add_hitbox(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: V
 				if hit_flag.is_empty():
 					hit_flag.append(true)
 					source_player.on_killed_survivor()
+					if has_node("RoundTimer") and $RoundTimer.time_left > 0:
+						$RoundTimer.start($RoundTimer.time_left + 30.0)
 	
 	instance.queue_free()
 	
