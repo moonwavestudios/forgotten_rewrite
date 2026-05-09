@@ -1,7 +1,7 @@
 extends Node
 
 const SAVE_PATH = "user://save.json"
-const DEFAULT_OWNED_CHARACTERS = ["swordman", "yixi"]
+const DEFAULT_OWNED_CHARACTERS = ["eli", "swordman", "yixi"]
 
 func _load_all() -> Dictionary:
 	if not FileAccess.file_exists(SAVE_PATH):
