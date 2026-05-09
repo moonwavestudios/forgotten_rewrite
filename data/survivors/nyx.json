@@ -63,7 +63,7 @@
 	  "range": 10.0,
 	  "effect_duration": 3.0,
 	  "target": "killer",
-	  "description": "Nyx disrupts the killer’s focus, forcing them to briefly lose lock on their current target and preventing immediate re-engagement."
+	  "description": "Nyx disrupts the killer's focus, forcing them to briefly lose lock on their current target and preventing immediate re-engagement."
 	},
 	{
 	  "id": "ability4",
