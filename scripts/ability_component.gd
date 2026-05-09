@@ -59,13 +59,16 @@ func get_skin_ability_sfx_array(ability_slot: String) -> Array:
 	
 	return []
 
-func _activate_ability(ability: String) -> void:
+func _activate_ability(ability_data: Dictionary) -> void:
+	var ability = ability_data.get("type", "")
+	var wind_up = ability_data.get("wind_up", 0.3)  # Default to 0.3 seconds if not specified
+	
 	# ==================== SLASHES ==============================
 	if ability == "slash":
 		var hit_flag: Array = []
 		$"../SFX".stream = get_skin_ability_sfx("primary")
 		$"../SFX".play()
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(wind_up).timeout
 		for i in range(5):
 			var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
 			spawn_pos.y -= 0.9
@@ -155,7 +158,7 @@ func _activate_ability(ability: String) -> void:
 	#reroll
 	elif ability == "health_gamble":
 		if $"..".tokens > 0:
-			var ability_data = get_ability_survivor("ability3", $"..".equipped_survivor)
+			#var ability_data = get_ability_survivor("ability3", $"..".equipped_survivor)
 			var min_health = ability_data.get("min_health", 60)
 			var max_health = ability_data.get("max_health", 130)
 			
@@ -211,7 +214,7 @@ func _activate_ability(ability: String) -> void:
 		if _dash_active:
 			return
 
-		var ability_data = get_killer_ability("ability2", $"..".equipped_killer)
+		#var ability_data = get_killer_ability("ability2", $"..".equipped_killer)
 		var dash_speed: float = ability_data.get("speed", 30.0)
 		var dash_damage: int = ability_data.get("damage", 40)
 		const MAX_DASH_TIME := 3.0
@@ -379,7 +382,7 @@ func _activate_ability(ability: String) -> void:
 				_highlight_killer(plr)
 				
 	elif ability == "beartrap":
-		var ability_data = get_killer_ability("ability3", $"..".equipped_killer)
+		#var ability_data = get_killer_ability("ability3", $"..".equipped_killer)
 		var trap_damage: int = ability_data.get("damage", 15)
 		var trap_limit: int = ability_data.get("limit", 3)
 
@@ -444,7 +447,7 @@ func _activate_ability(ability: String) -> void:
 				await get_tree().create_timer(0.05).timeout
 		
 	elif ability == "anti_lock":
-		var ability_data = get_ability_survivor("ability3", $"..".equipped_survivor)
+		#var ability_data = get_ability_survivor("ability3", $"..".equipped_survivor)
 		var ability_range: float = ability_data.get("range", 10.0)
 		var effect_duration: float = ability_data.get("effect_duration", 3.0)
 		
@@ -485,7 +488,7 @@ func _activate_ability(ability: String) -> void:
 				$"..".usingAbility = false
 				
 	elif ability == "ally_link":
-		var ability_data = get_ability_survivor("ability4", $"..".equipped_survivor)
+		#var ability_data = get_ability_survivor("ability4", $"..".equipped_survivor)
 		var duration: float = ability_data.get("duration", 8.0)
 		var redirect_ratio: float = ability_data.get("redirect_ratio", 0.35)
 		var perfect_window: float = ability_data.get("perfect_release_window", 0.5)
@@ -551,7 +554,7 @@ func _activate_ability(ability: String) -> void:
 		$"..".usingAbility = false
 		
 	elif ability == "bonespike":
-		var ability_data = get_killer_ability("ability1", $"..".equipped_killer)
+		#var ability_data = get_killer_ability("ability1", $"..".equipped_killer)
 		var spike_damage: int = ability_data.get("damage", 40)
 		var effect_duration: float = ability_data.get("effect_duration", 2.0)
 
@@ -633,7 +636,7 @@ func _activate_ability(ability: String) -> void:
 		$"..".usingAbility = false
 	
 	elif ability == "entanglement":
-		var ability_data = get_killer_ability("ability2", $"..".equipped_killer)
+		#var ability_data = get_killer_ability("ability2", $"..".equipped_killer)
 		var spike_damage: int = ability_data.get("damage", 15)
 		var effect_duration: float = ability_data.get("effect_duration", 2.0)
 

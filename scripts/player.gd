@@ -407,7 +407,7 @@ func _physics_process(delta: float) -> void:
 		var ability_type = equipped_ability1.get("type", "")
 		var ability_name = equipped_ability1.get("name", "Ability1")
 		var cooldown_duration = equipped_ability1.get("cooldown", COOLDOWN_ABILITY1)
-		Ability_Component._activate_ability(ability_type)
+		Ability_Component._activate_ability(equipped_ability1)
 		Voiceline_Component.play_ability(ability_type)
 		_start_cooldown(ability_name, cooldown_duration)
 		usingAbility = true
@@ -427,7 +427,7 @@ func _physics_process(delta: float) -> void:
 		var cooldown_duration = equipped_ability2.get("cooldown", COOLDOWN_ABILITY2)
 		_start_cooldown(ability_name, cooldown_duration)
 		usingAbility = true
-		Ability_Component._activate_ability(ability_type)
+		Ability_Component._activate_ability(equipped_ability2)
 		Voiceline_Component.play_ability(ability_type)
 		await get_tree().create_timer(0.5).timeout
 		abilityTimer_timeout()
@@ -436,7 +436,7 @@ func _physics_process(delta: float) -> void:
 		var ability_type = equipped_ability3.get("type", "")
 		var ability_name = equipped_ability3.get("name", "Ability3")
 		var cooldown_duration = equipped_ability3.get("cooldown", COOLDOWN_ABILITY3)
-		Ability_Component._activate_ability(ability_type)
+		Ability_Component._activate_ability(equipped_ability3)
 		Voiceline_Component.play_ability(ability_type)
 		_start_cooldown(ability_name, cooldown_duration)
 		usingAbility = true
@@ -447,7 +447,7 @@ func _physics_process(delta: float) -> void:
 		var ability_type = equipped_ability4.get("type", "")
 		var ability_name = equipped_ability4.get("name", "Ability4")
 		var cooldown_duration = equipped_ability4.get("cooldown", COOLDOWN_ABILITY4)
-		Ability_Component._activate_ability(ability_type)
+		Ability_Component._activate_ability(equipped_ability4)
 		Voiceline_Component.play_ability(ability_type)
 		_start_cooldown(ability_name, cooldown_duration)
 		usingAbility = true
@@ -484,7 +484,8 @@ func _physics_process(delta: float) -> void:
 			var ability_type = equipped_attack.get("type", "")
 			var ability_name = equipped_attack.get("name", "Attack")
 			var cooldown_duration = equipped_attack.get("cooldown", COOLDOWN_ATTACK)
-			Ability_Component._activate_ability(ability_type)
+			Ability_Component._activate_ability(equipped_attack)
+			Voiceline_Component.play_ability(ability_type)
 			_start_cooldown(ability_name, cooldown_duration)
 			usingAbility = true
 			await get_tree().create_timer(0.5).timeout
