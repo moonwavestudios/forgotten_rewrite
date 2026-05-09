@@ -1,6 +1,7 @@
 extends Node
 
 const SAVE_PATH = "user://save.json"
+const DEFAULT_OWNED_CHARACTERS = ["swordman", "yixi"]
 
 func _load_all() -> Dictionary:
 	if not FileAccess.file_exists(SAVE_PATH):
@@ -37,7 +38,11 @@ func own_skin(character_id: String, skin_id: String) -> void:
 
 func get_owned_characters() -> Array:
 	var data = _load_all()
-	return data.get("owned_characters", [])
+	var owned = data.get("owned_characters", [])
+	for default_id in DEFAULT_OWNED_CHARACTERS:
+		if default_id not in owned:
+			owned.append(default_id)
+	return owned
 
 func get_coins() -> int:
 	var data = _load_all()
@@ -87,7 +92,9 @@ func own_character(character_id: String) -> void:
 
 func has_character(character_id: String) -> bool:
 	var data = _load_all()
-	return character_id in data.get("owned_characters", [])
+	if character_id in data.get("owned_characters", []):
+		return true
+	return character_id in DEFAULT_OWNED_CHARACTERS
 
 func has_skin(character_id: String, skin_id: String) -> bool:
 	if skin_id == "default":

@@ -13,8 +13,8 @@
 	  "sfx": {
 		"ability1": "",
 		"ability2": "",
-		"footsteps": "",
-	  },
+		"footsteps": ""
+	  }
 	}
   ],
   "stats": {
@@ -31,7 +31,7 @@
 	  "icon": "res://assets/textures/abilityTemplate.png",
 	  "cooldown": 20.0,
 	  "type": "sword",
-	  "description": "Swordman slashes his sword stunning the killer"
+	  "description": "John slashes his sword stunning the killer"
 	},
 	{
 	  "id": "ability2",
@@ -41,7 +41,7 @@
 	  "type": "chicken",
 	  "heal": 50,
 	  "uses": 2,
-	  "description": "swordman eats his chicken, healing 50 HP"
+	  "description": "John eats his chicken, healing 50 HP"
 	}
   ]
 }

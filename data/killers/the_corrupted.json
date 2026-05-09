@@ -1,0 +1,84 @@
+{
+  "id": "the_corrupted",
+  "display_name": "The Corrupted",
+  "type": "killer",
+  "stats": {
+	"health": 1100,
+	"stamina": 110,
+	"walk_speed": 5.0,
+	"sprint_speed": 10.0,
+	"price": 1500
+  },
+  "skins": [
+	{
+	  "id": "default",
+	  "display_name": "Default",
+	  "price": 0,
+	  "model": "res://assets/models/the_corrupted/corrupted_default.tscn",
+	  "thumbnail": "res://assets/textures/skins/corrupted_default.png",
+	  "music": {
+		"lms": "res://assets/music/lms_bunny.mp3",
+		"chase": "res://assets/music/fire_chase.mp3",
+		"chase_layers": [
+		  "res://assets/music/l1.mp3",
+		  "res://assets/music/l2.mp3",
+		  "res://assets/music/l3.mp3"
+		],
+		"lms_duration": 60.0
+	  },
+	  "sfx": {
+		"primary": "res://assets/sfx/Slash_swing.ogg",
+		"ability1": "",
+		"ability2": "",
+		"ability3": "",
+		"footsteps": "",
+		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
+	  }
+	}
+],
+  "voicelines": {
+	"intro": [],
+	"kill": [],
+	"victory": [],
+	"stun": []
+  },
+  "requirements": {
+	"survivor_type": null
+  },
+  "abilities": [
+	{
+	  "id": "primary",
+	  "name": "Slash",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 2.0,
+	  "type": "slash",
+	  "damage": 28
+	},
+	{
+	  "id": "ability1",
+	  "name": "Spikes of Corruption",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 25.0,
+	  "type": "spikes",
+	  "damage": 10
+	},
+	{
+	  "id": "ability2",
+	  "name": "Footprint",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 5.0,
+	  "type": "trap",
+	  "damage": 0,
+	  "effect": "corruption",
+	  "effect_level": 1,
+	  "effect_duration": 5.0
+	},
+	{
+	  "id": "ability3",
+	  "name": "I can see you",
+	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "cooldown": 45.0,
+	  "type": "reveal"
+	}
+  ]
+}
