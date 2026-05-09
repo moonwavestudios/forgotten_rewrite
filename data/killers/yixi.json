@@ -54,6 +54,7 @@
 		"primary": "res://assets/sfx/Slash_swing.ogg",
 		"ability1": "res://assets/sfx/Slash_swing.ogg",
 		"ability2": "",
+		"stun": "",
 		"footsteps": "res://assets/sfx/universfield-heavy-walking-footsteps-352771.mp3",
 		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
 	  },
@@ -85,6 +86,7 @@
 		"primary": "res://assets/sfx/Slash_swing.ogg",
 		"ability1": "res://assets/sfx/Slash_swing.ogg",
 		"ability2": "",
+		"stun": "",
 		"footsteps": "",
 		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
 	  },
@@ -127,6 +129,7 @@
 		"primary": "res://assets/sfx/Slash_swing.ogg",
 		"ability1": "res://assets/sfx/Slash_swing.ogg",
 		"ability2": "",
+		"stun": "",
 		"footsteps": "",
 		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
 	  }
@@ -158,6 +161,7 @@
 		"primary": "res://assets/sfx/Slash_swing.ogg",
 		"ability1": "res://assets/sfx/Slash_swing.ogg",
 		"ability2": "",
+		"stun": "",
 		"footsteps": "",
 		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
 	  }

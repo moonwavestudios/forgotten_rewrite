@@ -18,6 +18,7 @@
 		"primary": "res://assets/sfx/Noli_stab.mp3",
 		"ability1": "",
 		"ability2": "",
+		"stun": "",
 		"footsteps": "",
 		"slash_hit": "res://assets/sfx/envy_hit.ogg"
 	  },
@@ -78,6 +79,7 @@
 		"ability1": "",
 		"ability2": "",
 		"footsteps": "",
+		"stun": "",
 		"slash_hit": "res://assets/sfx/envy_hit.ogg"
 	  },
 	  "animations": {
