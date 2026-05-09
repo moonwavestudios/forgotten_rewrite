@@ -96,6 +96,7 @@ const STAMINA_RECOVER_EXHAUSTED = 5
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 var ability_uses := {}
+var animation_manager: AnimationManager
 
 var stamina: float = MAX_STAMINA
 var is_sprinting: bool = false
@@ -286,7 +287,13 @@ func apply_skin(skin_id: String) -> void:
 	var skin_voicelines = skin_data.get("voicelines", {})            
 	for key in skin_voicelines:                                       
 		merged_voicelines[key] = skin_voicelines[key]                
-	Voiceline_Component.apply_voicelines(merged_voicelines)  
+	Voiceline_Component.apply_voicelines(merged_voicelines)
+	
+	if animation_manager == null:
+		animation_manager = AnimationManager.new()
+		add_child(animation_manager)
+	animation_manager.initialize(char_id, char_type, skin_id)
+	animation_manager.set_animation_player(anim_player)  
 
 func refresh_item_ui() -> void:
 	var slots = []
