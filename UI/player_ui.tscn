@@ -95,12 +95,13 @@ script/source = "extends CenterContainer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	$CenterStamina.visible = PlayerSettings.center_stamina if ServerSettings.use_stamina else false
+	$\".\".visible = PlayerSettings.center_stamina if ServerSettings.use_stamina else false
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_8hdo2"]
 font = ExtResource("4_qf5vc")
-font_color = Color(0, 1, 0, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nplvd"]
 font = ExtResource("4_qf5vc")

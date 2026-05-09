@@ -410,7 +410,18 @@ func _physics_process(delta: float) -> void:
 		$player_ui/GameStuff/Stamina.value = stamina
 		$player_ui/GameStuff/Stamina/Label.text = str(int(stamina)) + "/" + str(int(MAX_STAMINA))
 		$player_ui/GameStuff/CenterContainer/CenterStamina.text = str(int(stamina))
-	
+		
+		var stamina_pct = stamina / MAX_STAMINA
+		var stamina_color = Color.RED.lerp(Color.GREEN, stamina_pct)
+		$player_ui/GameStuff/CenterContainer/CenterStamina.modulate = stamina_color
+
+		if stamina_pct > 0.5:
+			stamina_color = Color(0.0, 1.0, 0.0, 1.0)
+		elif stamina_pct > 0.25:
+			stamina_color = Color(1.0, 0.65, 0.0)
+		else:
+			stamina_color = Color(1.0, 0.2, 0.2)
+
 	if health < maxhealth*0.5:
 		$player_ui/GameStuff/Vignette.visible = true
 	else:
