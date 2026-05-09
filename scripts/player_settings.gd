@@ -3,7 +3,9 @@ extends Node
 var hitsound = ""
 var enabled_hitsound = false
 var enabled_killsound = false
+var disable_killer = false
 var killsound = ""
+var afk_mode = false
 var show_hitboxes: bool = false
 
 var center_stamina: bool = false
@@ -28,6 +30,8 @@ func _load() -> void:
 	enabled_hitsound  = s.get("enabled_hitsound",  enabled_hitsound)
 	enabled_killsound = s.get("enabled_killsound", enabled_killsound)
 	center_stamina = s.get("center_stamina", center_stamina)
+	afk_mode = s.get("afk_mode", afk_mode)
+	disable_killer = s.get("disable_killer", disable_killer)
 	show_hitboxes     = s.get("show_hitboxes",      show_hitboxes)
 	if s.has("keybinds"):
 		keybinds.merge(s["keybinds"], true)
@@ -41,6 +45,8 @@ func save() -> void:
 		"show_hitboxes":     show_hitboxes,
 		"center_stamina":     center_stamina,
 		"keybinds":          keybinds,
+		"afk_mode":          afk_mode,
+		"disable_killer": disable_killer,
 	})
 
 func get_keybind_label(action: String) -> String:

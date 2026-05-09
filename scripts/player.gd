@@ -8,6 +8,8 @@ const MOUSE_SENSITIVITY = 0.003
 
 var mouse_unlocked = false
 
+@onready var PlayerSettings = $PlayerSettings
+
 var playtime_seconds: float = 0.0
 var _playtime_save_timer: float = 0.0
 const PLAYTIME_SAVE_INTERVAL: float = 60.0

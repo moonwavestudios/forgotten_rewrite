@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bea8y7owko1ta" path="res://assets/music/chase_teto.mp3" id="3_a1j51"]
 [ext_resource type="Script" uid="uid://nw5d83eisaa1" path="res://scripts/voiceline_component.gd" id="4_5e1og"]
 [ext_resource type="Script" uid="uid://b355vg2tv7qjp" path="res://scripts/passive_component.gd" id="6_byner"]
+[ext_resource type="Script" uid="uid://d28b84rwd5avf" path="res://scripts/player_settings.gd" id="7_jsvo3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vifff"]
 
@@ -48,3 +49,6 @@ bus = &"SFX"
 [node name="Killsound" type="AudioStreamPlayer3D" parent="." unique_id=610082459]
 volume_db = -80.0
 bus = &"SFX"
+
+[node name="PlayerSettings" type="Node" parent="." unique_id=886057934]
+script = ExtResource("7_jsvo3")

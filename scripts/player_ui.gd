@@ -1,14 +1,16 @@
 extends Control
+
 var player_label = preload("res://UI/stuff/player_list_players.tscn")
 var selected_player = ""
+
 @onready var player_profile = $SpectatorStuff/PlayerProfile
 @onready var player_list = $SpectatorStuff/PlayerList
-
 @onready var player = $".."
-
 @onready var audio_player = $"../Hitsound"
 @onready var killsound_player = $"../Killsound"
 @onready var file_dialog = $"../../FileDialog"
+
+@onready var settings: Node = $"../PlayerSettings"
 
 const NOTIFICATION_SCENE := preload("res://UI/achievement_notification.tscn")
 const STACK_SPACING = 8
@@ -16,112 +18,85 @@ const NOTIFICATION_HEIGHT = 80
 
 var listening_action: String = ""
 var listening_button: Button = null
-
 var is_list_visible = true
-
 var listening_just_started: bool = false
 var tween: Tween
-
 var file_dialog_mode: String = ""
-
 var _active_notifications: Array = []
 
 func _ready() -> void:
 	file_dialog.filters = ["*.wav,*.ogg,*.mp3 ; Audio Files"]
 	file_dialog.file_selected.connect(_on_file_selected)
-	PlayerSettings._load()
+	settings._load()
 	set_process_unhandled_input(false)
 	player_list.visible = true
-	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox.button_pressed = PlayerSettings.show_hitboxes
-	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound/EnableKillsound.button_pressed = PlayerSettings.enabled_killsound
-	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable.button_pressed = PlayerSettings.enabled_hitsound
-	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Stamina/Center_Stam.button_pressed = PlayerSettings.center_stamina
-	
+
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox.button_pressed       = settings.show_hitboxes
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound/EnableKillsound.button_pressed    = settings.enabled_killsound
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable.button_pressed    = settings.enabled_hitsound
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Stamina/Center_Stam.button_pressed          = settings.center_stamina
+
 	_restore_hitsound()
 	_restore_killsound()
-	
-	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind.text = PlayerSettings.get_keybind_label("Attack")
-	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind.text = PlayerSettings.get_keybind_label("Ability1")
-	
+
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind.text    = settings.get_keybind_label("Attack")
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind.text = settings.get_keybind_label("Ability1")
+
 	AchievementData.achievement_unlocked.connect(_on_achievement_unlocked)
-	
+
 func _on_achievement_unlocked(achievement) -> void:
 	if _active_notifications.size() >= 3:
 		return
-
 	var notif = NOTIFICATION_SCENE.instantiate()
 	add_child(notif)
-
 	var slot := _active_notifications.size()
 	notif.position.y = 16 + slot * (NOTIFICATION_HEIGHT + STACK_SPACING)
-
 	_active_notifications.append(notif)
 	notif.show_achievement(achievement)
-
 	get_tree().create_timer(0.4 + 3.0 + 0.4 + 0.1).timeout.connect(func():
 		_active_notifications.erase(notif)
 	)
 
 func _restore_hitsound() -> void:
-	var path = PlayerSettings.hitsound
+	var path = settings.hitsound
 	if path == "":
 		return
 	audio_player = get_node_or_null("../Hitsound")
 	if audio_player == null:
 		return
-	var stream = _load_audio_stream(path)
+	var stream = settings.load_audio_from_path(path)
 	if stream:
 		audio_player.stream = stream
-		PlayerSettings.hitsound_stream = stream
+		settings.hitsound_stream = stream
 
 func _restore_killsound() -> void:
-	var path = PlayerSettings.killsound
+	var path = settings.killsound
 	if path == "":
 		return
 	killsound_player = get_node_or_null("../Killsound")
 	if killsound_player == null:
 		return
-	var stream = _load_audio_stream(path)
+	var stream = settings.load_audio_from_path(path)
 	if stream:
 		killsound_player.stream = stream
-		PlayerSettings.killsound_stream = stream
-
-func _load_audio_stream(path: String) -> AudioStream:
-	if path.ends_with(".wav"):
-		var file = FileAccess.open(path, FileAccess.READ)
-		if file == null:
-			return null
-		var stream = AudioStreamWAV.new()
-		stream.data = file.get_buffer(file.get_length())
-		return stream
-	elif path.ends_with(".ogg"):
-		return AudioStreamOggVorbis.load_from_file(path)
-	elif path.ends_with(".mp3"):
-		var file = FileAccess.open(path, FileAccess.READ)
-		if file == null:
-			return null
-		var stream = AudioStreamMP3.new()
-		stream.data = file.get_buffer(file.get_length())
-		return stream
-	return null
+		settings.killsound_stream = stream
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("PlayerList"):
 		toggle_player_list()
-	
+
 	if listening_action == "":
 		return
-	
+
 	var label: String = ""
-	
+
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE:
-			label = PlayerSettings.get_keybind_label(listening_action)
+			label = settings.get_keybind_label(listening_action)
 		else:
 			label = OS.get_keycode_string(event.keycode)
-			PlayerSettings.set_keybind(listening_action, label)
+			settings.set_keybind(listening_action, label)
 	elif event is InputEventMouseButton and event.pressed:
-		
 		if not listening_just_started:
 			match event.button_index:
 				MOUSE_BUTTON_LEFT:       label = "LMB"
@@ -130,13 +105,13 @@ func _input(event: InputEvent) -> void:
 				MOUSE_BUTTON_WHEEL_UP:   label = "WheelUp"
 				MOUSE_BUTTON_WHEEL_DOWN: label = "WheelDown"
 				_: label = "Mouse%d" % event.button_index
-			PlayerSettings.set_keybind(listening_action, label)
+			settings.set_keybind(listening_action, label)
 		else:
 			listening_just_started = false
 			return
 	else:
 		return
-	
+
 	listening_button.text = label
 	listening_action = ""
 	listening_button = null
@@ -166,12 +141,10 @@ func _process(_delta: float) -> void:
 	var human_players = $"../..".get_players().filter(
 		func(p): return not p.is_in_group("AI")
 	)
-
 	var container = $SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer
 
 	for plr in human_players:
 		var entry
-
 		if container.has_node(NodePath(plr.name)):
 			entry = container.get_node(NodePath(plr.name))
 		else:
@@ -182,7 +155,6 @@ func _process(_delta: float) -> void:
 			entry.get_node("Button").pressed.connect(
 				player_lists_button_pressed.bind(plr.name)
 			)
-
 		entry.get_node("Malice").text = str(plr.malice)
 
 func _on_spin_box_value_changed(value: float) -> void:
@@ -221,20 +193,17 @@ func _on_settings_pressed() -> void:
 	$SpectatorStuff/Settings_Panel.visible = not $SpectatorStuff/Settings_Panel.visible
 
 func _on_enable_hitbox_toggled(toggled_on: bool) -> void:
-	PlayerSettings.show_hitboxes = toggled_on
-	PlayerSettings.save()
+	settings.set_show_hitboxes(toggled_on)
 
 func _on_enable_killsound_toggled(toggled_on: bool) -> void:
-	PlayerSettings.enabled_killsound = toggled_on
-	PlayerSettings.save()
+	settings.set_enabled_killsound(toggled_on)
 
 func _on_hitsounds_enable_toggled(toggled_on: bool) -> void:
-	PlayerSettings.enabled_hitsound = toggled_on
-	PlayerSettings.save()
+	settings.set_enabled_hitsound(toggled_on)
 
 func start_listening(action: String, btn: Button) -> void:
 	if listening_button != null:
-		listening_button.text = PlayerSettings.get_keybind_label(listening_action)
+		listening_button.text = settings.get_keybind_label(listening_action)
 	listening_action = action
 	listening_button = btn
 	listening_just_started = true
@@ -243,34 +212,34 @@ func start_listening(action: String, btn: Button) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if listening_action == "":
 		return
-	
+
 	var label: String = ""
-	
+
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE:
-			label = PlayerSettings.get_keybind_label(listening_action)
+			label = settings.get_keybind_label(listening_action)
 		else:
 			label = OS.get_keycode_string(event.keycode)
-			PlayerSettings.set_keybind(listening_action, label)
+			settings.set_keybind(listening_action, label)
 	elif event is InputEventMouseButton and event.pressed:
 		match event.button_index:
-			MOUSE_BUTTON_LEFT:   label = "LMB"
-			MOUSE_BUTTON_RIGHT:  label = "RMB"
-			MOUSE_BUTTON_MIDDLE: label = "MMB"
+			MOUSE_BUTTON_LEFT:       label = "LMB"
+			MOUSE_BUTTON_RIGHT:      label = "RMB"
+			MOUSE_BUTTON_MIDDLE:     label = "MMB"
 			MOUSE_BUTTON_WHEEL_UP:   label = "WheelUp"
 			MOUSE_BUTTON_WHEEL_DOWN: label = "WheelDown"
 			_: label = "Mouse%d" % event.button_index
-		PlayerSettings.set_keybind(listening_action, label)
+		settings.set_keybind(listening_action, label)
 	else:
 		return
-	
+
 	listening_button.text = label
 	listening_action = ""
 	listening_button = null
 	get_viewport().set_input_as_handled()
 
 func _on_file_selected(path: String) -> void:
-	var stream = _load_audio_stream(path)
+	var stream = settings.load_audio_from_path(path)
 	if not stream:
 		print("Failed to load audio from: ", path)
 		return
@@ -281,8 +250,8 @@ func _on_file_selected(path: String) -> void:
 			print("Hitsound node not found!")
 			return
 		audio_player.stream = stream
-		PlayerSettings.hitsound_stream = stream
-		PlayerSettings.set_hitsound(path)
+		settings.hitsound_stream = stream
+		settings.set_hitsound(path)
 
 	elif file_dialog_mode == "killsound":
 		killsound_player = get_node_or_null("../Killsound")
@@ -290,8 +259,8 @@ func _on_file_selected(path: String) -> void:
 			print("Killsound node not found!")
 			return
 		killsound_player.stream = stream
-		PlayerSettings.killsound_stream = stream
-		PlayerSettings.set_killsound(path)
+		settings.killsound_stream = stream
+		settings.set_killsound(path)
 
 	file_dialog_mode = ""
 
@@ -316,5 +285,5 @@ func _on_killsound_select_pressed() -> void:
 	file_dialog.popup_centered(Vector2(800, 600))
 
 func _on_center_stam_toggled(toggled_on: bool) -> void:
-	PlayerSettings.center_stamina = toggled_on
-	PlayerSettings.save()
+	settings.center_stamina = toggled_on
+	settings.save()

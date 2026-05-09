@@ -91,6 +91,8 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="GDScript" id="GDScript_fwocb"]
 script/source = "extends CenterContainer
 
+@onready var PlayerSettings = $\"../../../PlayerSettings\"
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	$CenterStamina.visible = PlayerSettings.center_stamina if ServerSettings.use_stamina else false
