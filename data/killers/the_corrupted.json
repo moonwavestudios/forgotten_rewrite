@@ -45,6 +45,14 @@
   "requirements": {
 	"survivor_type": null
   },
+  "terror_radius": [
+	{
+		"layer_1": 20.0,
+		"layer_2": 15.0,
+		"layer_3": 10.0,
+		"chase": 5.0
+	}
+  ],
   "abilities": [
 	{
 	  "id": "primary",

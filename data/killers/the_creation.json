@@ -9,6 +9,14 @@
 	"sprint_speed": 10.0,
 	"price": 1250
   },
+  "terror_radius": [
+	{
+		"layer_1": 20.0,
+		"layer_2": 15.0,
+		"layer_3": 10.0,
+		"chase": 5.0
+	}
+  ],
   "skins": [
 	{
 	  "id": "default",
