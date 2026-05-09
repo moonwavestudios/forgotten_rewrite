@@ -38,10 +38,15 @@ var blocks = 0
 
 var current_speed = WALK_SPEED
 
+@export var footstep_sound: AudioStream
+@export var footstep_interval: float = 0.35
+var _footstep_timer: float = 0.0
+
 @onready var camera: Camera3D = $Camera3D
 @onready var first_person_cam: Camera3D = $FirstPersonCam
 @onready var Ability_Component = $Ability_Component
 @onready var Effect_Component = $EffectComponent
+@onready var footstep_player: AudioStreamPlayer3D = _get_or_create_footstep_player()
 @onready var Voiceline_Component = $Voiceline_Component
 @onready var Passive_Component = $PassiveComponent
 
@@ -233,6 +238,7 @@ func apply_skin(skin_id: String) -> void:
 			"lms":   base_music.get("lms", ""),
 			"chase": base_music.get("chase", "")
 		}
+		_update_footstep_sound(char_data, {})
 		Voiceline_Component.apply_voicelines(base_voicelines) 
 		return
 
@@ -244,6 +250,7 @@ func apply_skin(skin_id: String) -> void:
 			"lms": base_music.get("lms", ""),
 			"chase": base_music.get("chase", "")
 		}
+		_update_footstep_sound(char_data, {})
 		return
 
 	if is_instance_valid(_skin_instance):
@@ -272,6 +279,8 @@ func apply_skin(skin_id: String) -> void:
 		"lms": skin_music.get("lms", base_music.get("lms", "")),
 		"chase": chase_value
 	}
+	
+	_update_footstep_sound(char_data, skin_data)
 	
 	var merged_voicelines: Dictionary = base_voicelines.duplicate()
 	var skin_voicelines = skin_data.get("voicelines", {})            
@@ -554,13 +563,16 @@ func _physics_process(delta: float) -> void:
 		return
 		
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
+	if direction.length() > 0.0:
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, WALK_SPEED)
 		velocity.z = move_toward(velocity.z, 0, WALK_SPEED)
-		
+
+	var is_moving = direction.length() > 0.0
+	_handle_footsteps(delta, is_moving)
+
 	move_and_slide()
 
 func on_killed_survivor() -> void:
@@ -702,6 +714,51 @@ func _consume_use(ability_data: Dictionary) -> void:
 	var namer = ability_data.get("name", "")
 	if ability_uses.has(namer):
 		ability_uses[namer] = max(0, ability_uses[namer] - 1)
+
+func _update_footstep_sound(char_data: Dictionary, skin_data: Dictionary) -> void:
+	var footstep_path = ""
+	if skin_data.has("sfx"):
+		footstep_path = skin_data.get("sfx", {}).get("footsteps", "")
+	if footstep_path == "" and char_data.has("sfx"):
+		footstep_path = char_data.get("sfx", {}).get("footsteps", "")
+
+	if footstep_path != "":
+		if ResourceLoader.exists(footstep_path):
+			var sound = load(footstep_path)
+			if sound is AudioStream:
+				footstep_sound = sound
+				return
+			else:
+				push_warning("Footstep sound resource is not an AudioStream: %s" % footstep_path)
+		else:
+			push_warning("Footstep sound path does not exist: %s" % footstep_path)
+
+func _handle_footsteps(delta: float, moving: bool) -> void:
+	if not is_on_floor() or not moving or footstep_sound == null:
+		_footstep_timer = 0.0
+		return
+
+	var step_interval = max(0.05, footstep_interval * (WALK_SPEED / max(current_speed, 0.1)))
+	_footstep_timer -= delta
+	if _footstep_timer <= 0.0:
+		_play_footstep()
+		_footstep_timer = step_interval
+
+func _play_footstep() -> void:
+	if footstep_sound == null:
+		return
+	footstep_player.stream = footstep_sound
+	footstep_player.play()
+
+func _get_or_create_footstep_player() -> AudioStreamPlayer3D:
+	var existing = get_node_or_null("FootstepPlayer")
+	if existing is AudioStreamPlayer3D:
+		return existing
+	var player = AudioStreamPlayer3D.new()
+	player.name = "FootstepPlayer"
+	player.bus = "SFX"
+	add_child(player)
+	return player
 
 func _input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():

@@ -43,7 +43,7 @@
 		"primary": "res://assets/sfx/Slash_swing.ogg",
 		"ability1": "res://assets/sfx/Slash_swing.ogg",
 		"ability2": "",
-		"footsteps": "",
+		"footsteps": "res://assets/sfx/universfield-heavy-walking-footsteps-352771.mp3",
 		"slash_hit": "res://assets/sfx/Yixi_Hit.mp3"
 	  }
 	},
