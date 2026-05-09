@@ -8,6 +8,9 @@ var _effect_labels: Dictionary = {}
 
 var burn_timer: Timer = null
 var slow_timer: Timer = null
+var speed_boost_timer: Timer = null
+var corruption_timer: Timer = null
+var corruption_tick_timer: Timer = null
 var root_timer: Timer = null
 var weakness_timer: Timer = null
 var invisibility_timer: Timer = null
@@ -65,6 +68,23 @@ func activate_effect(effect: String, level: int, duration: float = 1.0) -> void:
 		burn_timer.autostart = true
 		burn_timer.timeout.connect(func(): player.health -= level)
 		add_child(burn_timer)
+
+	elif effect == "corruption":
+		deactivate_effect("corruption")
+		_add_effect_label("corruption", level)
+		corruption_tick_timer = Timer.new()
+		corruption_tick_timer.wait_time = 1.0
+		corruption_tick_timer.one_shot = false
+		corruption_tick_timer.autostart = true
+		corruption_tick_timer.timeout.connect(func(): player.health -= 1 * level)
+		add_child(corruption_tick_timer)
+		
+		corruption_timer = Timer.new()
+		corruption_timer.wait_time = duration
+		corruption_timer.one_shot = true
+		corruption_timer.autostart = true
+		corruption_timer.timeout.connect(func(): deactivate_effect("corruption"))
+		add_child(corruption_timer)
 		
 	elif effect == "drain":
 		deactivate_effect("drain")
@@ -99,6 +119,18 @@ func activate_effect(effect: String, level: int, duration: float = 1.0) -> void:
 		slow_timer.autostart = true
 		slow_timer.timeout.connect(func(): deactivate_effect("slow"))
 		add_child(slow_timer)
+
+	elif effect == "speed_boost":
+		deactivate_effect("speed_boost")
+		_add_effect_label("speed_boost", level)
+		_original_speed = player.current_speed
+		player.current_speed = player.current_speed * 1.5 if level == 1 else player.current_speed * level
+		speed_boost_timer = Timer.new()
+		speed_boost_timer.wait_time = duration
+		speed_boost_timer.one_shot = true
+		speed_boost_timer.autostart = true
+		speed_boost_timer.timeout.connect(func(): deactivate_effect("speed_boost"))
+		add_child(speed_boost_timer)
 		
 	elif effect == "root":
 		deactivate_effect("slow")
@@ -182,6 +214,23 @@ func deactivate_effect(effect: String) -> void:
 		if _original_speed > 0.0:
 			player.current_speed = _original_speed
 			_original_speed = 0.0
+
+	elif effect == "speed_boost":
+		_remove_effect_label("speed_boost")
+		if speed_boost_timer != null:
+			speed_boost_timer.stop()
+			speed_boost_timer.queue_free()
+			speed_boost_timer = null
+		if _original_speed > 0.0:
+			player.current_speed = _original_speed
+			_original_speed = 0.0
+
+	elif effect == "corruption":
+		_remove_effect_label("corruption")
+		if corruption_timer != null:
+			corruption_timer.stop()
+			corruption_timer.queue_free()
+			corruption_timer = null
 			
 	elif effect == "weakness":
 		_remove_effect_label("weakness")

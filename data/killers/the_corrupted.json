@@ -70,7 +70,13 @@
 	  "cooldown": 5.0,
 	  "type": "trap",
 	  "damage": 0,
-	  "effect": "corruption",
+	  "effect": [
+		"corruption",
+		"slow"
+	],
+	  "killereffect": "speed_boost",
+	  "killereffect_duration": 5.0,
+	  "killereffect_level": 2,
 	  "effect_level": 1,
 	  "effect_duration": 5.0
 	},
