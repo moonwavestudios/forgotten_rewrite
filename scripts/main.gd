@@ -87,6 +87,9 @@ func _process(_delta: float) -> void:
 				
 	if tasks_completed == tasks_to_complete and in_round and ServerSettings.exits:
 		print("exit open")
+		
+	for plr in get_players():
+		plr.get_node("player_ui/GameStuff/Objectives/Objective").text = "Completed generators: " + str(tasks_completed) + "/" + str(tasks_to_complete)
 	
 	if in_round and not lms_started:
 		if get_player_count() == 2:

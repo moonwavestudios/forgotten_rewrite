@@ -20,3 +20,4 @@ func _on_interacted(interactor: Node) -> void:
 
 func _on_puzzle_completed() -> void:
 	$ProximityPrompt.set_enabled(false)
+	main.tasks_completed += 1
