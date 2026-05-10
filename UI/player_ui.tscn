@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cihdyi4bqqose" path="res://assets/images/gear.png" id="10_byocv"]
 [ext_resource type="Texture2D" uid="uid://d2nhyrcgolqcw" path="res://assets/images/shoppingCart.png" id="11_fwocb"]
 [ext_resource type="Texture2D" uid="uid://dbdwo3txly44u" path="res://assets/images/hidden.png" id="11_rvkn8"]
+[ext_resource type="Script" uid="uid://jn7o6m130g2j" path="res://scripts/main_menu.gd" id="13_ixg0m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8xti"]
 bg_color = Color(1, 1, 1, 1)
@@ -182,6 +183,16 @@ font = ExtResource("4_qf5vc")
 font_size = 47
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixg0m"]
+bg_color = Color(0.07683582, 0.07683582, 0.07683582, 1)
+
+[sub_resource type="GDScript" id="GDScript_ixg0m"]
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	$\"..\".visible = false
+"
 
 [node name="player_ui" type="Control" unique_id=1532252855]
 layout_mode = 3
@@ -1566,18 +1577,18 @@ flat = true
 expand_icon = true
 
 [node name="Other" type="Control" parent="." unique_id=1023339228]
-visible = false
 anchors_preset = 0
 offset_right = 1151.0
 offset_bottom = 652.0
 
-[node name="Panel" type="Panel" parent="Other" unique_id=1868512066]
+[node name="MainMenu" type="Panel" parent="Other" unique_id=1868512066]
 layout_mode = 0
 offset_right = 1151.0
 offset_bottom = 649.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_fwocb")
+script = ExtResource("13_ixg0m")
 
-[node name="Label" type="Label" parent="Other/Panel" unique_id=398422952]
+[node name="Label" type="Label" parent="Other/MainMenu" unique_id=398422952]
 layout_mode = 0
 offset_right = 1153.0
 offset_bottom = 42.0
@@ -1585,6 +1596,91 @@ text = "Forgotten"
 label_settings = SubResource("LabelSettings_s8lkg")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Start" type="Button" parent="Other/MainMenu" unique_id=579607066]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 152.0
+offset_right = 686.0
+offset_bottom = 211.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 36
+text = "Start"
+flat = true
+
+[node name="Settings" type="Button" parent="Other/MainMenu" unique_id=327856213]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 240.0
+offset_right = 686.0
+offset_bottom = 299.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 36
+text = "Settings"
+flat = true
+
+[node name="Credits" type="Button" parent="Other/MainMenu" unique_id=1587458521]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 328.0
+offset_right = 686.0
+offset_bottom = 387.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 36
+text = "Credits"
+flat = true
+
+[node name="Quit" type="Button" parent="Other/MainMenu" unique_id=1466459929]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 416.0
+offset_right = 686.0
+offset_bottom = 475.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 36
+text = "Quit"
+flat = true
+
+[node name="Hosting" type="Panel" parent="Other/MainMenu" unique_id=1295242328]
+visible = false
+layout_mode = 0
+offset_left = 336.0
+offset_top = 133.0
+offset_right = 846.0
+offset_bottom = 511.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ixg0m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Other/MainMenu/Hosting" unique_id=1684358443]
+layout_mode = 0
+offset_right = 509.0
+offset_bottom = 378.0
+theme_override_constants/separation = 78
+alignment = 1
+
+[node name="Host" type="Button" parent="Other/MainMenu/Hosting/VBoxContainer" unique_id=895035266]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 43
+text = "Host"
+flat = true
+
+[node name="Join" type="Button" parent="Other/MainMenu/Hosting/VBoxContainer" unique_id=392852380]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 43
+text = "Join"
+flat = true
+
+[node name="Close" type="Button" parent="Other/MainMenu/Hosting" unique_id=1305982222]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 34
+text = "X"
+flat = true
+script = SubResource("GDScript_ixg0m")
 
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/BuyButton" to="SpectatorStuff/Shop" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/SkinsButton" to="SpectatorStuff/Shop" method="_on_skins_button_pressed"]
@@ -1603,3 +1699,5 @@ vertical_alignment = 1
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox" to="." method="_on_enable_hitbox_toggled"]
 [connection signal="value_changed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins/SpinBox" to="." method="_on_spin_box_value_changed"]
 [connection signal="pressed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller/GiveKiller" to="." method="_on_give_killer_pressed"]
+[connection signal="pressed" from="Other/MainMenu/Start" to="Other/MainMenu" method="_on_start_pressed"]
+[connection signal="pressed" from="Other/MainMenu/Hosting/Close" to="Other/MainMenu/Hosting/Close" method="_on_pressed"]
