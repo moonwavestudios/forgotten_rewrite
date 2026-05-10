@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bg0sua2iqvdyo" path="res://scripts/generator_puzzle.gd" id="1_8b6nt"]
 [ext_resource type="Texture2D" uid="uid://cp7cwl8ok36gw" path="res://assets/images/note.png" id="2_a7ijp"]
+[ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="3_ii30c"]
 
 [node name="GeneratorPuzzle" type="Control" unique_id=907800241]
 layout_mode = 3
@@ -30,3 +31,17 @@ offset_bottom = 614.0
 script = ExtResource("1_8b6nt")
 circle_texture = ExtResource("2_a7ijp")
 ring_color = Color(1, 1, 1, 1)
+
+[node name="Button" type="Button" parent="." unique_id=211302873]
+layout_mode = 0
+offset_left = 921.0
+offset_top = 614.0
+offset_right = 1151.0
+offset_bottom = 649.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_ii30c")
+theme_override_font_sizes/font_size = 21
+text = "Back"
+flat = true
+
+[connection signal="pressed" from="Button" to="HitCircleLayer" method="_on_button_pressed"]

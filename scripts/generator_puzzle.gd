@@ -91,6 +91,9 @@ func _input(event: InputEvent) -> void:
 		_handle_click(event.position)
 	elif event is InputEventScreenTouch and event.pressed:
 		_handle_click(event.position)
+		
+	if event.is_action_pressed("ui_select"):
+		stop()
 
 func _schedule_next() -> void:
 	_next_spawn = randf_range(SPAWN_INTERVAL_MIN, SPAWN_INTERVAL_MAX)
@@ -193,3 +196,6 @@ func _clear_all() -> void:
 		if c["sprite"] != null and is_instance_valid(c["sprite"]):
 			c["sprite"].queue_free()
 	_circles.clear()
+
+func _on_button_pressed() -> void:
+	stop()
