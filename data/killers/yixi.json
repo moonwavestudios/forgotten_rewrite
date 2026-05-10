@@ -30,7 +30,8 @@
 		"attack_ability2": "grab",
 		"attack_ability3": "beartrap",
 		"stun": "stunned",
-		"death": "death"
+		"kill": "kill",
+		"intro": "intro"
 	  }
 	},
 	{

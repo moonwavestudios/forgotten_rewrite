@@ -19,6 +19,8 @@ transparency = 1
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
 material = SubResource("StandardMaterial3D_qlg0r")
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y4r1p"]
+
 [node name="player" type="CharacterBody3D" unique_id=633314722 groups=["players"]]
 script = ExtResource("1_3vyb7")
 hitboxes = ExtResource("2_qhqgy")
@@ -54,6 +56,7 @@ max_distance = 25.0
 bus = &"Ambience"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=511871288]
+libraries/anims = SubResource("AnimationLibrary_y4r1p")
 
 [node name="EffectComponent" type="Node" parent="." unique_id=128819240]
 script = ExtResource("5_qlg0r")
