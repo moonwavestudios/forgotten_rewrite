@@ -1,26 +1,27 @@
 extends Node
 
-const SAVE_PATH = "user://save.json"
+const SAVE_PATH = "user://save.mwdat"
 const DEFAULT_OWNED_CHARACTERS = ["eli", "swordman", "yixi"]
 
 func _load_all() -> Dictionary:
-	if not FileAccess.file_exists(SAVE_PATH):
-		return {}
-	var f = FileAccess.open(SAVE_PATH, FileAccess.READ)
-	if f == null:
-		push_warning("Couldn't open save file")
-		return {}
-	var parsed = JSON.parse_string(f.get_as_text())
+	#if not FileAccess.file_exists(SAVE_PATH):
+		#return {}
+	#var f = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	#if f == null:
+		#push_warning("Couldn't open save file")
+		#return {}
+	var parsed = MWDat.load(SAVE_PATH)
 	if parsed is Dictionary:
 		return parsed
 	return {}
 
 func _save_all(data: Dictionary) -> void:
-	var f = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	if f == null:
-		push_warning("Couldn't write save file")
-		return
-	f.store_string(JSON.stringify(data, "\t"))
+	#var f = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	#if f == null:
+		#push_warning("Couldn't write save file")
+		#return
+	#f.store_string(JSON.stringify(data, "\t"))
+	MWDat.save(SAVE_PATH, data)
 
 func get_owned_skins() -> Dictionary:
 	var data = _load_all()
