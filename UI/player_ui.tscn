@@ -194,6 +194,12 @@ func _on_pressed() -> void:
 	$\"..\".visible = false
 "
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8lkg"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hdo2"]
+bg_color = Color(0, 0, 0, 1)
+
 [node name="player_ui" type="Control" unique_id=1532252855]
 layout_mode = 3
 anchors_preset = 15
@@ -1577,7 +1583,6 @@ flat = true
 expand_icon = true
 
 [node name="Other" type="Control" parent="." unique_id=1023339228]
-visible = false
 anchors_preset = 0
 offset_right = 1151.0
 offset_bottom = 652.0
@@ -1682,6 +1687,96 @@ theme_override_font_sizes/font_size = 34
 text = "X"
 flat = true
 script = SubResource("GDScript_ixg0m")
+
+[node name="Hosting" type="Panel" parent="Other" unique_id=1729861038]
+visible = false
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_s8lkg")
+
+[node name="LobbyName" type="LineEdit" parent="Other/Hosting" unique_id=178336457]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 11.0
+offset_right = 987.0
+offset_bottom = 69.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 33
+placeholder_text = "LobbyName"
+alignment = 1
+
+[node name="Password" type="LineEdit" parent="Other/Hosting" unique_id=151810381]
+visible = false
+layout_mode = 0
+offset_left = 158.0
+offset_top = 101.0
+offset_right = 988.0
+offset_bottom = 159.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 33
+placeholder_text = "Password"
+alignment = 1
+
+[node name="Private" type="CheckBox" parent="Other/Hosting" unique_id=1524138975]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 606.0
+offset_right = 145.0
+offset_bottom = 637.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 24
+text = "Private"
+
+[node name="Button" type="Button" parent="Other/Hosting" unique_id=1009429777]
+layout_mode = 0
+offset_left = 903.0
+offset_top = 595.0
+offset_right = 1143.0
+offset_bottom = 646.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 31
+text = "Host"
+
+[node name="LobbySettings" type="Button" parent="Other/Hosting" unique_id=2142542812]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 72.0
+offset_bottom = 72.0
+icon = ExtResource("10_byocv")
+flat = true
+expand_icon = true
+
+[node name="ServerSettings" type="Panel" parent="Other" unique_id=615550612]
+visible = false
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8hdo2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Other/ServerSettings" unique_id=1809528339]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 649.0
+
+[node name="UseStam" type="CheckBox" parent="Other/ServerSettings/VBoxContainer" unique_id=198393105]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 26
+text = "Use Stamina"
+
+[node name="UseBots" type="CheckBox" parent="Other/ServerSettings/VBoxContainer" unique_id=823977117]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 26
+text = "Enable Bots"
+
+[node name="Exits" type="CheckBox" parent="Other/ServerSettings/VBoxContainer" unique_id=811293723]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 26
+text = "Enable Exits"
 
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/BuyButton" to="SpectatorStuff/Shop" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/SkinsButton" to="SpectatorStuff/Shop" method="_on_skins_button_pressed"]
