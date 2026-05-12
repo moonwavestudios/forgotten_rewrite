@@ -52,6 +52,44 @@
 	  }
 	},
 	{
+	  "id": "perpehell",
+	  "display_name": "Perpehell",
+	  "price": 750,
+	  "model": "res://assets/models/envy/perpehell.tscn",
+	  "thumbnail": "res://assets/textures/skins/envy_perpehell.png",
+	  "music": {
+		"lms": "",
+		"chase": "res://assets/music/chase_teto.mp3",
+		"lms_duration": 60.0
+	  },
+	"sfx": {
+		"primary": "res://assets/sfx/Noli_stab.mp3",
+		"ability1": "",
+		"ability2": "",
+		"stun": "",
+		"footsteps": "",
+		"slash_hit": "res://assets/sfx/envy_hit.ogg"
+	  },
+	 "voicelines": {
+		"intro": [],
+		"idle": [],
+		"void_dash": [],
+		"kill": [],
+		"victory": [],
+		"stun": []
+	 },
+	  "animations": {
+		"idle": "idle",
+		"walk": "walk",
+		"sprint": "sprint",
+		"attack_primary": "stab",
+		"attack_ability1": "void_grasp",
+		"attack_ability2": "void_dash",
+		"stun": "stunned",
+		"death": "death"
+	  }
+	},
+	{
 	  "id": "virus",
 	  "display_name": "Virus",
 	  "price": 500,
