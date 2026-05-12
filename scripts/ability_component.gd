@@ -6,8 +6,6 @@ extends Node
 
 @onready var main = $"../.."
 
-var gunDestroyed = false
-
 var _dash_active := false
 
 func get_skin_ability_sfx(ability_slot: String) -> AudioStream:
@@ -81,20 +79,17 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			
 	# shoot
 	elif ability == "gun_shot":
-		var random = randf()
-
 		var sfx_array = get_skin_ability_sfx_array("ability1")
 			
 		$"..".current_speed = 0
 				
-			
 		await get_tree().create_timer(0.8).timeout
 
 		var hit_flag: Array = []
 		var spawn_pos = $"..".global_position
 		spawn_pos -= $"..".transform.basis.z * 4.0
 		$"../..".add_hitbox(
-			$"..".hitboxes, spawn_pos, hit_flag, 25 * tokens_used, "killer", Vector3(0.5,0.25,5.558), null, $".."
+			$"..".hitboxes, spawn_pos, hit_flag, 25, "killer", Vector3(0.5,0.25,5.558), null, $".."
 		)
 		$"../SFX".stream = sfx_array[1]
 		$"../SFX".play()
@@ -141,7 +136,6 @@ func _activate_ability(ability_data: Dictionary) -> void:
 		if _dash_active:
 			return
 
-		#var ability_data = get_killer_ability("ability2", $"..".equipped_killer)
 		var dash_speed: float = ability_data.get("speed", 30.0)
 		var dash_damage: int = ability_data.get("damage", 40)
 		const MAX_DASH_TIME := 3.0

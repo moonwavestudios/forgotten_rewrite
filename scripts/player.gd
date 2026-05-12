@@ -111,7 +111,6 @@ var blocking = false
 @onready var raycast = $RayCast3D
 
 var weakness = 0
-var tokens = 0
 
 var chase_layer_players: Array = []
 
