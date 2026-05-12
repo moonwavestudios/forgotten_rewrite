@@ -79,101 +79,28 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			
 	# ==============================================================================
 			
-	# coin flip
-	elif ability == "luck_token":
-		await get_tree().create_timer(0.5).timeout
-		
-		var sfx_player = $"../SFX"
-		sfx_player.stream = get_skin_ability_sfx("ability1")
-		sfx_player.play()
-		var random = randf()
-		if random < 0.75 and $"..".tokens < 3:
-			$"..".tokens += 1
-		elif random > 0.75:
-			$"..".weakness += 1
-			
 	# shoot
 	elif ability == "gun_shot":
-		if $"..".tokens > 0 and not gunDestroyed:
-			var tokens_used = $"..".tokens
-			$"..".tokens = 0
-			
-			var random = randf()
-			var shoot_chance: float
-			var explode_chance: float
+		var random = randf()
 
-			var sfx_array = get_skin_ability_sfx_array("ability2")
+		var sfx_array = get_skin_ability_sfx_array("ability1")
 			
-			$"..".current_speed = 0
-			
-			if tokens_used == 1:
-				shoot_chance = 0.15
-				explode_chance = 0.25  
-			elif tokens_used == 2:
-				shoot_chance = 0.40
-				explode_chance = 0.55  
-			else: 
-				shoot_chance = 0.70
-				explode_chance = 0.78  
+		$"..".current_speed = 0
 				
 			
-			await get_tree().create_timer(0.8).timeout
-			
-			if random < shoot_chance:
-				var hit_flag: Array = []
-				var spawn_pos = $"..".global_position
-				spawn_pos -= $"..".transform.basis.z * 4.0
-				$"../..".add_hitbox(
-					$"..".hitboxes, spawn_pos, hit_flag, 25 * tokens_used, "killer", Vector3(0.5,0.25,5.558), null, $".."
-				)
-				$"../SFX".stream = sfx_array[1]
-				$"../SFX".play()
-				await get_tree().create_timer(0.05).timeout
-				
-			elif random < explode_chance:
-				gunDestroyed = true
-				var hit_flag: Array = []
-				var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
-				spawn_pos.y -= 0.9
-				$"../..".add_hitbox(
-					$"..".hitboxes, spawn_pos, hit_flag, 15 * tokens_used, "killer", Vector3(1.0,1.0,1.0), null, $".."
-				)
-				if $"..".weakness < 1:
-					$"..".health -= 25 
-				else:
-					$"..".health -= 25 * $"..".weakness
-				$"../SFX".stream = sfx_array[2]
-				$"../SFX".play()
-				await get_tree().create_timer(0.05).timeout
-			else:
-				$"..".grant(10, 20, 1, "Nice try")
-				$"../SFX".stream = sfx_array[0]
-				$"../SFX".play()
-		else:
-			print("not enough tokens or gun is broken")
+		await get_tree().create_timer(0.8).timeout
+
+		var hit_flag: Array = []
+		var spawn_pos = $"..".global_position
+		spawn_pos -= $"..".transform.basis.z * 4.0
+		$"../..".add_hitbox(
+			$"..".hitboxes, spawn_pos, hit_flag, 25 * tokens_used, "killer", Vector3(0.5,0.25,5.558), null, $".."
+		)
+		$"../SFX".stream = sfx_array[1]
+		$"../SFX".play()
+		await get_tree().create_timer(0.05).timeout
 			
 		$"..".current_speed = $"..".WALK_SPEED
-		$"..".usingAbility = false
-			
-	#reroll
-	elif ability == "health_gamble":
-		if $"..".tokens > 0:
-			#var ability_data = get_ability_survivor("ability3", $"..".equipped_survivor)
-			var min_health = ability_data.get("min_health", 60)
-			var max_health = ability_data.get("max_health", 130)
-			
-			if player.health == player.maxhealth:
-				player.maxhealth = randi_range(min_health, max_health)
-				player.health = player.maxhealth
-				print(str(player.health))
-			else:
-				player.maxhealth = randi_range(min_health, max_health)
-		$"..".usingAbility = false
-	
-	# hat fix
-	elif ability == "reset" and player.tokens == 3:
-		gunDestroyed = false
-		player.weakness = 0
 		$"..".usingAbility = false
 		
 	# mouse attack

@@ -85,7 +85,7 @@ func _process(_delta: float) -> void:
 			player.get_node("player_ui/SpectatorStuff/Label").text = \
 				"Intermission: " + str(int($Intermission.time_left))
 				
-	if tasks_completed == tasks_to_complete and in_round and ServerSettings.exits:
+	if tasks_completed == tasks_to_complete and $RoundTimer.is_stopped() and in_round and ServerSettings.exits:
 		print("exit open")
 		
 	for plr in get_players():

@@ -10,14 +10,7 @@
 	  "model": "res://assets/models/cassidy/cassidy_default.tscn",
 	  "thumbnail": "res://assets/textures/skins/cassidy_default.png",
 	  "sfx": {
-		"ability1": "res://assets/sfx/coin_flip.mp3",
-		"ability2": [
-			"res://assets/sfx/do_nothing.mp3",
-			"res://assets/sfx/shot.mp3",
-			"res://assets/sfx/test.ogg"
-		],
-		"ability3": "",
-		"ability4": "",
+		"ability1": "res://assets/sfx/shot.mp3",
 		"footsteps": ""
 	  }
 	}
@@ -32,41 +25,13 @@
   "abilities": [
 	{
 	  "id": "ability1",
-	  "name": "Lucky Draw",
-	  "icon": "res://assets/textures/abilityTemplate.png",
-	  "cooldown": 0.3,
-	  "type": "luck_token",
-	  "description": "50% chance to gain a luck token, 50% chance to gain weakness"
-	},
-	{
-	  "id": "ability2",
-	  "name": "Russian Roulette",
+	  "name": "One Shot",
 	  "icon": "res://assets/textures/abilityTemplate.png",
 	  "cooldown": 15.0,
 	  "type": "gun_shot",
 	  "damage": 30,
 	  "self_damage": 60,
-	  "description": "33% chance to shoot killer, 33% chance to hurt yourself, 33% chance to misfire"
-	},
-	{
-	  "id": "ability3",
-	  "name": "Health Gamble",
-	  "icon": "res://assets/textures/abilityTemplate.png",
-	  "cooldown": 30.0,
-	  "type": "health_gamble",
-	  "min_health": 60,
-	  "max_health": 130,
-	  "requires_tokens": 1,
-	  "description": "Randomize your max health (requires 1 luck token)"
-	},
-	{
-	  "id": "ability4",
-	  "name": "Reset",
-	  "icon": "res://assets/textures/abilityTemplate.png",
-	  "cooldown": 60.0,
-	  "type": "reset",
-	  "requires_tokens": 3,
-	  "description": "Reset luck tokens and weakness (requires 3 tokens)"
+	  "description": "Cassidy fires a single shot at the killer, stunning them briefly."
 	}
   ]
 }
