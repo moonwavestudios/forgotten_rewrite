@@ -191,7 +191,7 @@
 	  "cooldown": 2.0,
 	  "type": "slash",
 	  "damage": 20,
-	  "wind_up": 0.3
+	  "wind_up": 0.35
 	},
 	{
 	  "id": "ability1",

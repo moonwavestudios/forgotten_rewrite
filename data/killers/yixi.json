@@ -194,7 +194,7 @@
 	  "cooldown": 2.0,
 	  "type": "slash",
 	  "damage": 20,
-  	  "wind_up": 0.3
+  	  "wind_up": 0.2
 	},
 	{
 	  "id": "ability1",
@@ -203,7 +203,7 @@
 	  "cooldown": 15.0,
 	  "type": "behead",
 	  "damage": 25,
-  	  "wind_up": 0.3
+  	  "wind_up": 0.2
 	},
 	{
 	  "id": "ability2",
@@ -212,7 +212,7 @@
 	  "cooldown": 32.0,
 	  "type": "yixi_grab",
 	  "damage": 50,
-  	  "wind_up": 0.3
+  	  "wind_up": 0.2
 	},
 	{
 	  "id": "ability3",
