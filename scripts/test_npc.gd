@@ -65,6 +65,7 @@ func _ready() -> void:
 	for i in range(3):
 		var player = AudioStreamPlayer.new()
 		add_child(player)
+		player.bus = "Ambience"
 		chase_layer_players.append(player)
 
 func _refresh_ability_ui():

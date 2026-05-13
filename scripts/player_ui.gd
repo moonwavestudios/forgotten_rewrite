@@ -287,3 +287,13 @@ func _on_killsound_select_pressed() -> void:
 func _on_center_stam_toggled(toggled_on: bool) -> void:
 	settings.center_stamina = toggled_on
 	settings.save()
+
+func _on_music_slider_value_changed(value: float) -> void:
+	var db = linear_to_db(value / 100.0)
+	AudioServer.set_bus_volume_db(1, db)
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_LineEdit.text = str(int(value))
+
+func _on_music_line_edit_text_changed(new_text: String) -> void:
+	var db = linear_to_db(float(new_text) / 100.0)
+	AudioServer.set_bus_volume_db(1, db)
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_Slider.value = float(new_text)

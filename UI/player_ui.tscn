@@ -1023,7 +1023,6 @@ icon = ExtResource("11_fwocb")
 expand_icon = true
 
 [node name="Settings_Panel" type="Panel" parent="SpectatorStuff" unique_id=1835794585]
-visible = false
 layout_mode = 0
 offset_left = 176.0
 offset_top = 56.0
@@ -1065,7 +1064,7 @@ label_settings = SubResource("LabelSettings_an3gc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume" unique_id=1657953201]
+[node name="Music_Slider" type="HSlider" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume" unique_id=1657953201]
 layout_mode = 0
 offset_left = 208.0
 offset_top = 16.0
@@ -1073,7 +1072,7 @@ offset_right = 574.0
 offset_bottom = 32.0
 value = 50.0
 
-[node name="LineEdit" type="LineEdit" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume" unique_id=1293359685]
+[node name="Music_LineEdit" type="LineEdit" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume" unique_id=1293359685]
 layout_mode = 0
 offset_left = 586.0
 offset_top = 8.0
@@ -1786,6 +1785,8 @@ text = "Enable Exits"
 [connection signal="pressed" from="SpectatorStuff/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="SpectatorStuff/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/InventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="value_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_Slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="text_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_LineEdit" to="." method="_on_music_line_edit_text_changed"]
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind" to="." method="_on_slash_keybind_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind" to="." method="_on_ability_1_keybind_pressed"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable" to="." method="_on_hitsounds_enable_toggled"]

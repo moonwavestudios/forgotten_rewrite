@@ -135,6 +135,7 @@ func _ready() -> void:
 	for i in range(3):
 		var player = AudioStreamPlayer.new()
 		add_child(player)
+		player.bus = "Ambience"
 		chase_layer_players.append(player)
 
 	var saved_survivor = save_data.get_equipped_character("survivor")
