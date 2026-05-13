@@ -556,6 +556,12 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			await get_tree().physics_frame
 
 		$"..".usingAbility = false
+
+	elif ability == "adrenaline":
+		var effect_comp = $"..".get_node_or_null("EffectComponent")
+		if effect_comp:
+			effect_comp.activate_effect("speed_boost", 2, 5.0)
+		$"..".usingAbility = false
 	
 	elif ability == "entanglement":
 		#var ability_data = get_killer_ability("ability2", $"..".equipped_killer)
