@@ -11,7 +11,12 @@
 	  "thumbnail": "res://assets/textures/skins/yixi_default.png",
 	  "music": {
 		"lms": "res://assets/music/VanityLMS.mp3",
-		"chase": "res://assets/music/fire_chase.mp3",
+		"chase": "res://assets/music/ChaseVanity.mp3",
+		"chase_layers": [
+		  "res://assets/music/Layer1Vanity.mp3",
+		  "res://assets/music/Layer2Vanity.mp3",
+		  "res://assets/music/Layer3Vanity.mp3"
+		],
 		"lms_duration": 60.0
 	  },
 	  "sfx": {
