@@ -30,6 +30,11 @@ func _ready() -> void:
 	settings._load()
 	set_process_unhandled_input(false)
 	player_list.visible = true
+	
+	var saved_vol = settings.music_volume
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_Slider.value = saved_vol
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_LineEdit.text = str(int(saved_vol))
+	AudioServer.set_bus_volume_db(1, linear_to_db(saved_vol / 100.0))
 
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox.button_pressed       = settings.show_hitboxes
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound/EnableKillsound.button_pressed    = settings.enabled_killsound
@@ -292,8 +297,10 @@ func _on_music_slider_value_changed(value: float) -> void:
 	var db = linear_to_db(value / 100.0)
 	AudioServer.set_bus_volume_db(1, db)
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_LineEdit.text = str(int(value))
+	settings.set_music_volume(value)
 
 func _on_music_line_edit_text_changed(new_text: String) -> void:
 	var db = linear_to_db(float(new_text) / 100.0)
 	AudioServer.set_bus_volume_db(1, db)
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_Slider.value = float(new_text)
+	settings.set_music_volume(float(new_text))

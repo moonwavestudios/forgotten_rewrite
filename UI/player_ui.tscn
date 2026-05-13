@@ -1023,6 +1023,7 @@ icon = ExtResource("11_fwocb")
 expand_icon = true
 
 [node name="Settings_Panel" type="Panel" parent="SpectatorStuff" unique_id=1835794585]
+visible = false
 layout_mode = 0
 offset_left = 176.0
 offset_top = 56.0
