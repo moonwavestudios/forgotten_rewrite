@@ -79,6 +79,7 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			
 	# shoot
 	elif ability == "gun_shot":
+		
 		var sfx_array = get_skin_ability_sfx_array("ability1")
 			
 		$"..".current_speed = 0
