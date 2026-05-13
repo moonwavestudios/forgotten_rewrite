@@ -194,6 +194,20 @@ func _on_pressed() -> void:
 	$\"..\".visible = false
 "
 
+[sub_resource type="LabelSettings" id="LabelSettings_01aj8"]
+font = ExtResource("1_c8xti")
+font_size = 31
+
+[sub_resource type="GDScript" id="GDScript_s8lkg"]
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	$\"../Signin\".visible = true
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3km2"]
+bg_color = Color(0.0768358, 0.07683582, 0.076835774, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8lkg"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -1689,6 +1703,110 @@ text = "X"
 flat = true
 script = SubResource("GDScript_ixg0m")
 
+[node name="Username" type="Label" parent="Other/MainMenu" unique_id=2056597394]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 154.0
+offset_bottom = 49.0
+text = "Username"
+label_settings = SubResource("LabelSettings_01aj8")
+
+[node name="SigninButton" type="Button" parent="Other/MainMenu" unique_id=995315427]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 72.0
+offset_right = 67.0
+offset_bottom = 103.0
+theme_override_fonts/font = ExtResource("1_c8xti")
+theme_override_font_sizes/font_size = 27
+text = "Sign in"
+flat = true
+script = SubResource("GDScript_s8lkg")
+
+[node name="LoginButton" type="Button" parent="Other/MainMenu" unique_id=168620089]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 72.0
+offset_right = 206.0
+offset_bottom = 113.0
+theme_override_fonts/font = ExtResource("1_c8xti")
+theme_override_font_sizes/font_size = 27
+text = "Log in"
+flat = true
+
+[node name="Signin" type="Panel" parent="Other/MainMenu" unique_id=834904657]
+visible = false
+layout_mode = 0
+offset_left = 4.0
+offset_right = 1159.0
+offset_bottom = 649.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k3km2")
+
+[node name="SigninUsername" type="LineEdit" parent="Other/MainMenu/Signin" unique_id=1328589777]
+layout_mode = 0
+offset_left = 309.0
+offset_top = 77.0
+offset_right = 827.0
+offset_bottom = 118.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 27
+placeholder_text = "Username"
+
+[node name="LineEdit2" type="LineEdit" parent="Other/MainMenu/Signin" unique_id=244804271]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 136.0
+offset_right = 830.0
+offset_bottom = 177.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 27
+placeholder_text = "Password"
+
+[node name="SigninBut" type="Button" parent="Other/MainMenu/Signin" unique_id=176661195]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 280.0
+offset_right = 685.0
+offset_bottom = 336.0
+text = "Sign in"
+
+[node name="Login" type="Panel" parent="Other/MainMenu" unique_id=1576082204]
+visible = false
+layout_mode = 0
+offset_left = 4.0
+offset_right = 1159.0
+offset_bottom = 649.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k3km2")
+
+[node name="LineEdit" type="LineEdit" parent="Other/MainMenu/Login" unique_id=698614459]
+layout_mode = 0
+offset_left = 309.0
+offset_top = 77.0
+offset_right = 827.0
+offset_bottom = 118.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 27
+placeholder_text = "Username"
+
+[node name="LineEdit2" type="LineEdit" parent="Other/MainMenu/Login" unique_id=326853599]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 136.0
+offset_right = 830.0
+offset_bottom = 177.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 27
+placeholder_text = "Password"
+
+[node name="LoginBut" type="Button" parent="Other/MainMenu/Login" unique_id=647587005]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 280.0
+offset_right = 685.0
+offset_bottom = 336.0
+text = "Log in"
+
 [node name="Hosting" type="Panel" parent="Other" unique_id=1729861038]
 visible = false
 layout_mode = 0
@@ -1800,3 +1918,6 @@ text = "Enable Exits"
 [connection signal="pressed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller/GiveKiller" to="." method="_on_give_killer_pressed"]
 [connection signal="pressed" from="Other/MainMenu/Start" to="Other/MainMenu" method="_on_start_pressed"]
 [connection signal="pressed" from="Other/MainMenu/Hosting/Close" to="Other/MainMenu/Hosting/Close" method="_on_pressed"]
+[connection signal="pressed" from="Other/MainMenu/SigninButton" to="Other/MainMenu/SigninButton" method="_on_pressed"]
+[connection signal="pressed" from="Other/MainMenu/Signin/SigninBut" to="Other/MainMenu" method="_on_signin_but_pressed"]
+[connection signal="pressed" from="Other/MainMenu/Login/LoginBut" to="Other/MainMenu" method="_on_login_but_pressed"]
