@@ -44,7 +44,7 @@ var _chase_scan_timer: float = 0.0
 @export var is_Killer = true
 @export var equipped_killer = "yixi"
 var equipped_survivor = "nyx"
-var equipped_skin_id: String = "default"
+@export var equipped_skin_id: String = "default"
 var _skin_instance: Node3D = null
 
 @export var hitbox_attack = "killer"

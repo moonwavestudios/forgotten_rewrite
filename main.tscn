@@ -44,6 +44,7 @@ bus = &"Ambience"
 
 [node name="CharacterBody3D2" parent="." unique_id=1792773064 groups=["AI", "players"] instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9373124, 1.2592936, 5.4456167)
+equipped_skin_id = "vegan"
 hitbox_attack = "survivor"
 
 [node name="CharacterBody3D3" parent="." unique_id=1834531523 groups=["AI", "players"] instance=ExtResource("5_lquwl")]
