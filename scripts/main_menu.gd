@@ -8,10 +8,14 @@ func _on_start_pressed() -> void:
 	$Hosting.visible = true
 
 func _on_auth_success(user):
-	print("Logged in as ", user)
+	var email = user.get("email", "player@fuckyou.com")
+	$"../../..".name = email.replace("@fuckyou.com", "")
+	$Username.text = email.replace("@fuckyou.com", "")
+	$Login.visible = false
+	$Signin.visible = false
 
 func _on_auth_error(message):
-	$ErrorLabel.text = message
+	$Signin/Label.text = message
 
 func _on_signin_but_pressed() -> void:
 	Auth.sign_up($Signin/SigninUsername.text, $Signin/LineEdit2.text)

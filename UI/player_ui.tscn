@@ -205,6 +205,13 @@ func _on_pressed() -> void:
 	$\"../Signin\".visible = true
 "
 
+[sub_resource type="GDScript" id="GDScript_8hdo2"]
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	$\"../Login\".visible = true
+"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3km2"]
 bg_color = Color(0.0768358, 0.07683582, 0.076835774, 1)
 
@@ -1597,7 +1604,6 @@ flat = true
 expand_icon = true
 
 [node name="Other" type="Control" parent="." unique_id=1023339228]
-visible = false
 anchors_preset = 0
 offset_right = 1151.0
 offset_bottom = 652.0
@@ -1734,6 +1740,7 @@ theme_override_fonts/font = ExtResource("1_c8xti")
 theme_override_font_sizes/font_size = 27
 text = "Log in"
 flat = true
+script = SubResource("GDScript_8hdo2")
 
 [node name="Signin" type="Panel" parent="Other/MainMenu" unique_id=834904657]
 visible = false
@@ -1770,6 +1777,11 @@ offset_top = 280.0
 offset_right = 685.0
 offset_bottom = 336.0
 text = "Sign in"
+
+[node name="Label" type="Label" parent="Other/MainMenu/Signin" unique_id=831113683]
+layout_mode = 0
+offset_right = 357.0
+offset_bottom = 36.0
 
 [node name="Login" type="Panel" parent="Other/MainMenu" unique_id=1576082204]
 visible = false
@@ -1867,6 +1879,45 @@ icon = ExtResource("10_byocv")
 flat = true
 expand_icon = true
 
+[node name="Joining" type="Panel" parent="Other" unique_id=646259472]
+visible = false
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_s8lkg")
+
+[node name="LobbyName" type="LineEdit" parent="Other/Joining" unique_id=190233785]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 11.0
+offset_right = 987.0
+offset_bottom = 69.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 33
+placeholder_text = "Code"
+alignment = 1
+
+[node name="Password" type="LineEdit" parent="Other/Joining" unique_id=1680985635]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 101.0
+offset_right = 988.0
+offset_bottom = 159.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 33
+placeholder_text = "Password(if lobby is private)"
+alignment = 1
+
+[node name="Button" type="Button" parent="Other/Joining" unique_id=933026327]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 592.0
+offset_right = 717.0
+offset_bottom = 643.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 31
+text = "Join"
+
 [node name="ServerSettings" type="Panel" parent="Other" unique_id=615550612]
 visible = false
 layout_mode = 0
@@ -1919,5 +1970,6 @@ text = "Enable Exits"
 [connection signal="pressed" from="Other/MainMenu/Start" to="Other/MainMenu" method="_on_start_pressed"]
 [connection signal="pressed" from="Other/MainMenu/Hosting/Close" to="Other/MainMenu/Hosting/Close" method="_on_pressed"]
 [connection signal="pressed" from="Other/MainMenu/SigninButton" to="Other/MainMenu/SigninButton" method="_on_pressed"]
+[connection signal="pressed" from="Other/MainMenu/LoginButton" to="Other/MainMenu/LoginButton" method="_on_pressed"]
 [connection signal="pressed" from="Other/MainMenu/Signin/SigninBut" to="Other/MainMenu" method="_on_signin_but_pressed"]
 [connection signal="pressed" from="Other/MainMenu/Login/LoginBut" to="Other/MainMenu" method="_on_login_but_pressed"]
