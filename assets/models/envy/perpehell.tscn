@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b2swvls8n5pig"]
+
+[ext_resource type="PackedScene" uid="uid://m3ujxanfft3y" path="res://assets/models/envy/perpehell.fbx" id="1_pouxk"]
+
+[node name="perpehell" type="Node3D" unique_id=898166114]
+
+[node name="perpehell" parent="." unique_id=1885370100 instance=ExtResource("1_pouxk")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=498473422]
+root_node = NodePath("../perpehell")
