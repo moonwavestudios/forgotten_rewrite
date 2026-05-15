@@ -30,7 +30,7 @@
 	{
 	  "id": "ability1",
 	  "name": "Block",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/block_icon.png",
 	  "cooldown": 24.0,
 	  "type": "block",
 	  "damage_reduction": 0.4,
@@ -39,7 +39,7 @@
 	{
 	  "id": "ability2",
 	  "name": "Charge",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 15.0,
 	  "type": "charge",
 	  "damage_reduction": 0.4,
@@ -48,7 +48,7 @@
 	{
 	  "id": "ability3",
 	  "name": "Punch",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/punch_icon.png",
 	  "cooldown": 1.0,
 	  "type": "punch",
 	  "target": "killer",

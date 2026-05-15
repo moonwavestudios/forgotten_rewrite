@@ -341,6 +341,7 @@ func _refresh_ability_ui() -> void:
 	for child in AbilitiesStuff.get_children():
 		if child.name.begins_with("Ability"):
 			slots.append(child)
+			
 
 	for i in range(slots.size()):
 		var ability = abilities[i] if i < abilities.size() else {}
@@ -351,6 +352,10 @@ func _refresh_ability_ui() -> void:
 			if keybind_node:
 				var action = action_names[i] if i < action_names.size() else ""
 				keybind_node.text = PlayerSettings.get_keybind_label(action)
+
+			var tex_rect = slots[i].get_node_or_null("TextureRect")
+			if tex_rect and ability.has("icon"):
+				tex_rect.texture = load(ability.get("icon", ""))
 
 func add_item(item):
 	if not has_items.has(item):
