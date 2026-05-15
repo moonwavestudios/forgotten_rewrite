@@ -29,17 +29,10 @@ func _on_body_entered(body):
 		return
 
 	triggered = true
-
-	print(\"Beartrap triggered!\")
-
-	if \"current_speed\" in body:
-		var old_speed = body.current_speed
-		body.current_speed = 0
-
-		await get_tree().create_timer(2.0).timeout
-
-		if is_instance_valid(body):
-			body.current_speed = old_speed
+	
+	var effect_comp = body.get_node_or_null(\"EffectComponent\")
+	if effect_comp:
+		effect_comp.activate_effect(effect, effect_level, effect_duration)
 
 	queue_free()
 "
