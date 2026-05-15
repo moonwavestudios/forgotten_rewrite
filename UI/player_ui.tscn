@@ -1430,6 +1430,44 @@ offset_top = 14.0
 offset_right = 271.0
 offset_bottom = 38.0
 
+[node name="Show_FPS" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1584319091]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_FPS" unique_id=473853525]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 45.0
+text = "SHOW FPS:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShowFPS" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_FPS" unique_id=141980562]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 14.0
+offset_right = 271.0
+offset_bottom = 38.0
+
+[node name="Show_Ping" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=798404843]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping" unique_id=660128516]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 45.0
+text = "SHOW PING:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShowPing" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping" unique_id=144114895]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 14.0
+offset_right = 271.0
+offset_bottom = 38.0
+
 [node name="Additional_thingy" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=380828567]
 layout_mode = 2
 
