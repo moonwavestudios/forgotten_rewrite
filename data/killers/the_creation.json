@@ -22,8 +22,8 @@
 	  "id": "default",
 	  "display_name": "Default",
 	  "price": 0,
-	  "model": "res://assets/models/yixi/yixi_default.tscn",
-	  "thumbnail": "res://assets/textures/skins/yixi_default.png",
+	  "model": "res://assets/models/the_creation/the_creation_default.tscn",
+	  "thumbnail": "res://assets/textures/skins/the_creation_default.png",
 	  "music": {
 		"lms": "res://assets/music/lms_bunny.mp3",
 		"chase": "res://assets/music/fire_chase.mp3",
@@ -54,6 +54,17 @@
 		"stun": "stunned",
 		"death": "death"
 	  }
+	},
+	{
+	  "id": "yourself",
+	  "display_name": "Yourself",
+	  "price": 10000,
+	  "limited": false,
+	  "model": "res://assets/models/the_creation/yourself.tscn",
+	  "thumbnail": "res://assets/textures/skins/yourself_creation.png",
+	  "animations": {},
+	  "music": {},
+	  "sfx": {}
 	}
 ],
   "voicelines": {
