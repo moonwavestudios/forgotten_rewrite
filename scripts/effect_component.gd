@@ -10,6 +10,7 @@ var burn_timer: Timer = null
 var slow_timer: Timer = null
 var speed_boost_timer: Timer = null
 var corruption_timer: Timer = null
+var helpless_timer: Timer = null
 var corruption_tick_timer: Timer = null
 var root_timer: Timer = null
 var weakness_timer: Timer = null
@@ -124,6 +125,17 @@ func activate_effect(effect: String, level: int, duration: float = 1.0) -> void:
 		slow_timer.autostart = true
 		slow_timer.timeout.connect(func(): deactivate_effect("slow"))
 		add_child(slow_timer)
+		
+	elif effect == "helpless":
+		deactivate_effect("helpless")
+		_add_effect_label("helpless", level)
+		player.blocked_abilities = true
+		helpless_timer = Timer.new()
+		helpless_timer.wait_time = duration
+		helpless_timer.one_shot = true
+		helpless_timer.autostart = true
+		helpless_timer.timeout.connect(func(): deactivate_effect("helpless"))
+		add_child(helpless_timer)
 
 	elif effect == "speed_boost":
 		deactivate_effect("speed_boost")
@@ -236,7 +248,15 @@ func deactivate_effect(effect: String) -> void:
 			corruption_timer.stop()
 			corruption_timer.queue_free()
 			corruption_timer = null
-			
+	
+	elif effect == "helpless":
+		_remove_effect_label("helpless")
+		player.blocked_abilities = false
+		if helpless_timer != null:
+			helpless_timer.stop()
+			helpless_timer.queue_free()
+			helpless_timer = null
+	
 	elif effect == "weakness":
 		_remove_effect_label("weakness")
 		$"..".weakness = 0

@@ -17,6 +17,8 @@ const PLAYTIME_SAVE_INTERVAL: float = 60.0
 var stun_resistant: bool = false
 var stun_resistance_time: float = 0.0
 
+var blocked_abilities = false
+
 const CHASE_FAR = 20.0
 const CHASE_MEDIUM = 15.0
 const CHASE_CLOSE = 10.0
