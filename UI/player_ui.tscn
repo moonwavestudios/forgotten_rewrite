@@ -175,6 +175,76 @@ font_size = 24
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_hroa2"]
+font = ExtResource("4_qf5vc")
+font_size = 27
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_k3km2"]
+script/source = "extends Label
+
+@export var update_interval: float = 1.0
+@export var color_good: Color = Color(0, 1, 0)
+@export var color_medium: Color = Color(1, 1, 0)
+@export var color_bad: Color = Color(1, 0, 0)
+@export var threshold_medium: int = 80
+@export var threshold_bad: int = 150
+
+var _ping_ms: int = 0
+var _send_time: float = 0.0
+var _timer: float = 0.0
+
+func _ready() -> void:
+	set_process(multiplayer.has_multiplayer_peer())
+	multiplayer.connected_to_server.connect(_on_connected)
+	multiplayer.server_disconnected.connect(_on_disconnected)
+
+func _process(delta: float) -> void:
+	if multiplayer.is_server():
+		return
+	_timer += delta
+	if _timer >= update_interval:
+		_timer = 0.0
+		_send_ping.rpc_id(1)
+		_send_time = Time.get_ticks_msec()
+
+func _update_label() -> void:
+	text = \"Ping: %d ms\" % _ping_ms
+	if _ping_ms < threshold_medium:
+		add_theme_color_override(\"font_color\", color_good)
+	elif _ping_ms < threshold_bad:
+		add_theme_color_override(\"font_color\", color_medium)
+	else:
+		add_theme_color_override(\"font_color\", color_bad)
+
+func _on_connected() -> void:
+	set_process(true)
+	text = \"Ping: -- ms\"
+
+func _on_disconnected() -> void:
+	set_process(false)
+	text = \"Ping: N/A\"
+	add_theme_color_override(\"font_color\", color_bad)
+
+@rpc(\"any_peer\", \"reliable\")
+func _send_ping() -> void:
+	if multiplayer.is_server():
+		_receive_ping.rpc_id(multiplayer.get_remote_sender_id())
+
+@rpc(\"authority\", \"reliable\")
+func _receive_ping() -> void:
+	_ping_ms = int(Time.get_ticks_msec() - _send_time)
+	_update_label()
+"
+
+[sub_resource type="GDScript" id="GDScript_hdrb0"]
+script/source = "extends Label
+
+func _process(_delta: float) -> void:
+	$\".\".text = \"FPS: \" + str(Engine.get_frames_per_second())
+"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fwocb"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -1641,6 +1711,32 @@ icon = ExtResource("2_nplvd")
 flat = true
 expand_icon = true
 
+[node name="Ping_Label" type="Label" parent="Both" unique_id=1280619235]
+visible = false
+layout_mode = 0
+offset_left = 1027.0
+offset_top = 615.0
+offset_right = 1152.0
+offset_bottom = 647.0
+text = "Ping: 0ms"
+label_settings = SubResource("LabelSettings_hroa2")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = SubResource("GDScript_k3km2")
+
+[node name="FPS_Label" type="Label" parent="Both" unique_id=913246272]
+visible = false
+layout_mode = 0
+offset_left = 1027.0
+offset_top = 581.0
+offset_right = 1152.0
+offset_bottom = 613.0
+text = "FPS: 0"
+label_settings = SubResource("LabelSettings_hroa2")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = SubResource("GDScript_hdrb0")
+
 [node name="Other" type="Control" parent="." unique_id=1023339228]
 visible = false
 anchors_preset = 0
@@ -2004,6 +2100,8 @@ text = "Enable Exits"
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound2/KillsoundSelect" to="." method="_on_killsound_select_pressed"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Stamina/Center_Stam" to="." method="_on_center_stam_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox" to="." method="_on_enable_hitbox_toggled"]
+[connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_FPS/ShowFPS" to="." method="_on_show_fps_toggled"]
+[connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping/ShowPing" to="." method="_on_show_ping_toggled"]
 [connection signal="value_changed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins/SpinBox" to="." method="_on_spin_box_value_changed"]
 [connection signal="pressed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller/GiveKiller" to="." method="_on_give_killer_pressed"]
 [connection signal="pressed" from="Other/MainMenu/Start" to="Other/MainMenu" method="_on_start_pressed"]

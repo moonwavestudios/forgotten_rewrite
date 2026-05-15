@@ -46,7 +46,13 @@ func _ready() -> void:
 
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind.text    = settings.get_keybind_label("Attack")
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind.text = settings.get_keybind_label("Ability1")
-
+	
+	$Both/Ping_Label.visible = settings.show_ping
+	$Both/FPS_Label.visible = settings.show_fps
+	
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_FPS/ShowFPS.button_pressed = settings.show_fps
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping/ShowPing.button_pressed = settings.show_ping
+	
 	AchievementData.achievement_unlocked.connect(_on_achievement_unlocked)
 
 func _on_achievement_unlocked(achievement) -> void:
@@ -304,3 +310,13 @@ func _on_music_line_edit_text_changed(new_text: String) -> void:
 	AudioServer.set_bus_volume_db(1, db)
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_Slider.value = float(new_text)
 	settings.set_music_volume(float(new_text))
+
+func _on_show_fps_toggled(toggled_on: bool) -> void:
+	$Both/FPS_Label.visible = toggled_on
+	settings.show_fps = toggled_on
+	settings.save()
+
+func _on_show_ping_toggled(toggled_on: bool) -> void:
+	$Both/Ping_Label.visible = toggled_on
+	settings.show_ping = toggled_on
+	settings.save()

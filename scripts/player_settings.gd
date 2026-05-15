@@ -11,6 +11,9 @@ var show_hitboxes: bool = false
 
 var center_stamina: bool = false
 
+var show_fps = false
+var show_ping = false
+
 var hitsound_stream: AudioStream = null
 var killsound_stream: AudioStream = null
 
@@ -32,6 +35,8 @@ func _load() -> void:
 	enabled_killsound = s.get("enabled_killsound", enabled_killsound)
 	center_stamina = s.get("center_stamina", center_stamina)
 	music_volume = s.get("music_volume", music_volume)
+	show_fps = s.get("show_fps", show_fps)
+	show_ping = s.get("show_ping", show_ping)
 	afk_mode = s.get("afk_mode", afk_mode)
 	disable_killer = s.get("disable_killer", disable_killer)
 	show_hitboxes     = s.get("show_hitboxes",      show_hitboxes)
@@ -45,6 +50,8 @@ func save() -> void:
 		"enabled_hitsound":  enabled_hitsound,
 		"enabled_killsound": enabled_killsound,
 		"show_hitboxes":     show_hitboxes,
+		"show_fps": show_fps,
+		"show_ping": show_ping,
 		"music_volume": music_volume,
 		"center_stamina":     center_stamina,
 		"keybinds":          keybinds,
