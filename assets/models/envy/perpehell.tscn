@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://b2swvls8n5pig"]
 
 [ext_resource type="PackedScene" uid="uid://m3ujxanfft3y" path="res://assets/models/envy/perpehell.fbx" id="1_pouxk"]
+[ext_resource type="Animation" uid="uid://hel3gxppb584" path="res://assets/models/stuff/perpehellAnims/Armature_ArmatureAction.res" id="2_f23of"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pouxk"]
+_data = {
+&"Armature_ArmatureAction": ExtResource("2_f23of")
+}
 
 [node name="perpehell" type="Node3D" unique_id=898166114]
 
@@ -9,3 +15,4 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=498473422]
 root_node = NodePath("../perpehell")
+libraries/perpehell = SubResource("AnimationLibrary_pouxk")
