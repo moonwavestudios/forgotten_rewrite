@@ -1434,6 +1434,98 @@ offset_right = 254.0
 offset_bottom = 39.0
 text = "Choose"
 
+[node name="Category" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=600308734]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Category" unique_id=1393072170]
+layout_mode = 0
+offset_right = 310.0
+offset_bottom = 45.0
+text = "CHASE THEMES"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChaseL1" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=369606482]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/ChaseL1" unique_id=575161015]
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 45.0
+text = "LAYER 1:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L1Select" type="Button" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/ChaseL1" unique_id=1576349152]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 8.0
+offset_right = 254.0
+offset_bottom = 39.0
+text = "Choose"
+
+[node name="ChaseL2" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1696899856]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/ChaseL2" unique_id=1737633577]
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 45.0
+text = "LAYER 2:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L2Select" type="Button" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/ChaseL2" unique_id=74831853]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 8.0
+offset_right = 254.0
+offset_bottom = 39.0
+text = "Choose"
+
+[node name="ChaseL3" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1868495365]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/ChaseL3" unique_id=787958701]
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 45.0
+text = "LAYER 3:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L3Select" type="Button" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/ChaseL3" unique_id=454354351]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 8.0
+offset_right = 254.0
+offset_bottom = 39.0
+text = "Choose"
+
+[node name="ChaseL4" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1237155737]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/ChaseL4" unique_id=1511048511]
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 45.0
+text = "LAYER 4:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L4Select" type="Button" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/ChaseL4" unique_id=1208946475]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 8.0
+offset_right = 254.0
+offset_bottom = 39.0
+text = "Choose"
+
 [node name="Control5" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1852381928]
 layout_mode = 2
 
@@ -1505,7 +1597,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_FPS" unique_id=473853525]
 layout_mode = 0
-offset_right = 250.0
+offset_right = 151.0
 offset_bottom = 45.0
 text = "SHOW FPS:"
 label_settings = SubResource("LabelSettings_an3gc")
@@ -1514,9 +1606,9 @@ vertical_alignment = 1
 
 [node name="ShowFPS" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_FPS" unique_id=141980562]
 layout_mode = 0
-offset_left = 247.0
+offset_left = 145.0
 offset_top = 14.0
-offset_right = 271.0
+offset_right = 169.0
 offset_bottom = 38.0
 
 [node name="Show_Ping" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=798404843]
@@ -1524,7 +1616,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping" unique_id=660128516]
 layout_mode = 0
-offset_right = 250.0
+offset_right = 159.0
 offset_bottom = 45.0
 text = "SHOW PING:"
 label_settings = SubResource("LabelSettings_an3gc")
@@ -1533,9 +1625,9 @@ vertical_alignment = 1
 
 [node name="ShowPing" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping" unique_id=144114895]
 layout_mode = 0
-offset_left = 247.0
+offset_left = 153.0
 offset_top = 14.0
-offset_right = 271.0
+offset_right = 177.0
 offset_bottom = 38.0
 
 [node name="Additional_thingy" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=380828567]
