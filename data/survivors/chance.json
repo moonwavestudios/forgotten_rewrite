@@ -26,7 +26,7 @@
 	{
 	  "id": "ability1",
 	  "name": "One Shot",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 15.0,
 	  "type": "gun_shot",
 	  "damage": 30,
@@ -35,7 +35,7 @@
 	{
 	  "id": "ability2",
 	  "name": "Adrenaline Shot",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 45.0,
 	  "type": "adrenaline",
 	  "description": "Cassidy injects herself, temporarily boosting her sprint speed and ignoring any slow effects."

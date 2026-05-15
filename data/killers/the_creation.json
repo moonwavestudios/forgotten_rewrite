@@ -80,7 +80,7 @@
 	{
 	  "id": "primary",
 	  "name": "Iron Cleave",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 2.0,
 	  "type": "slash",
 	  "damage": 20,
@@ -89,7 +89,7 @@
 	{
 	  "id": "ability1",
 	  "name": "Bonespike",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 15.0,
 	  "type": "bonespike",
 	  "damage": 40,
@@ -99,7 +99,7 @@
 	{
 	  "id": "ability2",
 	  "name": "Cursed Chain",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 32.0,
 	  "type": "entanglement",
 	  "damage": 10,
@@ -110,7 +110,7 @@
 	{
 	  "id": "ability3",
 	  "name": "Hollow Sight",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 45.0,
 	  "type": "reveal"
 	}

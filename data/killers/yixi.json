@@ -206,7 +206,7 @@
 	{
 	  "id": "primary",
 	  "name": "Slash",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 2.0,
 	  "type": "slash",
 	  "damage": 20,
@@ -215,7 +215,7 @@
 	{
 	  "id": "ability1",
 	  "name": "Behead",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 15.0,
 	  "type": "behead",
 	  "damage": 25,
@@ -224,7 +224,7 @@
 	{
 	  "id": "ability2",
 	  "name": "Grab",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 32.0,
 	  "type": "yixi_grab",
 	  "damage": 50,
@@ -233,7 +233,7 @@
 	{
 	  "id": "ability3",
 	  "name": "Beartrap",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 20.0,
 	  "type": "beartrap",
 	  "damage": 15,

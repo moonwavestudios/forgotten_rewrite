@@ -31,7 +31,7 @@
 	  "id": "ability1",
 	  "name": "Thread Cut",
 	  "class": "sentinel",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 24.0,
 	  "type": "mark_killer",
 	  "duration": 6.0,
@@ -45,7 +45,7 @@
 	{
 	  "id": "ability2",
 	  "name": "Intercept",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/block_icon.png",
 	  "cooldown": 22.0,
 	  "type": "block",
 	  "duration": 2.5,
@@ -57,7 +57,7 @@
 	{
 	  "id": "ability3",
 	  "name": "Tether Break",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 30.0,
 	  "type": "anti_lock",
 	  "range": 10.0,
@@ -68,7 +68,7 @@
 	{
 	  "id": "ability4",
 	  "name": "Oath Anchor",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 45.0,
 	  "type": "ally_link",
 	  "duration": 8.0,

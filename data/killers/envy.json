@@ -187,7 +187,7 @@
 	{
 	  "id": "primary",
 	  "name": "Stab",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 2.0,
 	  "type": "slash",
 	  "damage": 20,
@@ -196,7 +196,7 @@
 	{
 	  "id": "ability1",
 	  "name": "Void Grasp",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 15.0,
 	  "type": "mouse_attack",
 	  "damage": 50
@@ -204,7 +204,7 @@
 	{
 	  "id": "ability2",
 	  "name": "Void Dash",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 5.0,
 	  "type": "void_dash",
 	  "damage": 10,

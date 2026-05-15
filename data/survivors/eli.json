@@ -29,7 +29,7 @@
     {
       "id": "ability1",
       "name": "Second Wind",
-      "icon": "res://assets/textures/abilityTemplate.png",
+      "icon": "res://assets/images/abilityTemplate.png",
       "cooldown": 20.0,
       "type": "speed_boost",
       "description": "Eli briefly stops, then bursts forward with a short speed boost."
@@ -37,7 +37,7 @@
     {
       "id": "ability2",
       "name": "Cut Loose",
-      "icon": "res://assets/textures/abilityTemplate.png",
+      "icon": "res://assets/images/abilityTemplate.png",
       "cooldown": 30.0,
       "type": "cut_loose",
       "target": "killer",
@@ -48,7 +48,7 @@
     {
       "id": "ability3",
       "name": "Ghost Run",
-      "icon": "res://assets/textures/abilityTemplate.png",
+      "icon": "res://assets/images/abilityTemplate.png",
       "cooldown": 35.0,
       "type": "invisibility",
       "duration": 5.0,

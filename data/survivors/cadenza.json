@@ -31,7 +31,7 @@
 	  "id": "ability1",
 	  "name": "Resonance Zone",
 	  "class": "disruptor",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 26.0,
 	  "type": "aoe_debuff",
 	  "radius": 8.0,
@@ -42,7 +42,7 @@
 	{
 	  "id": "ability2",
 	  "name": "Harmonic Pulse",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 20.0,
 	  "type": "knockback_burst",
 	  "radius": 5.0,
@@ -53,7 +53,7 @@
 	{
 	  "id": "ability3",
 	  "name": "Lullaby Trace",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 35.0,
 	  "type": "ally_buff",
 	  "range": 14.0,
@@ -67,7 +67,7 @@
 	{
 	  "id": "ability4",
 	  "name": "Final Movement",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 55.0,
 	  "type": "empowered_burst",
 	  "duration": 10.0,

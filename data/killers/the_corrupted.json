@@ -69,7 +69,7 @@
 	{
 	  "id": "primary",
 	  "name": "Slash",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 2.0,
 	  "type": "slash",
 	  "damage": 28,
@@ -78,7 +78,7 @@
 	{
 	  "id": "ability1",
 	  "name": "Spikes of Corruption",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 25.0,
 	  "type": "spikes",
 	  "damage": 10
@@ -86,7 +86,7 @@
 	{
 	  "id": "ability2",
 	  "name": "Footprint",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 5.0,
 	  "type": "trap",
 	  "damage": 0,
@@ -103,7 +103,7 @@
 	{
 	  "id": "ability3",
 	  "name": "I can see you",
-	  "icon": "res://assets/textures/abilityTemplate.png",
+	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 45.0,
 	  "type": "reveal"
 	}

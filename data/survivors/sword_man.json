@@ -28,7 +28,7 @@
 		{
 			"id": "ability1",
 			"name": "Sword",
-			"icon": "res://assets/textures/abilityTemplate.png",
+			"icon": "res://assets/images/abilityTemplate.png",
 			"cooldown": 20.0,
 			"type": "sword",
 			"description": "John slashes his sword stunning the killer"
@@ -36,7 +36,7 @@
 		{
 			"id": "ability2",
 			"name": "Chicken",
-			"icon": "res://assets/textures/abilityTemplate.png",
+			"icon": "res://assets/images/abilityTemplate.png",
 			"cooldown": 60.0,
 			"type": "chicken",
 			"heal": 50.0,
