@@ -304,7 +304,6 @@ func _activate_ability(ability_data: Dictionary) -> void:
 				_highlight_killer(plr)
 				
 	elif ability == "beartrap":
-		#var ability_data = get_killer_ability("ability3", $"..".equipped_killer)
 		var trap_damage: int = ability_data.get("damage", 15)
 		var trap_limit: int = ability_data.get("limit", 3)
 
