@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://5dockapqk8t6"]
+
+[resource]
+resource_name = "vest"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.7254902, 0.50980395, 0.2627451, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0

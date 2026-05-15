@@ -37,7 +37,45 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"bracelet 1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/stuff/perpehell_materials/bracelet 1.tres",
+"use_external/path": "uid://hft46jrgxq5o"
+},
+"bracelet 2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/stuff/perpehell_materials/bracelet 2.tres",
+"use_external/path": "uid://bc3jpbio1g3xf"
+},
+"gold": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/stuff/perpehell_materials/gold.tres",
+"use_external/path": "uid://daxl2s4tjcvyk"
+},
+"shirt": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/stuff/perpehell_materials/shirt.tres",
+"use_external/path": "uid://dxjie3edsimqn"
+},
+"suit": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/stuff/perpehell_materials/suit.tres",
+"use_external/path": "uid://suxpis2no0yb"
+},
+"vest": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/stuff/perpehell_materials/vest.tres",
+"use_external/path": "uid://5dockapqk8t6"
+},
+"yellow": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/stuff/perpehell_materials/yellow.tres",
+"use_external/path": "uid://cwqtjq0gmglbj"
+}
+}
+}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
