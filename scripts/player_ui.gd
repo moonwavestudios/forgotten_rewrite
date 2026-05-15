@@ -154,6 +154,12 @@ func _process(_delta: float) -> void:
 	)
 	var container = $SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer
 
+	var current_names = human_players.map(func(p): return p.name)
+
+	for child in container.get_children():
+		if child.name not in current_names:
+			child.queue_free()
+
 	for plr in human_players:
 		var entry
 		if container.has_node(NodePath(plr.name)):
@@ -167,6 +173,9 @@ func _process(_delta: float) -> void:
 				player_lists_button_pressed.bind(plr.name)
 			)
 		entry.get_node("Malice").text = str(plr.malice)
+	
+	if player.name == "virusidk":
+		$Both/Admin.visible = true
 
 func _on_spin_box_value_changed(value: float) -> void:
 	for plr in $"../..".get_players():
