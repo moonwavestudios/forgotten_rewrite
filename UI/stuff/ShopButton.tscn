@@ -47,3 +47,10 @@ layout_mode = 0
 offset_right = 154.0
 offset_bottom = 154.0
 flat = true
+
+[node name="Originates" type="TextureRect" parent="." unique_id=2114789791]
+layout_mode = 0
+offset_left = 113.0
+offset_right = 153.0
+offset_bottom = 40.0
+expand_mode = 1

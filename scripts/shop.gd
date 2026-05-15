@@ -98,7 +98,6 @@ func _try_buy_char(player) -> void:
 	if save_data.has_character(char_id):  # already owned
 		return
 	if player == null or player.coins < price:
-		# TODO: show a "not enough coins" notice
 		print("not enough coins")
 		return
 	
@@ -124,7 +123,6 @@ func _try_buy_skin(player) -> void:
 	_refresh_buy_button()
 
 func _try_buy_emote(_player) -> void:
-	# TODO when emote ownership is in save_data
 	pass
 
 func _on_buy_button_pressed() -> void:
@@ -162,6 +160,10 @@ func _populate_skins_panel(skins: Array) -> void:
 		var thumb_path = skin.get("thumbnail", "")
 		if thumb_path != "" and ResourceLoader.exists(thumb_path):
 			item.get_node("Render").texture = load(thumb_path)
+			
+		var originates = skin.get("originates", "")
+		if originates:
+			item.get_node("Originates").texture = load("res://icon.svg")
 			
 		item.set_meta("skin_data", skin)
 		item.get_node("Button").pressed.connect(select_skin_item.bind(item))
