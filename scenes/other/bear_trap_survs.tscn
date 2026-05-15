@@ -1,48 +1,13 @@
 [gd_scene format=3 uid="uid://o0q7vnwldj42"]
 
-[sub_resource type="GDScript" id="GDScript_1qqd5"]
-script/source = "extends Area3D
-
-var owner_player
-var hitboxes_scene
-var effect = \"slowness\"
-var effect_level = 1
-var effect_duration = 1.0
-
-var triggered := false
-
-func _ready():
-	add_to_group(\"beartraps\")
-	body_entered.connect(_on_body_entered)
-
-func _on_body_entered(body):
-	if triggered:
-		return
-
-	if body == owner_player:
-		return
-
-	if not (\"is_Killer\" in body):
-		return
-
-	if not body.is_Killer:
-		return
-
-	triggered = true
-	
-	var effect_comp = body.get_node_or_null(\"EffectComponent\")
-	if effect_comp:
-		effect_comp.activate_effect(effect, effect_level, effect_duration)
-
-	queue_free()
-"
+[ext_resource type="Script" uid="uid://ciugfygo75j0d" path="res://scripts/bear_trap_survs.gd" id="1_uw4n2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1qqd5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1qqd5"]
 
 [node name="BearTrapSurvs" type="Area3D" unique_id=627160976]
-script = SubResource("GDScript_1qqd5")
+script = ExtResource("1_uw4n2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=734679278]
 shape = SubResource("BoxShape3D_1qqd5")
