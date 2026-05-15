@@ -39,9 +39,10 @@
       "name": "Cut Loose",
       "icon": "res://assets/textures/abilityTemplate.png",
       "cooldown": 30.0,
-      "type": "helpless",
+      "type": "cut_loose",
       "target": "killer",
       "duration": 4.0,
+      "limit": 3,
       "description": "Eli throws down equipment that disables the killer's abilities for a short duration."
     },
     {
@@ -51,7 +52,7 @@
       "cooldown": 35.0,
       "type": "invisibility",
       "duration": 5.0,
-      "description": "Eli turns invisible briefly. The killer can reduce the duration by hitting him."
+      "description": "Eli turns invisible briefly."
     }
   ]
 }

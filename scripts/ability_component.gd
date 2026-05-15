@@ -563,6 +563,47 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			effect_comp.activate_effect("speed_boost", 2, 5.0)
 		$"..".usingAbility = false
 	
+	elif ability == "speed_boost":
+		player.current_speed = 0
+		await get_tree().create_timer(1).timeout
+		var effect_comp = $"..".get_node_or_null("EffectComponent")
+		if effect_comp:
+			effect_comp.activate_effect("speed_boost", 2, 5.0)
+		$"..".usingAbility = false
+	
+	elif ability == "cut_loose":
+		player.current_speed = 0
+		
+		var trap_limit: int = ability_data.get("limit", 3)
+
+		var active_traps = get_tree().get_nodes_in_group("beartraps").filter(
+			func(t): return is_instance_valid(t) and t.owner_player == $".."
+		)
+		if active_traps.size() >= trap_limit:
+			print("Beartrap limit reached (%d/%d)" % [active_traps.size(), trap_limit])
+			$"..".usingAbility = false
+			return
+
+		var trap_scene = preload("res://scenes/other/bear_trap_survs.tscn")
+		var trap = trap_scene.instantiate()
+		trap.owner_player = $".."
+		trap.hitboxes_scene = $"..".hitboxes
+		trap.effect = "helpless"
+		main.add_child(trap)
+
+		var place_pos = $"..".global_position
+		place_pos.y -= 0.9
+		trap.global_position = place_pos
+
+		$"..".usingAbility = false
+	
+	elif ability == "invisibility":
+		await get_tree().create_timer(1).timeout
+		var effect_comp = $"..".get_node_or_null("EffectComponent")
+		if effect_comp:
+			effect_comp.activate_effect("invisibility", 3, 5.0)
+		$"..".usingAbility = false
+	
 	elif ability == "entanglement":
 		#var ability_data = get_killer_ability("ability2", $"..".equipped_killer)
 		var spike_damage: int = ability_data.get("damage", 15)

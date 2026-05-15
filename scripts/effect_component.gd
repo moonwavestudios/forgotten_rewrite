@@ -48,7 +48,12 @@ func activate_effect(effect: String, level: int, duration: float = 1.0) -> void:
 		if material:
 			var unique_mat = material.duplicate()
 			unique_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-			unique_mat.albedo_color.a = 0.5 if level == 1 else 0.75
+			if level == 1:
+				unique_mat.albedo_color.a = 0.5
+			elif level == 2:
+				unique_mat.albedo_color.a = 0.75
+			else:
+				unique_mat.albedo_color.a = 0.9
 			mesh_instance.set_surface_override_material(0, unique_mat)
 		else:
 			push_error("No material found on MeshInstance3D!")
