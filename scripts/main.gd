@@ -92,17 +92,23 @@ func _process(_delta: float) -> void:
 		plr.get_node("player_ui/GameStuff/Objectives/Objective").text = "Completed generators: " + str(tasks_completed) + "/" + str(tasks_to_complete)
 	
 	if in_round and not lms_started:
-		if get_player_count() == 2:
+		if get_alive_survivor_count() == 1:
 			for player in get_players():
 				if player.is_Killer:
 					lms_started = true
 					var survivor = get_surviving_player()
 					start_lms(player.equipped_killer, survivor)
 			
-
 func get_player_count() -> int:
 	return get_tree().get_nodes_in_group("players").size()
-	
+
+func get_alive_survivor_count() -> int:
+	var count = 0
+	for player in get_players():
+		if not player.is_Killer and player.in_round and player.health > 0:
+			count += 1
+	return count
+
 func get_players():
 	return get_tree().get_nodes_in_group("players")
 	

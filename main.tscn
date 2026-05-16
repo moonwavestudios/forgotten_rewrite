@@ -15,6 +15,7 @@
 
 [node name="Main" type="Node" unique_id=814599977]
 script = ExtResource("1_1bvp3")
+intermission_time = 5
 
 [node name="Lobby" parent="." unique_id=941177251 instance=ExtResource("1_ig7tw")]
 
@@ -22,7 +23,7 @@ script = ExtResource("1_1bvp3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1848295, 0)
 
 [node name="LMS" type="AudioStreamPlayer" parent="." unique_id=419310731]
-volume_db = 3.0
+volume_db = -5.0
 bus = &"LMS"
 
 [node name="Intermission" type="Timer" parent="." unique_id=1830027606]
@@ -51,7 +52,6 @@ hitbox_attack = "survivor"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6197364, 1.2592936, -19.402317)
 malice = -100
 is_Killer = false
-equipped_killer = "the_creation"
 
 [node name="game" type="Node3D" parent="." unique_id=819722603]
 
