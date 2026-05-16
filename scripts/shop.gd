@@ -148,6 +148,9 @@ func _populate_skins_panel(skins: Array) -> void:
 	for skin in skins:
 		if skin.get("id", "") == "default":
 			continue
+			
+		if skin.get("limited", false):
+			continue
 		
 		var item_scene = preload("res://UI/stuff/ShopButton.tscn")
 		var item = item_scene.instantiate()

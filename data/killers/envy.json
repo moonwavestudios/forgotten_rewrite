@@ -8,6 +8,7 @@
 	  "display_name": "Default",
 	  "price": 0,
 	  "model": "res://assets/models/envy/envy_default.tscn",
+	  "animation_library": "res://assets/animations/envy/envy_default.tres",
 	  "thumbnail": "res://assets/textures/skins/envy_default.png",
 	  "music": {
 		"lms": "res://assets/music/VanityLMS.mp3",
@@ -40,16 +41,6 @@
 			"res://assets/sfx/voicelines/envy/voiceline_stunned.mp3"
 		]
 	 },
-	  "animations": {
-		"idle": "idle",
-		"walk": "walk",
-		"sprint": "sprint",
-		"attack_primary": "stab",
-		"attack_ability1": "void_grasp",
-		"attack_ability2": "void_dash",
-		"stun": "stunned",
-		"death": "death"
-	  }
 	},
 	{
 	  "id": "perpehell",
@@ -78,16 +69,6 @@
 		"victory": [],
 		"stun": []
 	 },
-	  "animations": {
-		"idle": "idle",
-		"walk": "walk",
-		"sprint": "sprint",
-		"attack_primary": "stab",
-		"attack_ability1": "void_grasp",
-		"attack_ability2": "void_dash",
-		"stun": "stunned",
-		"death": "death"
-	  }
 	},
 	{
 	  "id": "virus",
@@ -120,16 +101,6 @@
 		"stun": "",
 		"slash_hit": "res://assets/sfx/envy_hit.ogg"
 	  },
-	  "animations": {
-		"idle": "idle_virus",
-		"walk": "walk_virus",
-		"sprint": "sprint_virus",
-		"attack_primary": "stab_virus",
-		"attack_ability1": "void_grasp_virus",
-		"attack_ability2": "void_dash_virus",
-		"stun": "stunned",
-		"death": "death"
-	  }
 	},
 	{
 	  "id": "blocky_envy",
@@ -199,6 +170,7 @@
 	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 15.0,
 	  "type": "mouse_attack",
+	  "animation": "void_grasp",
 	  "damage": 50
 	},
 	{

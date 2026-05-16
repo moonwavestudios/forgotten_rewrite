@@ -244,7 +244,7 @@ func apply_skin(skin_id: String) -> void:
 			"chase": base_music.get("chase", "")
 		}
 		_update_footstep_sound(char_data, {})
-		Voiceline_Component.apply_voicelines(base_voicelines) 
+		Voiceline_Component.apply_voicelines(base_voicelines)
 		return
 
 	var skin_data = CharData.get_skin(char_id, char_type, skin_id)
@@ -260,6 +260,7 @@ func apply_skin(skin_id: String) -> void:
 
 	if is_instance_valid(_skin_instance):
 		_skin_instance.queue_free()
+		_skin_instance = null
 
 	var model_path = skin_data.get("model", "")
 	if model_path != "" and ResourceLoader.exists(model_path):
@@ -268,7 +269,17 @@ func apply_skin(skin_id: String) -> void:
 			_skin_instance = skin_scene.instantiate()
 			add_child(_skin_instance)
 			$CollisionShape3D/MeshInstance3D.visible = false
-	
+
+			var skin_anim_player = _skin_instance.get_node_or_null("AnimationPlayer")
+			if animation_manager == null:
+				animation_manager = AnimationManager.new()
+				add_child(animation_manager)
+			if skin_anim_player:
+				animation_manager.set_animation_player(skin_anim_player)
+			else:
+				animation_manager.set_animation_player(anim_player)
+			animation_manager.initialize(char_id, char_type, skin_id)
+
 	equipped_skin_id = skin_id
 
 	var skin_music = skin_data.get("music", {})
@@ -288,16 +299,10 @@ func apply_skin(skin_id: String) -> void:
 	_update_footstep_sound(char_data, skin_data)
 	
 	var merged_voicelines: Dictionary = base_voicelines.duplicate()
-	var skin_voicelines = skin_data.get("voicelines", {})            
-	for key in skin_voicelines:                                       
-		merged_voicelines[key] = skin_voicelines[key]                
+	var skin_voicelines = skin_data.get("voicelines", {})
+	for key in skin_voicelines:
+		merged_voicelines[key] = skin_voicelines[key]
 	Voiceline_Component.apply_voicelines(merged_voicelines)
-	
-	if animation_manager == null:
-		animation_manager = AnimationManager.new()
-		add_child(animation_manager)
-	animation_manager.initialize(char_id, char_type, skin_id)
-	animation_manager.set_animation_player(anim_player)  
 
 func refresh_item_ui() -> void:
 	var slots = []
@@ -407,7 +412,7 @@ func _physics_process(delta: float) -> void:
 		
 	if weakness > 0:
 		Effect_Component.activate_effect("weakness", weakness, 20)
-		
+	
 	$player_ui/GameStuff/Health.value = health
 	$player_ui/GameStuff/Health.max_value = maxhealth
 	$player_ui/GameStuff/Health/Label.text = str(int(health)) + "/" + str(maxhealth)
@@ -599,6 +604,17 @@ func _physics_process(delta: float) -> void:
 
 	var is_moving = direction.length() > 0.0
 	_handle_footsteps(delta, is_moving)
+
+	if animation_manager != null:
+		if usingAbility or stunned:
+			pass
+		elif is_moving:
+			if is_sprinting:
+				animation_manager.play_action("sprint")
+			else:
+				animation_manager.play_action("walk")
+		else:
+			animation_manager.play_action("idle")
 
 	move_and_slide()
 

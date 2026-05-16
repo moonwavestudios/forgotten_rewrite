@@ -21,28 +21,56 @@ func initialize(char_id: String, type: String, skin: String = "default") -> void
 	character_type = type
 	skin_id = skin
 	_resolved_cache.clear()
+	_load_animation_library(char_id, type, skin)
+
+func _load_animation_library(char_id: String, type: String, skin: String) -> void:
+	if not anim_player:
+		push_warning("[AnimationManager] No AnimationPlayer")
+		return
+
+	var skin_data := CharData.get_skin(char_id, type, skin)
+	var lib_path: String = skin_data.get("animation_library", "")
+
+	if lib_path == "" and skin != "default":
+		var default_skin := CharData.get_skin(char_id, type, "default")
+		lib_path = default_skin.get("animation_library", "")
+
+	if lib_path == "" or not ResourceLoader.exists(lib_path):
+		push_warning("[AnimationManager] No animation library found for %s / %s" % [char_id, skin])
+		return
+
+	var lib := load(lib_path) as AnimationLibrary
+	if lib == null:
+		push_warning("[AnimationManager] Failed to load AnimationLibrary: %s" % lib_path)
+		return
+
+	if anim_player.has_animation_library("skin"):
+		anim_player.remove_animation_library("skin")
+
+	anim_player.add_animation_library("skin", lib)
 
 func get_animation_name(action: String) -> String:
 	if _resolved_cache.has(action):
 		return _resolved_cache[action]
 
-	var result := ""
+	var skin_data := CharData.get_skin(character_id, character_type, skin_id)
+	var supported: Array = skin_data.get("animations", [])
 
-	if char_data:
-		result = char_data.get_animation(character_id, character_type, skin_id, action)
+	var qualified := "skin/" + action
+	if (supported.is_empty() or action in supported) and anim_player and anim_player.has_animation(qualified):
+		_resolved_cache[action] = qualified
+		return qualified
 
-		if result.is_empty() and skin_id != "default":
-			result = char_data.get_animation(character_id, character_type, "default", action)
+	var default_qualified := "default_skin/" + action
+	if anim_player and anim_player.has_animation(default_qualified):
+		_resolved_cache[action] = default_qualified
+		return default_qualified
 
-	if result.is_empty():
-		result = action
+	if anim_player and anim_player.has_animation(action):
+		_resolved_cache[action] = action
+		return action
 
-	if anim_player and anim_player.has_animation(result):
-		_resolved_cache[action] = result
-	elif result == action:
-		_resolved_cache[action] = result
-
-	return result
+	return ""
 
 func play_action(action: String, blend_time: float = 0.1, speed: float = 1.0) -> void:
 	if not anim_player:

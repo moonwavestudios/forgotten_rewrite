@@ -938,6 +938,7 @@ offset_bottom = 650.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SpectatorStuff/PlayerList" unique_id=1043805374]
 layout_mode = 0
+offset_top = 48.0
 offset_right = 313.0
 offset_bottom = 648.0
 
@@ -945,18 +946,20 @@ offset_bottom = 648.0
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Title" type="HBoxContainer" parent="SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer" unique_id=1479427453]
-layout_mode = 2
+[node name="Title" type="HBoxContainer" parent="SpectatorStuff/PlayerList" unique_id=1479427453]
+layout_mode = 0
+offset_right = 264.0
+offset_bottom = 29.0
 theme_override_constants/separation = 99
 
-[node name="Title" type="Label" parent="SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer/Title" unique_id=58890258]
+[node name="Title" type="Label" parent="SpectatorStuff/PlayerList/Title" unique_id=58890258]
 layout_mode = 2
 text = "Players:"
 label_settings = SubResource("LabelSettings_byocv")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Malice" type="Label" parent="SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer/Title" unique_id=1393231187]
+[node name="Malice" type="Label" parent="SpectatorStuff/PlayerList/Title" unique_id=1393231187]
 layout_mode = 2
 text = "Malice:"
 label_settings = SubResource("LabelSettings_byocv")

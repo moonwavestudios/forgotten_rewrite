@@ -11,6 +11,7 @@
 	  "thumbnail": "res://assets/textures/skins/cassidy_default.png",
 	  "sfx": {
 		"ability1": "res://assets/sfx/shot.mp3",
+		"ability2": "res://assets/sfx/shot.mp3",
 		"footsteps": ""
 	  }
 	}
