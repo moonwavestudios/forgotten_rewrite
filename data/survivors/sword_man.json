@@ -35,7 +35,7 @@
 		},
 		{
 			"id": "ability2",
-			"name": "Chicken",
+			"name": "Burger",
 			"icon": "res://assets/images/abilityTemplate.png",
 			"cooldown": 60.0,
 			"type": "chicken",

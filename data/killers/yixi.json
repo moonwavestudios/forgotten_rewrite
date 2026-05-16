@@ -214,7 +214,7 @@
 	},
 	{
 	  "id": "ability1",
-	  "name": "Behead",
+	  "name": "Cleave",
 	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 15.0,
 	  "type": "behead",
@@ -223,7 +223,7 @@
 	},
 	{
 	  "id": "ability2",
-	  "name": "Grab",
+	  "name": "Slaughter",
 	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 32.0,
 	  "type": "yixi_grab",
