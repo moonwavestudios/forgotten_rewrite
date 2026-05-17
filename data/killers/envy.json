@@ -65,20 +65,14 @@
 	 "voicelines": {
 		"intro": [],
 		"idle": [
-			"res://assets/sfx/voicelines/envy/voiceline.mp3",
-			"res://assets/sfx/voicelines/envy/voiceline2.mp3"
+			"res://assets/sfx/voicelines/envy/yaai/idle.mp3"
 		],
-		"void_dash": [
-			"res://assets/sfx/voicelines/envy/voiceline_rush.mp3"
-		],
+		"void_dash": [],
 		"kill": [
-			"res://assets/sfx/voicelines/envy/voiceline_kill.mp3",
-			"res://assets/sfx/voicelines/envy/voiceline_kill2.mp3"
+			"res://assets/sfx/voicelines/envy/yaai/idiot_idiot.mp3"
 		],
 		"victory": [],
-		"stun": [
-			"res://assets/sfx/voicelines/envy/voiceline_stunned.mp3"
-		]
+		"stun": []
 	 },
 	},
 	{
