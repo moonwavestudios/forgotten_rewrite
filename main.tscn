@@ -15,6 +15,7 @@
 
 [node name="Main" type="Node" unique_id=814599977]
 script = ExtResource("1_1bvp3")
+intermission_time = 2
 
 [node name="Lobby" parent="." unique_id=941177251 instance=ExtResource("1_ig7tw")]
 

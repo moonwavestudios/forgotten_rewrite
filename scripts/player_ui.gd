@@ -196,7 +196,7 @@ func _process(_delta: float) -> void:
 		if label:
 			if cooldown_cur > 0.0:
 				label.visible = true
-				label.text = str(ceil(cooldown_cur))
+				label.text = str(ceil(int(cooldown_cur)))
 			else:
 				label.visible = false
 
