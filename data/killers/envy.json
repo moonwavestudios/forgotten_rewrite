@@ -43,6 +43,45 @@
 	 },
 	},
 	{
+	  "id": "yaai",
+	  "display_name": "YAAI",
+	  "price": 0,
+	  "model": "res://assets/models/envy/yaai_envy.tscn",
+	  "animation_library": "res://assets/animations/envy/envy_default.tres",
+	  "thumbnail": "res://assets/textures/skins/yaai_envy.png",
+	  "music": {
+		"lms": "res://assets/music/VanityLMS.mp3",
+		"chase": "res://assets/music/chase_teto.mp3",
+		"lms_duration": 60.0
+	  },
+	"sfx": {
+		"primary": "res://assets/sfx/Noli_stab.mp3",
+		"ability1": "",
+		"ability2": "",
+		"stun": "",
+		"footsteps": "",
+		"slash_hit": "res://assets/sfx/envy_hit.ogg"
+	  },
+	 "voicelines": {
+		"intro": [],
+		"idle": [
+			"res://assets/sfx/voicelines/envy/voiceline.mp3",
+			"res://assets/sfx/voicelines/envy/voiceline2.mp3"
+		],
+		"void_dash": [
+			"res://assets/sfx/voicelines/envy/voiceline_rush.mp3"
+		],
+		"kill": [
+			"res://assets/sfx/voicelines/envy/voiceline_kill.mp3",
+			"res://assets/sfx/voicelines/envy/voiceline_kill2.mp3"
+		],
+		"victory": [],
+		"stun": [
+			"res://assets/sfx/voicelines/envy/voiceline_stunned.mp3"
+		]
+	 },
+	},
+	{
 	  "id": "perpehell",
 	  "display_name": "Perpehell",
 	  "price": 750,

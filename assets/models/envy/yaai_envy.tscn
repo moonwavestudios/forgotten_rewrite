@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://buwrujx236kex"]
+
+[ext_resource type="PackedScene" uid="uid://bnvvtygow8lgr" path="res://assets/models/envy/YAAI_Envy.fbx" id="1_i5hbh"]
+
+[node name="YAAI_Envy" type="Node3D" unique_id=1139579964]
+
+[node name="YAAI_Envy" parent="." unique_id=956983139 instance=ExtResource("1_i5hbh")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
