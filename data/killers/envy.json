@@ -69,12 +69,16 @@
 		"idle": [
 			"res://assets/sfx/voicelines/envy/yaai/idle.mp3"
 		],
-		"void_dash": [],
+		"void_dash": [
+			"res://assets/sfx/voicelines/envy/yaai/YAAI_rush.wav"
+		],
 		"kill": [
 			"res://assets/sfx/voicelines/envy/yaai/idiot_idiot.mp3"
 		],
 		"victory": [],
-		"stun": [],
+		"stun": [
+			"res://assets/sfx/voicelines/envy/yaai/YAAI_stunned.mp3"
+		],
 		"ability2_hit": [
 			"res://assets/sfx/voicelines/envy/yaai/idiot_idiot.mp3"
 		],
@@ -215,7 +219,7 @@
 	  "cooldown": 20.0,
 	  "type": "void_dash",
 	  "damage": 10,
-	  "speed": 30.0,
+	  "speed": 15.0,
 	  "duration": 1.0
 	}
   ]

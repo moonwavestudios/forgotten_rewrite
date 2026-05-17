@@ -138,13 +138,14 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			return
 		var dash_speed: float = ability_data.get("speed", 30.0)
 		var dash_damage: int = ability_data.get("damage", 40)
-		const MAX_DASH_TIME := 3.0
+		const MAX_DASH_TIME := 5.12
 		var elapsed := 0.0
 		_dash_active = true
 		$"..".current_speed = 0
 		var hit_flag: Array = []
+		var hit_survivor: Array = []
 
-		while Input.is_action_pressed("Ability2") and elapsed < MAX_DASH_TIME:
+		while Input.is_action_pressed("Ability2") and elapsed < MAX_DASH_TIME and hit_survivor.is_empty():
 			var delta = get_physics_process_delta_time()
 			elapsed += delta
 
@@ -162,7 +163,10 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			var hb = $"../..".add_hitbox_instant(
 				$"..".hitboxes, spawn_pos, hit_flag, dash_damage, "survivor", Vector3(1.2, 1.2, 1.2), null, $".."
 			)
-			hb.on_hit.connect(func(_body): _play_voiceline("ability2_hit"), CONNECT_ONE_SHOT)
+			hb.on_hit.connect(func(_body):
+				hit_survivor.append(true)
+				_play_voiceline("ability2_hit")
+			, CONNECT_ONE_SHOT)
 
 			await get_tree().physics_frame
 

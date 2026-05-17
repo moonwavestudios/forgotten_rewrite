@@ -70,6 +70,9 @@ script = ExtResource("6_tuyoq")
 [node name="voicelines" type="AudioStreamPlayer3D" parent="." unique_id=260149795]
 bus = &"Voicelines"
 
+[node name="voicelines_idle" type="AudioStreamPlayer3D" parent="." unique_id=1619345794]
+bus = &"Voicelines"
+
 [node name="Hitsound" type="AudioStreamPlayer3D" parent="." unique_id=1210829532]
 bus = &"SFX"
 

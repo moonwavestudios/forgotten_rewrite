@@ -3,9 +3,15 @@ extends Node
 
 @onready var player = $".."
 
+const IDLE_MIN_INTERVAL := 15.0
+const IDLE_MAX_INTERVAL := 25.0
+
+var _cooldowns: Dictionary = {}
+var _idle_timer: float = 0.0
+
 const CATEGORY_COOLDOWN := {
 	"intro":    0.0,
-	"idle":    30.0,
+	"idle":    20.0,
 	"kill":     4.0,
 	"victory":  0.0,
 	"stun":     6.0,
@@ -14,11 +20,14 @@ const CATEGORY_COOLDOWN := {
 
 const ABILITY_COOLDOWN := 8.0
 
-var _cooldowns: Dictionary = {}
-
 @onready var _sfx: AudioStreamPlayer3D = _get_or_create_sfx()
+@onready var _idle_sfx: AudioStreamPlayer3D = _get_or_create_idle_sfx()
 
 var _lines: Dictionary = {}
+var _current_idle_loops: bool = false
+
+func _ready() -> void:
+	_idle_timer = randf_range(IDLE_MIN_INTERVAL, IDLE_MAX_INTERVAL)
 
 func apply_voicelines(voiceline_data: Dictionary) -> void:
 	_lines.clear()
@@ -32,6 +41,19 @@ func apply_voicelines(voiceline_data: Dictionary) -> void:
 					streams.append(stream)
 		if streams.size() > 0:
 			_lines[category] = streams
+	_restart_idle_loop()
+
+func _restart_idle_loop() -> void:
+	var streams: Array = _lines.get("idle", [])
+	if streams.is_empty():
+		_idle_sfx.stop()
+		_current_idle_loops = false
+		return
+
+	var stream = streams[randi() % streams.size()]
+	_idle_sfx.stream = stream
+	_idle_sfx.play()
+	_current_idle_loops = true
 
 func play(category: String) -> bool:
 	if _sfx.playing:
@@ -48,6 +70,8 @@ func play(category: String) -> bool:
 	return true
 
 func play_idle() -> void:
+	if _current_idle_loops:
+		return
 	play("idle")
 
 func play_intro() -> void:
@@ -71,10 +95,20 @@ func _get_or_create_sfx() -> AudioStreamPlayer3D:
 		return existing
 	var sfx := AudioStreamPlayer3D.new()
 	sfx.name = "voicelines"
-	
 	sfx.bus = "Master"
 	sfx.max_distance = 30.0
-	player.add_child(sfx)
+	player.add_child.call_deferred(sfx)
+	return sfx
+
+func _get_or_create_idle_sfx() -> AudioStreamPlayer3D:
+	var existing = player.get_node_or_null("voicelines_idle")
+	if existing is AudioStreamPlayer3D:
+		return existing
+	var sfx := AudioStreamPlayer3D.new()
+	sfx.name = "voicelines_idle"
+	sfx.bus = "Master"
+	sfx.max_distance = 30.0
+	player.add_child.call_deferred(sfx)
 	return sfx
 
 func _is_on_cooldown(category: String) -> bool:
@@ -106,3 +140,16 @@ func _process(delta: float) -> void:
 	for key in _cooldowns:
 		if _cooldowns[key] > 0.0:
 			_cooldowns[key] = max(0.0, _cooldowns[key] - delta)
+
+	if not player.in_round:
+		return
+
+	if _current_idle_loops:
+		if not _idle_sfx.playing:
+			_restart_idle_loop()
+		return
+
+	_idle_timer -= delta
+	if _idle_timer <= 0.0:
+		play_idle()
+		_idle_timer = randf_range(IDLE_MIN_INTERVAL, IDLE_MAX_INTERVAL)

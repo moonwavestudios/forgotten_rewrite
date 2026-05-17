@@ -21,6 +21,7 @@ intermission_time = 2
 
 [node name="player" parent="." unique_id=633314722 groups=["interactors"] instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1848295, 0)
+is_Killer = true
 
 [node name="LMS" type="AudioStreamPlayer" parent="." unique_id=419310731]
 volume_db = -5.0
@@ -45,6 +46,7 @@ bus = &"Ambience"
 
 [node name="CharacterBody3D2" parent="." unique_id=1792773064 groups=["AI", "players"] instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9373124, 1.2592936, 5.4456167)
+is_Killer = false
 equipped_skin_id = "vegan"
 hitbox_attack = "survivor"
 
