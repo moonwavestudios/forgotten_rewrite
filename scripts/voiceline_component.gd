@@ -9,6 +9,7 @@ const CATEGORY_COOLDOWN := {
 	"kill":     4.0,
 	"victory":  0.0,
 	"stun":     6.0,
+	
 }
 
 const ABILITY_COOLDOWN := 8.0
@@ -86,6 +87,20 @@ func _start_cooldown(category: String) -> void:
 	else:
 		cd = ABILITY_COOLDOWN
 	_cooldowns[category] = cd
+
+func play_forced(category: String) -> bool:
+	if _is_on_cooldown(category):
+		return false
+	var streams: Array = _lines.get(category, [])
+	if streams.is_empty():
+		return false
+	if _sfx.playing:
+		_sfx.stop()
+	var stream = streams[randi() % streams.size()]
+	_sfx.stream = stream
+	_sfx.play()
+	_start_cooldown(category)
+	return true
 
 func _process(delta: float) -> void:
 	for key in _cooldowns:

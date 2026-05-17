@@ -36,7 +36,7 @@ func get_modified_stun_duration(base_duration: float) -> float:
 		return base_duration * multiplier
 	return base_duration
 
-func add_hitbox(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: Vector3, hitsfx, source_player = null) -> void:
+func add_hitbox(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: Vector3, hitsfx, source_player = null) -> Node:
 	var instance = hitbox.instantiate()
 	instance.hit_flag = hit_flag
 	
@@ -47,7 +47,6 @@ func add_hitbox(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: V
 		
 	instance.damage = damage
 	instance.hitsfx = hitsfx
-	
 	instance.scale = size
 	
 	$Hitboxes.add_child(instance)
@@ -62,7 +61,6 @@ func add_hitbox(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: V
 	if source_player and source_player.is_Killer:
 		for player in get_players():
 			if not player.is_Killer and player.health <= 0:
-				
 				if hit_flag.is_empty():
 					hit_flag.append(true)
 					source_player.on_killed_survivor()
@@ -70,7 +68,26 @@ func add_hitbox(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: V
 						$RoundTimer.start($RoundTimer.time_left + 30.0)
 	
 	instance.queue_free()
-	
+	return instance
+
+func add_hitbox_instant(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: Vector3, hitsfx, source_player = null) -> Node:
+	var instance = hitbox.instantiate()
+	instance.hit_flag = hit_flag
+	instance.hit_killer = Hittarget != 'survivor'
+	instance.damage = damage
+	instance.hitsfx = hitsfx
+	instance.scale = size
+
+	$Hitboxes.add_child(instance)
+	instance.global_position = pos
+
+	if source_player:
+		instance.global_rotation = source_player.global_rotation
+		instance.og_plr = source_player
+
+	get_tree().create_timer(0.5).timeout.connect(instance.queue_free)
+	return instance
+
 func _process(_delta: float) -> void:
 	if get_player_count() > 1 and not intermission_started:
 		intermission_started = true

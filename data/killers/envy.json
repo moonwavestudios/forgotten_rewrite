@@ -75,10 +75,12 @@
 		],
 		"victory": [],
 		"stun": [],
-		"void_dash_hit1": [],
-		"void_dash_ground": [],
-		"void_dash_miss": [],
-		"void_dash_wall": [],
+		"ability2_hit": [
+			"res://assets/sfx/voicelines/envy/yaai/idiot_idiot.mp3"
+		],
+		"void_grasp": [
+			"res://assets/sfx/voicelines/envy/yaai/YAAI_void_star_throw.wav"
+		],
 	 },
 	},
 	{
