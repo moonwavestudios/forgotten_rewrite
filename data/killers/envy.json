@@ -212,7 +212,7 @@
 	  "id": "ability2",
 	  "name": "Void Dash",
 	  "icon": "res://assets/images/abilityTemplate.png",
-	  "cooldown": 5.0,
+	  "cooldown": 20.0,
 	  "type": "void_dash",
 	  "damage": 10,
 	  "speed": 30.0,
