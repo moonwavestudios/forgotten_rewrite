@@ -155,6 +155,50 @@ func _process(_delta: float) -> void:
 	var container = $SpectatorStuff/PlayerList/ScrollContainer/VBoxContainer
 
 	var current_names = human_players.map(func(p): return p.name)
+	
+	var ability_slots = []
+	for child in $"../player_ui/GameStuff/AbilitiesStuff".get_children():
+		if child.name.begins_with("Ability"):
+			ability_slots.append(child)
+
+	var ability_map = []
+	if player.is_Killer:
+		ability_map = [
+			player.equipped_attack,
+			player.equipped_ability1,
+			player.equipped_ability2,
+			player.equipped_ability3,
+			player.equipped_ability4,
+		]
+	else:
+		ability_map = [
+			player.equipped_ability1,
+			player.equipped_ability2,
+			player.equipped_ability3,
+			player.equipped_ability4,
+		]
+
+	for i in range(ability_slots.size()):
+		var slot = ability_slots[i]
+		var ab = ability_map[i] if i < ability_map.size() else {}
+		var ab_name = ab.get("name", "")
+		var cooldown_max = ab.get("cooldown", 0.0)
+		var cooldown_cur = player.cooldowns.get(ab_name, 0.0)
+
+		var overlay = slot.get_node_or_null("CooldownOverlay")
+		var label = slot.get_node_or_null("CooldownLabel")
+
+		if overlay:
+			overlay.visible = cooldown_cur > 0.0
+			if cooldown_max > 0.0:
+				overlay.material.set_shader_parameter("progress", cooldown_cur / cooldown_max)
+
+		if label:
+			if cooldown_cur > 0.0:
+				label.visible = true
+				label.text = str(ceil(cooldown_cur))
+			else:
+				label.visible = false
 
 	for child in container.get_children():
 		if child.name not in current_names:

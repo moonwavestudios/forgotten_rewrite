@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://diu4olylqsotv" path="res://assets/fonts/Roboto/static/Roboto-Bold.ttf" id="1_c8xti"]
 [ext_resource type="Texture2D" uid="uid://d1qj5l8ttlohn" path="res://icon.svg" id="2_nplvd"]
 [ext_resource type="Shader" uid="uid://bom6wnkkidnyb" path="res://assets/shaders/vignette.gdshader" id="3_b8q8m"]
+[ext_resource type="Shader" uid="uid://dvak7ntgcvc73" path="res://assets/shaders/cooldown_radial.gdshader" id="3_s8lkg"]
 [ext_resource type="PackedScene" uid="uid://dubh45kls01xa" path="res://UI/stuff/ShopButton.tscn" id="4_b8q8m"]
 [ext_resource type="Script" uid="uid://cceui5vh4mesy" path="res://scripts/shop.gd" id="4_ccqt3"]
 [ext_resource type="FontFile" uid="uid://8mo1e2wy3byd" path="res://assets/fonts/AccanthisadfstdBold-BYzx.otf" id="4_qf5vc"]
@@ -33,9 +34,19 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s8lkg"]
+shader = ExtResource("3_s8lkg")
+shader_parameter/progress = 0.0
+shader_parameter/overlay_color = Color(0, 0, 0, 0.72)
+
 [sub_resource type="LabelSettings" id="LabelSettings_kwigr"]
 font = ExtResource("4_qf5vc")
 font_size = 19
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ysum4"]
+font = ExtResource("4_qf5vc")
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
@@ -373,12 +384,28 @@ offset_bottom = 71.0
 texture = ExtResource("2_nplvd")
 expand_mode = 1
 
+[node name="CooldownOverlay" type="ColorRect" parent="GameStuff/AbilitiesStuff/Slash" unique_id=628865509]
+material = SubResource("ShaderMaterial_s8lkg")
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 71.0
+
 [node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Slash" unique_id=1298321387]
 layout_mode = 0
 offset_right = 70.0
 offset_bottom = 23.0
 text = "Q"
 label_settings = SubResource("LabelSettings_kwigr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CooldownLabel" type="Label" parent="GameStuff/AbilitiesStuff/Slash" unique_id=1807559180]
+visible = false
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+text = "30"
+label_settings = SubResource("LabelSettings_ysum4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -393,12 +420,28 @@ offset_bottom = 71.0
 texture = ExtResource("2_nplvd")
 expand_mode = 1
 
+[node name="CooldownOverlay" type="ColorRect" parent="GameStuff/AbilitiesStuff/Ability1" unique_id=1209273274]
+material = SubResource("ShaderMaterial_s8lkg")
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 71.0
+
 [node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability1" unique_id=937900107]
 layout_mode = 0
 offset_right = 70.0
 offset_bottom = 23.0
 text = "Q"
 label_settings = SubResource("LabelSettings_kwigr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CooldownLabel" type="Label" parent="GameStuff/AbilitiesStuff/Ability1" unique_id=1295472077]
+visible = false
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+text = "30"
+label_settings = SubResource("LabelSettings_ysum4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -413,12 +456,28 @@ offset_bottom = 71.0
 texture = ExtResource("2_nplvd")
 expand_mode = 1
 
+[node name="CooldownOverlay" type="ColorRect" parent="GameStuff/AbilitiesStuff/Ability2" unique_id=452164471]
+material = SubResource("ShaderMaterial_s8lkg")
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 71.0
+
 [node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability2" unique_id=669670067]
 layout_mode = 0
 offset_right = 70.0
 offset_bottom = 23.0
 text = "Q"
 label_settings = SubResource("LabelSettings_kwigr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CooldownLabel" type="Label" parent="GameStuff/AbilitiesStuff/Ability2" unique_id=39919475]
+visible = false
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+text = "30"
+label_settings = SubResource("LabelSettings_ysum4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -433,12 +492,28 @@ offset_bottom = 71.0
 texture = ExtResource("2_nplvd")
 expand_mode = 1
 
+[node name="CooldownOverlay" type="ColorRect" parent="GameStuff/AbilitiesStuff/Ability3" unique_id=1603868773]
+material = SubResource("ShaderMaterial_s8lkg")
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 71.0
+
 [node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability3" unique_id=169955280]
 layout_mode = 0
 offset_right = 70.0
 offset_bottom = 23.0
 text = "Q"
 label_settings = SubResource("LabelSettings_kwigr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CooldownLabel" type="Label" parent="GameStuff/AbilitiesStuff/Ability3" unique_id=427646520]
+visible = false
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+text = "30"
+label_settings = SubResource("LabelSettings_ysum4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -453,12 +528,28 @@ offset_bottom = 71.0
 texture = ExtResource("2_nplvd")
 expand_mode = 1
 
+[node name="CooldownOverlay" type="ColorRect" parent="GameStuff/AbilitiesStuff/Ability4" unique_id=763055976]
+material = SubResource("ShaderMaterial_s8lkg")
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 71.0
+
 [node name="Keybind" type="Label" parent="GameStuff/AbilitiesStuff/Ability4" unique_id=1186536391]
 layout_mode = 0
 offset_right = 70.0
 offset_bottom = 23.0
 text = "Q"
 label_settings = SubResource("LabelSettings_kwigr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CooldownLabel" type="Label" parent="GameStuff/AbilitiesStuff/Ability4" unique_id=1194132252]
+visible = false
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+text = "30"
+label_settings = SubResource("LabelSettings_ysum4")
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -21,7 +21,7 @@ var keybinds: Dictionary = {
 	"Ability1": "Q",
 	"Ability2": "E",
 	"Ability3": "R",
-	"Ability4": "F",
+	"Ability4": "T",
 	"Attack":   "LMB",
 }
 
