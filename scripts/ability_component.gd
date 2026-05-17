@@ -145,7 +145,8 @@ func _activate_ability(ability_data: Dictionary) -> void:
 		_dash_active = true
 		$"..".current_speed = 0
 
-		var hit_flag: Array = []  
+		var hit_flag: Array = []
+		var hit_count := 0
 
 		while Input.is_action_pressed("Ability2") and elapsed < MAX_DASH_TIME:
 			var delta = get_physics_process_delta_time()
@@ -154,25 +155,65 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			var forward = -$"..".transform.basis.z
 			forward.y = 0
 			forward = forward.normalized()
-			
-			var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
-			spawn_pos.y -= 0.9
+
+			var prev_pos = $"..".global_position
 
 			$"..".velocity.x = forward.x * dash_speed
 			$"..".velocity.z = forward.z * dash_speed
 			$"..".move_and_slide()
-			  
+
+			var moved = $"..".global_position - prev_pos
+			var expected = forward * dash_speed * delta
+			var hit_wall = moved.length() < expected.length() * 0.3
+
+			if hit_wall:
+				_play_voiceline("void_dash_wall")
+				break
+
+			var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
+			spawn_pos.y -= 0.9
+
+			var current_damage = dash_damage + (5 * hit_count)
+			var local_hit_flag: Array = []
+
 			$"../..".add_hitbox(
 				$"..".hitboxes,
 				spawn_pos,
-				hit_flag,          
-				dash_damage,
+				local_hit_flag,
+				current_damage,
 				"survivor",
 				Vector3(1.2, 1.2, 1.2),
 				$".."
 			)
 
 			await get_tree().physics_frame
+
+			if not local_hit_flag.is_empty():
+				var hit_body = local_hit_flag[0] if local_hit_flag[0] is Node else null
+
+				if hit_count == 0:
+					if hit_body and is_instance_valid(hit_body):
+						_highlight_killer(hit_body, 2.0)
+					_play_voiceline("void_dash_hit1")
+					hit_count += 1
+					hit_flag.append_array(local_hit_flag)
+
+				elif hit_count == 1:
+					_play_voiceline("void_dash_ground")
+					if hit_body and is_instance_valid(hit_body):
+						var effect_comp = hit_body.get_node_or_null("EffectComponent")
+						if effect_comp:
+							effect_comp.activate_effect("grounded", 1, 2.0)
+						else:
+							hit_body.velocity.y = -20.0
+							hit_body.velocity.x = forward.x * 5.0
+							hit_body.velocity.z = forward.z * 5.0
+					hit_count += 1
+					hit_flag.append_array(local_hit_flag)
+					break
+
+		if hit_count == 0:
+			_play_voiceline("void_dash_miss")
 
 		_dash_active = false
 		$"..".current_speed = $"..".WALK_SPEED
@@ -792,6 +833,11 @@ func get_ability_survivor(ability_slot: String, survivor: String) -> Dictionary:
 			return ab
 	push_warning("[AbilityComponent] Ability slot '%s' not found for survivor '%s'" % [ability_slot, survivor])
 	return {}
+
+func _play_voiceline(key: String) -> void:
+	var vc = player.get_node_or_null("VoicelineComponent")
+	if vc:
+		vc.play_ability(key)
 
 func get_killer_ability(ability_slot: String, killer: String):
 	var killer_data = CharData.get_killer(killer)
