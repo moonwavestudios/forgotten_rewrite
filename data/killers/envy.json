@@ -45,7 +45,7 @@
 	{
 	  "id": "yaai",
 	  "display_name": "YAAI",
-	  "price": 0,
+	  "price": 1000,
 	  "model": "res://assets/models/envy/yaai_envy.tscn",
 	  "animation_library": "res://assets/animations/envy/envy_default.tres",
 	  "thumbnail": "res://assets/textures/skins/yaai_envy.png",
