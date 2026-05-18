@@ -9,6 +9,10 @@
 	  "price": 0,
 	  "model": "res://assets/models/cassidy/cassidy_default.tscn",
 	  "thumbnail": "res://assets/textures/skins/cassidy_default.png",
+	 "kill_animations": {
+		"envy": "res://assets/animations/cassidy/kills/envy_kill.tres",
+		"the_creation": "res://assets/animations/cassidy/kills/the_creation_kill.tres"
+	  },
 	  "sfx": {
 		"ability1": "res://assets/sfx/shot.mp3",
 		"ability2": "res://assets/sfx/shot.mp3",

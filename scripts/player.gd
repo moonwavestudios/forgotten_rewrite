@@ -856,11 +856,26 @@ func grant(amountXP: int, amountCoins: int, maliceAmount: int, text: String) -> 
 	
 func take_damage(amount: int) -> void:
 	if health <= 0:
-		return
+		_on_survivor_died()
 	var final_dmg = Passive_Component.apply_damage_reduction(amount)
 	if weakness > 0:
 		final_dmg = int(final_dmg * (1.0 + weakness * 0.25))
 	health -= final_dmg
+
+func _on_survivor_died() -> void:
+	if animation_manager == null:
+		return
+
+	var killer_id := ""
+	for player in get_tree().get_nodes_in_group("players"):
+		if is_instance_valid(player) and player.is_Killer:
+			killer_id = player.equipped_killer
+			break
+
+	if killer_id != "":
+		animation_manager.play_kill_animation(killer_id)
+	else:
+		animation_manager.play_action_safe("death", "idle")
 
 func apply_stun(duration: float) -> void:
 	if Passive_Component.has_passive("stun_immune"):

@@ -72,6 +72,45 @@ func get_animation_name(action: String) -> String:
 
 	return ""
 
+func load_kill_animation(killer_id: String) -> bool:
+	var skin_data := CharData.get_skin(character_id, character_type, skin_id)
+	var kill_anims: Dictionary = skin_data.get("kill_animations", {})
+	var lib_path: String = kill_anims.get(killer_id, "")
+
+	if lib_path == "" or not ResourceLoader.exists(lib_path):
+		return false
+
+	var lib_name := "kill_" + killer_id
+
+	if anim_player.has_animation_library(lib_name):
+		return true
+
+	var lib := load(lib_path) as AnimationLibrary
+	if lib == null:
+		return false
+
+	anim_player.add_animation_library(lib_name, lib)
+	return true
+
+func play_kill_animation(killer_id: String) -> void:
+	if not anim_player:
+		return
+
+	if not load_kill_animation(killer_id):
+		play_action_safe("death", "idle")
+		return
+
+	var anim_name := "kill_" + killer_id + "/death"
+	if anim_player.has_animation(anim_name):
+		anim_player.play(anim_name)
+	else:
+		play_action_safe("death", "idle")
+
+func unload_kill_animation(killer_id: String) -> void:
+	var lib_name := "kill_" + killer_id
+	if anim_player and anim_player.has_animation_library(lib_name):
+		anim_player.remove_animation_library(lib_name)
+
 func play_action(action: String, blend_time: float = 0.1, speed: float = 1.0) -> void:
 	if not anim_player:
 		push_warning("[AnimationManager] AnimationPlayer not found")

@@ -281,4 +281,14 @@ func _on_intermission_timeout() -> void:
 	start_intro()
 
 func _on_round_timer_timeout() -> void:
-	print("round ended")
+	in_round = false
+	lms_started = false
+	$LMS.stop()
+	_cleanup_round()
+
+func _cleanup_round() -> void:
+	for player in get_players():
+		if not player.is_Killer and player.animation_manager != null:
+			for killer_player in get_players():
+				if killer_player.is_Killer:
+					player.animation_manager.unload_kill_animation(killer_player.equipped_killer)
