@@ -22,3 +22,6 @@ func _on_signin_but_pressed() -> void:
 
 func _on_login_but_pressed() -> void:
 	Auth.login($Login/LineEdit.text, $Login/LineEdit2.text)
+
+func _on_host_pressed() -> void:
+	$"../Hosting".visible = true

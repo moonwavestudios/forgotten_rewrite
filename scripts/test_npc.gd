@@ -18,6 +18,8 @@ var stun_resistance_time: float = 0.0
 
 var hit_flag: Array = []
 
+var is_ready = true
+
 var chase_layer_players: Array = []
 
 var hitbox_timer := 0.0

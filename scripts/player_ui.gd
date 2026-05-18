@@ -336,9 +336,11 @@ func _on_ability_1_keybind_pressed() -> void:
 
 func _on_shop_button_pressed() -> void:
 	$SpectatorStuff/Shop.visible = not $SpectatorStuff/Shop.visible
+	$SpectatorStuff/Inventory.visible = false
 
 func _on_inventory_button_pressed() -> void:
 	$SpectatorStuff/Inventory.visible = not $SpectatorStuff/Inventory.visible
+	$SpectatorStuff/Shop.visible = false
 
 func _on_hitsound_select_pressed() -> void:
 	file_dialog_mode = "hitsound"

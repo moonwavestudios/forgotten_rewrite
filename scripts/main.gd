@@ -158,6 +158,9 @@ func start_round():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	for player in get_players():
+		if not player.is_ready:
+			return
+		
 		var malice = player.malice if player.malice != null else 0
 		if malice > highest_malice:
 			highest_malice = malice

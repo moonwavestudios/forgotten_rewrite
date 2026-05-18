@@ -40,6 +40,8 @@ var malice: int = -100
 var xp = 0
 var blocks = 0
 
+var is_ready = false
+
 var current_speed = WALK_SPEED
 
 @export var footstep_sound: AudioStream
