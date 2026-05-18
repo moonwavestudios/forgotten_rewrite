@@ -54,7 +54,9 @@
 	  "animation_library": "res://assets/animations/envy/yaai_anims.res",
 	  "thumbnail": "res://assets/textures/skins/yaai_envy.png",
 	  "music": {
+		"lms": "",
 		"chase": "",
+		"lms_duration": 60.0
 	  },
 	"sfx": {
 		"primary": "res://assets/sfx/Noli_stab.mp3",

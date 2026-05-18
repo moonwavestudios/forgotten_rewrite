@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://buwrujx236kex"]
 
 [ext_resource type="PackedScene" uid="uid://bnvvtygow8lgr" path="res://assets/models/envy/YAAI_Envy.fbx" id="1_i5hbh"]
-[ext_resource type="AnimationLibrary" uid="uid://lvepcxytyt3t" path="res://assets/animations/envy/yaai_anims.res" id="2_iuysw"]
 
 [node name="YAAI_Envy" type="Node3D" unique_id=1139579964]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -11,4 +10,3 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.95011395, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2065559002]
 root_node = NodePath("../YAAI_Envy")
-libraries/yaai_anims = ExtResource("2_iuysw")
