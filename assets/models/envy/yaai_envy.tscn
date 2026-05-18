@@ -7,3 +7,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 
 [node name="YAAI_Envy" parent="." unique_id=956983139 instance=ExtResource("1_i5hbh")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.95011395, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2065559002]
+root_node = NodePath("../YAAI_Envy")

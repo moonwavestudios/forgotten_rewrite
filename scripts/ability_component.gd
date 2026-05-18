@@ -136,7 +136,7 @@ func _activate_ability(ability_data: Dictionary) -> void:
 	elif ability == "void_dash":
 		if _dash_active:
 			return
-		var dash_speed: float = ability_data.get("speed", 30.0)
+		var dash_speed: float = ability_data.get("speed", 15.0)
 		var dash_damage: int = ability_data.get("damage", 40)
 		const MAX_DASH_TIME := 5.12
 		var elapsed := 0.0
