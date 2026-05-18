@@ -25,3 +25,4 @@ func _on_login_but_pressed() -> void:
 
 func _on_host_pressed() -> void:
 	$"../Hosting".visible = true
+	$".".visible = false
