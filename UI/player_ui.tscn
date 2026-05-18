@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://d2nhyrcgolqcw" path="res://assets/images/shoppingCart.png" id="11_fwocb"]
 [ext_resource type="Texture2D" uid="uid://dbdwo3txly44u" path="res://assets/images/hidden.png" id="11_rvkn8"]
 [ext_resource type="Script" uid="uid://jn7o6m130g2j" path="res://scripts/main_menu.gd" id="13_ixg0m"]
+[ext_resource type="AudioStream" uid="uid://bft51df70db3y" path="res://assets/sfx/click2.ogg" id="15_8hdo2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8xti"]
 bg_color = Color(1, 1, 1, 1)
@@ -2301,6 +2302,9 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_qf5vc")
 theme_override_font_sizes/font_size = 26
 text = "Enable Exits"
+
+[node name="click" type="AudioStreamPlayer" parent="." unique_id=2131190916]
+stream = ExtResource("15_8hdo2")
 
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/BuyButton" to="SpectatorStuff/Shop" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Shop/InfoPanel/SkinsButton" to="SpectatorStuff/Shop" method="_on_skins_button_pressed"]

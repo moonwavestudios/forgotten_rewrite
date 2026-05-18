@@ -227,6 +227,7 @@ func _on_spin_box_value_changed(value: float) -> void:
 			plr.give_coins(value)
 
 func _on_give_killer_pressed() -> void:
+	$click.play()
 	for plr in $"../..".get_players():
 		if plr.name == $Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller/LineEdit.text:
 			plr.apply_character_stats()
@@ -255,15 +256,21 @@ func _update_profile_playtime(plr) -> void:
 
 func _on_settings_pressed() -> void:
 	$SpectatorStuff/Settings_Panel.visible = not $SpectatorStuff/Settings_Panel.visible
+	$SpectatorStuff/Shop.visible = false
+	$SpectatorStuff/Inventory.visible = false
+	$click.play()
 
 func _on_enable_hitbox_toggled(toggled_on: bool) -> void:
 	settings.set_show_hitboxes(toggled_on)
+	$click.play()
 
 func _on_enable_killsound_toggled(toggled_on: bool) -> void:
 	settings.set_enabled_killsound(toggled_on)
+	$click.play()
 
 func _on_hitsounds_enable_toggled(toggled_on: bool) -> void:
 	settings.set_enabled_hitsound(toggled_on)
+	$click.play()
 
 func start_listening(action: String, btn: Button) -> void:
 	if listening_button != null:
@@ -329,18 +336,22 @@ func _on_file_selected(path: String) -> void:
 	file_dialog_mode = ""
 
 func _on_slash_keybind_pressed() -> void:
+	$click.play()
 	start_listening("Attack", $SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind)
 
 func _on_ability_1_keybind_pressed() -> void:
+	$click.play()
 	start_listening("Ability1", $SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind)
 
 func _on_shop_button_pressed() -> void:
 	$SpectatorStuff/Shop.visible = not $SpectatorStuff/Shop.visible
 	$SpectatorStuff/Inventory.visible = false
+	$click.play()
 
 func _on_inventory_button_pressed() -> void:
 	$SpectatorStuff/Inventory.visible = not $SpectatorStuff/Inventory.visible
 	$SpectatorStuff/Shop.visible = false
+	$click.play()
 
 func _on_hitsound_select_pressed() -> void:
 	file_dialog_mode = "hitsound"
@@ -370,8 +381,10 @@ func _on_show_fps_toggled(toggled_on: bool) -> void:
 	$Both/FPS_Label.visible = toggled_on
 	settings.show_fps = toggled_on
 	settings.save()
+	$click.play()
 
 func _on_show_ping_toggled(toggled_on: bool) -> void:
 	$Both/Ping_Label.visible = toggled_on
 	settings.show_ping = toggled_on
 	settings.save()
+	$click.play()
