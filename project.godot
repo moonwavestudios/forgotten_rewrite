@@ -31,6 +31,7 @@ LevelSystem="*uid://c8nikvcf2r2in"
 MoonwaveDataFormat="*uid://jyour5jhosrm"
 LobbyManager="*uid://c5idppcyvci63"
 Auth="*uid://dufce1yjkfw3n"
+Admins="*uid://de6hrt0hltakc"
 
 [display]
 

@@ -217,8 +217,8 @@ func _process(_delta: float) -> void:
 				player_lists_button_pressed.bind(plr.name)
 			)
 		entry.get_node("Malice").text = str(plr.malice)
-	
-	if player.name == "virusidk":
+		
+	if Admins.admins.has(player.name):
 		$Both/Admin.visible = true
 
 func _on_spin_box_value_changed(value: float) -> void:
