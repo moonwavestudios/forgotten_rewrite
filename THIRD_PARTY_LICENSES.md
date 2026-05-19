@@ -1,0 +1,1 @@
+# Godot Engine is used under the MIT license
