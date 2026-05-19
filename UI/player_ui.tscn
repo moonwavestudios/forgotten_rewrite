@@ -352,6 +352,13 @@ func _on_exits_toggled(toggled_on: bool) -> void:
 	ServerSettings.exits = toggled_on
 "
 
+[sub_resource type="GDScript" id="GDScript_350d7"]
+script/source = "extends Panel
+
+func _on_join_button_pressed() -> void:
+	LobbyManager.join_lobby($LobbyName.text, $\"../../..\".name)
+"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hdo2"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -2260,6 +2267,7 @@ layout_mode = 0
 offset_right = 1153.0
 offset_bottom = 650.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_s8lkg")
+script = SubResource("GDScript_350d7")
 
 [node name="LobbyName" type="LineEdit" parent="Other/Joining" unique_id=190233785]
 layout_mode = 0
@@ -2283,7 +2291,7 @@ theme_override_font_sizes/font_size = 33
 placeholder_text = "Password(if lobby is private)"
 alignment = 1
 
-[node name="Button" type="Button" parent="Other/Joining" unique_id=933026327]
+[node name="JoinButton" type="Button" parent="Other/Joining" unique_id=933026327]
 layout_mode = 0
 offset_left = 477.0
 offset_top = 592.0
@@ -2349,6 +2357,7 @@ stream = ExtResource("15_8hdo2")
 [connection signal="pressed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller/GiveKiller" to="." method="_on_give_killer_pressed"]
 [connection signal="pressed" from="Other/MainMenu/Start" to="Other/MainMenu" method="_on_start_pressed"]
 [connection signal="pressed" from="Other/MainMenu/Hosting/VBoxContainer/Host" to="Other/MainMenu" method="_on_host_pressed"]
+[connection signal="pressed" from="Other/MainMenu/Hosting/VBoxContainer/Join" to="Other/MainMenu" method="_on_join_pressed"]
 [connection signal="pressed" from="Other/MainMenu/Hosting/Close" to="Other/MainMenu/Hosting/Close" method="_on_pressed"]
 [connection signal="pressed" from="Other/MainMenu/SigninButton" to="Other/MainMenu/SigninButton" method="_on_pressed"]
 [connection signal="pressed" from="Other/MainMenu/LoginButton" to="Other/MainMenu/LoginButton" method="_on_pressed"]
@@ -2357,6 +2366,7 @@ stream = ExtResource("15_8hdo2")
 [connection signal="toggled" from="Other/Hosting/Private" to="Other/Hosting" method="_on_private_toggled"]
 [connection signal="pressed" from="Other/Hosting/Button" to="Other/Hosting" method="_on_button_pressed"]
 [connection signal="pressed" from="Other/Hosting/LobbySettings" to="Other/Hosting" method="_on_lobby_settings_pressed"]
+[connection signal="pressed" from="Other/Joining/JoinButton" to="Other/Joining" method="_on_join_button_pressed"]
 [connection signal="toggled" from="Other/ServerSettings/VBoxContainer/UseStam" to="Other/Hosting" method="_on_use_stam_toggled"]
 [connection signal="toggled" from="Other/ServerSettings/VBoxContainer/UseBots" to="Other/Hosting" method="_on_use_bots_toggled"]
 [connection signal="toggled" from="Other/ServerSettings/VBoxContainer/Exits" to="Other/Hosting" method="_on_exits_toggled"]
