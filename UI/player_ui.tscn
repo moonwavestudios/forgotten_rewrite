@@ -371,6 +371,13 @@ func _on_join_button_pressed() -> void:
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hdo2"]
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="GDScript" id="GDScript_01aj8"]
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	$\"..\".visible = false
+"
+
 [node name="player_ui" type="Control" unique_id=1532252855]
 layout_mode = 3
 anchors_preset = 15
@@ -2340,6 +2347,17 @@ theme_override_fonts/font = ExtResource("4_qf5vc")
 theme_override_font_sizes/font_size = 26
 text = "Enable Exits"
 
+[node name="Exit" type="Button" parent="Other/ServerSettings" unique_id=559150628]
+layout_mode = 0
+offset_top = 607.0
+offset_right = 136.0
+offset_bottom = 652.0
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 31
+text = "BACK"
+flat = true
+script = SubResource("GDScript_01aj8")
+
 [node name="click" type="AudioStreamPlayer" parent="." unique_id=2131190916]
 stream = ExtResource("15_8hdo2")
 
@@ -2379,3 +2397,4 @@ stream = ExtResource("15_8hdo2")
 [connection signal="toggled" from="Other/ServerSettings/VBoxContainer/UseStam" to="Other/Hosting" method="_on_use_stam_toggled"]
 [connection signal="toggled" from="Other/ServerSettings/VBoxContainer/UseBots" to="Other/Hosting" method="_on_use_bots_toggled"]
 [connection signal="toggled" from="Other/ServerSettings/VBoxContainer/Exits" to="Other/Hosting" method="_on_exits_toggled"]
+[connection signal="pressed" from="Other/ServerSettings/Exit" to="Other/ServerSettings/Exit" method="_on_pressed"]
