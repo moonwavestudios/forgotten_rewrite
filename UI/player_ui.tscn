@@ -341,6 +341,15 @@ func _on_private_toggled(toggled_on: bool) -> void:
 
 func _on_lobby_settings_pressed() -> void:
 	$\"../ServerSettings\".visible = true
+
+func _on_use_stam_toggled(toggled_on: bool) -> void:
+	ServerSettings.use_stamina = toggled_on
+
+func _on_use_bots_toggled(toggled_on: bool) -> void:
+	ServerSettings.enable_bots = toggled_on
+
+func _on_exits_toggled(toggled_on: bool) -> void:
+	ServerSettings.exits = toggled_on
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hdo2"]
@@ -2348,3 +2357,6 @@ stream = ExtResource("15_8hdo2")
 [connection signal="toggled" from="Other/Hosting/Private" to="Other/Hosting" method="_on_private_toggled"]
 [connection signal="pressed" from="Other/Hosting/Button" to="Other/Hosting" method="_on_button_pressed"]
 [connection signal="pressed" from="Other/Hosting/LobbySettings" to="Other/Hosting" method="_on_lobby_settings_pressed"]
+[connection signal="toggled" from="Other/ServerSettings/VBoxContainer/UseStam" to="Other/Hosting" method="_on_use_stam_toggled"]
+[connection signal="toggled" from="Other/ServerSettings/VBoxContainer/UseBots" to="Other/Hosting" method="_on_use_bots_toggled"]
+[connection signal="toggled" from="Other/ServerSettings/VBoxContainer/Exits" to="Other/Hosting" method="_on_exits_toggled"]
