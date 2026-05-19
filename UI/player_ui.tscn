@@ -338,6 +338,7 @@ func _on_button_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	visible = false
+	$\"..\".visible = false
 
 func _on_private_toggled(toggled_on: bool) -> void:
 	$Password.visible = toggled_on
@@ -366,6 +367,7 @@ func _on_join_button_pressed() -> void:
 	$\"../../..\".is_ready = true
 	
 	visible = false
+	$\"..\".visible = false
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hdo2"]
