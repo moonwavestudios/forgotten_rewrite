@@ -52,6 +52,7 @@
 	  "price": 1000,
 	  "model": "res://assets/models/envy/yaai_envy.tscn",
 	  "animation_library": "res://assets/animations/envy/yaai_anims.res",
+	  "intro_anim": "res://assets/animations/envy/yaai_intro.res",
 	  "thumbnail": "res://assets/textures/skins/yaai_envy.png",
 	  "music": {
 		"lms": "",
@@ -96,6 +97,7 @@
 	  "model": "res://assets/models/envy/perpehell.tscn",
 	  "thumbnail": "res://assets/textures/skins/envy_perpehell.png",
 	  "animation_library": "res://assets/animations/envy/perpehell.res",
+	  "intro_anim": "res://assets/animations/envy/perpehell_intro.res",
 	  "music": {
 		"lms": "",
 		"chase": "res://assets/music/chase_teto.mp3",
