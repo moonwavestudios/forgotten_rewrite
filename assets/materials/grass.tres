@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c52xyytkcjms5"]
+
+[ext_resource type="Texture2D" uid="uid://cevuvervotff6" path="res://assets/images/Grass/Grass004_4K-PNG_Color.png" id="1_prref"]
+[ext_resource type="Texture2D" uid="uid://dkgnbf74qw207" path="res://assets/images/Grass/Grass004_4K-PNG_AmbientOcclusion.png" id="2_c82c8"]
+[ext_resource type="Texture2D" uid="uid://bbdugj5n5v4kr" path="res://assets/images/Grass/Grass004_4K-PNG_NormalDX.png" id="2_gjj3c"]
+[ext_resource type="Texture2D" uid="uid://bc5gufgymtgeq" path="res://assets/images/Grass/Grass004_4K-PNG_Roughness.png" id="2_vgjhr"]
+
+[resource]
+albedo_color = Color(0.5931336, 0.59313357, 0.59313357, 1)
+albedo_texture = ExtResource("1_prref")
+roughness_texture = ExtResource("2_vgjhr")
+normal_enabled = true
+normal_texture = ExtResource("2_gjj3c")
+ao_enabled = true
+ao_texture = ExtResource("2_c82c8")
+uv1_triplanar = true
+uv1_world_triplanar = true

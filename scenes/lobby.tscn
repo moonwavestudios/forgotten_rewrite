@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://gi7wqxg7llov" path="res://scripts/arcade.gd" id="1_5gu6x"]
 [ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="1_o1atq"]
+[ext_resource type="Material" uid="uid://c52xyytkcjms5" path="res://assets/materials/grass.tres" id="1_q60fs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_so6iy"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -19,6 +20,7 @@ glow_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_so6iy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_o1atq"]
+material = ExtResource("1_q60fs")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5gu6x"]
 
