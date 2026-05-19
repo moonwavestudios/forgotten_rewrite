@@ -95,6 +95,7 @@
 	  "price": 750,
 	  "model": "res://assets/models/envy/perpehell.tscn",
 	  "thumbnail": "res://assets/textures/skins/envy_perpehell.png",
+	  "animation_library": "res://assets/animations/envy/perpehell.res",
 	  "music": {
 		"lms": "",
 		"chase": "res://assets/music/chase_teto.mp3",
