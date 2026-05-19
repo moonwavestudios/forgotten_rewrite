@@ -13,6 +13,10 @@ sky = SubResource("Sky_qgw2g")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hafkx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hafkx"]
+
 [node name="Map1" type="Node3D" unique_id=81144003]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1494100660]
@@ -23,3 +27,12 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="ExitSpawn" type="Marker3D" parent="." unique_id=137852996]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=574375119]
+transform = Transform3D(36.78873, 0, 0, 0, 0.30877084, 0, 0, 0, 45.726456, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=731710356]
+shape = SubResource("BoxShape3D_hafkx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D" unique_id=1890982995]
+mesh = SubResource("BoxMesh_hafkx")
