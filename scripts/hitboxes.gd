@@ -21,6 +21,13 @@ func _ready() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if hit_flag.size() > 0:
 		return
+		
+	if body.is_in_group("pallets"):
+		hit_flag.append(true)
+		body.take_damage(damage)
+		_turn_green()
+		return
+	
 	if "is_Killer" in body and not body.is_Killer and not hit_killer and body.in_round:
 		if body.health > 0:
 			hit_flag.append(true)

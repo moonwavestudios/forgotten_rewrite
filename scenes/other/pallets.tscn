@@ -1,14 +1,25 @@
 [gd_scene format=3 uid="uid://bokgykakku0qy"]
 
+[ext_resource type="Script" uid="uid://d0j0f617paxk8" path="res://scripts/pallets.gd" id="1_dowgp"]
+[ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="1_t32p4"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_feoj5"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_t32p4"]
+[sub_resource type="BoxMesh" id="BoxMesh_feoj5"]
 
-[node name="pallets" type="StaticBody3D" unique_id=1846720109]
-transform = Transform3D(1, 0, 0, 0, 3.9187121, 0, 0, 0, 0.1622264, 0, 1.9315398, 0)
+[node name="pallets" type="Node3D" unique_id=703089972 groups=["pallets"]]
+script = ExtResource("1_dowgp")
+max_health = 1.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=210762905]
+[node name="Blocker" type="StaticBody3D" parent="." unique_id=666978478]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Blocker" unique_id=1943146539]
 shape = SubResource("BoxShape3D_feoj5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1697698247]
-mesh = SubResource("BoxMesh_t32p4")
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=2120939176]
+mesh = SubResource("BoxMesh_feoj5")
+
+[node name="Anim" type="AnimationPlayer" parent="." unique_id=809901091]
+
+[node name="PromptSurvivor" parent="." unique_id=25112644 instance=ExtResource("1_t32p4")]
+hold_duration = 0.0
