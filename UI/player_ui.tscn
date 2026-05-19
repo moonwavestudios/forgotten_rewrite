@@ -1975,7 +1975,7 @@ offset_bottom = 652.0
 
 [node name="MainMenu" type="Panel" parent="Other" unique_id=1868512066]
 layout_mode = 0
-offset_right = 1151.0
+offset_right = 1158.0
 offset_bottom = 649.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_fwocb")
 script = ExtResource("13_ixg0m")

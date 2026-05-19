@@ -31,6 +31,8 @@ func _ready() -> void:
 	set_process_unhandled_input(false)
 	player_list.visible = true
 	
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	
 	var saved_vol = settings.music_volume
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_Slider.value = saved_vol
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_LineEdit.text = str(int(saved_vol))

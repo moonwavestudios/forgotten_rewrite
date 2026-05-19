@@ -133,8 +133,6 @@ var cooldowns := {
 }
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 	chase_layer_players = []
 	for i in range(3):
 		var player = AudioStreamPlayer.new()
@@ -816,7 +814,7 @@ func _input(event: InputEvent) -> void:
 		first_person_cam.rotation.x = pitch
 		
 	if event.is_action_pressed("unlock_mouse"):
-		if mouse_unlocked:
+		if mouse_unlocked and is_ready:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			mouse_unlocked = false
 		else:

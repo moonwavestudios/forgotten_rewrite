@@ -13,15 +13,22 @@ func _on_auth_success(user):
 	$Username.text = email.replace("@fuckyou.com", "")
 	$Login.visible = false
 	$Signin.visible = false
+	
+	$SigninButton.visible = false
+	$LoginButton.visible = false
 
 func _on_auth_error(message):
 	$Signin/Label.text = message
 
 func _on_signin_but_pressed() -> void:
 	Auth.sign_up($Signin/SigninUsername.text, $Signin/LineEdit2.text)
+	$SigninButton.visible = false
+	$LoginButton.visible = false
 
 func _on_login_but_pressed() -> void:
 	Auth.login($Login/LineEdit.text, $Login/LineEdit2.text)
+	$LoginButton.visible = false
+	$SigninButton.visible = false
 
 func _on_host_pressed() -> void:
 	$"../Hosting".visible = true
