@@ -1,7 +1,7 @@
 extends Node
 
 const PORT := 7777
-const MAX_PLAYERS := 8
+const MAX_PLAYERS := 9
 const CODE_LENGTH := 6
 const CODE_CHARS := "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
 
@@ -36,6 +36,7 @@ func host_lobby(player_name: String) -> Error:
 	multiplayer.multiplayer_peer = peer
 	players[1] = player_name
 	lobby_ready.emit()
+	print(lobby_code)
 	return OK
 
 func join_lobby(code: String, player_name: String) -> Error:

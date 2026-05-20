@@ -21,6 +21,8 @@ material = SubResource("StandardMaterial3D_qlg0r")
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y4r1p"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_y4r1p"]
+
 [node name="player" type="CharacterBody3D" unique_id=633314722 groups=["players"]]
 script = ExtResource("1_3vyb7")
 hitboxes = ExtResource("2_qhqgy")
@@ -90,3 +92,6 @@ visible = false
 
 [node name="PlayerSettings" type="Node" parent="." unique_id=57224632]
 script = ExtResource("10_y4r1p")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1979766718]
+replication_config = SubResource("SceneReplicationConfig_y4r1p")

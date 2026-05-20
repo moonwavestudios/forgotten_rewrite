@@ -207,6 +207,12 @@ font_size = 24
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_8ac0m"]
+font = ExtResource("4_qf5vc")
+font_size = 40
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_hroa2"]
 font = ExtResource("4_qf5vc")
 font_size = 27
@@ -361,7 +367,7 @@ func _on_exits_toggled(toggled_on: bool) -> void:
 script/source = "extends Panel
 
 func _on_join_button_pressed() -> void:
-	LobbyManager.join_lobby($LobbyName.text, $\"../../..\".name)
+	LobbyManager.join_lobby($LobbyName.text, \"testnigga\")#$\"../../..\".name)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	$\"../../..\".is_ready = true
@@ -1812,6 +1818,17 @@ offset_right = 250.0
 offset_bottom = 45.0
 text = "ENABLE HITBOXES:"
 label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Code" type="Label" parent="SpectatorStuff" unique_id=1723701410]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 599.0
+offset_right = 618.0
+offset_bottom = 646.0
+text = "CODE"
+label_settings = SubResource("LabelSettings_8ac0m")
 horizontal_alignment = 1
 vertical_alignment = 1
 
