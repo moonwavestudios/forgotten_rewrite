@@ -2,7 +2,7 @@ extends Node3D
 
 @export var max_health: float              = 2.0   # how many hits to break (set to 1 for one-shot)
 @export var vault_duration: float          = 0.8
-@export var vault_move_distance: float     = 2.2
+@export var vault_move_distance: float     = -2.2
 @export var survivor_vault_speed_boost: float = 1.4
 
 enum State { STANDING, DROPPED, BROKEN }

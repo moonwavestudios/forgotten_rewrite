@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://054dosa3vsef"]
 
+[ext_resource type="PackedScene" uid="uid://bokgykakku0qy" path="res://scenes/other/pallets.tscn" id="1_qgw2g"]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hafkx"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -36,3 +38,6 @@ shape = SubResource("BoxShape3D_hafkx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D" unique_id=1890982995]
 mesh = SubResource("BoxMesh_hafkx")
+
+[node name="pallets" parent="." unique_id=703089972 instance=ExtResource("1_qgw2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83669114, 0)
