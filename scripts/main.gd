@@ -7,6 +7,10 @@ var lms_started = false
 
 var exit = preload("res://scenes/exit.tscn")
 
+@export var player_scene: PackedScene
+
+var _spawned_players: Dictionary = {}
+
 @export var intermission_time = 30
 
 var sentinel_nerf_active: bool = false
@@ -18,6 +22,38 @@ var round_time = 258
 
 func _ready() -> void:
 	AchievementData.unlock("gen_001")
+	LobbyManager.player_joined.connect(_on_player_joined)
+	LobbyManager.player_left.connect(_on_player_left)
+	LobbyManager.lobby_ready.connect(_on_lobby_ready)
+	LobbyManager.connection_succeeded.connect(_on_connection_succeeded)
+
+func _on_lobby_ready() -> void:
+	_spawn_player(multiplayer.get_unique_id(), LobbyManager.players[1])
+
+func _on_connection_succeeded() -> void:
+	for id in LobbyManager.players:
+		_spawn_player(id, LobbyManager.players[id])
+
+func _on_player_joined(id: int, player_name: String) -> void:
+	_spawn_player(id, player_name)
+
+func _on_player_left(id: int) -> void:
+	if _spawned_players.has(id):
+		_spawned_players[id].queue_free()
+		_spawned_players.erase(id)
+
+func _spawn_player(id: int, player_name: String) -> void:
+	if _spawned_players.has(id):
+		return
+	var player = player_scene.instantiate()
+	player.name = player_name
+	player.set_multiplayer_authority(id)
+	add_child(player)
+	player.add_to_group("players")
+	_spawned_players[id] = player
+	
+	if id == multiplayer.get_unique_id():
+		player.is_ready = true
 
 func get_sentinel_count() -> int:
 	var count = 0

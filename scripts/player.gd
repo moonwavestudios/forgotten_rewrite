@@ -68,12 +68,12 @@ var equipped_killer = "the_creation"
 var equipped_skin_id: String = "default"
 var _skin_instance: Node3D = null
 
-var in_round = false
+@export var in_round = false
 
 var crouching = false
 
 var stun_time = 4
-var stunned = false
+@export var stunned = false
 
 var active_music = {}
 
@@ -91,7 +91,7 @@ var coins = 0
 var pitch: float = 0.0
 var cam = false
 
-var health = 100
+@export var health = 100
 var maxhealth = 100
 
 var MAX_STAMINA = 100.0
@@ -140,6 +140,12 @@ func _ready() -> void:
 		player.bus = "Ambience"
 		chase_layer_players.append(player)
 
+	camera.current = is_multiplayer_authority()
+
+	if not is_multiplayer_authority():
+		$player_ui.visible = false
+		return
+
 	var saved_survivor = save_data.get_equipped_character("survivor")
 	var saved_killer   = save_data.get_equipped_character("killer")
 
@@ -158,12 +164,12 @@ func _ready() -> void:
 
 	var xp_char_id = equipped_killer if is_Killer else equipped_survivor
 	xp = save_data.get_character_xp(xp_char_id)
-	
+
 	var pt_char_id = equipped_killer if is_Killer else equipped_survivor
 	playtime_seconds = save_data.get_playtime(pt_char_id)
-	
+
 	AdminButton.pressed.connect(_on_admin_button_pressed)
-	
+
 	if main and main.has_node("RoundTimer"):
 		main.get_node('RoundTimer').timeout.connect(_on_round_ended)
 	if main and main.has_node("Intermission"):
@@ -183,7 +189,10 @@ func _process(delta: float) -> void:
 	for key in cooldowns:
 		if cooldowns[key] > 0.0:
 			cooldowns[key] = max(0.0, cooldowns[key] - delta)
-			
+	
+	if not is_multiplayer_authority():
+		return
+	
 	playtime_seconds += delta
 	_playtime_save_timer += delta
 	if _playtime_save_timer >= PLAYTIME_SAVE_INTERVAL:
@@ -396,8 +405,11 @@ func _refresh_abilities() -> void:
 	_refresh_ability_ui()
 			
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	if not is_multiplayer_authority():
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+		move_and_slide()
+		return
 		
 	if Input.is_action_pressed("Sprint") and (not exhausted or not ServerSettings.use_stamina) and not sprint_needs_reset:
 		is_sprinting = true
@@ -828,10 +840,15 @@ func disable_effect(effect):
 	Effect_Component.deactivate_effect(effect)
 
 func give_coins(amount):
+	if not is_multiplayer_authority():
+		return
 	coins += amount
 	save_data.set_coins(coins)
 
 func grant(amountXP: int, amountCoins: int, maliceAmount: int, text: String) -> void:
+	if not is_multiplayer_authority():
+		return
+		
 	var notificationsText = preload("res://scenes/other/notifications_text.tscn")
 	var notifications = notificationsText.instantiate()
 
@@ -853,13 +870,18 @@ func grant(amountXP: int, amountCoins: int, maliceAmount: int, text: String) -> 
 	notifications.queue_free()
 	
 func take_damage(amount: int) -> void:
+	if multiplayer.is_server():
+		_apply_damage.rpc(amount)
+
+@rpc("authority", "reliable")
+func _apply_damage(amount: int) -> void:
 	if health <= 0:
 		_on_survivor_died()
 	var final_dmg = Passive_Component.apply_damage_reduction(amount)
 	if weakness > 0:
 		final_dmg = int(final_dmg * (1.0 + weakness * 0.25))
 	health -= final_dmg
-
+	
 func _on_survivor_died() -> void:
 	if animation_manager == null:
 		return

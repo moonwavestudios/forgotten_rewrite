@@ -52,7 +52,9 @@ func _ready() -> void:
 	$Both/Ping_Label.visible = settings.show_ping
 	$Both/FPS_Label.visible = settings.show_fps
 	
-	$SpectatorStuff/Code.text = LobbyManager.lobby_code
+	LobbyManager.connection_succeeded.connect(func():
+		$SpectatorStuff/Code.text = LobbyManager.lobby_code
+	)
 	
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_FPS/ShowFPS.button_pressed = settings.show_fps
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping/ShowPing.button_pressed = settings.show_ping

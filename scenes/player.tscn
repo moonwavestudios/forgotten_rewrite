@@ -22,6 +22,24 @@ material = SubResource("StandardMaterial3D_qlg0r")
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y4r1p"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_y4r1p"]
+properties/0/path = NodePath(".:is_Killer")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:stunned")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:in_round")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath(".:health")
+properties/5/spawn = true
+properties/5/replication_mode = 1
 
 [node name="player" type="CharacterBody3D" unique_id=633314722 groups=["players"]]
 script = ExtResource("1_3vyb7")

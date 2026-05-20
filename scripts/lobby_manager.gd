@@ -8,6 +8,8 @@ const CODE_CHARS := "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
 var lobby_code := ""
 var players := {}
 
+var _pending_player_name := ""
+
 signal player_joined(id: int, name: String)
 signal player_left(id: int)
 signal lobby_ready()
@@ -46,7 +48,7 @@ func join_lobby(code: String, player_name: String) -> Error:
 		return err
 	multiplayer.multiplayer_peer = peer
 	lobby_code = code.to_upper().strip_edges()
-	_send_join_request.call_deferred(player_name)
+	_pending_player_name = player_name
 	return OK
 
 func leave_lobby() -> void:
@@ -69,15 +71,16 @@ func _rpc_request_join(code: String, player_name: String) -> void:
 		multiplayer.multiplayer_peer.disconnect_peer(sender_id)
 		return
 	players[sender_id] = player_name
-	_rpc_accept.rpc_id(sender_id, players)
+	_rpc_accept.rpc_id(sender_id, players, lobby_code)
 	for id in players:
-		if id != sender_id:
+		if id != sender_id and id != 1:
 			_rpc_player_joined.rpc_id(id, sender_id, player_name)
 	player_joined.emit(sender_id, player_name)
 
 @rpc("authority", "reliable")
-func _rpc_accept(current_players: Dictionary) -> void:
+func _rpc_accept(current_players: Dictionary, code: String) -> void:
 	players = current_players
+	lobby_code = code
 	connection_succeeded.emit()
 
 @rpc("authority", "reliable")
@@ -99,7 +102,9 @@ func _on_peer_disconnected(id: int) -> void:
 		player_left.emit(id)
 
 func _on_connected_to_server() -> void:
-	pass
+	if _pending_player_name != "":
+		_rpc_request_join.rpc_id(1, lobby_code, _pending_player_name)
+		_pending_player_name = ""
 
 func _on_connection_failed() -> void:
 	multiplayer.multiplayer_peer = null

@@ -12,14 +12,13 @@
 [ext_resource type="Script" uid="uid://bf0n2l0jmc1uw" path="res://scripts/medkit.gd" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://pkbv0nafatbv" path="res://assets/items/cola.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cmfedteam6p8t" path="res://scenes/cutscenes.tscn" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://mo3auh1v3lbi" path="res://UI/stuff/menu.tscn" id="13_ycdy4"]
 
 [node name="Main" type="Node" unique_id=814599977]
 script = ExtResource("1_1bvp3")
+player_scene = ExtResource("2_0xm2m")
 
 [node name="Lobby" parent="." unique_id=941177251 instance=ExtResource("1_ig7tw")]
-
-[node name="player" parent="." unique_id=633314722 groups=["interactors"] instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1848295, 0)
 
 [node name="LMS" type="AudioStreamPlayer" parent="." unique_id=419310731]
 volume_db = -5.0
@@ -86,6 +85,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.894238, 0.48427892, -11.017
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=572145681]
 spawn_path = NodePath("..")
+
+[node name="Menu" parent="." unique_id=925502864 instance=ExtResource("13_ycdy4")]
 
 [connection signal="timeout" from="Intermission" to="." method="_on_intermission_timeout"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]

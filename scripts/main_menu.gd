@@ -9,11 +9,10 @@ func _on_start_pressed() -> void:
 
 func _on_auth_success(user):
 	var email = user.get("email", "player@fuckyou.com")
-	$"../../..".name = email.replace("@fuckyou.com", "")
-	$Username.text = email.replace("@fuckyou.com", "")
+	var username = email.replace("@fuckyou.com", "")
+	$Username.text = username
 	$Login.visible = false
 	$Signin.visible = false
-	
 	$SigninButton.visible = false
 	$LoginButton.visible = false
 

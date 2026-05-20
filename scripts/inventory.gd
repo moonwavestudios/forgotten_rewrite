@@ -35,6 +35,11 @@ func _populate_survivors() -> void:
 			grid.add_child(item)
 			item.get_node("Button").pressed.connect(_on_char_selected.bind(item))
 
+func _safe_set_texture(node_path: String, texture) -> void:
+	var node = get_node_or_null(node_path)
+	if node != null:
+		node.texture = texture
+
 func _populate_emotes() -> void:
 	var grid = $Items/Emotes/GridContainer
 	_clear_grid(grid)
@@ -49,6 +54,8 @@ func _populate_emotes() -> void:
 		item.get_node("Button").pressed.connect(_on_emote_selected.bind(item))
 
 func _populate_skins_panel(char_data: Dictionary) -> void:
+	if char_data.is_empty():
+		return
 	var grid = $SkinsPanel/ScrollContainer/GridContainer
 	_clear_grid(grid)
 
@@ -165,10 +172,12 @@ func _on_skin_selected(item) -> void:
 
 func _on_emote_selected(item) -> void:
 	_selected_type = "emote"
-	$InfoPanel.visible        = true
-	$InfoPanel/CharName.text  = item.get_node("ItemName").text
-	$InfoPanel/Price.text     = "Owned"
-	$InfoPanel/Render.texture = null
+	$InfoPanel.visible = true
+	$InfoPanel/CharName.text = item.get_node("ItemName").text
+	$InfoPanel/Price.text = "Owned"
+	var render = $InfoPanel.get_node_or_null("Render")
+	if render != null:
+		render.texture = null
 	_refresh_equip_button()
 
 func _refresh_equip_button() -> void:
@@ -214,7 +223,8 @@ func _on_equip_button_pressed() -> void:
 
 	var player = get_tree().get_first_node_in_group("players")
 	if player != null:
-		var player_char = player.equipped_killer if player.is_Killer else player.equipped_survivor
+		var is_killer = player.is_Killer
+		var player_char = player.equipped_killer if is_killer else player.equipped_survivor
 		if player_char == char_id:
 			player.apply_skin(skin_id)
 
