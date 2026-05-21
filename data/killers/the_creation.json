@@ -65,6 +65,18 @@
 	  "animations": {},
 	  "music": {},
 	  "sfx": {}
+	},
+	{
+	  "id": "sakuya",
+	  "display_name": "Sakuya",
+	  "originates": "Touhou Project",
+	  "price": 10000,
+	  "limited": false,
+	  "model": "res://assets/models/the_creation/sakuya.tscn",
+	  "thumbnail": "res://assets/textures/skins/sakuya_creation.png",
+	  "animations": {},
+	  "music": {},
+	  "sfx": {}
 	}
 ],
   "voicelines": {
