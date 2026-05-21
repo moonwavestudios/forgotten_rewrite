@@ -6,6 +6,8 @@ var WALK_SPEED = 5.0
 var SPRINT_SPEED = 9.0
 const MOUSE_SENSITIVITY = 0.003
 
+var player_name: String = ""
+
 var mouse_unlocked = false
 
 @onready var PlayerSettings = $PlayerSettings
