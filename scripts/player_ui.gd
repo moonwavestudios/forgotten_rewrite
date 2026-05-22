@@ -52,14 +52,13 @@ func _ready() -> void:
 	$Both/Ping_Label.visible = settings.show_ping
 	$Both/FPS_Label.visible = settings.show_fps
 	
-	LobbyManager.connection_succeeded.connect(func():
-		$SpectatorStuff/Code.text = LobbyManager.lobby_code
-	)
-	
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_FPS/ShowFPS.button_pressed = settings.show_fps
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping/ShowPing.button_pressed = settings.show_ping
-	
+
 	AchievementData.achievement_unlocked.connect(_on_achievement_unlocked)
+	
+	if LobbyManager.lobby_code != "":
+		$SpectatorStuff/Code.text = LobbyManager.lobby_code
 
 func _on_achievement_unlocked(achievement) -> void:
 	if _active_notifications.size() >= 3:
