@@ -95,7 +95,7 @@ func _try_buy_char(player) -> void:
 	
 	if char_id == "":
 		return
-	if save_data.has_character(char_id):  # already owned
+	if save_data.has_character(char_id):
 		return
 	if player == null or player.coins < price:
 		print("not enough coins")

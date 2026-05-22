@@ -7,6 +7,8 @@ var current_speed = 5.0
 
 var equipped_emotes: Array = []
 
+var coins = 0
+
 var xp = 0
 
 var blocking = false

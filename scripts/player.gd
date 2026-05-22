@@ -834,6 +834,35 @@ func _input(event: InputEvent) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			mouse_unlocked = true
 
+func _setup_killer_first_person_body() -> void:
+	if not is_Killer or not is_multiplayer_authority():
+		return
+
+	if _skin_instance == null:
+		return
+
+	var armature = _skin_instance.get_node_or_null("Armature")
+	if armature == null:
+		push_warning("Armature not found!")
+		return
+
+	for node in armature.find_children("*", "MeshInstance3D", true, false):
+		node.visible = false
+
+	var visible_parts = [
+		"LeftArm",
+		"RightArm",
+		"LeftLeg",
+		"RightLeg",
+		"Weapon"
+	]
+
+	for part_name in visible_parts:
+		var part = armature.find_child(part_name, true, false)
+		if part:
+			for mesh in part.find_children("*", "MeshInstance3D", true, false):
+				mesh.visible = true
+
 func apply_effect(effect, level):
 	Effect_Component.activate_effect(effect, level)
 
