@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ct31oohxj4ied"]
+
+[ext_resource type="Script" uid="uid://doeeqicxk8r8f" path="res://scripts/burger_pickup.gd" id="1_vsva3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vsva3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vsva3"]
+
+[node name="burger_pickup" type="Area3D" unique_id=1813280377]
+script = ExtResource("1_vsva3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1254679552]
+shape = SubResource("BoxShape3D_vsva3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1617805254]
+mesh = SubResource("BoxMesh_vsva3")

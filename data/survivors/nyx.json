@@ -32,6 +32,7 @@
 	  "name": "Delivery",
 	  "icon": "res://assets/images/abilityTemplate.png",
 	  "cooldown": 30.0,
+	  "heal_amount": 25.0,
 	  "type": "delivery",
 	  "description": "Nyx throws a burger at a survivor, healing them for 25 HP. If survivor eats the burger, it grants Nyx Rush Hour."
 	},

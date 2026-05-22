@@ -567,8 +567,95 @@ func _activate_ability(ability_data: Dictionary) -> void:
 		$"..".usingAbility = false
 
 	elif ability == "delivery":
-		print("throw burger and heal survivor if it hits, otherwise make it lay on the ground for 15 seconds until survivor picks it up or it disappears")
+		var heal_amount: int = ability_data.get("heal_amount", 25)
 
+		var camera = get_viewport().get_camera_3d()
+		if not camera:
+			$"..".usingAbility = false
+			return
+
+		var mouse_pos = get_viewport().get_mouse_position()
+		var ray_origin = camera.project_ray_origin(mouse_pos)
+		var ray_dir = camera.project_ray_normal(mouse_pos)
+
+		var space = $"..".get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + ray_dir * 100.0)
+		query.exclude = [$"..".get_rid()]
+		var result = space.intersect_ray(query)
+
+		var target_pos: Vector3
+		if result:
+			target_pos = result.position
+		else:
+			target_pos = ray_origin + ray_dir * 50.0
+
+		var burger_scene = preload("res://scenes/other/burger.tscn")
+		var burger = burger_scene.instantiate()
+		main.add_child(burger)
+
+		var start_pos = $"..".global_position
+		start_pos.y -= 0.5
+		burger.global_position = start_pos
+
+		var direction = (target_pos - start_pos)
+		direction.y = 0
+		direction = direction.normalized()
+		var speed := 18.0
+		var max_distance := 35.0
+		var projectile_pos = start_pos
+		var travelled := 0.0
+		var hit_survivor: Node = null
+
+		while travelled < max_distance:
+			var step = speed * get_physics_process_delta_time()
+			var next_pos = projectile_pos + direction * step
+
+			var proj_query = PhysicsRayQueryParameters3D.create(projectile_pos, next_pos)
+			proj_query.exclude = [$"..".get_rid()]
+			var proj_result = space.intersect_ray(proj_query)
+
+			if proj_result and travelled > 0.5:
+				var body = proj_result.collider
+				if "is_Killer" in body and not body.is_Killer and body.health > 0:
+					hit_survivor = body
+				if is_instance_valid(burger):
+					burger.queue_free()
+				break
+
+			projectile_pos = next_pos
+			if is_instance_valid(burger):
+				burger.global_position = projectile_pos
+
+			travelled += step
+			await get_tree().physics_frame
+
+		if is_instance_valid(burger):
+			burger.queue_free()
+
+		if hit_survivor != null and is_instance_valid(hit_survivor):
+			hit_survivor.health = min(hit_survivor.health + heal_amount, hit_survivor.maxhealth)
+
+			var rush_hour_data = {"type": "rush_hour"}
+			for ab in CharData.get_survivor($"..".equipped_survivor).get("abilities", []):
+				if ab.get("type") == "rush_hour":
+					rush_hour_data = ab
+					break
+			await _activate_ability(rush_hour_data)
+		else:
+			var burger_pickup_scene = preload("res://scenes/other/burger_pickup.tscn")
+			var pickup = burger_pickup_scene.instantiate()
+			pickup.heal_amount = heal_amount
+			pickup.owner_player = $".."
+			main.add_child(pickup)
+			pickup.global_position = projectile_pos
+
+			var pickup_timer := 15.0
+			await get_tree().create_timer(pickup_timer).timeout
+			if is_instance_valid(pickup):
+				pickup.queue_free()
+
+		$"..".usingAbility = false
+	
 	elif ability == "rush_hour":
 		var effect_comp = $"..".get_node_or_null("EffectComponent")
 		if effect_comp:
