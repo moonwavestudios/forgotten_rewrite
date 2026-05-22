@@ -3,18 +3,23 @@ extends Node
 const SAVE_PATH = "user://save.mwdat"
 const DEFAULT_OWNED_CHARACTERS = ["eli", "swordman", "yixi"]
 
+var _cache: Dictionary = {}
+var _cache_loaded: bool = false
+
 func _load_all() -> Dictionary:
+	if _cache_loaded:
+		return _cache
 	var parsed = MWDat.load(SAVE_PATH)
-	if parsed is Dictionary:
-		return parsed
-	return {}
+	_cache = parsed if parsed is Dictionary else {}
+	_cache_loaded = true
+	return _cache
 
 func _save_all(data: Dictionary) -> void:
+	_cache = data
 	MWDat.save(SAVE_PATH, data)
 
 func get_owned_skins() -> Dictionary:
-	var data = _load_all()
-	return data.get("owned_skins", {})
+	return _load_all().get("owned_skins", {})
 
 func own_skin(character_id: String, skin_id: String) -> void:
 	var data = _load_all()
@@ -27,16 +32,14 @@ func own_skin(character_id: String, skin_id: String) -> void:
 	_save_all(data)
 
 func get_owned_characters() -> Array:
-	var data = _load_all()
-	var owned = data.get("owned_characters", [])
+	var owned: Array = _load_all().get("owned_characters", []).duplicate()
 	for default_id in DEFAULT_OWNED_CHARACTERS:
 		if default_id not in owned:
 			owned.append(default_id)
 	return owned
 
 func get_coins() -> int:
-	var data = _load_all()
-	return data.get("coins", 0)
+	return _load_all().get("coins", 0)
 
 func set_coins(amount: int) -> void:
 	var data = _load_all()
@@ -44,8 +47,7 @@ func set_coins(amount: int) -> void:
 	_save_all(data)
 
 func get_malice() -> int:
-	var data = _load_all()
-	return data.get("malice", -100)
+	return _load_all().get("malice", -100)
 
 func set_malice(amount: int) -> void:
 	var data = _load_all()
@@ -53,8 +55,7 @@ func set_malice(amount: int) -> void:
 	_save_all(data)
 
 func get_settings() -> Dictionary:
-	var data = _load_all()
-	return data.get("player_settings", {})
+	return _load_all().get("player_settings", {})
 
 func set_settings(settings: Dictionary) -> void:
 	var data = _load_all()
@@ -62,8 +63,7 @@ func set_settings(settings: Dictionary) -> void:
 	_save_all(data)
 
 func get_character_xp(character_id: String) -> int:
-	var data = _load_all()
-	return data.get("character_xp", {}).get(character_id, 0)
+	return _load_all().get("character_xp", {}).get(character_id, 0)
 
 func add_character_xp(character_id: String, amount: int) -> void:
 	var data = _load_all()
@@ -81,20 +81,17 @@ func own_character(character_id: String) -> void:
 	_save_all(data)
 
 func has_character(character_id: String) -> bool:
-	var data = _load_all()
-	if character_id in data.get("owned_characters", []):
+	if character_id in DEFAULT_OWNED_CHARACTERS:
 		return true
-	return character_id in DEFAULT_OWNED_CHARACTERS
+	return character_id in _load_all().get("owned_characters", [])
 
 func has_skin(character_id: String, skin_id: String) -> bool:
 	if skin_id == "default":
-		return true  
-	var owned = get_owned_skins()
-	return owned.get(character_id, []).has(skin_id)
+		return true
+	return get_owned_skins().get(character_id, []).has(skin_id)
 
 func get_playtime(character_id: String) -> float:
-	var data = _load_all()
-	return data.get("character_playtime", {}).get(character_id, 0.0)
+	return _load_all().get("character_playtime", {}).get(character_id, 0.0)
 
 func add_playtime(character_id: String, seconds: float) -> void:
 	var data = _load_all()
@@ -104,12 +101,10 @@ func add_playtime(character_id: String, seconds: float) -> void:
 	_save_all(data)
 
 func get_equipped_skin(character_id: String) -> String:
-	var data = _load_all()
-	return data.get("equipped_skins", {}).get(character_id, "default")
+	return _load_all().get("equipped_skins", {}).get(character_id, "default")
 
 func get_equipped_character(type: String) -> String:
-	var data = _load_all()
-	return data.get("equipped_characters", {}).get(type, "")
+	return _load_all().get("equipped_characters", {}).get(type, "")
 
 func set_equipped_character(type: String, character_id: String) -> void:
 	var data = _load_all()
