@@ -521,13 +521,12 @@ func _physics_process(delta: float) -> void:
 		var item = has_items[1]
 		selected_item = item
 	
-	if Input.is_action_just_pressed("ChangeCam"):
-		cam = not cam
-		if cam:
-			$FirstPersonCam.current = true
-		else:
-			camera.current = true
-			
+	if is_Killer and not first_person_cam.current:
+		first_person_cam.current = is_multiplayer_authority()
+	
+	if not is_Killer and not camera.current:
+		camera.current = is_multiplayer_authority()
+	
 	if Input.is_action_just_pressed("Shop") and not in_round:
 		$player_ui/SpectatorStuff/Shop.visible = not $player_ui/SpectatorStuff/Shop.visible
 			
