@@ -217,13 +217,11 @@ func start_round():
 	$game.add_child(map_instance)
 	
 	if ServerSettings.exits:
-		for maps in $game.get_children():
-			if maps.name.contains("Map"):
-				for exitSpawns in maps.get_children():
-					if exitSpawns.name.contains("ExitSpawn"):
-						var ExitScene = exit.instantiate()
-						$game/Map1.add_child(ExitScene)
-						ExitScene.global_position = exitSpawns.global_position
+		for exitSpawns in map_instance.get_children():
+			if exitSpawns.name.contains("ExitSpawn"):
+				var ExitScene = exit.instantiate()
+				map_instance.add_child(ExitScene)
+				ExitScene.global_position = exitSpawns.global_position
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
