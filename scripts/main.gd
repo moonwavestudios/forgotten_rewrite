@@ -68,7 +68,7 @@ func _spawn_player(data: Array) -> Node:
 	if _spawned_players.has(id):
 		return _spawned_players[id]
 	var player = player_scene.instantiate()
-	player.name = str(id)
+	player.name = player_name
 	player.player_name = player_name
 	player.set_multiplayer_authority(id)
 	player.add_to_group("players")

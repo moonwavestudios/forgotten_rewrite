@@ -5,6 +5,8 @@ var WALK_SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var current_speed = 5.0
 
+@export var player_name: String = "bot1"
+
 var equipped_emotes: Array = []
 
 var coins = 0
