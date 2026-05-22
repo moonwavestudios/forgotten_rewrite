@@ -565,6 +565,15 @@ func _activate_ability(ability_data: Dictionary) -> void:
 		if effect_comp:
 			effect_comp.activate_effect("speed_boost", 2, 5.0)
 		$"..".usingAbility = false
+
+	elif ability == "delivery":
+		print("throw burger and heal survivor if it hits, otherwise make it lay on the ground for 15 seconds until survivor picks it up or it disappears")
+
+	elif ability == "rush_hour":
+		var effect_comp = $"..".get_node_or_null("EffectComponent")
+		if effect_comp:
+			effect_comp.activate_effect("speed_boost", 2, 5.0)
+		$"..".usingAbility = false
 	
 	elif ability == "cut_loose":
 		player.current_speed = 0

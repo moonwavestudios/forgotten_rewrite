@@ -33,7 +33,7 @@
 	"stats": {
 		"health": 100.0,
 		"stamina": 100.0,
-		"price": 500.0,
+		"price": 0,
 		"walk_speed": 5.0,
 		"sprint_speed": 9.0
 	},

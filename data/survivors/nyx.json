@@ -2,7 +2,7 @@
   "id": "nyx",
   "display_name": "Nyx",
   "type": "survivor",
-  "class": "sentinel",
+  "class": "support",
   "skins": [
 	{
 	  "id": "default",
@@ -20,62 +20,29 @@
 	}
   ],
   "stats": {
-	"health": 75,
+	"health": 80,
 	"stamina": 100,
-	"price": 850,
+	"price": 0,
 	"walk_speed": 5.1,
 	"sprint_speed": 9.1
   },
   "abilities": [
 	{
 	  "id": "ability1",
-	  "name": "Thread Cut",
-	  "class": "sentinel",
+	  "name": "Delivery",
 	  "icon": "res://assets/images/abilityTemplate.png",
-	  "cooldown": 24.0,
-	  "type": "mark_killer",
-	  "duration": 6.0,
-	  "grace_window": 2.0,
-	  "penalty": {
-		"slowness": 0.25,
-		"helpess": 1.5
-	  },
-	  "description": "Nyx marks the killer. If they continue chasing the same target beyond a short grace period, they are slowed and briefly unable to use abilities."
+	  "cooldown": 30.0,
+	  "type": "delivery",
+	  "description": "Nyx throws a burger at a survivor, healing them for 25 HP."
 	},
 	{
 	  "id": "ability2",
-	  "name": "Intercept",
+	  "name": "Rush Hour",
 	  "icon": "res://assets/images/block_icon.png",
-	  "cooldown": 22.0,
-	  "type": "block",
-	  "duration": 2.5,
-	  "damage_reduction": 0.4,
-	  "on_hit_effect": "stagger",
-	  "stagger_duration": 0.8,
-	  "description": "Nyx braces herself. While active, the next hit taken from the killer is reduced and staggers them briefly."
-	},
-	{
-	  "id": "ability3",
-	  "name": "Tether Break",
-	  "icon": "res://assets/images/abilityTemplate.png",
-	  "cooldown": 30.0,
-	  "type": "anti_lock",
-	  "range": 10.0,
-	  "effect_duration": 3.0,
-	  "target": "killer",
-	  "description": "Nyx disrupts the killer's focus, forcing them to briefly lose lock on their current target and preventing immediate re-engagement."
-	},
-	{
-	  "id": "ability4",
-	  "name": "Oath Anchor",
-	  "icon": "res://assets/images/abilityTemplate.png",
-	  "cooldown": 45.0,
-	  "type": "ally_link",
-	  "duration": 8.0,
-	  "redirect_ratio": 0.35,
-	  "perfect_release_window": 0.5,
-	  "perfect_release_effect": "negate_last_instance",
-	  "description": "Nyx binds herself to an ally, taking a portion of the damage they receive. Releasing the link with precise timing negates the most recent redirected damage."
+	  "cooldown": 60.0,
+	  "type": "rush_hour",
+	  "limit": 0,
+	  "description": "Nyx gains a temporary speed boost, allowing her to move faster for a short duration."
 	}
   ]
 }
