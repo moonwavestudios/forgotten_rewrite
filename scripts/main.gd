@@ -184,7 +184,7 @@ func _on_idle_voiceline_timer_timeout() -> void:
 func start_round():
 	var highest_malice = -INF
 	var most_malicious_player = null
-	
+    
 	in_round = true
 	
 	if ServerSettings.exits:
@@ -201,12 +201,15 @@ func start_round():
 	for player in get_players():
 		if not player.is_ready:
 			return
-		
+
 		var malice = player.malice if player.malice != null else 0
 		if malice > highest_malice:
 			highest_malice = malice
 			most_malicious_player = player
-		
+
+	_ensure_unique_survivors()
+
+	for player in get_players():
 		player.get_node('player_ui').get_node('SpectatorStuff').visible = false
 		player.get_node('player_ui').get_node('GameStuff').visible = true
 		player.in_round = true
@@ -225,6 +228,30 @@ func start_round():
 	if most_malicious_player != null:
 		most_malicious_player.is_Killer = true
 		most_malicious_player.get_node("Voiceline_Component").play_intro()
+
+func _ensure_unique_survivors() -> void:
+	var used: Array = []
+	for player in get_players():
+		if player.is_Killer:
+			continue
+		var chosen = player.equipped_survivor
+		if not used.has(chosen):
+			used.append(chosen)
+			continue
+		
+		var replacement := ""
+		for survivor_id in CharData.survivors.keys():
+			if not used.has(survivor_id):
+				replacement = survivor_id
+				break
+		if replacement != "":
+			player.equipped_survivor = replacement
+			if player.has_method("apply_skin"):
+				player.equipped_skin_id = save_data.get_equipped_skin(replacement)
+			used.append(replacement)
+			print("[Round] Assigned unique survivor '%s' to %s" % [replacement, player.player_name])
+		else:
+			push_warning("No unique survivor available for player: " + str(player.player_name))
 
 func get_lms_duration(killer: String, survivor: String = "") -> float:
 	var default_duration = 90.0
