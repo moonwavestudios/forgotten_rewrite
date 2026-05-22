@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c4yyowkrjbj0u"]
+
+[ext_resource type="Texture2D" uid="uid://daxpggsre2svg" path="res://assets/images/yaai_body.png" id="1_e3p8c"]
+
+[resource]
+resource_name = "Material.002"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_e3p8c")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0

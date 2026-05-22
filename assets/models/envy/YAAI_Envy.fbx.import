@@ -38,6 +38,23 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
+"materials": {
+"Material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/stuff/yaai_materials/Material.tres",
+"use_external/path": "uid://cl122bb1jri5n"
+},
+"Material.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/stuff/yaai_materials/Material.001.tres",
+"use_external/path": "uid://bhbtqtfv8hyup"
+},
+"Material.002": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/stuff/yaai_materials/Material.002.tres",
+"use_external/path": "uid://c4yyowkrjbj0u"
+}
+},
 "meshes": {
 "Plane": {
 "generate/lightmap_uv": 0,
@@ -56,15 +73,6 @@ _subresources={
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/models/stuff/yaai_materials/Plane_001.res",
 "save_to_file/path": "uid://b6vn4b77m587"
-},
-"unamedmesh": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/models/stuff/yaai_materials/unamedmesh.res",
-"save_to_file/path": "uid://brxs2jgnulvt8"
 }
 }
 }
