@@ -63,3 +63,18 @@ mesh = SubResource("BoxMesh_5gu6x")
 
 [node name="ProximityPrompt" parent="Arcade" unique_id=25112644 instance=ExtResource("1_o1atq")]
 max_activations = 1
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1757192439 groups=["spawn_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2351379, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="." unique_id=132397119 groups=["spawn_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.237755, 1.2351379, 0)
+
+[node name="Marker3D3" type="Marker3D" parent="." unique_id=463812885 groups=["spawn_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.237755, 1.2351379, 4.993335)
+
+[node name="Marker3D4" type="Marker3D" parent="." unique_id=953570671 groups=["spawn_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1783128, 1.2351379, 4.993335)
+
+[node name="Marker3D5" type="Marker3D" parent="." unique_id=1255745002 groups=["spawn_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.321126, 1.2351379, 4.993335)

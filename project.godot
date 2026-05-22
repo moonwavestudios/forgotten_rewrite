@@ -47,6 +47,7 @@ interactors=""
 AI=""
 exit=""
 pallets=""
+spawn_points=""
 
 [input]
 

@@ -5,6 +5,8 @@ var intermission_started = false
 var in_round = false
 var lms_started = false
 
+var _assigned_spawns: Dictionary = {}
+
 var exit = preload("res://scenes/exit.tscn")
 
 @export var player_scene: PackedScene
@@ -30,26 +32,41 @@ func _ready() -> void:
 	LobbyManager.lobby_ready.connect(_on_lobby_ready)
 	LobbyManager.connection_succeeded.connect(_on_connection_succeeded)
 
-func _on_lobby_ready() -> void:
-	$MultiplayerSpawner.spawn([multiplayer.get_unique_id(), LobbyManager.players[1]])
-
 func _on_connection_succeeded() -> void:
 	pass
-
-func _on_player_joined(id: int, player_name: String) -> void:
-	if multiplayer.is_server():
-		$MultiplayerSpawner.spawn([id, player_name])
 
 func _on_player_left(id: int) -> void:
 	if _spawned_players.has(id):
 		_spawned_players[id].queue_free()
 		_spawned_players.erase(id)
 
+func _on_lobby_ready() -> void:
+	if multiplayer.is_server():
+		_assigned_spawns.clear()
+		var points = get_tree().get_nodes_in_group("spawn_points")
+		points.shuffle()
+		var i = 0
+		for id in LobbyManager.players:
+			if i < points.size():
+				_assigned_spawns[id] = points[i].global_position
+				i += 1
+			$MultiplayerSpawner.spawn([id, LobbyManager.players[id]])
+
+func _on_player_joined(id: int, player_name: String) -> void:
+	if multiplayer.is_server():
+		var points = get_tree().get_nodes_in_group("spawn_points")
+		var used = _assigned_spawns.values()
+		for point in points:
+			if not used.has(point.global_position):
+				_assigned_spawns[id] = point.global_position
+				break
+		$MultiplayerSpawner.spawn([id, player_name])
+
 func _spawn_player(data: Array) -> Node:
 	var id: int = data[0]
 	var player_name: String = data[1]
 	if _spawned_players.has(id):
-		return null
+		return _spawned_players[id]
 	var player = player_scene.instantiate()
 	player.name = str(id)
 	player.player_name = player_name
@@ -58,6 +75,10 @@ func _spawn_player(data: Array) -> Node:
 	_spawned_players[id] = player
 	if id == multiplayer.get_unique_id():
 		player.is_ready = true
+
+	if _assigned_spawns.has(id):
+		player.position = _assigned_spawns[id]
+	
 	return player
 
 func get_sentinel_count() -> int:
