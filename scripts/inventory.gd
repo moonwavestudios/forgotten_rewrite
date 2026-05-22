@@ -69,6 +69,11 @@ func _populate_skins_panel(char_data: Dictionary) -> void:
 			continue
 		if not save_data.has_skin(char_id, skin_id):
 			continue
+			
+		if skin.has("originates"):
+			var skin_origin = skin.get("originates", "")
+			if skin_origin != "":
+				print(skin_origin)
 
 		var item_scene = preload("res://UI/stuff/ShopButton.tscn")
 		var item = item_scene.instantiate()

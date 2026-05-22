@@ -184,7 +184,7 @@ func _on_idle_voiceline_timer_timeout() -> void:
 func start_round():
 	var highest_malice = -INF
 	var most_malicious_player = null
-    
+	
 	in_round = true
 	
 	if ServerSettings.exits:

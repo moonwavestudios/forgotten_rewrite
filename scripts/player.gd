@@ -408,11 +408,8 @@ func _refresh_abilities() -> void:
 			
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
-		if not is_on_floor():
-			velocity += get_gravity() * delta
-		move_and_slide()
 		return
-		
+
 	if Input.is_action_pressed("Sprint") and (not exhausted or not ServerSettings.use_stamina) and not sprint_needs_reset:
 		is_sprinting = true
 	else:
