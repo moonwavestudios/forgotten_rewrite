@@ -872,18 +872,29 @@ func grant(amountXP: int, amountCoins: int, maliceAmount: int, text: String) -> 
 	notifications.queue_free()
 	
 func take_damage(amount: int) -> void:
-	if multiplayer.is_server():
-		_apply_damage.rpc(amount)
+	if not multiplayer.is_server():
+		return
 
-@rpc("authority", "reliable")
+	var authority := get_multiplayer_authority()
+
+	if authority == multiplayer.get_unique_id():
+		_apply_damage(amount) # local call
+	else:
+		_apply_damage.rpc_id(authority, amount)
+
+@rpc("authority", "call_local", "reliable")
 func _apply_damage(amount: int) -> void:
-	if health <= 0:
-		_on_survivor_died()
 	var final_dmg = Passive_Component.apply_damage_reduction(amount)
+
 	if weakness > 0:
 		final_dmg = int(final_dmg * (1.0 + weakness * 0.25))
+
 	health -= final_dmg
-	
+	health = max(health, 0)
+
+	if health <= 0:
+		_on_survivor_died()
+
 func _on_survivor_died() -> void:
 	if animation_manager == null:
 		return
