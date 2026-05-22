@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://054dosa3vsef"]
 
 [ext_resource type="PackedScene" uid="uid://bokgykakku0qy" path="res://scenes/other/pallets.tscn" id="1_qgw2g"]
+[ext_resource type="PackedScene" uid="uid://bf4m527oonhqy" path="res://scenes/other/generator.tscn" id="2_r1w4p"]
+[ext_resource type="Script" uid="uid://cgthlwbfyq6e4" path="res://scripts/generator.gd" id="3_hvrku"]
+[ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="4_qq7ed"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hafkx"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -41,3 +44,9 @@ mesh = SubResource("BoxMesh_hafkx")
 
 [node name="pallets" parent="." unique_id=703089972 instance=ExtResource("1_qgw2g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83669114, 0)
+
+[node name="generator" parent="." unique_id=1263804824 instance=ExtResource("2_r1w4p")]
+transform = Transform3D(-2.8276256e-08, 0, 2.2219806, 0, 0.7596355, 0, -0.6468854, 0, -9.712586e-08, 0, 0.42656898, 5.3557405)
+script = ExtResource("3_hvrku")
+
+[node name="ProximityPrompt" parent="generator" unique_id=25112644 instance=ExtResource("4_qq7ed")]

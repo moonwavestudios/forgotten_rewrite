@@ -3,12 +3,8 @@
 [ext_resource type="Script" uid="uid://crd3nlqjto24m" path="res://scripts/main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://duca3objkff2t" path="res://scenes/lobby.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dbdv1gh2o2r2g" path="res://scenes/player.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://bf4m527oonhqy" path="res://scenes/other/generator.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="5_7mycd"]
-[ext_resource type="Script" uid="uid://cgthlwbfyq6e4" path="res://scripts/generator.gd" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://i5mm30dajmqt" path="res://scenes/test_npc.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://yrxjvjqwhqp3" path="res://assets/items/medkit.tscn" id="8_5vw27"]
-[ext_resource type="PackedScene" uid="uid://054dosa3vsef" path="res://assets/maps/map_1.tscn" id="8_dg77c"]
 [ext_resource type="Script" uid="uid://bf0n2l0jmc1uw" path="res://scripts/medkit.gd" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://pkbv0nafatbv" path="res://assets/items/cola.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cmfedteam6p8t" path="res://scenes/cutscenes.tscn" id="11_efxa6"]
@@ -54,14 +50,6 @@ malice = -100
 is_Killer = false
 
 [node name="game" type="Node3D" parent="." unique_id=819722603]
-
-[node name="Map1" parent="game" unique_id=81144003 instance=ExtResource("8_dg77c")]
-
-[node name="generator" parent="game/Map1" unique_id=1263804824 instance=ExtResource("3_h2yge")]
-transform = Transform3D(-2.8276256e-08, 0, 2.2219806, 0, 0.7596355, 0, -0.6468854, 0, -9.712586e-08, 0, 0.42656898, 5.3557405)
-script = ExtResource("5_272bh")
-
-[node name="ProximityPrompt" parent="game/Map1/generator" unique_id=25112644 instance=ExtResource("5_7mycd")]
 
 [node name="FileDialog" type="FileDialog" parent="." unique_id=1882386049]
 oversampling_override = 1.0

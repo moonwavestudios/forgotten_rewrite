@@ -9,6 +9,10 @@ var _assigned_spawns: Dictionary = {}
 
 var exit = preload("res://scenes/exit.tscn")
 
+var maps = [
+	preload("res://assets/maps/map_1.tscn")
+]
+
 @export var player_scene: PackedScene
 
 var _spawned_players: Dictionary = {}
@@ -207,6 +211,10 @@ func start_round():
 	var most_malicious_player = null
 	
 	in_round = true
+
+	var random_map = maps[randi() % maps.size()]
+	var map_instance = random_map.instantiate()
+	$game.add_child(map_instance)
 	
 	if ServerSettings.exits:
 		for maps in $game.get_children():
