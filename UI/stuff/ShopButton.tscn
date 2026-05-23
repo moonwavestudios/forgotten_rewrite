@@ -9,6 +9,20 @@ font_size = 20
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfw6g"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sfw6g"]
+font = ExtResource("2_sfw6g")
+font_size = 19
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [node name="ShopButton" type="Control" unique_id=232036350]
 layout_mode = 3
 anchors_preset = 0
@@ -54,3 +68,15 @@ offset_left = 113.0
 offset_right = 153.0
 offset_bottom = 40.0
 expand_mode = 1
+
+[node name="Label" type="Label" parent="Originates" unique_id=1782791056]
+visible = false
+visibility_layer = 2
+layout_mode = 0
+offset_left = 44.0
+offset_top = 5.0
+offset_right = 365.0
+offset_bottom = 30.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_sfw6g")
+text = "Originates from touhou project"
+label_settings = SubResource("LabelSettings_sfw6g")

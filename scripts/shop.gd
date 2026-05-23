@@ -164,14 +164,26 @@ func _populate_skins_panel(skins: Array) -> void:
 		if thumb_path != "" and ResourceLoader.exists(thumb_path):
 			item.get_node("Render").texture = load(thumb_path)
 			
-		var originates = skin.get("originates", "")
-		if originates:
-			item.get_node("Originates").texture = load("res://icon.svg")
+		if skin.has("originates"):
+			var skin_origin = skin.get("originates", "")
+			if skin_origin != "":
+				var texture = load(Originates.originates[skin_origin])
+				item.get_node('Originates').texture = texture
+		
+				item.get_node("Originates").mouse_entered.connect(show_origin_lab.bind(item, skin_origin))
+				item.get_node("Originates").mouse_exited.connect(hide_origin_lab.bind(item))
 			
 		item.set_meta("skin_data", skin)
 		item.get_node("Button").pressed.connect(select_skin_item.bind(item))
 		
 		grid.add_child(item)
+
+func show_origin_lab(item, skin_origin):
+	item.get_node("Originates/Label").visible = true
+	item.get_node("Originates/Label").text = "Originates from " + skin_origin
+	
+func hide_origin_lab(item):
+	item.get_node("Originates/Label").visible = false
 
 func select_char_item(item) -> void:
 	_selected_char_data = item.get_meta("char_data", {})

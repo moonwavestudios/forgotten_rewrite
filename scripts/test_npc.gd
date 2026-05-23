@@ -7,6 +7,8 @@ var current_speed = 5.0
 
 @export var player_name: String = "bot1"
 
+var is_npc = true
+
 var equipped_emotes: Array = []
 
 var coins = 0

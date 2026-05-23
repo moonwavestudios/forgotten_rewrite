@@ -69,11 +69,6 @@ func _populate_skins_panel(char_data: Dictionary) -> void:
 			continue
 		if not save_data.has_skin(char_id, skin_id):
 			continue
-			
-		if skin.has("originates"):
-			var skin_origin = skin.get("originates", "")
-			if skin_origin != "":
-				print(skin_origin)
 
 		var item_scene = preload("res://UI/stuff/ShopButton.tscn")
 		var item = item_scene.instantiate()
@@ -82,9 +77,26 @@ func _populate_skins_panel(char_data: Dictionary) -> void:
 		var thumb_path = skin.get("thumbnail", "")
 		if thumb_path != "" and ResourceLoader.exists(thumb_path):
 			item.get_node("Render").texture = load(thumb_path)
+			
+		if skin.has("originates"):
+			var skin_origin = skin.get("originates", "")
+			if skin_origin != "":
+				var texture = load(Originates.originates[skin_origin])
+				item.get_node('Originates').texture = texture
+		
+				item.get_node("Originates").mouse_entered.connect(show_origin_lab.bind(item, skin_origin))
+				item.get_node("Originates").mouse_exited.connect(hide_origin_lab.bind(item))
+				
 		item.set_meta("skin_data", skin)
 		item.get_node("Button").pressed.connect(_on_skin_selected.bind(item))
 		grid.add_child(item)
+
+func show_origin_lab(item, skin_origin):
+	item.get_node("Originates/Label").visible = true
+	item.get_node("Originates/Label").text = "Originates from " + skin_origin
+	
+func hide_origin_lab(item):
+	item.get_node("Originates/Label").visible = false
 
 func _get_level_label(char_id: String) -> String:
 	var total_xp := save_data.get_character_xp(char_id)

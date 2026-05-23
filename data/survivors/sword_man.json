@@ -19,7 +19,6 @@
 		{
 			"id": "scout",
 			"display_name": "Scout",
-			"originates": "Team Fortress 2",
 			"price": 500,
 			"model": "res://assets/models/nyx/scout.tscn",
 			"thumbnail": "res://assets/textures/skins/scout.png",
