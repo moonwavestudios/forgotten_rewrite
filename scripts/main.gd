@@ -260,24 +260,49 @@ func start_round():
 
 func _ensure_unique_survivors() -> void:
 	var used: Array = []
+	var class_counts := {
+		"sentinel": 0,
+		"survivalist": 0,
+		"support": 0,
+	}
+	var class_limits := {
+		"sentinel": 3,
+		"survivalist": 3,
+		"support": 2,
+	}
+
 	for player in get_players():
 		if player.is_Killer:
 			continue
+
 		var chosen = player.equipped_survivor
-		if not used.has(chosen):
+		var sdata = CharData.get_survivor(chosen)
+		var cls = sdata.get("class", "")
+
+		if not used.has(chosen) and (cls == "" or not class_limits.has(cls) or class_counts[cls] < class_limits[cls]):
 			used.append(chosen)
+			if cls != "" and class_counts.has(cls):
+				class_counts[cls] += 1
 			continue
-		
+
 		var replacement := ""
 		for survivor_id in CharData.survivors.keys():
-			if not used.has(survivor_id):
-				replacement = survivor_id
-				break
+			if used.has(survivor_id):
+				continue
+			var candidate_cls = CharData.get_survivor(survivor_id).get("class", "")
+			if candidate_cls != "" and class_limits.has(candidate_cls) and class_counts.get(candidate_cls, 0) >= class_limits[candidate_cls]:
+				continue
+			replacement = survivor_id
+			break
+
 		if replacement != "":
 			player.equipped_survivor = replacement
 			if player.has_method("apply_skin"):
 				player.equipped_skin_id = save_data.get_equipped_skin(replacement)
 			used.append(replacement)
+			var newcls = CharData.get_survivor(replacement).get("class", "")
+			if newcls != "" and class_counts.has(newcls):
+				class_counts[newcls] += 1
 			print("[Round] Assigned unique survivor '%s' to %s" % [replacement, player.player_name])
 		else:
 			push_warning("No unique survivor available for player: " + str(player.player_name))
