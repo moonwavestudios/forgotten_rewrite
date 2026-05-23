@@ -102,7 +102,7 @@ func get_modified_stun_duration(base_duration: float) -> float:
 		return base_duration * multiplier
 	return base_duration
 
-func add_hitbox(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: Vector3, hitsfx, source_player = null) -> Node:
+func add_hitbox(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: Vector3, hitsfx, blockable = true, source_player = null) -> Node:
 	var instance = hitbox.instantiate()
 	instance.hit_flag = hit_flag
 	
@@ -114,6 +114,7 @@ func add_hitbox(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: V
 	instance.damage = damage
 	instance.hitsfx = hitsfx
 	instance.scale = size
+	instance.blockable = blockable
 	
 	$Hitboxes.add_child(instance)
 	instance.global_position = pos

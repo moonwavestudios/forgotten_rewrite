@@ -59,7 +59,7 @@ func get_skin_ability_sfx_array(ability_slot: String) -> Array:
 
 func _activate_ability(ability_data: Dictionary) -> void:
 	var ability = ability_data.get("type", "")
-	var wind_up = ability_data.get("wind_up", 0.3)  # Default to 0.3 seconds if not specified
+	var wind_up = ability_data.get("wind_up", 0.3)
 	
 	# ==================== SLASHES ==============================
 	if ability == "slash":
@@ -71,7 +71,7 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
 			spawn_pos.y -= 0.9
 			$"../..".add_hitbox(
-				$"..".hitboxes, spawn_pos, hit_flag, 25, "survivor", Vector3(1.0,1.0,1.0), get_skin_ability_sfx("slash_hit"), $".."
+				$"..".hitboxes, spawn_pos, hit_flag, 25, "survivor", Vector3(1.0,1.0,1.0), get_skin_ability_sfx("slash_hit"), true, $".."
 			)
 			await get_tree().create_timer(0.05).timeout
 			
@@ -90,7 +90,7 @@ func _activate_ability(ability_data: Dictionary) -> void:
 		var spawn_pos = $"..".global_position
 		spawn_pos -= $"..".transform.basis.z * 4.0
 		$"../..".add_hitbox(
-			$"..".hitboxes, spawn_pos, hit_flag, 25, "killer", Vector3(0.5,0.25,5.558), null, $".."
+			$"..".hitboxes, spawn_pos, hit_flag, 25, "killer", Vector3(0.5,0.25,5.558), null, false, $".."
 		)
 		$"../SFX".stream = sfx_array[1]
 		$"../SFX".play()
@@ -161,7 +161,7 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			$"..".move_and_slide()
 
 			var hb = $"../..".add_hitbox_instant(
-				$"..".hitboxes, spawn_pos, hit_flag, dash_damage, "survivor", Vector3(1.2, 1.2, 1.2), null, $".."
+				$"..".hitboxes, spawn_pos, hit_flag, dash_damage, "survivor", Vector3(1.2, 1.2, 1.2), null, true, $".."
 			)
 			hb.on_hit.connect(func(_body):
 				hit_survivor.append(true)
@@ -181,7 +181,7 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
 			spawn_pos.y -= 0.9
 			$"../..".add_hitbox(
-				$"..".hitboxes, spawn_pos, hit_flag, 25, "killer", Vector3(1.0,1.0,1.0), $".."
+				$"..".hitboxes, spawn_pos, hit_flag, 25, "killer", Vector3(1.0,1.0,1.0), null, false, $".."
 			)
 			await get_tree().create_timer(0.05).timeout
 			
@@ -222,7 +222,7 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
 			spawn_pos.y -= 0.9
 			$"../..".add_hitbox(
-				$"..".hitboxes, spawn_pos, hit_flag, 25, "survivor", Vector3(1.0,1.0,1.0), get_skin_ability_sfx("slash_hit"), $".."
+				$"..".hitboxes, spawn_pos, hit_flag, 25, "survivor", Vector3(1.0,1.0,1.0), get_skin_ability_sfx("slash_hit"), true, $".."
 			)
 			await get_tree().create_timer(0.05).timeout
 		
@@ -276,7 +276,7 @@ func _activate_ability(ability_data: Dictionary) -> void:
 					tick_pos.y -= 0.9
 					$"../..".add_hitbox(
 						$"..".hitboxes, tick_pos, tick_flag, 5, "survivor",
-						Vector3(1.0, 1.0, 1.0), get_skin_ability_sfx("slash_hit"), $".."
+						Vector3(1.0, 1.0, 1.0), get_skin_ability_sfx("slash_hit"), true, $".."
 					)
 					await get_tree().create_timer(0.3).timeout
 				
@@ -359,116 +359,9 @@ func _activate_ability(ability_data: Dictionary) -> void:
 				var spawn_pos = $"..".global_position + -$"..".transform.basis.z * 1.0
 				spawn_pos.y -= 0.9
 				$"../..".add_hitbox(
-					$"..".hitboxes, spawn_pos, hit_flag, 25, "killer", Vector3(1.0,1.0,1.0), get_skin_ability_sfx("punch_hit"), $".."
+					$"..".hitboxes, spawn_pos, hit_flag, 25, "killer", Vector3(1.0,1.0,1.0), get_skin_ability_sfx("punch_hit"), false, $".."
 				)
 				await get_tree().create_timer(0.05).timeout
-		
-	elif ability == "anti_lock":
-		#var ability_data = get_ability_survivor("ability3", $"..".equipped_survivor)
-		var ability_range: float = ability_data.get("range", 10.0)
-		var effect_duration: float = ability_data.get("effect_duration", 3.0)
-		
-		var plrs = $"../..".get_players()
-		var nearest_killer = null
-		var nearest_dist = INF
-		
-		for plr in plrs:
-			if plr.is_Killer:
-				var dist = $"..".global_position.distance_to(plr.global_position)
-				if dist <= ability_range and dist < nearest_dist:
-					nearest_dist = dist
-					nearest_killer = plr
-		
-				if nearest_killer != null:
-					if "current_target" in nearest_killer:
-						nearest_killer.current_target = null
-					if "locked_target" in nearest_killer:
-						nearest_killer.locked_target = null
-					if "target" in nearest_killer:
-						nearest_killer.target = null
-						
-					_highlight_killer(nearest_killer, 1.0)
-					
-					if "current_speed" in nearest_killer and "WALK_SPEED" in nearest_killer:
-						var original_speed = nearest_killer.WALK_SPEED
-						nearest_killer.current_speed = nearest_killer.current_speed * 0.5
-						await get_tree().create_timer(effect_duration).timeout
-						if is_instance_valid(nearest_killer):
-							nearest_killer.current_speed = original_speed
-					else:
-						await get_tree().create_timer(effect_duration).timeout
-
-					print("anti_lock applied to: ", nearest_killer)
-				else:
-					print("no killer in range for anti_lock")
-
-				$"..".usingAbility = false
-				
-	elif ability == "ally_link":
-		#var ability_data = get_ability_survivor("ability4", $"..".equipped_survivor)
-		var duration: float = ability_data.get("duration", 8.0)
-		var redirect_ratio: float = ability_data.get("redirect_ratio", 0.35)
-		var perfect_window: float = ability_data.get("perfect_release_window", 0.5)
-		
-		var plrs = $"../..".get_players()
-		var nearest_ally = null
-		var nearest_dist = INF
-
-		for plr in plrs:
-			if plr == $".." or plr.is_Killer:
-				continue
-			var dist = $"..".global_position.distance_to(plr.global_position)
-			if dist < nearest_dist:
-				nearest_dist = dist
-				nearest_ally = plr
-
-		if nearest_ally == null:
-			print("no ally found for ally_link")
-			$"..".usingAbility = false
-			return
-
-		print("Oath Anchor linked to: ", nearest_ally)
-
-		var elapsed := 0.0
-		var last_redirected_damage := 0          
-		var total_time := duration
-		var in_perfect_window := false
-
-		var ally_prev_health: int = nearest_ally.health
-
-		while elapsed < total_time:
-			var delta = get_physics_process_delta_time()
-			elapsed += delta
-
-			if elapsed >= (total_time - perfect_window):
-				in_perfect_window = true
-
-			if is_instance_valid(nearest_ally) and nearest_ally.health < ally_prev_health:
-				var raw_hit = ally_prev_health - nearest_ally.health
-				var redirected = int(raw_hit * redirect_ratio)
-
-				nearest_ally.health = min(nearest_ally.health + redirected, nearest_ally.maxhealth)
-
-				var nyx_damage = redirected
-				if $"..".weakness > 0:
-					nyx_damage = int(redirected * $"..".weakness)
-				$"..".health -= nyx_damage
-
-				last_redirected_damage = redirected
-				print("Oath Anchor redirected %d damage from ally to Nyx" % redirected)
-
-			ally_prev_health = nearest_ally.health if is_instance_valid(nearest_ally) else ally_prev_health
-
-			if $"..".health <= 0 or not is_instance_valid(nearest_ally):
-				break
-
-			await get_tree().physics_frame
-
-		if in_perfect_window and last_redirected_damage > 0:
-			$"..".health = min($"..".health + last_redirected_damage, $"..".maxhealth)
-			print("Perfect release! Negated last redirected instance: +%d HP" % last_redirected_damage)
-
-		$"..".usingAbility = false
 		
 	elif ability == "bonespike":
 		var spike_damage: int = ability_data.get("damage", 40)
@@ -527,6 +420,7 @@ func _activate_ability(ability_data: Dictionary) -> void:
 						"survivor",
 						Vector3(1.0, 1.0, 1.0),
 						null,
+						false,
 						$".."
 					)
 					
@@ -544,7 +438,7 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			var travel_flag: Array = []
 			main.add_hitbox(
 				player.hitboxes, projectile_pos, travel_flag, spike_damage, "survivor",
-				Vector3(2, 0.6, 0.6), null, player
+				Vector3(2, 0.6, 0.6), null, false, player
 			)
 			
 			await get_tree().physics_frame
@@ -695,7 +589,6 @@ func _activate_ability(ability_data: Dictionary) -> void:
 		$"..".usingAbility = false
 	
 	elif ability == "entanglement":
-		#var ability_data = get_killer_ability("ability2", $"..".equipped_killer)
 		var spike_damage: int = ability_data.get("damage", 15)
 		var effect_duration: float = ability_data.get("effect_duration", 2.0)
 
@@ -752,6 +645,7 @@ func _activate_ability(ability_data: Dictionary) -> void:
 						"survivor",
 						Vector3(1.0, 1.0, 1.0),
 						null,
+						false,
 						$".."
 					)
 					
@@ -769,7 +663,7 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			var travel_flag: Array = []
 			main.add_hitbox(
 				player.hitboxes, projectile_pos, travel_flag, spike_damage, "survivor",
-				Vector3(1, 0.3, 0.3), null, player
+				Vector3(1, 0.3, 0.3), null, false, player
 			)
 			
 			await get_tree().physics_frame
@@ -864,6 +758,8 @@ func _spawn_explosion(pos: Vector3) -> void:
 		35,         
 		"survivor",
 		Vector3(3.0, 3.0, 3.0),  
+		null,
+		false,
 		$".."
 	)
 
