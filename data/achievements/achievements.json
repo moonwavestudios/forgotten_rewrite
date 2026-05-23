@@ -6,7 +6,6 @@
 		"title": "Forgotten",
 		"description": "Welcome to hell.",
 		"category": "general",
-		"difficulty": "bronze",
 		"hidden": false,
 		"conditions": {
 		  "type": "join",
@@ -14,6 +13,22 @@
 		},
 		"reward": {
 		  "currency": 100,
+		  "cosmetic": null,
+		  "unlock": null
+		}
+	  },
+	{
+		"id": "milestone_001",
+		"title": "The one and only",
+		"description": "Get Milestone IV on Eli.",
+		"category": "milestones",
+		"hidden": false,
+		"conditions": {
+		  "type": "level",
+		  "count": 100
+		},
+		"reward": {
+		  "currency": null,
 		  "cosmetic": null,
 		  "unlock": null
 		}

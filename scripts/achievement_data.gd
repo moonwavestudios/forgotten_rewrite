@@ -5,7 +5,6 @@ class Achievement:
 	var title: String
 	var description: String
 	var category: String
-	var difficulty: String
 	var hidden: bool
 	var conditions: Dictionary
 	var reward: Dictionary
@@ -16,13 +15,12 @@ class Achievement:
 		title       = data.get("title", "")
 		description = data.get("description", "")
 		category    = data.get("category", "")
-		difficulty  = data.get("difficulty", "")
 		hidden      = data.get("hidden", false)
 		conditions  = data.get("conditions", {})
 		reward      = data.get("reward", {})
 
 	func get_info() -> String:
-		return "[%s] %s (%s/%s) - Unlocked: %s" % [id, title, category, difficulty, is_unlocked]
+		return "[%s] %s (%s/%s) - Unlocked: %s" % [id, title, category, is_unlocked]
 
 
 signal achievement_unlocked(achievement: Achievement)
@@ -109,7 +107,6 @@ func load_achievements() -> void:
 	achievements_loaded.emit(_achievements.size())
 	print("AchievementManager: loaded %d achievement(s)" % _achievements.size())
 
-
 func save_progress() -> void:
 	var unlocked_ids: Array[String] = []
 	for ach in _achievements.values():
@@ -123,7 +120,6 @@ func save_progress() -> void:
 
 	file.store_string(JSON.stringify({"unlocked": unlocked_ids}))
 	file.close()
-
 
 func load_progress() -> void:
 	if not FileAccess.file_exists(SAVE_PATH):
