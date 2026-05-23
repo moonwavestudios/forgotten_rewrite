@@ -85,6 +85,10 @@ func _on_use_bots_toggled(toggled_on: bool) -> void:
 
 func _on_exits_toggled(toggled_on: bool) -> void:
 	ServerSettings.exits = toggled_on
+
+func _on_back_pressed() -> void:
+	$\".\".visible = false
+	$\"../MainMenu\".visible = true
 "
 
 [sub_resource type="GDScript" id="GDScript_350d7"]
@@ -97,6 +101,10 @@ func _on_join_button_pressed() -> void:
 	
 	visible = false
 	$\"..\".visible = false
+
+func _on_back_pressed() -> void:
+	$\".\".visible = false
+	$\"../MainMenu\".visible = true
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hdo2"]
@@ -359,10 +367,10 @@ alignment = 1
 
 [node name="Private" type="CheckBox" parent="Hosting" unique_id=1645396267]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 606.0
-offset_right = 145.0
-offset_bottom = 637.0
+offset_left = 11.0
+offset_top = 545.0
+offset_right = 137.0
+offset_bottom = 582.0
 theme_override_fonts/font = ExtResource("2_du0gk")
 theme_override_font_sizes/font_size = 24
 text = "Private"
@@ -386,6 +394,16 @@ offset_bottom = 72.0
 icon = ExtResource("4_0ure2")
 flat = true
 expand_icon = true
+
+[node name="Back" type="Button" parent="Hosting" unique_id=757918722]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 597.0
+offset_right = 245.0
+offset_bottom = 648.0
+theme_override_fonts/font = ExtResource("2_du0gk")
+theme_override_font_sizes/font_size = 31
+text = "BACK"
 
 [node name="Joining" type="Panel" parent="." unique_id=1930000916]
 visible = false
@@ -426,6 +444,16 @@ offset_bottom = 643.0
 theme_override_fonts/font = ExtResource("2_du0gk")
 theme_override_font_sizes/font_size = 31
 text = "Join"
+
+[node name="Back" type="Button" parent="Joining" unique_id=1545050092]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 594.0
+offset_right = 244.0
+offset_bottom = 645.0
+theme_override_fonts/font = ExtResource("2_du0gk")
+theme_override_font_sizes/font_size = 31
+text = "BACK"
 
 [node name="ServerSettings" type="Panel" parent="." unique_id=1490409852]
 visible = false
@@ -479,7 +507,9 @@ script = SubResource("GDScript_01aj8")
 [connection signal="toggled" from="Hosting/Private" to="Hosting" method="_on_private_toggled"]
 [connection signal="pressed" from="Hosting/Button" to="Hosting" method="_on_button_pressed"]
 [connection signal="pressed" from="Hosting/LobbySettings" to="Hosting" method="_on_lobby_settings_pressed"]
+[connection signal="pressed" from="Hosting/Back" to="Hosting" method="_on_back_pressed"]
 [connection signal="pressed" from="Joining/JoinButton" to="Joining" method="_on_join_button_pressed"]
+[connection signal="pressed" from="Joining/Back" to="Joining" method="_on_back_pressed"]
 [connection signal="toggled" from="ServerSettings/VBoxContainer/UseStam" to="Hosting" method="_on_use_stam_toggled"]
 [connection signal="toggled" from="ServerSettings/VBoxContainer/UseBots" to="Hosting" method="_on_use_bots_toggled"]
 [connection signal="toggled" from="ServerSettings/VBoxContainer/Exits" to="Hosting" method="_on_exits_toggled"]

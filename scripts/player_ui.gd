@@ -64,6 +64,9 @@ func _update_owner_ui() -> void:
 	$SpectatorStuff/Code.visible = (
 		multiplayer.get_unique_id() == ServerSettings.server_owner_id
 	)
+	
+	if not Admins.admins.has(player.player_name):
+		$Both/ServerOwnerButton.visible = true
 
 	if LobbyManager.lobby_code != "":
 		$SpectatorStuff/Code.text = LobbyManager.lobby_code
@@ -416,11 +419,22 @@ func _on_show_ping_toggled(toggled_on: bool) -> void:
 	settings.save()
 	$click.play()
 
-func _on_credits_pressed() -> void:
-	$SpectatorStuff/Credits_Panel.visible = not $SpectatorStuff/Credits_Panel.visible
-	$SpectatorStuff/Settings_Panel.visible = false
-	$SpectatorStuff/Inventory.visible = false
-	$SpectatorStuff/Shop.visible = false
-
 func _on_spectate_pressed() -> void:
 	pass # Replace with function body.
+
+func _on_server_owner_button_pressed() -> void:
+	$Both/SO_Panel.visible = not $Both/SO_Panel.visible
+
+func _on_SO_kick_pressed() -> void:
+	$click.play()
+	var target_name = $Both/SO_Panel/ScrollContainer/VBoxContainer/KickPlayer/LineEdit.text
+	for plr in $"../..".get_players():
+		if plr.get("is_npc"):
+			continue
+		if plr.player_name == target_name:
+			var peer_id = plr.get_multiplayer_authority()
+			if peer_id == 1:
+				print("Cannot kick the server owner.")
+				return
+			multiplayer.multiplayer_peer.disconnect_peer(peer_id)
+			return
