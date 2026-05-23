@@ -91,7 +91,8 @@ func _on_exits_toggled(toggled_on: bool) -> void:
 script/source = "extends Panel
 
 func _on_join_button_pressed() -> void:
-	LobbyManager.join_lobby($LobbyName.text, \"testnigga\")#$\"../../..\".name)
+	var username = Auth.current_user.get(\"email\", \"player\").replace(\"@fuckyou.com\", \"\")
+	LobbyManager.join_lobby($LobbyName.text, username)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	visible = false
