@@ -415,3 +415,9 @@ func _on_show_ping_toggled(toggled_on: bool) -> void:
 	settings.show_ping = toggled_on
 	settings.save()
 	$click.play()
+
+func _on_credits_pressed() -> void:
+	$SpectatorStuff/Credits_Panel.visible = not $SpectatorStuff/Credits_Panel.visible
+	$SpectatorStuff/Settings_Panel.visible = false
+	$SpectatorStuff/Inventory.visible = false
+	$SpectatorStuff/Shop.visible = false
