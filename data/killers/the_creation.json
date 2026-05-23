@@ -70,10 +70,22 @@
 	  "id": "sakuya",
 	  "display_name": "Sakuya",
 	  "originates": "Touhou Project",
-	  "price": 10000,
+	  "price": 1000,
 	  "limited": false,
 	  "model": "res://assets/models/the_creation/sakuya.tscn",
 	  "thumbnail": "res://assets/textures/skins/sakuya_creation.png",
+	  "animations": {},
+	  "music": {},
+	  "sfx": {}
+	},
+	{
+	  "id": "cursed_child",
+	  "display_name": "Cursed Child",
+	  "originates": "Undertale",
+	  "price": 1500,
+	  "limited": false,
+	  "model": "res://assets/models/the_creation/cursed_child.tscn",
+	  "thumbnail": "res://assets/textures/skins/cursed_child_creation.png",
 	  "animations": {},
 	  "music": {},
 	  "sfx": {}
