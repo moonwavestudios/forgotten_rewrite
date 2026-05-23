@@ -41,9 +41,9 @@ _subresources={
 "animations": {
 "Armature|mixamo_com": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "",
-"save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "",
+"save_to_file/fallback_path": "res://assets/models/stuff/yaai_anims/attack/Armature_mixamo_com.res",
+"save_to_file/keep_custom_tracks": false,
+"save_to_file/path": "uid://c67e367jafpou",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
