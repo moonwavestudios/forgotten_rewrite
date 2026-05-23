@@ -159,31 +159,34 @@ func _process(_delta: float) -> void:
 		intermission_started = true
 		start_intermission()
 	else:
-		for player in get_players():
+		for player in get_human_players():
 			player.get_node("player_ui/SpectatorStuff/Label").text = \
 				"Waiting for players"
 		
 	if $Intermission.time_left > 0:
-		for player in get_players():
+		for player in get_human_players():
 			player.get_node("player_ui/SpectatorStuff/Label").text = \
 				"Intermission: " + str(int($Intermission.time_left))
 				
 	if tasks_completed == tasks_to_complete and $RoundTimer.is_stopped() and in_round and ServerSettings.exits:
 		print("exit open")
 		
-	for plr in get_players():
+	for plr in get_human_players():
 		plr.get_node("player_ui/GameStuff/Objectives/Objective").text = "Completed generators: " + str(tasks_completed) + "/" + str(tasks_to_complete)
 	
 	if in_round and not lms_started:
 		if get_alive_survivor_count() == 1:
 			for player in get_players():
-				if player.is_Killer:
+				if player.is_Killer and not player.is_npc:
 					lms_started = true
 					var survivor = get_surviving_player()
 					start_lms(player.equipped_killer, survivor)
 			
 func get_player_count() -> int:
 	return get_tree().get_nodes_in_group("players").size()
+
+func get_human_players() -> Array:
+	return get_players().filter(func(p): return not p.is_npc)
 
 func get_alive_survivor_count() -> int:
 	var count = 0
@@ -194,9 +197,6 @@ func get_alive_survivor_count() -> int:
 
 func get_players():
 	return get_tree().get_nodes_in_group("players")
-	
-func get_npcs():
-	return get_tree().get_nodes_in_group("AI")
 
 func start_intermission() -> void:
 	$Intermission.start(intermission_time)
@@ -225,10 +225,9 @@ func start_round():
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	for player in get_players():
+	for player in get_human_players():
 		if not player.is_ready:
 			return
-
 		var malice = player.malice if player.malice != null else 0
 		if malice > highest_malice:
 			highest_malice = malice
@@ -237,8 +236,6 @@ func start_round():
 	_ensure_unique_survivors()
 
 	for player in get_players():
-		player.get_node('player_ui').get_node('SpectatorStuff').visible = false
-		player.get_node('player_ui').get_node('GameStuff').visible = true
 		player.in_round = true
 		player.apply_character_stats()
 		player._refresh_abilities()
@@ -247,6 +244,10 @@ func start_round():
 			player.get_node("snake").hide()
 			player.get_node("snake").end_game()
 		player.current_speed = player.WALK_SPEED
+
+	for player in get_human_players():
+		player.get_node('player_ui').get_node('SpectatorStuff').visible = false
+		player.get_node('player_ui').get_node('GameStuff').visible = true
 		
 	for plr_num in get_player_count():
 		if plr_num == 1:

@@ -8,6 +8,8 @@ const MOUSE_SENSITIVITY = 0.003
 
 var player_name: String = ""
 
+const is_npc: bool = false
+
 var mouse_unlocked = false
 
 @onready var PlayerSettings = $PlayerSettings

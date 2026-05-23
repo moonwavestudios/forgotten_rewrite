@@ -1733,6 +1733,7 @@ vertical_alignment = 1
 anchors_preset = 0
 
 [node name="Admin_Panel" type="Panel" parent="Both" unique_id=476853796]
+visible = false
 layout_mode = 0
 offset_left = 198.0
 offset_top = 69.0
