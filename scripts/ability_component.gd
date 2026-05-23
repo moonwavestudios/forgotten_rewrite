@@ -451,6 +451,31 @@ func _activate_ability(ability_data: Dictionary) -> void:
 			effect_comp.activate_effect("speed_boost", 2, 5.0)
 		$"..".usingAbility = false
 	
+	elif ability == "sentry":
+		var sentry_scene = preload("res://scenes/other/sentry.tscn")
+		var sentry = sentry_scene.instantiate()
+		sentry.owner_player = $".."
+		sentry.hitboxes_scene = $"..".hitboxes
+		main.add_child(sentry)
+
+		var place_pos = $"..".global_position
+		place_pos.y -= 0.9
+		sentry.global_position = place_pos
+
+		$"..".usingAbility = false
+
+	elif ability == "dispenser":
+		var dispenser_scene = preload("res://scenes/other/dispenser.tscn")
+		var dispenser = dispenser_scene.instantiate()
+		dispenser.owner_player = $".."
+		main.add_child(dispenser)
+
+		var place_pos = $"..".global_position
+		place_pos.y -= 0.9
+		dispenser.global_position = place_pos
+
+		$"..".usingAbility = false
+	
 	elif ability == "speed_boost":
 		player.current_speed = 0
 		await get_tree().create_timer(1).timeout

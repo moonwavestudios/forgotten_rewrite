@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bifbwitks2alq"]
+
+[ext_resource type="Script" uid="uid://cav6v3oqldq2s" path="res://scripts/dispenser.gd" id="1_pdate"]
+
+[node name="dispenser" type="Node3D" unique_id=1501516304]
+script = ExtResource("1_pdate")

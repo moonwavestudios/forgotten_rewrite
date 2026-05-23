@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://brog21v1346ld"]
+
+[ext_resource type="Script" uid="uid://bnw5nwukw7ubg" path="res://scripts/sentry.gd" id="1_a5d5t"]
+
+[node name="sentry" type="Node3D" unique_id=1998804738]
+script = ExtResource("1_a5d5t")
