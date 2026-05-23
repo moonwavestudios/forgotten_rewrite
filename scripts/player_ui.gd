@@ -421,3 +421,6 @@ func _on_credits_pressed() -> void:
 	$SpectatorStuff/Settings_Panel.visible = false
 	$SpectatorStuff/Inventory.visible = false
 	$SpectatorStuff/Shop.visible = false
+
+func _on_spectate_pressed() -> void:
+	pass # Replace with function body.

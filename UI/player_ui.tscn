@@ -1989,6 +1989,7 @@ stream = ExtResource("15_8hdo2")
 [connection signal="pressed" from="SpectatorStuff/Inventory/InfoPanel/SkinsButton" to="SpectatorStuff/Inventory" method="_on_skins_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="SpectatorStuff/Spectate" to="." method="_on_spectate_pressed"]
 [connection signal="pressed" from="SpectatorStuff/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="SpectatorStuff/InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="value_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_Slider" to="." method="_on_music_slider_value_changed"]
