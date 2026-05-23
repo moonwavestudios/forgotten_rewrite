@@ -56,7 +56,15 @@ func _ready() -> void:
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping/ShowPing.button_pressed = settings.show_ping
 
 	AchievementData.achievement_unlocked.connect(_on_achievement_unlocked)
-	
+		
+	await get_tree().process_frame
+	_update_owner_ui()
+
+func _update_owner_ui() -> void:
+	$SpectatorStuff/Code.visible = (
+		multiplayer.get_unique_id() == ServerSettings.server_owner_id
+	)
+
 	if LobbyManager.lobby_code != "":
 		$SpectatorStuff/Code.text = LobbyManager.lobby_code
 

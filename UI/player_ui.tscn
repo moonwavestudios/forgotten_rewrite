@@ -1718,6 +1718,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Code" type="Label" parent="SpectatorStuff" unique_id=1723701410]
+visible = false
 layout_mode = 0
 offset_left = 442.0
 offset_top = 599.0
