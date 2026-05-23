@@ -1733,7 +1733,6 @@ vertical_alignment = 1
 anchors_preset = 0
 
 [node name="Admin_Panel" type="Panel" parent="Both" unique_id=476853796]
-visible = false
 layout_mode = 0
 offset_left = 198.0
 offset_top = 69.0
@@ -1881,6 +1880,37 @@ theme_override_fonts/font = ExtResource("4_qf5vc")
 theme_override_font_sizes/font_size = 23
 text = "CONFIRM"
 
+[node name="KickPlayer" type="Control" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer" unique_id=1722506599]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/KickPlayer" unique_id=1089920708]
+layout_mode = 0
+offset_right = 177.0
+offset_bottom = 45.0
+text = "KICK PLAYER:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/KickPlayer" unique_id=938806482]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 10.0
+offset_right = 331.0
+offset_bottom = 41.0
+placeholder_text = "USERNAME"
+
+[node name="Kick" type="Button" parent="Both/Admin_Panel/ScrollContainer/VBoxContainer/KickPlayer" unique_id=1929797448]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 5.0
+offset_right = 531.0
+offset_bottom = 42.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("4_qf5vc")
+theme_override_font_sizes/font_size = 23
+text = "KICK"
+
 [node name="Admin" type="Button" parent="Both" unique_id=1250297096]
 visible = false
 layout_mode = 0
@@ -1940,3 +1970,4 @@ stream = ExtResource("15_8hdo2")
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping/ShowPing" to="." method="_on_show_ping_toggled"]
 [connection signal="value_changed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/GiveCoins/SpinBox" to="." method="_on_spin_box_value_changed"]
 [connection signal="pressed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller/GiveKiller" to="." method="_on_give_killer_pressed"]
+[connection signal="pressed" from="Both/Admin_Panel/ScrollContainer/VBoxContainer/KickPlayer/Kick" to="." method="_on_kick_player_pressed"]

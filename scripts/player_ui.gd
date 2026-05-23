@@ -248,6 +248,20 @@ func _on_give_killer_pressed() -> void:
 			plr._refresh_abilities()
 			plr.is_Killer = true
 
+func _on_kick_player_pressed() -> void:
+	$click.play()
+	var target_name = $Both/Admin_Panel/ScrollContainer/VBoxContainer/KickPlayer/LineEdit.text
+	for plr in $"../..".get_players():
+		if plr.get("is_npc"):
+			continue
+		if plr.player_name == target_name:
+			var peer_id = plr.get_multiplayer_authority()
+			if peer_id == 1:
+				print("Cannot kick the server owner.")
+				return
+			multiplayer.multiplayer_peer.disconnect_peer(peer_id)
+			return
+
 func player_lists_button_pressed(player_name: String):
 	for plr in $"../..".get_players():
 		if plr.name == player_name:
