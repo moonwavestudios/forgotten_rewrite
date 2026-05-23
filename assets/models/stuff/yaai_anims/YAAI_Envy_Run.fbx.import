@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://8qis0xgiplqx"
-path="res://.godot/imported/YAAI_Envy_Attack.fbx-80488db415177141fd217ac1fbca0200.scn"
+uid="uid://oqdp1sehrk65"
+path="res://.godot/imported/YAAI_Envy_Run.fbx-435ddd143cf0828a93f04e42335ed532.scn"
 
 [deps]
 
-source_file="res://assets/models/stuff/yaai_anims/YAAI_Envy_Attack.fbx"
-dest_files=["res://.godot/imported/YAAI_Envy_Attack.fbx-80488db415177141fd217ac1fbca0200.scn"]
+source_file="res://assets/models/stuff/yaai_anims/YAAI_Envy_Run.fbx"
+dest_files=["res://.godot/imported/YAAI_Envy_Run.fbx-435ddd143cf0828a93f04e42335ed532.scn"]
 
 [params]
 
@@ -41,9 +41,9 @@ _subresources={
 "animations": {
 "Armature|mixamo_com": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "",
+"save_to_file/fallback_path": "res://assets/models/stuff/yaai_anims/run/Armature_mixamo_com.res",
 "save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "",
+"save_to_file/path": "uid://b8binso4g1b7v",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -2094,6 +2094,12 @@ _subresources={
 "slice_99/save_to_file/path": "",
 "slice_99/start_frame": 0,
 "slices/amount": 0
+}
+},
+"nodes": {
+"PATH:Armature/Skeleton3D": {
+"rest_pose/load_pose": 1,
+"rest_pose/selected_animation": "Armature|mixamo_com"
 }
 }
 }
