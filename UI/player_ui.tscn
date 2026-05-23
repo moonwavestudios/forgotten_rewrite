@@ -1167,11 +1167,20 @@ offset_bottom = 421.0
 icon = SubResource("CompressedTexture2D_fwocb")
 expand_icon = true
 
+[node name="Achievements" type="Button" parent="SpectatorStuff" unique_id=1936568593]
+layout_mode = 0
+offset_top = 428.0
+offset_right = 50.0
+offset_bottom = 478.0
+icon = SubResource("CompressedTexture2D_fwocb")
+expand_icon = true
+
 [node name="Spectate" type="Button" parent="SpectatorStuff" unique_id=1158295639]
 layout_mode = 0
-offset_top = 426.0
-offset_right = 50.0
-offset_bottom = 476.0
+offset_left = 1.0
+offset_top = 483.0
+offset_right = 51.0
+offset_bottom = 533.0
 icon = ExtResource("11_rvkn8")
 expand_icon = true
 

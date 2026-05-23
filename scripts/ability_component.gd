@@ -471,7 +471,6 @@ func _activate_ability(ability_data: Dictionary) -> void:
 		$"..".usingAbility = false
 		
 	elif ability == "bonespike":
-		#var ability_data = get_killer_ability("ability1", $"..".equipped_killer)
 		var spike_damage: int = ability_data.get("damage", 40)
 		var effect_duration: float = ability_data.get("effect_duration", 2.0)
 

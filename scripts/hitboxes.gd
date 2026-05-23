@@ -3,6 +3,7 @@ var hit_flag: Array = []
 var hit_killer = false
 var damage = 25
 var hitsfx = null
+var blockable = true
 var og_plr = null
 var has_hit := false
 
@@ -33,7 +34,7 @@ func _on_body_entered(body: Node3D) -> void:
 			hit_flag.append(true)
 			has_hit = true
 			emit_signal("on_hit", body)
-			if body.blocking:
+			if body.blocking and blockable:
 				body.grant(15, 25, 1, "Successful block")
 				body.current_speed = body.WALK_SPEED
 				body.blocking = false
