@@ -75,7 +75,14 @@
 	  "model": "res://assets/models/the_creation/sakuya.tscn",
 	  "thumbnail": "res://assets/textures/skins/sakuya_creation.png",
 	  "animations": {},
-	  "music": {},
+	  "music": {
+		"chase": "res://assets/music/sakuya_chase.mp3",
+		"chase_layers": [
+		  "res://assets/music/sakuya_layer1.mp3",
+		  "res://assets/music/sakuya_layer2.mp3",
+		  "res://assets/music/sakuya_layer3.mp3"
+		]
+	  },
 	  "sfx": {}
 	},
 	{
