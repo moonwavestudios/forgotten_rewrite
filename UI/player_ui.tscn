@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cihdyi4bqqose" path="res://assets/images/gear.png" id="10_byocv"]
 [ext_resource type="Texture2D" uid="uid://d2nhyrcgolqcw" path="res://assets/images/shoppingCart.png" id="11_fwocb"]
 [ext_resource type="Texture2D" uid="uid://dbdwo3txly44u" path="res://assets/images/hidden.png" id="11_rvkn8"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="14_8hdo2"]
 [ext_resource type="AudioStream" uid="uid://bft51df70db3y" path="res://assets/sfx/click2.ogg" id="15_8hdo2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8xti"]
@@ -2055,6 +2056,14 @@ label_settings = SubResource("LabelSettings_hroa2")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = SubResource("GDScript_hdrb0")
+
+[node name="Virtual Joystick" parent="Both" unique_id=1153770616 instance=ExtResource("14_8hdo2")]
+visible = false
+layout_mode = 1
+offset_left = 68.0
+offset_top = 475.0
+offset_right = 192.0
+offset_bottom = 590.0
 
 [node name="click" type="AudioStreamPlayer" parent="." unique_id=2131190916]
 stream = ExtResource("15_8hdo2")
