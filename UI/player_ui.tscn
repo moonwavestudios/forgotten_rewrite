@@ -2065,6 +2065,15 @@ offset_top = 475.0
 offset_right = 192.0
 offset_bottom = 590.0
 
+[node name="LineEdit" type="LineEdit" parent="Both" unique_id=1698910424]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 24.0
+offset_right = 191.0
+offset_bottom = 68.0
+placeholder_text = "\"/\" to open chat"
+flat = true
+
 [node name="click" type="AudioStreamPlayer" parent="." unique_id=2131190916]
 stream = ExtResource("15_8hdo2")
 

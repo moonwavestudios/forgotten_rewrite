@@ -1,16 +1,20 @@
 [gd_scene format=3 uid="uid://054dosa3vsef"]
 
+[ext_resource type="Shader" uid="uid://5t3b8wew5uw8" path="res://assets/shaders/underwater_world.gdshader" id="1_hvrku"]
 [ext_resource type="PackedScene" uid="uid://bokgykakku0qy" path="res://scenes/other/pallets.tscn" id="1_qgw2g"]
 [ext_resource type="PackedScene" uid="uid://bf4m527oonhqy" path="res://scenes/other/generator.tscn" id="2_r1w4p"]
 [ext_resource type="Script" uid="uid://cgthlwbfyq6e4" path="res://scripts/generator.gd" id="3_hvrku"]
 [ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="4_qq7ed"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hafkx"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r1w4p"]
+shader = ExtResource("1_hvrku")
+shader_parameter/sky_top_color = Color(0, 0, 0, 1)
+shader_parameter/sky_horizon_color = Color(0, 0, 0, 1)
+shader_parameter/fog_density = 0.85
+shader_parameter/time_scale = 0.3
 
 [sub_resource type="Sky" id="Sky_qgw2g"]
-sky_material = SubResource("ProceduralSkyMaterial_hafkx")
+sky_material = SubResource("ShaderMaterial_r1w4p")
 
 [sub_resource type="Environment" id="Environment_r4ebf"]
 background_mode = 2

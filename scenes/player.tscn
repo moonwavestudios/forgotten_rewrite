@@ -41,6 +41,8 @@ properties/5/path = NodePath(".:health")
 properties/5/spawn = true
 properties/5/replication_mode = 1
 
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_y4r1p"]
+
 [node name="player" type="CharacterBody3D" unique_id=633314722 groups=["players"]]
 script = ExtResource("1_3vyb7")
 hitboxes = ExtResource("2_qhqgy")
@@ -113,3 +115,12 @@ script = ExtResource("10_y4r1p")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1979766718]
 replication_config = SubResource("SceneReplicationConfig_y4r1p")
+
+[node name="VoicePlayer" type="AudioStreamPlayer3D" parent="." unique_id=451422190]
+unit_size = 1.0
+max_distance = 20.0
+
+[node name="MicInput" type="AudioStreamPlayer" parent="." unique_id=1064587203]
+stream = SubResource("AudioStreamMicrophone_y4r1p")
+autoplay = true
+bus = &"Voice"
