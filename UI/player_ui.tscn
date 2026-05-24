@@ -841,11 +841,18 @@ layout_mode = 2
 
 [node name="Inventory" type="Panel" parent="SpectatorStuff" unique_id=751383379]
 visible = false
-layout_mode = 0
-offset_left = 224.0
-offset_top = 71.0
-offset_right = 980.0
-offset_bottom = 591.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -378.0
+offset_top = -260.0
+offset_right = 378.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("6_xmsn8")
 
 [node name="InfoPanel" type="Panel" parent="SpectatorStuff/Inventory" unique_id=1124541050]
