@@ -38,7 +38,7 @@ var equipped_emotes: Array = []
 var is_emoting: bool = false
 var current_emote: String = ""
 
-var malice: int = -100
+var malice: int = 0
 @export var is_Killer = false
 
 var xp = 0
