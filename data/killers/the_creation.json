@@ -94,7 +94,14 @@
 	  "model": "res://assets/models/the_creation/cursed_child.tscn",
 	  "thumbnail": "res://assets/textures/skins/cursed_child_creation.png",
 	  "animations": {},
-	  "music": {},
+	  "music": {
+		"chase": "res://assets/music/cursed_child_chase.mp3",
+		"chase_layers": [
+		  "res://assets/music/cursed_child_layer1.mp3",
+		  "res://assets/music/cursed_child_layer2.mp3",
+		  "res://assets/music/cursed_child_layer3.mp3"
+		]
+	},
 	  "sfx": {}
 	}
 ],
