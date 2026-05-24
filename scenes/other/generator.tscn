@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bf4m527oonhqy"]
 
+[ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="1_phll5"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_turyi"]
 size = Vector3(1, 1.3930664, 1)
 
@@ -23,3 +25,5 @@ shape = SubResource("BoxShape3D_phll5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=501533720]
 mesh = SubResource("BoxMesh_un5np")
+
+[node name="ProximityPrompt" parent="." unique_id=25112644 instance=ExtResource("1_phll5")]

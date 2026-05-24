@@ -9,6 +9,21 @@ var _assigned_spawns: Dictionary = {}
 
 var exit = preload("res://scenes/exit.tscn")
 
+var items = {
+	"Medkit" = [
+		preload("res://assets/items/medkit.tscn")
+	],
+	"Cola" = [
+		preload("res://assets/items/cola.tscn")
+	]
+}
+
+var tasks = {
+	"Generator" = [
+		preload('res://scenes/other/generator.tscn')
+	]
+}
+
 var maps = [
 	preload("res://assets/maps/map_1.tscn")
 ]

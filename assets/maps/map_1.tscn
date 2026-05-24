@@ -2,9 +2,6 @@
 
 [ext_resource type="Shader" uid="uid://5t3b8wew5uw8" path="res://assets/shaders/underwater_world.gdshader" id="1_hvrku"]
 [ext_resource type="PackedScene" uid="uid://bokgykakku0qy" path="res://scenes/other/pallets.tscn" id="1_qgw2g"]
-[ext_resource type="PackedScene" uid="uid://bf4m527oonhqy" path="res://scenes/other/generator.tscn" id="2_r1w4p"]
-[ext_resource type="Script" uid="uid://cgthlwbfyq6e4" path="res://scripts/generator.gd" id="3_hvrku"]
-[ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="4_qq7ed"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r1w4p"]
 shader = ExtResource("1_hvrku")
@@ -32,7 +29,7 @@ glow_enabled = true
 environment = SubResource("Environment_r4ebf")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=344745790]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shadow_enabled = true
 
 [node name="ExitSpawn" type="Marker3D" parent="." unique_id=137852996]
@@ -49,8 +46,6 @@ mesh = SubResource("BoxMesh_hafkx")
 [node name="pallets" parent="." unique_id=703089972 instance=ExtResource("1_qgw2g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83669114, 0)
 
-[node name="generator" parent="." unique_id=1263804824 instance=ExtResource("2_r1w4p")]
-transform = Transform3D(-2.8276256e-08, 0, 2.2219806, 0, 0.7596355, 0, -0.6468854, 0, -9.712586e-08, 0, 0.42656898, 5.3557405)
-script = ExtResource("3_hvrku")
+[node name="TasksSpawn" type="Marker3D" parent="." unique_id=1062875052]
 
-[node name="ProximityPrompt" parent="generator" unique_id=25112644 instance=ExtResource("4_qq7ed")]
+[node name="ItemsSpawn" type="Marker3D" parent="." unique_id=1231259921]
