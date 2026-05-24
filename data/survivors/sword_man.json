@@ -48,7 +48,7 @@
 		{
 			"id": "ability2",
 			"name": "Burger",
-			"icon": "res://assets/images/abilityTemplate.png",
+			"icon": "res://assets/images/burger.png",
 			"cooldown": 60.0,
 			"type": "chicken",
 			"heal": 50.0,

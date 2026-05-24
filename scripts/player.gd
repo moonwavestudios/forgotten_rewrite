@@ -6,6 +6,16 @@ var WALK_SPEED = 5.0
 var SPRINT_SPEED = 9.0
 const MOUSE_SENSITIVITY = 0.003
 
+var medkit = {
+	"name": "medkit",
+	"icon": "res://assets/images/medkit.png"
+}
+
+var soda = {
+	"name": "soda",
+	"icon": "res://assets/images/soda.png"
+}
+
 var player_name: String = ""
 
 const is_npc: bool = false
@@ -350,11 +360,10 @@ func refresh_item_ui() -> void:
 		var ability = has_items[i] if i < has_items.size() else {}
 		slots[i].visible = not ability.is_empty()
 
-		## THIS IS FOR LATER WHEN EVERYTHING IS ADDED
-		#if not ability.is_empty():
-		#	var tex_rect = slots[i].get_node_or_null("TextureRect")
-		#	if tex_rect and ability.has("icon"):
-		#		tex_rect.texture = load(ability.get("icon", ""))
+		if not ability.is_empty():
+			var tex_rect = slots[i].get_node_or_null("TextureRect")
+			if tex_rect and ability.has("icon"):
+				tex_rect.texture = load(ability.get("icon", ""))
 
 func _refresh_ability_ui() -> void:
 	var abilities: Array
