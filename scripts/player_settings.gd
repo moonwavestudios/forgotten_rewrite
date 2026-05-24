@@ -6,6 +6,7 @@ var enabled_killsound = false
 var disable_killer = false
 var killsound = ""
 var music_volume: float = 100.0
+var vc_volume: float = 100.0
 var afk_mode = false
 var show_hitboxes: bool = false
 
@@ -35,6 +36,7 @@ func _load() -> void:
 	enabled_killsound = s.get("enabled_killsound", enabled_killsound)
 	center_stamina = s.get("center_stamina", center_stamina)
 	music_volume = s.get("music_volume", music_volume)
+	vc_volume = s.get("vc_volume", vc_volume)
 	show_fps = s.get("show_fps", show_fps)
 	show_ping = s.get("show_ping", show_ping)
 	afk_mode = s.get("afk_mode", afk_mode)
@@ -53,6 +55,7 @@ func save() -> void:
 		"show_fps": show_fps,
 		"show_ping": show_ping,
 		"music_volume": music_volume,
+		"vc_volume": vc_volume,
 		"center_stamina":     center_stamina,
 		"keybinds":          keybinds,
 		"afk_mode":          afk_mode,
@@ -100,6 +103,10 @@ func set_hitsound(value: String) -> void:
 
 func set_music_volume(value: float) -> void:
 	music_volume = value
+	save()
+	
+func set_vc_volume(value: float) -> void:
+	vc_volume = value
 	save()
 
 func set_killsound(value: String) -> void:

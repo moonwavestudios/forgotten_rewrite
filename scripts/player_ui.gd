@@ -442,3 +442,15 @@ func _on_SO_kick_pressed() -> void:
 				return
 			multiplayer.multiplayer_peer.disconnect_peer(peer_id)
 			return
+
+func _on_voice_chat_slider_value_changed(value: float) -> void:
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat/LineEdit.text = str(int(value))
+	var db = linear_to_db(value / 100.0)
+	AudioServer.set_bus_volume_db(7, db)
+	settings.set_vc_volume(value)
+	
+func _on_vc_line_edit_text_changed(new_text: String) -> void:
+	var db = linear_to_db(float(new_text) / 100.0)
+	AudioServer.set_bus_volume_db(7, db)
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat/VoiceChatSlider.value = float(new_text)
+	settings.set_music_volume(float(new_text))

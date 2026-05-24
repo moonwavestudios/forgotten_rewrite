@@ -1306,7 +1306,7 @@ label_settings = SubResource("LabelSettings_01aj8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat" unique_id=1591439039]
+[node name="VoiceChatSlider" type="HSlider" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat" unique_id=1591439039]
 layout_mode = 0
 offset_left = 268.0
 offset_top = 18.0
@@ -1314,7 +1314,7 @@ offset_right = 634.0
 offset_bottom = 34.0
 value = 50.0
 
-[node name="LineEdit" type="LineEdit" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat" unique_id=1779808753]
+[node name="VCLineEdit" type="LineEdit" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat" unique_id=1779808753]
 layout_mode = 0
 offset_left = 646.0
 offset_top = 10.0
@@ -2126,6 +2126,8 @@ stream = ExtResource("15_8hdo2")
 [connection signal="pressed" from="SpectatorStuff/InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="value_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_Slider" to="." method="_on_music_slider_value_changed"]
 [connection signal="text_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_LineEdit" to="." method="_on_music_line_edit_text_changed"]
+[connection signal="value_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat/VoiceChatSlider" to="." method="_on_voice_chat_slider_value_changed"]
+[connection signal="text_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat/VCLineEdit" to="." method="_on_vc_line_edit_text_changed"]
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind" to="." method="_on_slash_keybind_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind" to="." method="_on_ability_1_keybind_pressed"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable" to="." method="_on_hitsounds_enable_toggled"]
