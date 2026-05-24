@@ -118,6 +118,13 @@ var blocking = false
 
 @onready var raycast = $RayCast3D
 
+@onready var voice_player: AudioStreamPlayer3D = $VoicePlayer
+
+var voice_capture: AudioEffectCapture
+var voice_playback: AudioStreamGeneratorPlayback
+
+const VOICE_PACKET_SIZE := 960
+
 var weakness = 0
 
 var chase_layer_players: Array = []
@@ -178,6 +185,22 @@ func _ready() -> void:
 		main.get_node('RoundTimer').timeout.connect(_on_round_ended)
 	if main and main.has_node("Intermission"):
 		main.get_node('Intermission').timeout.connect(_on_round_started)
+	
+	_setup_voice_chat()
+
+func _setup_voice_chat() -> void:
+	if is_multiplayer_authority():
+		var bus_idx = AudioServer.get_bus_index("Voice")
+		voice_capture = AudioServer.get_bus_effect(bus_idx, 0)
+
+	var generator := AudioStreamGenerator.new()
+	generator.mix_rate = 48000
+	generator.buffer_length = 0.1
+
+	voice_player.stream = generator
+	voice_player.play()
+
+	voice_playback = voice_player.get_stream_playback()
 
 func _on_round_started() -> void:
 	in_round = true
@@ -610,6 +633,7 @@ func _physics_process(delta: float) -> void:
 
 	var is_moving = direction.length() > 0.0
 	_handle_footsteps(delta, is_moving)
+	_process_voice_chat()
 
 	if animation_manager != null:
 		if usingAbility or stunned:
@@ -623,6 +647,35 @@ func _physics_process(delta: float) -> void:
 			animation_manager.play_action("idle")
 
 	move_and_slide()
+
+func _process_voice_chat() -> void:
+	if not is_multiplayer_authority():
+		return
+	if voice_capture == null:
+		return
+	var available := voice_capture.get_frames_available()
+	if available < VOICE_PACKET_SIZE:
+		return
+	var frames := voice_capture.get_buffer(VOICE_PACKET_SIZE)
+	send_voice.rpc(frames)
+
+@rpc("unreliable", "any_peer")
+func send_voice(frames: PackedVector2Array) -> void:
+	var sender_id := multiplayer.get_remote_sender_id()
+	for player in get_tree().get_nodes_in_group("interactors"):
+		if player.get_multiplayer_authority() == sender_id:
+			continue
+		receive_voice.rpc_id(
+			player.get_multiplayer_authority(),
+			frames
+		)
+
+@rpc("authority", "unreliable")
+func receive_voice(frames: PackedVector2Array) -> void:
+	if voice_playback == null:
+		return
+	for frame in frames:
+		voice_playback.push_frame(frame)
 
 func on_killed_survivor() -> void:
 	Voiceline_Component.play_kill()

@@ -35,7 +35,7 @@ func _ready() -> void:
 	
 	match OS.get_name():
 		"Android":
-			$"Both/Virtual Joystick".visible = true
+			$Both/Mobile.visible = true
 	
 	var saved_vol = settings.music_volume
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_Slider.value = saved_vol

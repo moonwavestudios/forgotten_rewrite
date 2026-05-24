@@ -29,7 +29,7 @@ glow_enabled = true
 environment = SubResource("Environment_r4ebf")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=344745790]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.25881916, 0.9659258, 0, -0.9659258, 0.25881916, 0, 0, 0)
 shadow_enabled = true
 
 [node name="ExitSpawn" type="Marker3D" parent="." unique_id=137852996]

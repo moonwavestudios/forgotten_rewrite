@@ -2057,22 +2057,27 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = SubResource("GDScript_hdrb0")
 
-[node name="Virtual Joystick" parent="Both" unique_id=1153770616 instance=ExtResource("14_8hdo2")]
-visible = false
-layout_mode = 1
-offset_left = 68.0
-offset_top = 475.0
-offset_right = 192.0
-offset_bottom = 590.0
-
 [node name="LineEdit" type="LineEdit" parent="Both" unique_id=1698910424]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 24.0
-offset_right = 191.0
-offset_bottom = 68.0
+offset_left = 1.0
+offset_top = 35.0
+offset_right = 189.0
+offset_bottom = 79.0
 placeholder_text = "\"/\" to open chat"
 flat = true
+
+[node name="Mobile" type="Control" parent="Both" unique_id=1236284003]
+visible = false
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 649.0
+
+[node name="Virtual Joystick" parent="Both/Mobile" unique_id=1153770616 instance=ExtResource("14_8hdo2")]
+layout_mode = 1
+offset_left = 68.0
+offset_top = -174.0
+offset_right = 192.0
+offset_bottom = -59.0
 
 [node name="click" type="AudioStreamPlayer" parent="." unique_id=2131190916]
 stream = ExtResource("15_8hdo2")
