@@ -4,6 +4,8 @@ var _selected_char_data: Dictionary = {}
 var _selected_skin_data: Dictionary = {}
 var _selected_type: String = ""
 
+@onready var player = get_node("../../..")
+
 func _ready() -> void:
 	if CharData.killers.is_empty() and CharData.survivors.is_empty():
 		await CharData.data_loaded
@@ -102,6 +104,7 @@ func _try_buy_char(player) -> void:
 		return
 	
 	player.coins -= price
+	save_data.set_coins(player.coins)
 	save_data.own_character(char_id)
 	_refresh_buy_button()
 
@@ -119,6 +122,7 @@ func _try_buy_skin(player) -> void:
 		return
 	
 	player.coins -= price
+	save_data.set_coins(player.coins)
 	save_data.own_skin(char_id, skin_id)
 	_refresh_buy_button()
 
@@ -126,8 +130,6 @@ func _try_buy_emote(_player) -> void:
 	pass
 
 func _on_buy_button_pressed() -> void:
-	var player = get_tree().get_first_node_in_group("players")
-	
 	match _selected_type:
 		"char":
 			_try_buy_char(player)

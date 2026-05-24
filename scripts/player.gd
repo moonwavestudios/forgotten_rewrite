@@ -526,12 +526,6 @@ func _physics_process(delta: float) -> void:
 	if not is_Killer and not camera.current:
 		camera.current = is_multiplayer_authority()
 	
-	if Input.is_action_just_pressed("Shop") and not in_round:
-		$player_ui/SpectatorStuff/Shop.visible = not $player_ui/SpectatorStuff/Shop.visible
-			
-	if Input.is_action_just_pressed("Inventory") and not in_round:
-		$player_ui/SpectatorStuff/Inventory.visible = not $player_ui/SpectatorStuff/Inventory.visible
-
 	if Input.is_action_just_pressed("Attack") and not stunned and not usingAbility and not _is_on_cooldown(equipped_attack.get("name", "Attack")):
 		if is_Killer:
 			var ability_type = equipped_attack.get("type", "")
@@ -868,6 +862,7 @@ func apply_effect(effect, level):
 func disable_effect(effect):
 	Effect_Component.deactivate_effect(effect)
 
+@rpc("any_peer", "call_local", "reliable")
 func give_coins(amount):
 	if not is_multiplayer_authority():
 		return
