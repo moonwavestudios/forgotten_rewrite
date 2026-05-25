@@ -201,7 +201,11 @@ func _ready() -> void:
 func _setup_voice_chat() -> void:
 	if is_multiplayer_authority():
 		var bus_idx = AudioServer.get_bus_index("Voice")
-		voice_capture = AudioServer.get_bus_effect(bus_idx, 0)
+		var effect = AudioServer.get_bus_effect(bus_idx, 0)
+		if effect is AudioEffectCapture:
+			voice_capture = effect
+		else:
+			push_error("Voice bus effect is not AudioEffectCapture, got: " + effect.get_class())
 
 	var generator := AudioStreamGenerator.new()
 	generator.mix_rate = 48000

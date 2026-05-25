@@ -53,7 +53,7 @@
 	  "model": "res://assets/models/envy/yaai_envy.tscn",
 	  "animation_library": "res://assets/animations/envy/yaai_anims.res",
 	  "intro_anim": "res://assets/animations/envy/yaai_intro.res",
-	  "thumbnail": "res://assets/textures/skins/yaai_envy.png",
+	  "thumbnail": "res://assets/images/yaai_render.png",
 	  "music": {
 		"lms": "",
 		"chase": "",
