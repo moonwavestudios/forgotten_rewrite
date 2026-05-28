@@ -43,6 +43,90 @@ properties/5/replication_mode = 1
 
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_y4r1p"]
 
+[sub_resource type="GDScript" id="GDScript_y4r1p"]
+script/source = "extends Control
+
+@onready var messages_container = $Panel/ScrollContainer/Messages
+@onready var input_field = $Panel/LineEdit
+@onready var send_button = $Panel/SendButton
+@onready var scroll_container = $Panel/ScrollContainer
+
+var chat_open := false
+
+func _ready():
+	visible = false
+	input_field.editable = false
+
+	send_button.pressed.connect(_send_message)
+	input_field.text_submitted.connect(_on_text_submitted)
+
+func _input(event):
+	if event.is_action_pressed(\"open_chat\"):
+		if !chat_open:
+			open_chat()
+			get_viewport().set_input_as_handled()
+
+	elif event.is_action_pressed(\"ui_text_submit\"):
+		if chat_open:
+			_send_message()
+			get_viewport().set_input_as_handled()
+
+func open_chat():
+	chat_open = true
+	visible = true
+
+	input_field.editable = true
+	input_field.grab_focus()
+
+	input_field.clear()
+
+func close_chat():
+	chat_open = false
+
+	input_field.release_focus()
+	input_field.clear()
+	input_field.editable = false
+
+	visible = false
+
+func _send_message():
+	var text = input_field.text.strip_edges()
+
+	if text.is_empty():
+		close_chat()
+		return
+
+	var username = $\"..\".player_name
+
+	send_chat_message.rpc(username, text)
+
+	close_chat()
+
+func _on_text_submitted(_text: String):
+	_send_message()
+
+@rpc(\"any_peer\", \"call_local\", \"reliable\")
+func send_chat_message(username: String, message: String):
+	add_message(username, message)
+
+func add_message(username: String, message: String):
+	var label = RichTextLabel.new()
+
+	label.bbcode_enabled = true
+	label.fit_content = true
+	label.scroll_active = false
+
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	label.custom_minimum_size.x = 400
+
+	label.text = \"[b]%s:[/b] %s\" % [username, message]
+
+	messages_container.add_child(label)
+
+	await get_tree().process_frame
+	scroll_container.scroll_vertical = scroll_container.get_v_scroll_bar().max_value
+"
+
 [node name="player" type="CharacterBody3D" unique_id=633314722 groups=["players"]]
 script = ExtResource("1_3vyb7")
 hitboxes = ExtResource("2_qhqgy")
@@ -124,3 +208,39 @@ max_distance = 20.0
 stream = SubResource("AudioStreamMicrophone_y4r1p")
 autoplay = true
 bus = &"Voice"
+
+[node name="ChatUI" type="Control" parent="." unique_id=1516972267]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_y4r1p")
+
+[node name="Panel" type="Panel" parent="ChatUI" unique_id=1091780027]
+layout_mode = 0
+offset_right = 330.0
+offset_bottom = 189.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ChatUI/Panel" unique_id=2049557663]
+layout_mode = 0
+offset_right = 330.0
+offset_bottom = 191.0
+
+[node name="Messages" type="VBoxContainer" parent="ChatUI/Panel/ScrollContainer" unique_id=1617712933]
+layout_mode = 2
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="ChatUI/Panel" unique_id=120263812]
+layout_mode = 0
+offset_top = 146.0
+offset_right = 329.0
+offset_bottom = 190.0
+placeholder_text = "Type Message"
+
+[node name="SendButton" type="Button" parent="ChatUI/Panel" unique_id=1845955581]
+layout_mode = 0
+offset_left = 343.0
+offset_top = 146.0
+offset_right = 492.0
+offset_bottom = 181.0
+text = "send"

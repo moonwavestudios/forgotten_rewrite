@@ -2091,15 +2091,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = SubResource("GDScript_hdrb0")
 
-[node name="LineEdit" type="LineEdit" parent="Both" unique_id=1698910424]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 35.0
-offset_right = 189.0
-offset_bottom = 79.0
-placeholder_text = "\"/\" to open chat"
-flat = true
-
 [node name="Mobile" type="Control" parent="Both" unique_id=1236284003]
 visible = false
 anchors_preset = 0
