@@ -47,7 +47,7 @@
     },
     {
       "id": "ability3",
-      "name": "Ghost Run",
+      "name": "Smoke Bomb",
       "icon": "res://assets/images/abilityTemplate.png",
       "cooldown": 35.0,
       "type": "invisibility",
