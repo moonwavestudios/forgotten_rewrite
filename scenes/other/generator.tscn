@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bf4m527oonhqy"]
 
 [ext_resource type="PackedScene" uid="uid://bqs3r4f0unodw" path="res://scenes/other/proximity_prompt.tscn" id="1_phll5"]
+[ext_resource type="Script" uid="uid://cgthlwbfyq6e4" path="res://scripts/generator.gd" id="1_un5np"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_turyi"]
 size = Vector3(1, 1.3930664, 1)
@@ -11,6 +12,7 @@ size = Vector3(1, 1.3930664, 1)
 
 [node name="generator" type="StaticBody3D" unique_id=1263804824]
 transform = Transform3D(0.64688534, 0, 0, 0, 0.7596355, 0, 0, 0, 2.2219806, 0, 0, 0)
+script = ExtResource("1_un5np")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=907573742 groups=["generator"]]
 collision_layer = 2

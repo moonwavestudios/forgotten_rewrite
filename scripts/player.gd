@@ -273,6 +273,9 @@ func apply_character_stats():
 	WALK_SPEED = stats.get("walk_speed", 5.1)
 	SPRINT_SPEED = stats.get("sprint_speed", 9.1)
 
+	if is_Killer and not ServerSettings.use_stamina:
+		WALK_SPEED = stats.get("sprint_speed", 9.1)
+
 func clear_skin() -> void:
 	if is_instance_valid(_skin_instance):
 		_skin_instance.queue_free()
@@ -448,7 +451,7 @@ func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
 
-	if Input.is_action_pressed("Sprint") and (not exhausted or not ServerSettings.use_stamina) and not sprint_needs_reset:
+	if Input.is_action_pressed("Sprint") and (not exhausted or not ServerSettings.use_stamina) and not sprint_needs_reset and (not is_Killer or ServerSettings.use_stamina):
 		is_sprinting = true
 	else:
 		is_sprinting = false
