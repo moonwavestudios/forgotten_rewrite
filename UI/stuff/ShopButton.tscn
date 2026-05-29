@@ -72,6 +72,7 @@ expand_mode = 1
 [node name="Label" type="Label" parent="Originates" unique_id=1782791056]
 visible = false
 visibility_layer = 2
+z_index = 1
 layout_mode = 0
 offset_left = 44.0
 offset_top = 5.0
