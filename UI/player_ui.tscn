@@ -1711,6 +1711,80 @@ offset_top = 14.0
 offset_right = 271.0
 offset_bottom = 38.0
 
+[node name="Control6" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=2114375152]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Control6" unique_id=228687546]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 780.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_byocv")
+text = "VOICE CHAT"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VCDis" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1003778953]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VCDis" unique_id=1372679153]
+layout_mode = 0
+offset_right = 237.0
+offset_bottom = 45.0
+text = "DISABLE VC:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VC_check" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VCDis" unique_id=980281181]
+layout_mode = 0
+offset_left = 209.0
+offset_top = 13.0
+offset_right = 233.0
+offset_bottom = 37.0
+toggle_mode = false
+
+[node name="PushTT" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1352268578]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/PushTT" unique_id=982446967]
+layout_mode = 0
+offset_right = 237.0
+offset_bottom = 45.0
+text = "PUSH TO TALK:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PushTT_Check" type="CheckBox" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/PushTT" unique_id=2135912503]
+layout_mode = 0
+offset_left = 209.0
+offset_top = 13.0
+offset_right = 233.0
+offset_bottom = 37.0
+
+[node name="PushTT_Keybind" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1879864277]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/PushTT_Keybind" unique_id=1898045735]
+layout_mode = 0
+offset_right = 324.0
+offset_bottom = 45.0
+text = "PUSH TO TALK KEYBIND:"
+label_settings = SubResource("LabelSettings_an3gc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/PushTT_Keybind" unique_id=929578203]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 10.0
+offset_right = 480.0
+offset_bottom = 41.0
+text = "V"
+
 [node name="Control4" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1131431709]
 layout_mode = 2
 
