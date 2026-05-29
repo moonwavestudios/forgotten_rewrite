@@ -1732,7 +1732,7 @@ layout_mode = 2
 layout_mode = 0
 offset_right = 237.0
 offset_bottom = 45.0
-text = "DISABLE VC:"
+text = "ENABLE VC:"
 label_settings = SubResource("LabelSettings_an3gc")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1743,7 +1743,7 @@ offset_left = 209.0
 offset_top = 13.0
 offset_right = 233.0
 offset_bottom = 37.0
-toggle_mode = false
+button_pressed = true
 
 [node name="PushTT" type="Control" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer" unique_id=1352268578]
 layout_mode = 2
@@ -2230,6 +2230,7 @@ stream = ExtResource("15_8hdo2")
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound/EnableKillsound" to="." method="_on_enable_killsound_toggled"]
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound2/KillsoundSelect" to="." method="_on_killsound_select_pressed"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Stamina/Center_Stam" to="." method="_on_center_stam_toggled"]
+[connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VCDis/VC_check" to="." method="_on_vc_check_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox" to="." method="_on_enable_hitbox_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_FPS/ShowFPS" to="." method="_on_show_fps_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping/ShowPing" to="." method="_on_show_ping_toggled"]

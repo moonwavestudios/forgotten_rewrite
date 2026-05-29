@@ -132,6 +132,7 @@ var blocking = false
 
 var voice_capture: AudioEffectCapture
 var voice_playback: AudioStreamGeneratorPlayback
+var voice_chat_enabled: bool = true
 
 const VOICE_PACKET_SIZE := 960
 
@@ -182,6 +183,8 @@ func _ready() -> void:
 
 	coins  = save_data.get_coins()
 	malice = save_data.get_malice()
+	
+	set_voice_chat_enabled(PlayerSettings.voicechat_enabled)
 
 	var xp_char_id = equipped_killer if is_Killer else equipped_survivor
 	xp = save_data.get_character_xp(xp_char_id)
@@ -667,7 +670,7 @@ func _physics_process(delta: float) -> void:
 func _process_voice_chat() -> void:
 	if not is_multiplayer_authority():
 		return
-	if voice_capture == null:
+	if voice_capture == null or not voice_chat_enabled:
 		return
 	var available := voice_capture.get_frames_available()
 	if available < VOICE_PACKET_SIZE:
@@ -688,10 +691,13 @@ func send_voice(frames: PackedVector2Array) -> void:
 
 @rpc("authority", "unreliable")
 func receive_voice(frames: PackedVector2Array) -> void:
-	if voice_playback == null:
+	if voice_playback == null or not voice_chat_enabled:
 		return
 	for frame in frames:
 		voice_playback.push_frame(frame)
+
+func set_voice_chat_enabled(enabled: bool) -> void:
+	voice_chat_enabled = enabled
 
 func on_killed_survivor() -> void:
 	Voiceline_Component.play_kill()

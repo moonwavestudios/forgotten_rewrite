@@ -9,6 +9,7 @@ var music_volume: float = 100.0
 var vc_volume: float = 100.0
 var afk_mode = false
 var show_hitboxes: bool = false
+var voicechat_enabled: bool = true
 
 var center_stamina: bool = false
 
@@ -34,6 +35,7 @@ func _load() -> void:
 	killsound         = s.get("killsound",          killsound)
 	enabled_hitsound  = s.get("enabled_hitsound",  enabled_hitsound)
 	enabled_killsound = s.get("enabled_killsound", enabled_killsound)
+	voicechat_enabled = s.get("voicechat_enabled", voicechat_enabled)
 	center_stamina = s.get("center_stamina", center_stamina)
 	music_volume = s.get("music_volume", music_volume)
 	vc_volume = s.get("vc_volume", vc_volume)
@@ -55,6 +57,7 @@ func save() -> void:
 		"show_fps": show_fps,
 		"show_ping": show_ping,
 		"music_volume": music_volume,
+		"voicechat_enabled": voicechat_enabled,
 		"vc_volume": vc_volume,
 		"center_stamina":     center_stamina,
 		"keybinds":          keybinds,
@@ -95,6 +98,10 @@ static func load_audio_from_path(path: String) -> AudioStream:
 
 func set_keybind(action: String, label: String) -> void:
 	keybinds[action] = label
+	save()
+
+func set_voicechat_mode(value: bool) -> void:
+	voicechat_enabled = value
 	save()
 
 func set_hitsound(value: String) -> void:

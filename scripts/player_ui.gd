@@ -454,3 +454,8 @@ func _on_vc_line_edit_text_changed(new_text: String) -> void:
 	AudioServer.set_bus_volume_db(7, db)
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat/VoiceChatSlider.value = float(new_text)
 	settings.set_music_volume(float(new_text))
+
+func _on_vc_check_toggled(toggled_on: bool) -> void:
+	player.set_voice_chat_enabled(toggled_on)
+	settings.set_voicechat_mode(toggled_on)
+	
