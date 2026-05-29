@@ -402,6 +402,12 @@ label_settings = SubResource("LabelSettings_ysum4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MobileBut" type="Button" parent="GameStuff/AbilitiesStuff/Slash" unique_id=1233132944]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+flat = true
+
 [node name="Ability1" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=562252851]
 visible = false
 layout_mode = 2
@@ -437,6 +443,12 @@ text = "30"
 label_settings = SubResource("LabelSettings_ysum4")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MobileBut" type="Button" parent="GameStuff/AbilitiesStuff/Ability1" unique_id=1161766531]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+flat = true
 
 [node name="Ability2" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=160556357]
 visible = false
@@ -474,6 +486,12 @@ label_settings = SubResource("LabelSettings_ysum4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MobileBut" type="Button" parent="GameStuff/AbilitiesStuff/Ability2" unique_id=949029891]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+flat = true
+
 [node name="Ability3" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1365539958]
 visible = false
 layout_mode = 2
@@ -510,6 +528,12 @@ label_settings = SubResource("LabelSettings_ysum4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MobileBut" type="Button" parent="GameStuff/AbilitiesStuff/Ability3" unique_id=903007690]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+flat = true
+
 [node name="Ability4" type="Control" parent="GameStuff/AbilitiesStuff" unique_id=1176763428]
 visible = false
 layout_mode = 2
@@ -545,6 +569,12 @@ text = "30"
 label_settings = SubResource("LabelSettings_ysum4")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MobileBut" type="Button" parent="GameStuff/AbilitiesStuff/Ability4" unique_id=1294860591]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 71.0
+flat = true
 
 [node name="Items" type="HBoxContainer" parent="GameStuff" unique_id=115874745]
 layout_mode = 0

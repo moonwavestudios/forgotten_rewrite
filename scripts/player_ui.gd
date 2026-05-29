@@ -444,7 +444,7 @@ func _on_SO_kick_pressed() -> void:
 			return
 
 func _on_voice_chat_slider_value_changed(value: float) -> void:
-	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat/LineEdit.text = str(int(value))
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat/VCLineEdit.text = str(int(value))
 	var db = linear_to_db(value / 100.0)
 	AudioServer.set_bus_volume_db(7, db)
 	settings.set_vc_volume(value)

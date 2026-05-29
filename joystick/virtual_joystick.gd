@@ -2,33 +2,27 @@ class_name VirtualJoystick
 
 extends Control
 
-## The color of the button when the joystick is pressed.
 @export var pressed_color := Color.GRAY
 
-## If the input is inside this range, the output is zero.
 @export_range(0, 200, 1) var deadzone_size : float = 10
 
-## The max distance the tip can reach.
 @export_range(0, 500, 1) var clampzone_size : float = 75
 
 enum Joystick_mode {
-	FIXED, ## The joystick doesn't move.
-	DYNAMIC, ## Every time the joystick area is pressed, the joystick position is set on the touched position.
-	FOLLOWING ## When the finger moves outside the joystick area, the joystick will follow it.
+	FIXED,
+	DYNAMIC,
+	FOLLOWING
 }
 
-## If the joystick stays in the same position or appears on the touched position when touch is started
 @export var joystick_mode := Joystick_mode.FIXED
 
 enum Visibility_mode {
-	ALWAYS, ## Always visible
-	TOUCHSCREEN_ONLY ## Visible on touch screens only
+	ALWAYS,
+	TOUCHSCREEN_ONLY
 }
 
-## If the joystick is always visible, or is shown only if there is a touchscreen
 @export var visibility_mode := Visibility_mode.ALWAYS
 
-## If true, the joystick uses Input Actions (Project -> Project Settings -> Input Map)
 @export var use_input_actions := true
 
 @export var action_left := "move_left"
@@ -36,15 +30,9 @@ enum Visibility_mode {
 @export var action_up := "move_forward"
 @export var action_down := "move_back"
 
-# PUBLIC VARIABLES
-
-## If the joystick is receiving inputs.
 var is_pressed := false
 
-# The joystick output.
 var output := Vector2.ZERO
-
-# PRIVATE VARIABLES
 
 var _touch_index : int = -1
 
@@ -55,8 +43,6 @@ var _touch_index : int = -1
 @onready var _tip_default_position : Vector2 = _tip.position
 
 @onready var _default_color : Color = _tip.modulate
-
-# FUNCTIONS
 
 func _ready() -> void:
 	if not DisplayServer.is_touchscreen_available() and visibility_mode == Visibility_mode.TOUCHSCREEN_ONLY:
