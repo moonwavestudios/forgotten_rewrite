@@ -40,10 +40,17 @@ func _safe_set_texture(node_path: String, texture) -> void:
 	if node != null:
 		node.texture = texture
 
+func _get_local_player() -> Node:
+	var local_id = multiplayer.get_unique_id()
+	for player in get_tree().get_nodes_in_group("players"):
+		if player.get_multiplayer_authority() == local_id:
+			return player
+	return null
+
 func _populate_emotes() -> void:
 	var grid = $Items/Emotes/GridContainer
 	_clear_grid(grid)
-	var player = get_tree().get_first_node_in_group("players")
+	var player = _get_local_player()
 	var equipped_emotes: Array = player.equipped_emotes if player != null else []
 	for emote_name in EmoteData.Emotes:
 		var emote = EmoteData.Emotes[emote_name]
@@ -238,12 +245,24 @@ func _on_equip_button_pressed() -> void:
 	save_data.set_equipped_character(char_type, char_id)
 	save_data.set_equipped_skin(char_id, skin_id)
 
-	var player = get_tree().get_first_node_in_group("players")
+	var player = _get_local_player()
 	if player != null:
-		var is_killer = player.is_Killer
-		var player_char = player.equipped_killer if is_killer else player.equipped_survivor
-		if player_char == char_id:
-			player.apply_skin(skin_id)
+		var saved_survivor = save_data.get_equipped_character("survivor")
+		var saved_killer   = save_data.get_equipped_character("killer")
+		if saved_survivor != "":
+			player.equipped_survivor = saved_survivor
+		if saved_killer != "":
+			player.equipped_killer = saved_killer
+
+		var player_char_id = player.equipped_killer if player.is_Killer else player.equipped_survivor
+		player.equipped_skin_id = save_data.get_equipped_skin(player_char_id)
+
+		if player.has_method("apply_character_stats"):
+			player.apply_character_stats()
+		if player.has_method("apply_skin"):
+			player.apply_skin(player.equipped_skin_id)
+		if player.has_method("_refresh_abilities"):
+			player._refresh_abilities()
 
 	_populate_skins_panel(_selected_char_data)
 	_refresh_equip_button()

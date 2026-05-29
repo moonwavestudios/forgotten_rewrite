@@ -260,3 +260,10 @@ offset_bottom = 181.0
 text = "send"
 
 [node name="AutoHideTimer" type="Timer" parent="ChatUI" unique_id=1802005023]
+
+[node name="KillerLight" type="SpotLight3D" parent="." unique_id=1279814293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.60655403, -0.6060272)
+visible = false
+light_color = Color(1, 0, 0, 1)
+light_energy = 8.0
+shadow_enabled = true

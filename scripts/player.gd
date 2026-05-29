@@ -167,7 +167,9 @@ func _ready() -> void:
 	if not is_multiplayer_authority():
 		$player_ui.visible = false
 		return
-
+	
+	_hide_killer_light()
+	
 	var saved_survivor = save_data.get_equipped_character("survivor")
 	var saved_killer   = save_data.get_equipped_character("killer")
 
@@ -180,6 +182,8 @@ func _ready() -> void:
 	equipped_skin_id = save_data.get_equipped_skin(char_id)
 	if in_round:
 		apply_skin(equipped_skin_id)
+		apply_character_stats()
+		_refresh_abilities()
 
 	coins  = save_data.get_coins()
 	malice = save_data.get_malice()
@@ -221,6 +225,7 @@ func _setup_voice_chat() -> void:
 
 func _on_round_started() -> void:
 	in_round = true
+	_hide_killer_light()
 	apply_skin(equipped_skin_id)
 	apply_character_stats()
 	_refresh_abilities()
@@ -228,6 +233,11 @@ func _on_round_started() -> void:
 func _on_round_ended() -> void:
 	in_round = false
 	clear_skin()
+
+func _hide_killer_light() -> void:
+	var light = get_node_or_null("KillerLight")
+	if light:
+		light.visible = is_Killer and not is_multiplayer_authority()
 
 func _process(delta: float) -> void:
 	for key in cooldowns:

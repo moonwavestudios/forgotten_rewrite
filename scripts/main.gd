@@ -314,6 +314,11 @@ func _ensure_unique_survivors() -> void:
 			player.equipped_survivor = replacement
 			if player.has_method("apply_skin"):
 				player.equipped_skin_id = save_data.get_equipped_skin(replacement)
+				player.apply_skin(player.equipped_skin_id)
+			if player.has_method("apply_character_stats"):
+				player.apply_character_stats()
+			if player.has_method("_refresh_abilities"):
+				player._refresh_abilities()
 			used.append(replacement)
 			var newcls = CharData.get_survivor(replacement).get("class", "")
 			if newcls != "" and class_counts.has(newcls):
