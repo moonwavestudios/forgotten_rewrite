@@ -255,9 +255,10 @@ func _on_give_killer_pressed() -> void:
 	for plr in $"../..".get_players():
 		if plr.name == $Both/Admin_Panel/ScrollContainer/VBoxContainer/MakeKiller/LineEdit.text:
 			plr.apply_character_stats()
-			plr.apply_skin(plr.equipped_skin_id)
 			plr._refresh_abilities()
 			plr.is_Killer = true
+			plr.equipped_skin_id = save_data.get_equipped_skin(plr.equipped_killer)
+			plr.apply_skin(plr.equipped_skin_id)
 
 func _on_kick_player_pressed() -> void:
 	$click.play()

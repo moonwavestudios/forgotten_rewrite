@@ -164,10 +164,6 @@ func _ready() -> void:
 
 	camera.current = is_multiplayer_authority()
 
-	if not is_multiplayer_authority():
-		$player_ui.visible = false
-		return
-	
 	_hide_killer_light()
 	
 	var saved_survivor = save_data.get_equipped_character("survivor")
@@ -180,11 +176,16 @@ func _ready() -> void:
 
 	var char_id = equipped_killer if is_Killer else equipped_survivor
 	equipped_skin_id = save_data.get_equipped_skin(char_id)
+	
 	if in_round:
 		apply_skin(equipped_skin_id)
 		apply_character_stats()
 		_refresh_abilities()
-
+	
+	if not is_multiplayer_authority():
+		$player_ui.visible = false
+		return
+	
 	coins  = save_data.get_coins()
 	malice = save_data.get_malice()
 
