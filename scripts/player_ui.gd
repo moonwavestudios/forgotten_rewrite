@@ -59,6 +59,10 @@ func _ready() -> void:
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_FPS/ShowFPS.button_pressed = settings.show_fps
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping/ShowPing.button_pressed = settings.show_ping
 
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VCDis/VC_check.button_pressed = settings.voicechat_enabled
+	
+	player.set_voice_chat_enabled(settings.voicechat_enabled)
+	
 	AchievementData.achievement_unlocked.connect(_on_achievement_unlocked)
 		
 	await get_tree().process_frame

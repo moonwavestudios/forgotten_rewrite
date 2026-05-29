@@ -187,8 +187,6 @@ func _ready() -> void:
 
 	coins  = save_data.get_coins()
 	malice = save_data.get_malice()
-	
-	set_voice_chat_enabled(PlayerSettings.voicechat_enabled)
 
 	var xp_char_id = equipped_killer if is_Killer else equipped_survivor
 	xp = save_data.get_character_xp(xp_char_id)
@@ -690,14 +688,13 @@ func _process_voice_chat() -> void:
 
 @rpc("unreliable", "any_peer")
 func send_voice(frames: PackedVector2Array) -> void:
+	if not voice_chat_enabled:
+		return
 	var sender_id := multiplayer.get_remote_sender_id()
 	for player in get_tree().get_nodes_in_group("interactors"):
 		if player.get_multiplayer_authority() == sender_id:
 			continue
-		receive_voice.rpc_id(
-			player.get_multiplayer_authority(),
-			frames
-		)
+		receive_voice.rpc_id(player.get_multiplayer_authority(), frames)
 
 @rpc("authority", "unreliable")
 func receive_voice(frames: PackedVector2Array) -> void:
@@ -707,6 +704,18 @@ func receive_voice(frames: PackedVector2Array) -> void:
 		voice_playback.push_frame(frame)
 
 func set_voice_chat_enabled(enabled: bool) -> void:
+	voice_chat_enabled = enabled
+	var bus_idx = AudioServer.get_bus_index("Voice")
+	AudioServer.set_bus_mute(bus_idx, not enabled)
+	if multiplayer.is_server():
+		pass
+	else:
+		_sync_voice_chat.rpc_id(1, enabled)
+
+@rpc("any_peer", "reliable")
+func _sync_voice_chat(enabled: bool) -> void:
+	if not multiplayer.is_server():
+		return
 	voice_chat_enabled = enabled
 
 func on_killed_survivor() -> void:
@@ -753,54 +762,50 @@ func _update_chase_music() -> void:
 		_on_chase_state_changed(new_intensity)
 
 func _on_chase_state_changed(intensity: int) -> void:
-	var chase_data = active_music.get("chase", "")
-	
-	if not is_Killer:
-		for player in get_tree().get_nodes_in_group("players"):
-			if is_instance_valid(player) and player.is_Killer:
-				chase_data = player.active_music.get("chase", "")
-				break
-	
-	if intensity > 0:
-		if chase_data is Array and chase_data.size() >= 4:
-			for i in range(4):
-				var path = ""
-				var should_play = false
-				if intensity == 4 and i == 3:  # Closest: Chase Theme
-					path = chase_data[3]
-					should_play = true
-				elif not is_Killer and intensity == 1 and i == 0:  # Furthest: Layer 1
-					path = chase_data[0]
-					should_play = true
-				elif not is_Killer and intensity == 2 and i == 1:  # Medium: Layer 2
-					path = chase_data[1]
-					should_play = true
-				elif not is_Killer and intensity == 3 and i == 2:  # Close: Layer 3
-					path = chase_data[2]
-					should_play = true
-
-				if i < 3:
-					if should_play and not chase_layer_players[i].playing and path != "" and ResourceLoader.exists(path):
-						chase_layer_players[i].stream = load(path)
-						chase_layer_players[i].play()
-					elif not should_play and chase_layer_players[i].playing:
-						chase_layer_players[i].stop()
-				else:
-					if should_play and not $Chase_Theme.playing and path != "" and ResourceLoader.exists(path):
-						$Chase_Theme.stream = load(path)
-						$Chase_Theme.play()
-					elif not should_play and $Chase_Theme.playing:
-						$Chase_Theme.stop()
-		else:
-			# Fallback for single theme
-			if not $Chase_Theme.playing and chase_data != "" and ResourceLoader.exists(chase_data):
-				$Chase_Theme.stream = load(chase_data)
-				$Chase_Theme.play()
-	else:
-		# Stop all
+	if intensity == 0:
 		$Chase_Theme.stop()
 		for player in chase_layer_players:
 			player.stop()
+		return
+
+	if is_Killer:
+		var chase_data = active_music.get("chase", "")
+		for player in chase_layer_players:
+			player.stop()
+
+		if intensity == 4:
+			if chase_data is Array and chase_data.size() >= 4:
+				var path = chase_data[3]
+				if not $Chase_Theme.playing and path != "" and ResourceLoader.exists(path):
+					$Chase_Theme.stream = load(path)
+					$Chase_Theme.play()
+			elif chase_data is String and chase_data != "" and ResourceLoader.exists(chase_data):
+				if not $Chase_Theme.playing:
+					$Chase_Theme.stream = load(chase_data)
+					$Chase_Theme.play()
+		else:
+			$Chase_Theme.stop()
+	else:
+		$Chase_Theme.stop()
+
+		var killer_music = {}
+		for player in get_tree().get_nodes_in_group("players"):
+			if is_instance_valid(player) and player.is_Killer:
+				killer_music = player.active_music
+				break
+
+		var chase_data = killer_music.get("chase", "")
+		if not (chase_data is Array and chase_data.size() >= 4):
+			return
+
+		for i in range(3):
+			var path = chase_data[i]
+			var should_play = intensity >= (i + 1)
+			if should_play and not chase_layer_players[i].playing and path != "" and ResourceLoader.exists(path):
+				chase_layer_players[i].stream = load(path)
+				chase_layer_players[i].play()
+			elif not should_play and chase_layer_players[i].playing:
+				chase_layer_players[i].stop()
 
 func _try_emote(emote_name: String) -> void:
 	if is_Killer:

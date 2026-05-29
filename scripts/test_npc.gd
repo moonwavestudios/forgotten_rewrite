@@ -158,44 +158,7 @@ func on_killed_survivor() -> void:
 	$Voiceline_Component.play_kill()
 
 func _update_chase_music() -> void:
-	var target_dist = INF
-
-	if is_Killer:
-
-		for player in get_tree().get_nodes_in_group("players"):
-			if not is_instance_valid(player):
-				continue
-			if player == self:
-				continue
-			if player.is_Killer:
-				continue
-			var dist = global_position.distance_to(player.global_position)
-			if dist < target_dist:
-				target_dist = dist
-	else:
-
-		for player in get_tree().get_nodes_in_group("players"):
-			if not is_instance_valid(player):
-				continue
-			if not player.is_Killer:
-				continue
-			var dist = global_position.distance_to(player.global_position)
-			if dist < target_dist:
-				target_dist = dist
-
-	var new_intensity = 0
-	if target_dist <= CHASE_CLOSEST:
-		new_intensity = 4
-	elif target_dist <= CHASE_CLOSE:
-		new_intensity = 3
-	elif target_dist <= CHASE_MEDIUM:
-		new_intensity = 2
-	elif target_dist <= CHASE_FAR:
-		new_intensity = 1
-
-	if new_intensity != current_intensity:
-		current_intensity = new_intensity
-		_on_chase_state_changed(new_intensity)
+	pass
 
 func _refresh_abilities() -> void:
 	pass
@@ -206,55 +169,8 @@ func play_hitsound():
 func play_killsound():
 	pass
 
-func _on_chase_state_changed(intensity: int) -> void:
-	var chase_data = active_music.get("chase", "")
-	
-	if not is_Killer:
-		for player in get_tree().get_nodes_in_group("players"):
-			if is_instance_valid(player) and player.is_Killer:
-				chase_data = player.active_music.get("chase", "")
-				break
-
-	if intensity > 0:
-		if chase_data is Array and chase_data.size() >= 4:
-			for i in range(4):
-				var path = ""
-				var should_play = false
-				if intensity == 4 and i == 3:
-					path = chase_data[3]
-					should_play = true
-				elif not is_Killer and intensity == 1 and i == 0:
-					path = chase_data[0]
-					should_play = true
-				elif not is_Killer and intensity == 2 and i == 1:
-					path = chase_data[1]
-					should_play = true
-				elif not is_Killer and intensity == 3 and i == 2:
-					path = chase_data[2]
-					should_play = true
-
-				if i < 3:
-					if should_play and not chase_layer_players[i].playing and path != "" and ResourceLoader.exists(path):
-						chase_layer_players[i].stream = load(path)
-						chase_layer_players[i].play()
-					elif not should_play and chase_layer_players[i].playing:
-						chase_layer_players[i].stop()
-				else:
-					if should_play and not $Chase_Theme.playing and path != "" and ResourceLoader.exists(path):
-						$Chase_Theme.stream = load(path)
-						$Chase_Theme.play()
-					elif not should_play and $Chase_Theme.playing:
-						$Chase_Theme.stop()
-		else:
-
-			if not $Chase_Theme.playing and chase_data != "" and ResourceLoader.exists(chase_data):
-				$Chase_Theme.stream = load(chase_data)
-				$Chase_Theme.play()
-	else:
-
-		$Chase_Theme.stop()
-		for player in chase_layer_players:
-			player.stop()
+func _on_chase_state_changed(_intensity: int) -> void:
+	pass
 
 func apply_character_stats():
 	print("stuff")
@@ -271,31 +187,29 @@ func take_damage(amount: int) -> void:
 	health -= final_dmg
 
 func _physics_process(delta: float) -> void:
+	if not multiplayer.is_server():
+		return
+
 	hitbox_attack = "killer" if not is_Killer else "survivor"
-	
+
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	
-	if is_Killer or true:
-		_chase_scan_timer -= delta
-		if _chase_scan_timer <= 0.0:
-			_chase_scan_timer = CHASE_SCAN_INTERVAL
-			_update_chase_music()
-	
+
+	_chase_scan_timer -= delta
+	if _chase_scan_timer <= 0.0:
+		_chase_scan_timer = CHASE_SCAN_INTERVAL
+		_update_chase_music()
+
 	if health <= 0:
 		in_round = false
-	
+
 	hitbox_timer += delta
-		
 	if hitbox_timer >= HITBOX_INTERVAL:
 		hitbox_timer = 0.0
-			
 		hit_flag.clear()
-			
 		for i in range(5):
 			var spawn_pos = global_position + -transform.basis.z * 1.0
 			spawn_pos.y -= 0.9
-				
 			$"..".add_hitbox(
 				hitboxes,
 				spawn_pos,
@@ -306,8 +220,7 @@ func _physics_process(delta: float) -> void:
 				null,
 				self
 			)
-	
+
 	velocity.x = move_toward(velocity.x, 0, (SPEED - current_speed + SPEED) * delta * 10.0)
 	velocity.z = move_toward(velocity.z, 0, (SPEED - current_speed + SPEED) * delta * 10.0)
-	
 	move_and_slide()
