@@ -218,6 +218,7 @@ func _physics_process(delta: float) -> void:
 				hitbox_attack,
 				Vector3(1.0, 1.0, 1.0),
 				null,
+				true,
 				self
 			)
 

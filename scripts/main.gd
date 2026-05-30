@@ -136,7 +136,7 @@ func add_hitbox(hitbox, pos, hit_flag: Array, damage, Hittarget: String, size: V
 	
 	if source_player:
 		instance.global_rotation = source_player.global_rotation
-		instance.og_plr = source_player
+		instance.init(source_player)
 	
 	await get_tree().create_timer(0.5).timeout
 	
@@ -165,7 +165,7 @@ func add_hitbox_instant(hitbox, pos, hit_flag: Array, damage, Hittarget: String,
 
 	if source_player:
 		instance.global_rotation = source_player.global_rotation
-		instance.og_plr = source_player
+		instance.init(source_player)
 
 	get_tree().create_timer(0.5).timeout.connect(instance.queue_free)
 	return instance
