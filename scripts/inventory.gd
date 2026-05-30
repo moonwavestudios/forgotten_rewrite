@@ -125,8 +125,16 @@ func _create_char_item(char_data: Dictionary) -> Control:
 	var item = item_scene.instantiate()
 	var char_id       = char_data.get("id", "")
 	var equipped_skin = save_data.get_equipped_skin(char_id)
+
+	var equipped_skin_name = equipped_skin
+
+	for skin in char_data.get("skins", []):
+		if skin.get("id", "") == equipped_skin:
+			equipped_skin_name = skin.get("display_name", equipped_skin)
+			break
+
 	item.get_node("ItemName").text = char_data.get("display_name", char_data.get("id", "???"))
-	item.get_node("Price").text    = "Skin: " + equipped_skin
+	item.get_node("Price").text = "Skin: " + equipped_skin_name
 	var skins: Array = char_data.get("skins", [])
 	if not skins.is_empty():
 		var thumb_path = skins[0].get("thumbnail", "")
