@@ -1,7 +1,7 @@
 extends Node
 
 const SAVE_PATH = "user://save.mwdat"
-const DEFAULT_OWNED_CHARACTERS = ["eli", "swordman", "yixi"]
+const DEFAULT_OWNED_CHARACTERS = ["eli", "nyx", "swordman", "yixi"]
 
 var _cache: Dictionary = {}
 var _cache_loaded: bool = false
@@ -47,7 +47,7 @@ func set_coins(amount: int) -> void:
 	_save_all(data)
 
 func get_malice() -> int:
-	return _load_all().get("malice", -100)
+	return _load_all().get("malice", 0)
 
 func set_malice(amount: int) -> void:
 	var data = _load_all()

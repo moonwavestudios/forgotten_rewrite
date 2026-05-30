@@ -271,6 +271,8 @@ func start_round():
 		
 	if most_malicious_player != null:
 		most_malicious_player.is_Killer = true
+		most_malicious_player.malice = 0
+		save_data.set_malice(0)
 		most_malicious_player.equipped_skin_id = save_data.get_equipped_skin(most_malicious_player.equipped_killer)
 		most_malicious_player.apply_skin(most_malicious_player.equipped_skin_id)
 		most_malicious_player.get_node("Voiceline_Component").play_intro()
