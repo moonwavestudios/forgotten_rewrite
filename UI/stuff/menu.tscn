@@ -45,6 +45,9 @@ func _on_pressed() -> void:
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3km2"]
 bg_color = Color(0.0768358, 0.07683582, 0.076835774, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnde0"]
+bg_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8lkg"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -322,6 +325,13 @@ offset_top = 280.0
 offset_right = 685.0
 offset_bottom = 336.0
 text = "Log in"
+
+[node name="CreditsPanel" type="Panel" parent="MainMenu" unique_id=1718588421]
+visible = false
+layout_mode = 0
+offset_right = 1158.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cnde0")
 
 [node name="Hosting" type="Panel" parent="." unique_id=14758655]
 visible = false
