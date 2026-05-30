@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cq8xx45vkdwlv"
+path="res://.godot/imported/THE REALLY SCARY ICE TOWN.mp3-48e3c4b5ed09e185c42ce072a0963879.mp3str"
+
+[deps]
+
+source_file="res://assets/music/THE REALLY SCARY ICE TOWN.mp3"
+dest_files=["res://.godot/imported/THE REALLY SCARY ICE TOWN.mp3-48e3c4b5ed09e185c42ce072a0963879.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

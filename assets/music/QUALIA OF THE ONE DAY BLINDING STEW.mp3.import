@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dw2b74auyfoei"
+path="res://.godot/imported/QUALIA OF THE ONE DAY BLINDING STEW.mp3-9068c5d3d4fd96785e916c0f3dab423f.mp3str"
+
+[deps]
+
+source_file="res://assets/music/QUALIA OF THE ONE DAY BLINDING STEW.mp3"
+dest_files=["res://.godot/imported/QUALIA OF THE ONE DAY BLINDING STEW.mp3-9068c5d3d4fd96785e916c0f3dab423f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

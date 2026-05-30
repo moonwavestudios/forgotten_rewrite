@@ -76,6 +76,7 @@
 	  "thumbnail": "res://assets/textures/skins/sakuya_creation.png",
 	  "animations": {},
 	  "music": {
+		"lms": "res://assets/music/lms_bunny.mp3",
 		"chase": "res://assets/music/sakuya_chase.mp3",
 		"chase_layers": [
 		  "res://assets/music/sakuya_layer1.mp3",
@@ -95,6 +96,7 @@
 	  "thumbnail": "res://assets/textures/skins/cursed_child_creation.png",
 	  "animations": {},
 	  "music": {
+		"lms": "res://assets/music/lms_bunny.mp3",
 		"chase": "res://assets/music/cursed_child_chase.mp3",
 		"chase_layers": [
 		  "res://assets/music/cursed_child_layer1.mp3",
