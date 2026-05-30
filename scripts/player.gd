@@ -618,6 +618,7 @@ func _physics_process(delta: float) -> void:
 				stamina = min(stamina + STAMINA_RECOVER_EXHAUSTED * delta, MAX_STAMINA)
 				if stamina >= MAX_STAMINA * 0.25:
 					exhausted = false
+					sprint_needs_reset = false
 			else:
 				stamina = min(stamina + STAMINA_RECOVER * delta, MAX_STAMINA)
 			
