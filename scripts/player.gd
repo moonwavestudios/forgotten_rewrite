@@ -226,6 +226,7 @@ func _on_round_started() -> void:
 	in_round = true
 	_hide_killer_light()
 	apply_skin(equipped_skin_id)
+	stamina = MAX_STAMINA
 	apply_character_stats()
 	_refresh_abilities()
 
@@ -333,7 +334,7 @@ func apply_skin(skin_id: String) -> void:
 		if skin_scene:
 			_skin_instance = skin_scene.instantiate()
 			add_child(_skin_instance)
-			$CollisionShape3D/MeshInstance3D.visible = false
+			$player_model.visible = false
 
 			var skin_anim_player = _skin_instance.get_node_or_null("AnimationPlayer")
 			if animation_manager == null:
