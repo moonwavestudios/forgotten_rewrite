@@ -10,14 +10,9 @@
 [ext_resource type="Script" uid="uid://b355vg2tv7qjp" path="res://scripts/passive_component.gd" id="8_smehm"]
 [ext_resource type="PackedScene" uid="uid://bg2chmdsjyk0v" path="res://scenes/other/snake.tscn" id="9_ur7pv"]
 [ext_resource type="Script" uid="uid://d28b84rwd5avf" path="res://scripts/player_settings.gd" id="10_y4r1p"]
+[ext_resource type="PackedScene" uid="uid://6e1eltqr6d7f" path="res://assets/models/player_model.tscn" id="11_d2wvv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlg0r"]
-transparency = 1
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
-material = SubResource("StandardMaterial3D_qlg0r")
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y4r1p"]
 
@@ -148,9 +143,6 @@ hitboxes = ExtResource("2_qhqgy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=99104246]
 shape = SubResource("CapsuleShape3D_u8vuu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=932385504]
-mesh = SubResource("CapsuleMesh_3vyb7")
-
 [node name="Camera3D" type="Camera3D" parent="." unique_id=541452293]
 transform = Transform3D(1, 0, 0, 0, 0.95034206, 0.31120726, 0, -0.31120726, 0.95034206, 0, 1.2156656, 1.9222338)
 
@@ -267,3 +259,6 @@ visible = false
 light_color = Color(1, 0, 0, 1)
 light_energy = 8.0
 shadow_enabled = true
+
+[node name="player_model" parent="." unique_id=898044073 instance=ExtResource("11_d2wvv")]
+transform = Transform3D(-1.13, 0, -1.7062526e-07, 0, 1.13, 0, 1.7062526e-07, 0, -1.13, 0, -0.94703716, 0)

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://6e1eltqr6d7f"]
+
+[ext_resource type="PackedScene" uid="uid://pii2oy370u5q" path="res://assets/models/player_model.fbx" id="1_rhs4j"]
+
+[node name="player_model" type="Node3D" unique_id=898044073]
+
+[node name="Hair" type="Marker3D" parent="." unique_id=2042547056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8015624, 0)
+
+[node name="player_model" parent="." unique_id=1725929787 instance=ExtResource("1_rhs4j")]
+transform = Transform3D(99.96, 0, 0, 0, 99.96, 0, 0, 0, 99.96, 0, 0, 0)
