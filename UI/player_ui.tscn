@@ -1364,7 +1364,7 @@ label_settings = SubResource("LabelSettings_an3gc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VoicelinesVolume" unique_id=465059719]
+[node name="VLSlider" type="HSlider" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VoicelinesVolume" unique_id=465059719]
 layout_mode = 0
 offset_left = 258.0
 offset_top = 16.0
@@ -1372,7 +1372,7 @@ offset_right = 624.0
 offset_bottom = 32.0
 value = 50.0
 
-[node name="LineEdit" type="LineEdit" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VoicelinesVolume" unique_id=265346516]
+[node name="VLLineEdit" type="LineEdit" parent="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VoicelinesVolume" unique_id=265346516]
 layout_mode = 0
 offset_left = 636.0
 offset_top = 8.0
@@ -2151,7 +2151,7 @@ theme_override_fonts/font = ExtResource("4_qf5vc")
 theme_override_font_sizes/font_size = 23
 text = "KICK"
 
-[node name="Admin" type="Button" parent="Both" unique_id=1250297096]
+[node name="ServerOwnerButton" type="Button" parent="Both" unique_id=743685938]
 visible = false
 layout_mode = 0
 offset_right = 49.0
@@ -2160,7 +2160,7 @@ icon = ExtResource("2_nplvd")
 flat = true
 expand_icon = true
 
-[node name="ServerOwnerButton" type="Button" parent="Both" unique_id=743685938]
+[node name="Admin" type="Button" parent="Both" unique_id=907859151]
 visible = false
 layout_mode = 0
 offset_right = 49.0
@@ -2221,8 +2221,12 @@ stream = ExtResource("15_8hdo2")
 [connection signal="pressed" from="SpectatorStuff/InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="value_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_Slider" to="." method="_on_music_slider_value_changed"]
 [connection signal="text_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/MusicVolume/Music_LineEdit" to="." method="_on_music_line_edit_text_changed"]
+[connection signal="value_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/SFXVolume/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="text_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/SFXVolume/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="value_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat/VoiceChatSlider" to="." method="_on_voice_chat_slider_value_changed"]
 [connection signal="text_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat/VCLineEdit" to="." method="_on_vc_line_edit_text_changed"]
+[connection signal="value_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VoicelinesVolume/VLSlider" to="." method="_on_vl_slider_value_changed"]
+[connection signal="text_changed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VoicelinesVolume/VLLineEdit" to="." method="_on_vl_line_edit_text_changed"]
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Slash/SlashKeybind" to="." method="_on_slash_keybind_pressed"]
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Ability1/Ability1Keybind" to="." method="_on_ability_1_keybind_pressed"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitsounds/HitsoundsEnable" to="." method="_on_hitsounds_enable_toggled"]
@@ -2231,6 +2235,7 @@ stream = ExtResource("15_8hdo2")
 [connection signal="pressed" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Killsound2/KillsoundSelect" to="." method="_on_killsound_select_pressed"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Stamina/Center_Stam" to="." method="_on_center_stam_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/VCDis/VC_check" to="." method="_on_vc_check_toggled"]
+[connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/PushTT/PushTT_Check" to="." method="_on_push_tt_check_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Hitboxes/Enable_Hitbox" to="." method="_on_enable_hitbox_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_FPS/ShowFPS" to="." method="_on_show_fps_toggled"]
 [connection signal="toggled" from="SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Show_Ping/ShowPing" to="." method="_on_show_ping_toggled"]

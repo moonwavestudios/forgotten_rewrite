@@ -158,7 +158,7 @@ collide_with_areas = true
 [node name="SFX" type="AudioStreamPlayer3D" parent="." unique_id=757930316]
 
 [node name="FirstPersonCam" type="Camera3D" parent="." unique_id=54325718]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6779641, -0.24250025)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.939932, -0.07489252)
 
 [node name="player_ui" parent="." unique_id=1532252855 instance=ExtResource("4_dqkch")]
 

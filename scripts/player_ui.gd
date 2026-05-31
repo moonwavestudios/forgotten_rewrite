@@ -117,6 +117,7 @@ func _restore_killsound() -> void:
 		settings.killsound_stream = stream
 
 func _input(event: InputEvent) -> void:
+	print("listening_action: ", listening_action)
 	if event.is_action_pressed("PlayerList"):
 		toggle_player_list()
 
@@ -242,7 +243,7 @@ func _process(_delta: float) -> void:
 			)
 		entry.get_node("Malice").text = str(plr.malice)
 		
-	if Admins.admins.has(player.name):
+	if Admins.admins.has(player.player_name):
 		$Both/Admin.visible = true
 
 func _on_spin_box_value_changed(value: float) -> void:
@@ -458,9 +459,29 @@ func _on_vc_line_edit_text_changed(new_text: String) -> void:
 	var db = linear_to_db(float(new_text) / 100.0)
 	AudioServer.set_bus_volume_db(7, db)
 	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/Voicechat/VoiceChatSlider.value = float(new_text)
-	settings.set_music_volume(float(new_text))
+	settings.set_vc_volume(float(new_text))
 
 func _on_vc_check_toggled(toggled_on: bool) -> void:
 	player.set_voice_chat_enabled(toggled_on)
 	settings.set_voicechat_mode(toggled_on)
 	
+func _on_h_slider_value_changed(value: float) -> void:
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/SFXVolume/LineEdit.text = str(int(value))
+	var db = linear_to_db(value / 100.0)
+	AudioServer.set_bus_volume_db(6, db)
+	settings.set_sfx_volume(value)
+
+func _on_line_edit_text_changed(new_text: String) -> void:
+	var db = linear_to_db(float(new_text) / 100.0)
+	AudioServer.set_bus_volume_db(6, db)
+	$SpectatorStuff/Settings_Panel/ScrollContainer/VBoxContainer/SFXVolume/HSlider.value = float(new_text)
+	settings.set_sfx_volume(float(new_text))
+
+func _on_vl_slider_value_changed(value: float) -> void:
+	pass # Replace with function body.
+
+func _on_vl_line_edit_text_changed(new_text: String) -> void:
+	pass # Replace with function body.
+
+func _on_push_tt_check_toggled(toggled_on: bool) -> void:
+	pass # Replace with function body.
